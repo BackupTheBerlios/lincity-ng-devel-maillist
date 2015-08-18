@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15195] segfaults debugging on Gentoo w/gdb	6.8
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315195%5D%20segfaults%20debugging%20on%20Gentoo%20w/gdb%0A%096.8&In-Reply-To=%3C200902050159.n151xOAq014389%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000710.html">
+   <LINK REL="Next"  HREF="000712.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15195] segfaults debugging on Gentoo w/gdb	6.8</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315195%5D%20segfaults%20debugging%20on%20Gentoo%20w/gdb%0A%096.8&In-Reply-To=%3C200902050159.n151xOAq014389%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15195] segfaults debugging on Gentoo w/gdb	6.8">admin at berlios.de
+       </A><BR>
+    <I>Thu Feb  5 02:59:24 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000710.html">[Lincity-ng-devel] [Patch #2685] patch 2 of 2 to fix image loading	race condition
+</A></li>
+        <LI>Next message: <A HREF="000712.html">[Lincity-ng-devel] [Patch #2685] patch 2 of 2 to fix image loading	race condition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#711">[ date ]</a>
+              <a href="thread.html#711">[ thread ]</a>
+              <a href="subject.html#711">[ subject ]</a>
+              <a href="author.html#711">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15195, was updated on 2009-Feb-04 03:00
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: danielsantos
+Assigned to : none
+Summary: segfaults debugging on Gentoo w/gdb 6.8
+
+Details: I've decided to open a bug for this because I'm starting to suspect some type of actual race issue.  I apologize that I'm missing some symbols here (I intended to have debug info compiled into all of my libs).
+
+Notice in the backtraces below that both threads are messing with SDL_image at the same time, one of them is trying to read image textures while the other is telling calling IMG_QuitPNG().  This doesn't mean it's true, this could be the result of some previous problem (as you know jaky and I are both having problems debugging on Gentoo)
+
+Here are the versions of each of my sdl packages (some of which may have Gentoo-specific patches).
+media-libs/libsdl-1.2.13-r1
+media-libs/sdl-gfx-2.0.18
+media-libs/sdl-image-1.2.7
+media-libs/sdl-mixer-1.2.8
+media-libs/sdl-net-1.2.7
+media-libs/sdl-sound-1.0.3
+media-libs/sdl-ttf-2.0.9
+
+Although I'm not 100% certain, it would appear to be a problem with GameView and TextureManager using the library at the same time and the library not being OK with this.  Note thread 1, frame 13 at src/lincity-ng/GameView.cpp:377 and thread 2, frame 3 at src/gui/TextureManager.cpp:56.  They both happen to be calling IMG_LoadTyped_RW at the same time.  It looks like this function may not be reentrant.  Perhaps using SDL_Mutex_* functions would be good here?
+
+So at this point, I'm guessing that the reson it's crashing when run in gdb is the overhead caused by debugging is causing the timing of the execution of threads to differ enough to cause this race condition to manifest more often than otherwise.  (perhaps even related to bug #15191?)
+
+(gdb) info threads
+info threads
+  2 LWP 11352  0x00007f713c3194d2 in IMG_QuitPNG () at IMG_png.c:225
+* 1 LWP 11449  0x00007f71312c4620 in ?? ()
+^done
+(gdb) bt
+bt
+#0  0x00007f71312c4620 in ?? ()
+#1  0x00007f71312caf68 in ?? ()
+#2  0x00007f71314df768 in ?? ()
+#3  0x00007f71314df777 in ?? ()
+#4  0x00007f71314df772 in ?? ()
+#5  0x00007f713c31d82e in ?? () from /usr/lib/libSDL_image-1.2.so.0
+#6  0x00007f71311da210 in ?? ()
+#7  0x00007f713c51ed58 in supported () from /usr/lib/libSDL_image-1.2.so.0
+#8  0x0000000000000006 in ?? ()
+#9  0x0000000000a005b0 in ?? ()
+#10 0x00007f712c0e3ba0 in ?? ()
+#11 0x00007f713c3198d1 in IMG_LoadPNG_RW (src=0x7f712c0e3ba0) at IMG_png.c:357
+#12 0x00007f713c315790 in IMG_LoadTyped_RW (src=0x7f71314df76d, freesrc=1, type=0x0) at IMG.c:131
+#13 0x000000000043d0d4 in GameView::readImage (this=0x9f0400, filename=@0x7f71311dacd0) at src/lincity-ng/GameView.cpp:377
+#14 0x000000000043d2d1 in GameView::preReadCityTexture (this=0x9f0400, textureType=354, filename=@0x7f71311dacd0) at src/lincity-ng/GameView.cpp:407
+#15 0x000000000043d834 in GameView::loadTextures (this=0x9f0400) at src/lincity-ng/GameView.cpp:487
+#16 0x000000000044f49b in GameView::gameViewThread (data=0x9f0400) at src/lincity-ng/GameView.cpp:106
+#17 0x00007f713c75f67a in SDL_RunThread (data=0xa008e0) at src/thread/SDL_thread.c:202
+#18 0x00007f713c7a9409 in RunThread (data=0x7f712c02e330) at src/thread/pthread/SDL_systhread.c:47
+#19 0x00007f713c537037 in ?? () from /lib/libpthread.so.0
+#20 0x00007f713ac5a38d in clone () from /lib/libc.so.6
+#21 0x0000000000000000 in ?? ()
+^done
+(gdb) thread 2
+thread 2
+[Switching to thread 2 (LWP 11352)]#0  0x00007f713c3194d2 in IMG_QuitPNG () at IMG_png.c:225
+225			SDL_UnloadObject(lib.handle);
+^done
+(gdb) bt
+bt
+#0  0x00007f713c3194d2 in IMG_QuitPNG () at IMG_png.c:225
+#1  0x00007f713c3198a7 in IMG_LoadPNG_RW (src=0x9fecd0) at IMG_png.c:503
+#2  0x00007f713c315790 in IMG_LoadTyped_RW (src=0x9fecd0, freesrc=1, type=0x0) at IMG.c:131
+#3  0x00000000004703bc in TextureManager::load (this=0x9e63f0, filename=@0x9fddb0, filter=TextureManager::NO_FILTER) at src/gui/TextureManager.cpp:56
+#4  0x000000000046fc13 in Image::parse (this=0x9fdd60, reader=@0x7fff44f68910) at src/gui/Image.cpp:98
+#5  0x000000000041c36e in CheckButton::setChildImage (this=0x9fea40, child=@0x9feb48, reader=@0x7fff44f68910) at src/lincity-ng/CheckButton.cpp:217
+#6  0x000000000041caea in CheckButton::parse (this=0x9fea40, reader=@0x7fff44f68910) at src/lincity-ng/CheckButton.cpp:102
+#7  0x0000000000420306 in INTERN_CheckButtonFactory::createComponent (this=0x71e920, reader=@0x7fff44f68910) at src/lincity-ng/CheckButton.cpp:431
+#8  0x0000000000480322 in createComponent (type=@0x7fff44f67c20, reader=@0x7fff44f68910) at src/gui/ComponentLoader.cpp:54
+#9  0x0000000000480636 in parseEmbeddedComponent (reader=@0x7fff44f68910) at src/gui/ComponentLoader.cpp:90
+#10 0x0000000000489280 in TableLayout::parse (this=0x9fe7b0, reader=@0x7fff44f68910) at src/gui/TableLayout.cpp:188
+#11 0x000000000047f64c in INTERN_TableLayoutFactory::createComponent (this=0x723e08, reader=@0x7fff44f68910) at src/gui/TableLayout.cpp:466
+#12 0x0000000000480322 in createComponent (type=@0x7fff44f682c0, reader=@0x7fff44f68910) at src/gui/ComponentLoader.cpp:54
+#13 0x0000000000480636 in parseEmbeddedComponent (reader=@0x7fff44f68910) at src/gui/ComponentLoader.cpp:90
+#14 0x000000000045a122 in ButtonPanel::parse (this=0x9fca10, reader=@0x7fff44f68910) at src/lincity-ng/ButtonPanel.cpp:104
+#15 0x000000000045cbd6 in INTERN_ButtonPanelFactory::createComponent (this=0x71eb28, reader=@0x7fff44f68910) at src/lincity-ng/ButtonPanel.cpp:936
+#16 0x0000000000480322 in createComponent (type=@0x7fff44f68950, reader=@0x7fff44f68910) at src/gui/ComponentLoader.cpp:54
+#17 0x000000000047cf99 in ImportFactory::createComponent (this=0x9f0280, reader=@0x7fff44f69380) at src/gui/ComponentFactory.cpp:92
+#18 0x0000000000480322 in createComponent (type=@0x7fff44f68c20, reader=@0x7fff44f69380) at src/gui/ComponentLoader.cpp:54
+#19 0x0000000000480636 in parseEmbeddedComponent (reader=@0x7fff44f69380) at src/gui/ComponentLoader.cpp:90
+#20 0x0000000000489280 in TableLayout::parse (this=0xa03b10, reader=@0x7fff44f69380) at src/gui/TableLayout.cpp:188
+#21 0x000000000047f64c in INTERN_TableLayoutFactory::createComponent (this=0x723e08, reader=@0x7fff44f69380) at src/gui/TableLayout.cpp:466
+#22 0x0000000000480322 in createComponent (type=@0x7fff44f692c0, reader=@0x7fff44f69380) at src/gui/ComponentLoader.cpp:54
+#23 0x0000000000490641 in Desktop::parse (this=0x9ef310, reader=@0x7fff44f69380) at src/gui/Desktop.cpp:68
+#24 0x0000000000480835 in loadGUIFile (filename=@0x7fff44f69440) at src/gui/ComponentLoader.cpp:71
+#25 0x0000000000460373 in Game (this=0x9e4d40) at src/lincity-ng/Game.cpp:52
+#26 0x0000000000408a82 in mainLoop () at src/lincity-ng/main.cpp:337
+#27 0x000000000040a725 in main (argc=1, argv=0x7fff44f696f8) at src/lincity-ng/main.cpp:498
+^done
+
+Follow-Ups:
+
+Date: 2009-Feb-04 16:59
+By: danielsantos
+
+Comment:
+Here are my patches:
+<A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2684&amp;group_id=2929">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2684&amp;group_id=2929</A>
+<A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2685&amp;group_id=2929">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2685&amp;group_id=2929</A>
+
+Note that the 2nd patch is basically a file I copied from Glest Advanced Engine, the thread.h.  I renamed to Thread.hpp and made minor changes for lincity-ng environment and to #define the USE_SDL macro we use in GAE.  Optionally, we could rip out all of the win32 and win64 code which wont get compiled anyway, but there are a few advantages of using native win32/64 code to SDL, most notably the ability to alter thread priority.  I planned on implementing a pthreads as well, so we could have the same functionality in POSIX-compliant systems, but that hasn't been done.
+
+Either way, the 2nd patch can be entirely omitted and just add the SDLMutex* functions to Image.hpp and/or Image.cpp, but I think it's much cleaner to have a class encapsulating the mutex (ala Effective C++ Item 13: &quot;Use objects to manage resources&quot;).  Plus, since it's all inline, the generated code will be almost (or completely) identical to just calling the C functions.  Additionally, with MutexLock, you have better assurance of avoiding race conditions since the mutex will always be released, even if an exception is thrown from the code (it's released from the stack unwind).
+-------------------------------------------------------
+
+Date: 2009-Feb-04 15:47
+By: danielsantos
+
+Comment:
+Well, it appears that IMG_LoadPNG_RW is reentrant, but not thread safe, specifically if it was configured with the &quot;--enable-png-shared&quot; option (and I'm guessing that Gentoo does that where other distros may not).
+
+The source file SDL_png.c of SDL_image uses a single static instance of an anonymous struct named &quot;lib&quot; to load and unload it's interface via the (private?) IMG_InitPNG() and IMG_QuitPNG() functions.  When two threads enter this function at the same time, a race condition occurs which, as you are no doubt aware, can manifest sometimes and not others.  This can also occur it not configured with --enable-png-shared, only much more rarely as the window of opportunity is significantly smaller (approximately 40-ish assembly instructions -- look for the &quot;#ifdef LOAD_PNG_DYNAMIC&quot; in SDL_png.c and then look for it's &quot;#else&quot; to see the difference).
+
+Thus, the title of this bug should be changed to something like &quot;Race condition calling IMG_LoadPNG_RW() from multiple threads.&quot;
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15195&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15195&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000710.html">[Lincity-ng-devel] [Patch #2685] patch 2 of 2 to fix image loading	race condition
+</A></li>
+	<LI>Next message: <A HREF="000712.html">[Lincity-ng-devel] [Patch #2685] patch 2 of 2 to fix image loading	race condition
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#711">[ date ]</a>
+              <a href="thread.html#711">[ thread ]</a>
+              <a href="subject.html#711">[ subject ]</a>
+              <a href="author.html#711">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

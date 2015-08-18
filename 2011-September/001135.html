@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #16346] Crash under windows - trying to use	1680x1050
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316346%5D%20Crash%20under%20windows%20-%20trying%20to%20use%0A%091680x1050&In-Reply-To=%3C201109030859.p838xtYB000613%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001134.html">
+   <LINK REL="Next"  HREF="001136.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #16346] Crash under windows - trying to use	1680x1050</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316346%5D%20Crash%20under%20windows%20-%20trying%20to%20use%0A%091680x1050&In-Reply-To=%3C201109030859.p838xtYB000613%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #16346] Crash under windows - trying to use	1680x1050">admin at berlios.de
+       </A><BR>
+    <I>Sat Sep  3 10:59:55 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001134.html">[Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow
+</A></li>
+        <LI>Next message: <A HREF="001136.html">[Lincity-ng-devel] [Bug #15308] Failed to run in Windows Vista 64bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1135">[ date ]</a>
+              <a href="thread.html#1135">[ thread ]</a>
+              <a href="subject.html#1135">[ subject ]</a>
+              <a href="author.html#1135">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #16346, was updated on 2009-Oct-17 05:17
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Closed
+Resolution: None
+Bug Group: Windows
+Priority: 5
+Submitted by: oldmalden
+Assigned to : none
+Summary: Crash under windows - trying to use 1680x1050
+
+Details: Event log:
+
+Faulting application lincity-ng.exe, version 0.0.0.0, faulting module unknown, version 0.0.0.0, fault address 0x003e0008.
+
+
+Windows Debug:
+
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-16&quot;?&gt;
+&lt;DATABASE&gt;
+&lt;EXE NAME=&quot;lincity-ng.exe&quot; FILTER=&quot;GRABMI_FILTER_PRIVACY&quot;&gt;
+    &lt;MATCHING_FILE NAME=&quot;iconv.dll&quot; SIZE=&quot;892928&quot; CHECKSUM=&quot;0x96002EF&quot; BIN_FILE_VERSION=&quot;1.9.0.0&quot; BIN_PRODUCT_VERSION=&quot;1.9.0.0&quot; PRODUCT_VERSION=&quot;1.9&quot; FILE_DESCRIPTION=&quot;LGPLed libiconv for Windows NT/2000/XP and Windows 95/98/ME&quot; COMPANY_NAME=&quot;Free Software Foundation&quot; PRODUCT_NAME=&quot;libiconv: character set conversion library&quot; FILE_VERSION=&quot;1.9&quot; ORIGINAL_FILENAME=&quot;iconv.dll&quot; INTERNAL_NAME=&quot;iconv.dll&quot; LEGAL_COPYRIGHT=&quot;Copyright (C) 1999-2003&quot; VERFILEDATEHI=&quot;0x0&quot; VERFILEDATELO=&quot;0x0&quot; VERFILEOS=&quot;0x10004&quot; VERFILETYPE=&quot;0x2&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x0&quot; LINKER_VERSION=&quot;0x0&quot; UPTO_BIN_FILE_VERSION=&quot;1.9.0.0&quot; UPTO_BIN_PRODUCT_VERSION=&quot;1.9.0.0&quot; LINK_DATE=&quot;05/23/2003 17:45:10&quot; UPTO_LINK_DATE=&quot;05/23/2003 17:45:10&quot; VER_LANGUAGE=&quot;English (United States) [0x409]&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;libiconv-2.dll&quot; SIZE=&quot;1394932&quot; CHECKSUM=&quot;0x6D89C986&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x16449E&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;07/01/2007 16:31:29&quot; UPTO_LINK_DATE=&quot;07/01/2007 16:31:29&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;libogg-0.dll&quot; SIZE=&quot;51653&quot; CHECKSUM=&quot;0xE1B25359&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0xD4F5&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;06/03/2005 17:45:47&quot; UPTO_LINK_DATE=&quot;06/03/2005 17:45:47&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;libphysfs-1-0-0.dll&quot; SIZE=&quot;623075&quot; CHECKSUM=&quot;0x676B70C2&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x9F27C&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;06/04/2005 00:29:31&quot; UPTO_LINK_DATE=&quot;06/04/2005 00:29:31&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;libSDL_gfx-2-0-0.dll&quot; SIZE=&quot;566097&quot; CHECKSUM=&quot;0xA072FA35&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x8FE64&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;06/03/2005 19:30:25&quot; UPTO_LINK_DATE=&quot;06/03/2005 19:30:25&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;libxml2-2.dll&quot; SIZE=&quot;4201338&quot; CHECKSUM=&quot;0xAABCC04F&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x407E86&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;07/01/2007 16:46:29&quot; UPTO_LINK_DATE=&quot;07/01/2007 16:46:29&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;lincity-ng.exe&quot; SIZE=&quot;1384448&quot; CHECKSUM=&quot;0xD0259458&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x15E60A&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;01/25/2009 22:21:55&quot; UPTO_LINK_DATE=&quot;01/25/2009 22:21:55&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;SDL.dll&quot; SIZE=&quot;237568&quot; CHECKSUM=&quot;0x46A332C5&quot; BIN_FILE_VERSION=&quot;1.2.9.0&quot; BIN_PRODUCT_VERSION=&quot;1.2.9.0&quot; PRODUCT_VERSION=&quot;1, 2, 9, 0&quot; FILE_DESCRIPTION=&quot;SDL&quot; COMPANY_NAME=&quot;&quot; PRODUCT_NAME=&quot;Simple DirectMedia Layer&quot; FILE_VERSION=&quot;1, 2, 9, 0&quot; ORIGINAL_FILENAME=&quot;SDL.dll&quot; INTERNAL_NAME=&quot;SDL&quot; LEGAL_COPYRIGHT=&quot;Copyright &#169; 2002 Sam Lantinga&quot; VERFILEDATEHI=&quot;0x0&quot; VERFILEDATELO=&quot;0x0&quot; VERFILEOS=&quot;0x40004&quot; VERFILETYPE=&quot;0x2&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x0&quot; LINKER_VERSION=&quot;0x0&quot; UPTO_BIN_FILE_VERSION=&quot;1.2.9.0&quot; UPTO_BIN_PRODUCT_VERSION=&quot;1.2.9.0&quot; LINK_DATE=&quot;08/24/2005 22:05:11&quot; UPTO_LINK_DATE=&quot;08/24/2005 22:05:11&quot; VER_LANGUAGE=&quot;English (United States) [0x409]&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;SDL_image.dll&quot; SIZE=&quot;618860&quot; CHECKSUM=&quot;0xFFCF5A78&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0xA1249&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;06/03/2005 17:35:52&quot; UPTO_LINK_DATE=&quot;06/03/2005 17:35:52&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;SDL_mixer.dll&quot; SIZE=&quot;839185&quot; CHECKSUM=&quot;0x7D7FECE4&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0xDCD2A&quot; LINKER_VERSION=&quot;0x10000&quot; LINK_DATE=&quot;06/03/2005 18:19:41&quot; UPTO_LINK_DATE=&quot;06/03/2005 18:19:41&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;SDL_ttf.dll&quot; SIZE=&quot;331776&quot; CHECKSUM=&quot;0x73EFA0DB&quot; BIN_FILE_VERSION=&quot;2.0.8.0&quot; BIN_PRODUCT_VERSION=&quot;2.0.8.0&quot; PRODUCT_VERSION=&quot;2, 0, 8, 0&quot; FILE_DESCRIPTION=&quot;SDL_ttf&quot; COMPANY_NAME=&quot;&quot; PRODUCT_NAME=&quot;Simple DirectMedia Layer&quot; FILE_VERSION=&quot;2, 0, 8, 0&quot; ORIGINAL_FILENAME=&quot;SDL_ttf.dll&quot; INTERNAL_NAME=&quot;SDL_ttf&quot; LEGAL_COPYRIGHT=&quot;Copyright &#169; 2002 Sam Lantinga&quot; VERFILEDATEHI=&quot;0x0&quot; VERFILEDATELO=&quot;0x0&quot; VERFILEOS=&quot;0x40004&quot; VERFILETYPE=&quot;0x2&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x0&quot; LINKER_VERSION=&quot;0x0&quot; UPTO_BIN_FILE_VERSION=&quot;2.0.8.0&quot; UPTO_BIN_PRODUCT_VERSION=&quot;2.0.8.0&quot; LINK_DATE=&quot;05/11/2006 22:08:04&quot; UPTO_LINK_DATE=&quot;05/11/2006 22:08:04&quot; VER_LANGUAGE=&quot;English (United States) [0x409]&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;unins000.exe&quot; SIZE=&quot;667914&quot; CHECKSUM=&quot;0x2D45C922&quot; BIN_FILE_VERSION=&quot;51.42.0.0&quot; BIN_PRODUCT_VERSION=&quot;51.42.0.0&quot; PRODUCT_VERSION=&quot;&quot; FILE_DESCRIPTION=&quot;Setup/Uninstall&quot; COMPANY_NAME=&quot;&quot; PRODUCT_NAME=&quot;Inno Setup&quot; FILE_VERSION=&quot;51.42.0.0&quot; ORIGINAL_FILENAME=&quot;&quot; INTERNAL_NAME=&quot;&quot; LEGAL_COPYRIGHT=&quot;Copyright (C) 1997-2005 Jordan Russell. Portions Copyright (C) 2000-2005 Martijn Laan.&quot; VERFILEDATEHI=&quot;0x0&quot; VERFILEDATELO=&quot;0x0&quot; VERFILEOS=&quot;0x4&quot; VERFILETYPE=&quot;0x1&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x0&quot; LINKER_VERSION=&quot;0x0&quot; UPTO_BIN_FILE_VERSION=&quot;51.42.0.0&quot; UPTO_BIN_PRODUCT_VERSION=&quot;51.42.0.0&quot; LINK_DATE=&quot;06/19/1992 22:22:17&quot; UPTO_LINK_DATE=&quot;06/19/1992 22:22:17&quot; VER_LANGUAGE=&quot;English (United States) [0x409]&quot; /&gt;
+    &lt;MATCHING_FILE NAME=&quot;zlib1.dll&quot; SIZE=&quot;73728&quot; CHECKSUM=&quot;0x47FA8096&quot; BIN_FILE_VERSION=&quot;1.2.2.0&quot; BIN_PRODUCT_VERSION=&quot;1.2.2.0&quot; PRODUCT_VERSION=&quot;1.2.3&quot; FILE_DESCRIPTION=&quot;zlib data compression library&quot; PRODUCT_NAME=&quot;zlib&quot; FILE_VERSION=&quot;1.2.3&quot; ORIGINAL_FILENAME=&quot;zlib1.dll&quot; INTERNAL_NAME=&quot;zlib1.dll&quot; LEGAL_COPYRIGHT=&quot;(C) 1995-2004 Jean-loup Gailly &amp; Mark Adler&quot; VERFILEDATEHI=&quot;0x0&quot; VERFILEDATELO=&quot;0x0&quot; VERFILEOS=&quot;0x10004&quot; VERFILETYPE=&quot;0x2&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0x1A6BF&quot; LINKER_VERSION=&quot;0x0&quot; UPTO_BIN_FILE_VERSION=&quot;1.2.2.0&quot; UPTO_BIN_PRODUCT_VERSION=&quot;1.2.2.0&quot; LINK_DATE=&quot;08/06/2005 14:15:15&quot; UPTO_LINK_DATE=&quot;08/06/2005 14:15:15&quot; VER_LANGUAGE=&quot;English (United States) [0x409]&quot; /&gt;
+&lt;/EXE&gt;
+&lt;EXE NAME=&quot;kernel32.dll&quot; FILTER=&quot;GRABMI_FILTER_THISFILEONLY&quot;&gt;
+    &lt;MATCHING_FILE NAME=&quot;kernel32.dll&quot; SIZE=&quot;989696&quot; CHECKSUM=&quot;0x2D998938&quot; BIN_FILE_VERSION=&quot;5.1.2600.5781&quot; BIN_PRODUCT_VERSION=&quot;5.1.2600.5781&quot; PRODUCT_VERSION=&quot;5.1.2600.5781&quot; FILE_DESCRIPTION=&quot;Windows NT BASE API Client DLL&quot; COMPANY_NAME=&quot;Microsoft Corporation&quot; PRODUCT_NAME=&quot;Microsoft&#174; Windows&#174; Operating System&quot; FILE_VERSION=&quot;5.1.2600.5781 (xpsp_sp3_gdr.090321-1317)&quot; ORIGINAL_FILENAME=&quot;kernel32&quot; INTERNAL_NAME=&quot;kernel32&quot; LEGAL_COPYRIGHT=&quot;&#169; Microsoft Corporation. All rights reserved.&quot; VERFILEDATEHI=&quot;0x0&quot; VERFILEDATELO=&quot;0x0&quot; VERFILEOS=&quot;0x40004&quot; VERFILETYPE=&quot;0x2&quot; MODULE_TYPE=&quot;WIN32&quot; PE_CHECKSUM=&quot;0xFE572&quot; LINKER_VERSION=&quot;0x50001&quot; UPTO_BIN_FILE_VERSION=&quot;5.1.2600.5781&quot; UPTO_BIN_PRODUCT_VERSION=&quot;5.1.2600.5781&quot; LINK_DATE=&quot;03/21/2009 14:06:58&quot; UPTO_LINK_DATE=&quot;03/21/2009 14:06:58&quot; VER_LANGUAGE=&quot;English (United States) [0x409]&quot; /&gt;
+&lt;/EXE&gt;
+&lt;/DATABASE&gt;
+
+stderr.txt:
+ fast = 9
+ERROR of degree -1:Error. Can't find LINCITY_HOME
+ ldsv_version = 1322 
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16346&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16346&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001134.html">[Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow
+</A></li>
+	<LI>Next message: <A HREF="001136.html">[Lincity-ng-devel] [Bug #15308] Failed to run in Windows Vista 64bit
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1135">[ date ]</a>
+              <a href="thread.html#1135">[ thread ]</a>
+              <a href="subject.html#1135">[ subject ]</a>
+              <a href="author.html#1135">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

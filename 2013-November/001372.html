@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] SVN testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3CCAPpku8bn%3DhywsjumpazSJc_Lpope0HWQU-Y-ux-ZJVkXDDyQTg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001371.html">
+   <LINK REL="Next"  HREF="001373.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] SVN testing</H1>
+    <B>Ivar ten Cate</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3CCAPpku8bn%3DhywsjumpazSJc_Lpope0HWQU-Y-ux-ZJVkXDDyQTg%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] SVN testing">varivar at gmail.com
+       </A><BR>
+    <I>Wed Nov  6 22:43:36 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001371.html">[Lincity-ng-devel] SVN testing
+</A></li>
+        <LI>Next message: <A HREF="001373.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1372">[ date ]</a>
+              <a href="thread.html#1372">[ thread ]</a>
+              <a href="subject.html#1372">[ subject ]</a>
+              <a href="author.html#1372">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Thanks for the explanation :)
+
+Everything seems to work fine now. The cricket field sprites don't load,
+but I guess that's a minor bug.
+
+Greetings,
+Ivar
+
+
+
+2013/11/5 Khristian Cramberger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">cman.lincity at gmail.com</A>&gt;
+
+&gt;<i> update (1761)
+</I>&gt;<i>
+</I>&gt;<i> loading images in one thread and destroying them upon texture creation in
+</I>&gt;<i> another thread
+</I>&gt;<i> was a really bad idea. Now the loader gets the mutex and keeps it until it
+</I>&gt;<i> has parsed
+</I>&gt;<i> the entire images.xml. At exiting the loaderthread sets textures_ready =
+</I>&gt;<i> true. And only then
+</I>&gt;<i> drawTile attempts to claim the mutex and proceed with texture generation
+</I>&gt;<i> and display.
+</I>&gt;<i> Without mutual interuptions the loading is much faster and the all
+</I>&gt;<i> coloured tiles are updated
+</I>&gt;<i> in one shot.
+</I>&gt;<i>
+</I>&gt;<i> Maybe later we could move the loaderthread to initLincity. All
+</I>&gt;<i> GraphicsInfo is now stored in
+</I>&gt;<i> the respective Constructiongroups anyway and we could already load while
+</I>&gt;<i> the user spends
+</I>&gt;<i> a few seconds in the mainmenu.
+</I>&gt;<i>
+</I>&gt;<i> Kristian
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 11/04/2013 08:10 PM, Ivar ten Cate wrote:
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hello,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> You did great work with the code improvements!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I have tested the latest SVN revision (1758). Compiling and installing
+</I>&gt;&gt;<i> went
+</I>&gt;&gt;<i> fine, but the game crashes while loading a savegame or scenario. It loads
+</I>&gt;&gt;<i> the gui and a few sprites,but crashes halfway parsing png files. The
+</I>&gt;&gt;<i> terminal gives one of these error messages:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> *XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server
+</I>&gt;&gt;<i> &quot;:0&quot;*
+</I>&gt;&gt;<i> *      after 198 requests (198 known processed) with 11 events remaining.*
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> **** Error in `lincity-ng': malloc(): memory corruption (fast): 0x0860b968
+</I>&gt;&gt;<i> ****
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> *segmentation fault*
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Does the game run out of memory? I didn't have this issue with previous
+</I>&gt;&gt;<i> revisions. I'm running the game in Lubuntu 13.04 in VirtualBox. My host
+</I>&gt;&gt;<i> system is Windows 7 64bit. I have allocated 1gb of memory to the virtual
+</I>&gt;&gt;<i> OS. Raising to 2gb didn't help.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I hope this information is useful.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Greetings,
+</I>&gt;&gt;<i> Ivar
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;<i>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001371.html">[Lincity-ng-devel] SVN testing
+</A></li>
+	<LI>Next message: <A HREF="001373.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1372">[ date ]</a>
+              <a href="thread.html#1372">[ thread ]</a>
+              <a href="subject.html#1372">[ subject ]</a>
+              <a href="author.html#1372">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

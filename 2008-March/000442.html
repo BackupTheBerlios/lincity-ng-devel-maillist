@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C200803252048.12360.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000441.html">
+   <LINK REL="Next"  HREF="000443.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road bridge</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C200803252048.12360.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road bridge">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Mar 25 20:48:12 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000441.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+        <LI>Next message: <A HREF="000443.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#442">[ date ]</a>
+              <a href="thread.html#442">[ thread ]</a>
+              <a href="subject.html#442">[ subject ]</a>
+              <a href="author.html#442">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le lundi 24 mars 2008, magicfox a &#233;crit&#160;:
+&gt;<i> &gt; I hope it's possible to add these bridges to the code (I can't do that, 
+</I>&gt;<i> &gt; I know nothing of programming:(
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; I'll draw the rail bridge soon.
+</I>&gt;<i> &gt; 
+</I>&gt;<i> &gt; Greetings, Ivar.
+</I>&gt;<i> Hi,
+</I>&gt;<i> I've make a begin of test to implement build bridge with track dragging 
+</I>&gt;<i> tool.
+</I>nice
+
+&gt;<i> The building is not hard to code and it's possible to manage bridges as 
+</I>&gt;<i> a type of transport with a water flag to let the simulation engine 
+</I>&gt;<i> unchanged.
+</I>very nice
+
+&gt;<i> But in this case and without a special group for bridge, the 
+</I>&gt;<i> neighbourhood of bridge tiles, cost and bulldoze managements have to be 
+</I>&gt;<i> reviewed.
+</I>&gt;<i> For example, I get green in water near the bridge or a cost of $1 to 
+</I>&gt;<i> bulldoze a part of a track bridge...
+</I>A new building need a new group, so 3 more groups for 3 bridges.
+Then for each new types are needed for specifying the tile used (access ramp,
+orientation)
+
+Maybe we can put bridge (not access ramp) also in group_water (or is_water...)
+so connect_rivers will find the correct water tile. 
+
+Also a new loadsave_version must be set to prevent loading newer games with
+older versions (this gives unmodifiables tiles). 
+loadsave.h #define WATERWELL_V2 1322     (i used svn commit number)
+I can do this if you don't feel confident in modifying loadsave stuff.
+
+&gt;<i> 
+</I>&gt;<i> We can also update engine to consider bridges as a transport.
+</I>This should need to just add bridges in 
+transport.h XY_IS_TRANSPORT
+
+Something alike is defined in
+lin-city.h #define GROUP_IS_TRANSPORT(group) \
+
+These 2 are nearly redundant, i had no time to check if we can suppress one, but
+the idea is to keep only one. I'd prefer to keep transport.h.
+
+
+&gt;<i> Any comment from maintainers where is the best way to manage it ?
+</I>transport stuff and connect rivers can become performance critical. My last
+simplification of code gave a significant slowdown, but i kept (in comment)
+original code unrolled and much faster. So, if it is needed we can do it
+again...
+
+Alain.
+
+PS: btw, i messed my computer up while doing upgrade to debian/testing to be
+sure that everything work smoothly &lt;:o) I'm currently fixing this...
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000441.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+	<LI>Next message: <A HREF="000443.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#442">[ date ]</a>
+              <a href="thread.html#442">[ thread ]</a>
+              <a href="subject.html#442">[ subject ]</a>
+              <a href="author.html#442">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] SVN testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3C52793FE6.6070001%40Gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001370.html">
+   <LINK REL="Next"  HREF="001372.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] SVN testing</H1>
+    <B>Khristian Cramberger</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3C52793FE6.6070001%40Gmail.com%3E"
+       TITLE="[Lincity-ng-devel] SVN testing">cman.lincity at gmail.com
+       </A><BR>
+    <I>Tue Nov  5 19:58:46 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001370.html">[Lincity-ng-devel] SVN testing
+</A></li>
+        <LI>Next message: <A HREF="001372.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1371">[ date ]</a>
+              <a href="thread.html#1371">[ thread ]</a>
+              <a href="subject.html#1371">[ subject ]</a>
+              <a href="author.html#1371">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>update (1761)
+
+loading images in one thread and destroying them upon texture creation 
+in another thread
+was a really bad idea. Now the loader gets the mutex and keeps it until 
+it has parsed
+the entire images.xml. At exiting the loaderthread sets textures_ready = 
+true. And only then
+drawTile attempts to claim the mutex and proceed with texture generation 
+and display.
+Without mutual interuptions the loading is much faster and the all 
+coloured tiles are updated
+in one shot.
+
+Maybe later we could move the loaderthread to initLincity. All 
+GraphicsInfo is now stored in
+the respective Constructiongroups anyway and we could already load while 
+the user spends
+a few seconds in the mainmenu.
+
+Kristian
+
+
+
+
+On 11/04/2013 08:10 PM, Ivar ten Cate wrote:
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> You did great work with the code improvements!
+</I>&gt;<i>
+</I>&gt;<i> I have tested the latest SVN revision (1758). Compiling and installing went
+</I>&gt;<i> fine, but the game crashes while loading a savegame or scenario. It loads
+</I>&gt;<i> the gui and a few sprites,but crashes halfway parsing png files. The
+</I>&gt;<i> terminal gives one of these error messages:
+</I>&gt;<i>
+</I>&gt;<i> *XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server
+</I>&gt;<i> &quot;:0&quot;*
+</I>&gt;<i> *      after 198 requests (198 known processed) with 11 events remaining.*
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> **** Error in `lincity-ng': malloc(): memory corruption (fast): 0x0860b968
+</I>&gt;<i> ****
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> *segmentation fault*
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Does the game run out of memory? I didn't have this issue with previous
+</I>&gt;<i> revisions. I'm running the game in Lubuntu 13.04 in VirtualBox. My host
+</I>&gt;<i> system is Windows 7 64bit. I have allocated 1gb of memory to the virtual
+</I>&gt;<i> OS. Raising to 2gb didn't help.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I hope this information is useful.
+</I>&gt;<i>
+</I>&gt;<i> Greetings,
+</I>&gt;<i> Ivar
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001370.html">[Lincity-ng-devel] SVN testing
+</A></li>
+	<LI>Next message: <A HREF="001372.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1371">[ date ]</a>
+              <a href="thread.html#1371">[ thread ]</a>
+              <a href="subject.html#1371">[ subject ]</a>
+              <a href="author.html#1371">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

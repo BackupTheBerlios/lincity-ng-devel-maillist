@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Fwd: debian Bug#417374: FTBFS with GCC 4.3:	missing #includes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Fwd%3A%20debian%20Bug%23417374%3A%20FTBFS%20with%20GCC%204.3%3A%0A%09missing%20%23includes&In-Reply-To=%3C200704022113.54105.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000115.html">
+   <LINK REL="Next"  HREF="000117.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Fwd: debian Bug#417374: FTBFS with GCC 4.3:	missing #includes</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Fwd%3A%20debian%20Bug%23417374%3A%20FTBFS%20with%20GCC%204.3%3A%0A%09missing%20%23includes&In-Reply-To=%3C200704022113.54105.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Fwd: debian Bug#417374: FTBFS with GCC 4.3:	missing #includes">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Mon Apr  2 21:13:53 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000115.html">[Lincity-ng-devel] new branch waterwell
+</A></li>
+        <LI>Next message: <A HREF="000117.html">[Lincity-ng-devel] A Survey on Defect Management Practices in	Free/Open Source Software
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#116">[ date ]</a>
+              <a href="thread.html#116">[ thread ]</a>
+              <a href="subject.html#116">[ subject ]</a>
+              <a href="author.html#116">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+One debian guy compiled on ia64 with gcc 4.3 and gives a compile fix patch :)
+I hope with the patch lincity-ng should also compile with gcc 4.2.
+
+Not tested, so not commited in svn.
+Alain
+
+----------  fwd :   ----------
+
+Subject: Bug#417374: FTBFS with GCC 4.3: missing #includes
+Date: lundi 2 avril 2007 15:35
+From: Martin Michlmayr &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">tbm at cyrius.com</A>&gt;
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">submit at bugs.debian.org</A>
+
+Package: lincity-ng
+Version: 1.0.3-2
+Usertags: ftbfs-gcc-4.3
+Tags: patch
+
+Your package fails to build with GCC 4.3.  Version 4.3 has not been
+released yet but I'm building with a snapshot in order to find errors
+and give people an advance warning.  In GCC 4.3, the C++ header
+dependencies have been cleaned up.  The advantage of this is that
+programs will compile faster.  The downside is that you actually
+need to directly #include everything you use (but you really should
+do this anyway, otherwise your program won't work with any compiler
+other than GCC).  Some background of this can be found at
+<A HREF="http://gcc.gnu.org/PR28080">http://gcc.gnu.org/PR28080</A>
+
+You can reproduce this problem with gcc-snapshot (20070326-1 or higher)
+from unstable.
+
+&gt;<i> Automatic build of lincity-ng_1.0.3-2 on coconut0 by sbuild/ia64 0.49
+</I>...
+&gt;<i> C++ ./build/ia64-unknown-linux-gnu/optimize/src/tinygettext/TinyGetText.o 
+</I>&gt;<i> src/tinygettext/TinyGetText.cpp: In constructor 'TinyGetText::DictionaryManager::DictionaryManager()':
+</I>&gt;<i> src/tinygettext/TinyGetText.cpp:186: error: 'getenv' was not declared in this scope
+</I>&gt;<i> 
+</I>&gt;<i>     ia64-linux-gnu-g++ -c -o ./build/ia64-unknown-linux-gnu/optimize/src/tinygettext/TinyGetText.o  -DHAVE_CONFIG_H -I. -I./src   -O3 -g -Wall src/tinygettext/TinyGetText.cpp
+</I>&gt;<i> 
+</I>&gt;<i> src/lincity-ng/MiniMap.hpp:77: error: ISO C++ forbids declaration of 'auto_ptr' with no type
+</I>&gt;<i> src/lincity-ng/MiniMap.hpp:77: error: invalid use of '::'
+</I>&gt;<i> src/lincity-ng/MiniMap.hpp:77: error: expected ';' before '&lt;' token
+</I>&gt;<i> 
+</I>&gt;<i>     ia64-linux-gnu-g++ -c -o ./build/ia64-unknown-linux-gnu/optimize/src/lincity-ng/GameView.o  -DHAVE_CONFIG_H -I. -I./src -I/usr/include/libxml2   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT      -pthread     -O3 -g -Wall -DAPPDATADIR=\&quot;/usr/share/lincity-ng\&quot; src/lincity-ng/GameView.cpp
+</I>&gt;<i> 
+</I>...
+&gt;<i> src/lincity-ng/Game.cpp:142: warning: comparison is always true due to limited range of data type
+</I>&gt;<i> C++ ./build/ia64-unknown-linux-gnu/optimize/src/lincity-ng/MainMenu.o 
+</I>&gt;<i> In file included from src/lincity-ng/MainMenu.cpp:43:
+</I>&gt;<i> src/lincity-ng/MainMenu.hpp:76: error: ISO C++ forbids declaration of 'auto_ptr' with no type
+</I>&gt;<i> src/lincity-ng/MainMenu.hpp:76: error: invalid use of '::'
+</I>&gt;<i> src/lincity-ng/MainMenu.hpp:76: error: expected ';' before '&lt;' token
+</I>&gt;<i> src/lincity-ng/MainMenu.hpp:77: error: ISO C++ forbids declaration of 'auto_ptr' with no type
+</I>&gt;<i> src/lincity-ng/MainMenu.hpp:77: error: invalid use of '::'
+</I>&gt;<i> src/lincity-ng/MainMenu.hpp:77: error: expected ';' before '&lt;' token
+</I>
+--- src/tinygettext/TinyGetText.cpp~	2007-04-02 13:26:22.000000000 +0000
++++ src/tinygettext/TinyGetText.cpp	2007-04-02 13:26:30.000000000 +0000
+@@ -23,6 +23,7 @@
+ #if defined (HAVE_DIRENT_H)
+ #include &lt;dirent.h&gt;
+ #endif
++#include &lt;cstdlib&gt;
+ #include &lt;fstream&gt;
+ #include &lt;iostream&gt;
+ #include &lt;ctype.h&gt;
+--- src/lincity-ng/MiniMap.hpp~	2007-04-02 13:26:35.000000000 +0000
++++ src/lincity-ng/MiniMap.hpp	2007-04-02 13:26:45.000000000 +0000
+@@ -24,6 +24,8 @@
+ #include &quot;gui/Texture.hpp&quot;
+ #include &quot;MapPoint.hpp&quot;
+ 
++#include &lt;memory&gt;
++
+ class XmlReader;
+ class Button;
+ class CheckButton;
+--- src/lincity-ng/HelpWindow.cpp~	2007-04-02 13:27:00.000000000 +0000
++++ src/lincity-ng/HelpWindow.cpp	2007-04-02 13:27:08.000000000 +0000
+@@ -22,6 +22,7 @@
+ #include &lt;sstream&gt;
+ #include &lt;stdexcept&gt;
+ #include &lt;iostream&gt;
++#include &lt;memory&gt;
+ #include &lt;physfs.h&gt;
+ #include &quot;tinygettext/gettext.hpp&quot;
+ #include &quot;gui/Component.hpp&quot;
+--- src/lincity-ng/MainMenu.hpp~	2007-04-02 13:28:24.000000000 +0000
++++ src/lincity-ng/MainMenu.hpp	2007-04-02 13:28:31.000000000 +0000
+@@ -19,6 +19,7 @@
+ #define __MAINMENU_HPP__
+ 
+ #include &quot;main.hpp&quot;
++#include &lt;memory&gt;
+ 
+ class Component;
+ class Desktop;
+
+-- 
+Martin Michlmayr
+<A HREF="http://www.cyrius.com/">http://www.cyrius.com/</A>
+
+
+_______________________________________________
+Pkg-games-devel mailing list
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Pkg-games-devel at lists.alioth.debian.org</A>
+<A HREF="http://lists.alioth.debian.org/mailman/listinfo/pkg-games-devel">http://lists.alioth.debian.org/mailman/listinfo/pkg-games-devel</A>
+
+
+-------------------------------------------------------
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000115.html">[Lincity-ng-devel] new branch waterwell
+</A></li>
+	<LI>Next message: <A HREF="000117.html">[Lincity-ng-devel] A Survey on Defect Management Practices in	Free/Open Source Software
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#116">[ date ]</a>
+              <a href="thread.html#116">[ thread ]</a>
+              <a href="subject.html#116">[ subject ]</a>
+              <a href="author.html#116">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

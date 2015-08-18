@@ -1,0 +1,142 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15128] game save on crash
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315128%5D%20game%20save%20on%20crash&In-Reply-To=%3C201107221036.p6MAalDg014546%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001112.html">
+   <LINK REL="Next"  HREF="001114.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15128] game save on crash</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315128%5D%20game%20save%20on%20crash&In-Reply-To=%3C201107221036.p6MAalDg014546%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15128] game save on crash">admin at berlios.de
+       </A><BR>
+    <I>Fri Jul 22 12:36:47 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001112.html">[Lincity-ng-devel] [Bug #15128] game save on crash
+</A></li>
+        <LI>Next message: <A HREF="001114.html">[Lincity-ng-devel] [Bug #15917] lincity crashes under fedora 11	with every notification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1113">[ date ]</a>
+              <a href="thread.html#1113">[ thread ]</a>
+              <a href="subject.html#1113">[ subject ]</a>
+              <a href="author.html#1113">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15128, was updated on 2009-Jan-26 09:59
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: feature request
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: danielsantos
+Assigned to : none
+Summary: game save on crash
+
+Details: It would be nice if the non-debug build saved the current game (or attempted) on crash.  With a reentrant crash handler, you can first attempt to save the game when a crash occurs and if you crash again, then go ahead and give up (you don't want to keep trying over and over).
+
+Thanks
+
+Follow-Ups:
+
+Date: 2011-Jul-22 11:36
+By: jpmartins
+
+Comment:
+To me crash recovery is a must have. 
+
+Maybe, in experimental mode, something like lincity-ng ---tryrecoverfromcrash :) 
+-------------------------------------------------------
+
+Date: 2011-Jul-22 01:02
+By: jpmartins
+
+Comment:
+How hard would it be to implement an Auto-Save every 30 minutes?
+-------------------------------------------------------
+
+Date: 2009-May-30 19:20
+By: ghmitch
+
+Comment:
+This would be a huge upgrade from a user perspective.  It is very frustrating when you have achieved success only to crash and have to do it all over again.  Also, I like the idea of an advanced mode.  It would be nice to be able to somehow open a 'read file' dialog that would allow reload of any previously saved game from a dedicated saved game directory.  - George
+-------------------------------------------------------
+
+Date: 2009-Jan-27 09:57
+By: danielsantos
+
+Comment:
+I caught a problem in my code, fixed it and checked it in to my repository, so just make sure you have rev 297 or later if you are interested these files. (I forgot to add an uninstall member function for the crash handler and there were parts of my code where the crash handler no longer was living object, but would have still attempted to use it).  Also, PlatformCrashHandler uses an Uncopyable base class, you can just ditch that or replace it with noncopyable if you're using boost, etc.
+-------------------------------------------------------
+
+Date: 2009-Jan-27 09:12
+By: danielsantos
+
+Comment:
+If you have any interest what-so-ever, I have a rough crash handler class for posix w/glibc &amp; windows.  I wont promise it's anything near perfect, and you'll have to modify it (obviously) to fit your needs, but I did get it to print pretty backtraces using glibc's backtrace() and backtrace_symbols().  Hah! I just realized this is code that matze originally wrote (and I later hacked up :)!  Please pardon my invalid ssl cert though.
+
+Header: <A HREF="https://glest.codemonger.org/svn/repos/gae/branches/0.2.x/source/shared_lib/include/platform/platform_util.h">https://glest.codemonger.org/svn/repos/gae/branches/0.2.x/source/shared_lib/include/platform/platform_util.h</A>
+Win32 implementation: <A HREF="https://glest.codemonger.org/svn/repos/gae/branches/0.2.x/source/shared_lib/sources/platform/win32/platform_util.cpp">https://glest.codemonger.org/svn/repos/gae/branches/0.2.x/source/shared_lib/sources/platform/win32/platform_util.cpp</A>
+Linux/posix/glibc implementation : <A HREF="https://glest.codemonger.org/svn/repos/gae/branches/0.2.x/source/shared_lib/sources/platform/sdl/platform_util.cpp">https://glest.codemonger.org/svn/repos/gae/branches/0.2.x/source/shared_lib/sources/platform/sdl/platform_util.cpp</A>
+
+-------------------------------------------------------
+
+Date: 2009-Jan-27 08:25
+By: danielsantos
+
+Comment:
+Yea, I should do this on Glest Advanced Engine too (a game project I'm working on).  I'm a save-a-holic, so it would be nice if I could have more than 6 save slots anyway.  Maybe there could be a &quot;simple&quot; saved game mode and an &quot;advanced&quot;?  The simple just gives you the very easy to use slots we have now and the advanced lets you have any number of saved games, allowing you to choose an alternate name for them.  Thus, the save-on-crash game could be loaded via the &quot;advanced&quot; interface?  Just an idea.  I know that we can't always guarantee that a game saved from a crash handler will actually not be corrupted (and cause yet another crash), but I think it's better to give it a try than not (personally).
+
+Thanks
+-------------------------------------------------------
+
+Date: 2009-Jan-26 19:00
+By: wolfgangb
+
+Comment:
+Sounds like a plan. This emergency save must not overwrite an existing game
+because maybe that was the last working version of the city. On the other hand
+a way for the player to continue the crashed game would be nice, too.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15128&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15128&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001112.html">[Lincity-ng-devel] [Bug #15128] game save on crash
+</A></li>
+	<LI>Next message: <A HREF="001114.html">[Lincity-ng-devel] [Bug #15917] lincity crashes under fedora 11	with every notification
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1113">[ date ]</a>
+              <a href="thread.html#1113">[ thread ]</a>
+              <a href="subject.html#1113">[ subject ]</a>
+              <a href="author.html#1113">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

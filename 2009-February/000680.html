@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] interesting segfault while debugging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20interesting%20segfault%20while%20debugging&In-Reply-To=%3C621001.42084.qm%40web31910.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000698.html">
+   <LINK REL="Next"  HREF="000681.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] interesting segfault while debugging</H1>
+    <B>Daniel Santos</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20interesting%20segfault%20while%20debugging&In-Reply-To=%3C621001.42084.qm%40web31910.mail.mud.yahoo.com%3E"
+       TITLE="[Lincity-ng-devel] interesting segfault while debugging">javatroubadour at yahoo.com
+       </A><BR>
+    <I>Mon Feb  2 08:37:05 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000698.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+        <LI>Next message: <A HREF="000681.html">[Lincity-ng-devel] interesting segfault while debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#680">[ date ]</a>
+              <a href="thread.html#680">[ thread ]</a>
+              <a href="subject.html#680">[ subject ]</a>
+              <a href="author.html#680">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+This could be an issue of something broken in my system,(I'm using Gentoo and
+running a revdep-rebuild now to fix broken packages) but I thought I would
+check.  I'm getting a segfault at start up when debugging from within
+Kdevelop 3.5.4 on amd64 using gdb 6.8.  It's within the SDL-image code
+(version 1.2.7), where it attempts to call lib.png_create_read_struct().  It
+turns out that the address the lib structure contains for this function isn't
+mapped to the app.
+
+Has anybody run into anything like this before?  I may have to wait until my
+revdep-rebuild completes and try it again (after restarting my X session of
+course).  I can run it without debugging it with no problems.
+
+(gdb) bt
+bt
+#0  0x00007f38592860a0 in ?? ()
+#1  0x00007f3864ae10fe in IMG_LoadPNG_RW (src=0x7f38540b6b90) at
+IMG_png.c:330
+#2  0x00007f3864add770 in IMG_LoadTyped_RW (src=0x7f38540b6b90, freesrc=1,
+type=0x0) at IMG.c:131
+#3  0x00000000004701ec in TextureManager::load (this=0x7f385409eee0,
+filename=@0x7f38540b3c20, filter=TextureManager::NO_FILTER) at
+src/gui/TextureManager.cpp:56
+#4  0x000000000046fa43 in Image::parse (this=0x7f38540b3bd0,
+reader=@0x7fff6d7420b0) at src/gui/Image.cpp:98
+#5  0x000000000041c23a in CheckButton::setChildImage (this=0x7f38540aeb50,
+child=@0x7f38540aec80, reader=@0x7fff6d7420b0) at
+src/lincity-ng/CheckButton.cpp:217
+#6  0x000000000041ca88 in CheckButton::parse (this=0x7f38540aeb50,
+reader=@0x7fff6d7420b0) at src/lincity-ng/CheckButton.cpp:112
+#7  0x00000000004201d2 in INTERN_CheckButtonFactory::createComponent
+(this=0x71c900, reader=@0x7fff6d7420b0) at src/lincity-ng/CheckButton.cpp:431
+#8  0x0000000000480152 in createComponent (type=@0x7fff6d7413c0,
+reader=@0x7fff6d7420b0) at src/gui/ComponentLoader.cpp:54
+#9  0x0000000000480466 in parseEmbeddedComponent (reader=@0x7fff6d7420b0) at
+src/gui/ComponentLoader.cpp:90
+#10 0x00000000004890b0 in TableLayout::parse (this=0x7f38540ae8c0,
+reader=@0x7fff6d7420b0) at src/gui/TableLayout.cpp:188
+#11 0x000000000047f47c in INTERN_TableLayoutFactory::createComponent
+(this=0x721de8, reader=@0x7fff6d7420b0) at src/gui/TableLayout.cpp:466
+#12 0x0000000000480152 in createComponent (type=@0x7fff6d741a60,
+reader=@0x7fff6d7420b0) at src/gui/ComponentLoader.cpp:54
+#13 0x0000000000480466 in parseEmbeddedComponent (reader=@0x7fff6d7420b0) at
+src/gui/ComponentLoader.cpp:90
+#14 0x0000000000459f52 in ButtonPanel::parse (this=0x7f38540acb20,
+reader=@0x7fff6d7420b0) at src/lincity-ng/ButtonPanel.cpp:103
+#15 0x000000000045ca06 in INTERN_ButtonPanelFactory::createComponent
+(this=0x71cb08, reader=@0x7fff6d7420b0) at src/lincity-ng/ButtonPanel.cpp:935
+#16 0x0000000000480152 in createComponent (type=@0x7fff6d7420f0,
+reader=@0x7fff6d7420b0) at src/gui/ComponentLoader.cpp:54
+#17 0x000000000047cdc9 in ImportFactory::createComponent
+(this=0x7f38540a8e60, reader=@0x7fff6d742b20) at
+src/gui/ComponentFactory.cpp:92
+#18 0x0000000000480152 in createComponent (type=@0x7fff6d7423c0,
+reader=@0x7fff6d742b20) at src/gui/ComponentLoader.cpp:54
+#19 0x0000000000480466 in parseEmbeddedComponent (reader=@0x7fff6d742b20) at
+src/gui/ComponentLoader.cpp:90
+#20 0x00000000004890b0 in TableLayout::parse (this=0x7f38540b9fa0,
+reader=@0x7fff6d742b20) at src/gui/TableLayout.cpp:188
+#21 0x000000000047f47c in INTERN_TableLayoutFactory::createComponent
+(this=0x721de8, reader=@0x7fff6d742b20) at src/gui/TableLayout.cpp:466
+#22 0x0000000000480152 in createComponent (type=@0x7fff6d742a60,
+reader=@0x7fff6d742b20) at src/gui/ComponentLoader.cpp:54
+#23 0x0000000000490471 in Desktop::parse (this=0x7f38540a7ed0,
+reader=@0x7fff6d742b20) at src/gui/Desktop.cpp:68
+#24 0x0000000000480665 in loadGUIFile (filename=@0x7fff6d742be0) at
+src/gui/ComponentLoader.cpp:71
+#25 0x00000000004601a3 in Game (this=0x7f385409d600) at
+src/lincity-ng/Game.cpp:52
+#26 0x0000000000408962 in mainLoop () at src/lincity-ng/main.cpp:331
+#27 0x000000000040a5f9 in main (argc=1, argv=0x7fff6d742e98) at
+src/lincity-ng/main.cpp:492
+
+Thanks,
+Daniel
+
+
+      
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000698.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+	<LI>Next message: <A HREF="000681.html">[Lincity-ng-devel] interesting segfault while debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#680">[ date ]</a>
+              <a href="thread.html#680">[ thread ]</a>
+              <a href="subject.html#680">[ subject ]</a>
+              <a href="author.html#680">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

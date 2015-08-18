@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Map Creation Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Map%20Creation%20Question&In-Reply-To=%3C201007282124.38196.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000948.html">
+   <LINK REL="Next"  HREF="000952.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Map Creation Question</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Map%20Creation%20Question&In-Reply-To=%3C201007282124.38196.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Map Creation Question">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Wed Jul 28 21:24:38 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000948.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+        <LI>Next message: <A HREF="000952.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#949">[ date ]</a>
+              <a href="thread.html#949">[ thread ]</a>
+              <a href="subject.html#949">[ subject ]</a>
+              <a href="author.html#949">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Le 28/07/2010 &#224; 20:57, Avery White a &#233;crit :
+&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> I'm having trouble figuring out how to edit .scn files. Can someone provide
+</I>&gt;<i> some direction here (or list of things to Google?).
+</I>&gt;<i> 
+</I>
+hi again
+
+The .scn are just gziped file
+You can ungzipp them, then use a text editor, but the format is not very easy for
+hand edit.
+
+depending on what you want it may be easier to compile with debug options
+VARIANT=debug jam
+then launch the program in gdb and change the values then save
+
+
+I am currently working on the map generator. I build it as a separate
+tool, with a keyboard-only interface. It is significantly simpler and faster
+than the current code
+
+I planed to integrate it again in lincity-ng with a nice user interface
+once it is finished (very soon), but i can already commit it in a
+subdirectory (src/tools/ seems a good place).
+
+Maybe i'll do it as a separate project too, with an option
+to &quot;save as lincity-ng map&quot; as i have several ideas that could be
+usefull for other games too.
+
+So far the main feature that can be of interest for you, is that the 
+map generator have altitude, and the lakes/rivers correspond to the topography.
+There is neither erosion nor sediment transport.
+
+I wanted to integrated pollution transport with the water, so the data structure
+can afford it, but so far nothing is done in the simulation.
+
+kind regards
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000948.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+	<LI>Next message: <A HREF="000952.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#949">[ date ]</a>
+              <a href="thread.html#949">[ thread ]</a>
+              <a href="subject.html#949">[ subject ]</a>
+              <a href="author.html#949">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Patch] Correct cursor color
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%5D%20Correct%20cursor%20color&In-Reply-To=%3C48C05E6A.4070405%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000487.html">
+   <LINK REL="Next"  HREF="000489.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Patch] Correct cursor color</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%5D%20Correct%20cursor%20color&In-Reply-To=%3C48C05E6A.4070405%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] [Patch] Correct cursor color">magicfox at magic.fr
+       </A><BR>
+    <I>Fri Sep  5 00:17:14 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000487.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+        <LI>Next message: <A HREF="000489.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#488">[ date ]</a>
+              <a href="thread.html#488">[ thread ]</a>
+              <a href="subject.html#488">[ subject ]</a>
+              <a href="author.html#488">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> I still have the floating-point-exception :( . When I start the game I 
+</I>&gt;<i> get this:
+</I>&gt;<i> 
+</I>&gt;<i> /Starting lincity-ng (version 1.92.svn)...
+</I>&gt;<i> [/home/ivar/.lincity-ng] is in the search path.
+</I>&gt;<i> [/home/ivar/.lincity] is in the search path.
+</I>&gt;<i> [/usr/local/share/lincity-ng] is in the search path.
+</I>&gt;<i> [/home/ivar/.lincity-ng] is the write directory.
+</I>&gt;<i>  fast = 9
+</I>&gt;<i> OpenGL Mode 1024x768
+</I>&gt;<i>  ldsv_version = 113
+</I>&gt;<i> Drijvende-komma-berekeningsfout /(floating-point-exception)
+</I>&gt;<i> 
+</I>&gt;<i> And nothing more. I don't get error messages while compiling. If you can 
+</I>&gt;<i> help, please do. I have no idea how to fix this.
+</I>&gt;<i> 
+</I>&gt;<i> Cheers,
+</I>&gt;<i> Ivar
+</I>
+Hi Ivar,
+
+You saw that you have the same problem with synaptic...
+Is your ubuntu installation freshly updated ?
+use:
+$ sudo apt-get update
+$ sudo apt-get upgrade
+
+Can you give more information like the result of
+$ strace ./lincity-ng
+
+--
+Thierry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000487.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+	<LI>Next message: <A HREF="000489.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#488">[ date ]</a>
+              <a href="thread.html#488">[ thread ]</a>
+              <a href="subject.html#488">[ subject ]</a>
+              <a href="author.html#488">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

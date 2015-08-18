@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310458%5D%20weird%20heavy%20industries%20informations%0A%09%280%20or%20%3E100%25%29&In-Reply-To=%3C200702232125.l1NLPjhC018547%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000049.html">
+   <LINK REL="Next"  HREF="000051.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310458%5D%20weird%20heavy%20industries%20informations%0A%09%280%20or%20%3E100%25%29&In-Reply-To=%3C200702232125.l1NLPjhC018547%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)">admin at berlios.de
+       </A><BR>
+    <I>Fri Feb 23 22:25:45 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000049.html">[Lincity-ng-devel] water resources
+</A></li>
+        <LI>Next message: <A HREF="000051.html">[Lincity-ng-devel] [Bug #8169] does not work on windows xp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10458, was updated on 2007-Feb-22 15:16
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: alainb
+Assigned to : none
+Summary: weird heavy industries informations (0 or &gt;100%)
+
+Details: Output shows 2268 during less than one second, and after 0. Each time i click, i see again 1564 or whatever the number during less than one second, then 0 again.
+Store 100%
+Ore 124%
+Coal 1021.7 %
+Capacity 89
+
+Its from a saved game, i can provide it if it is useful.
+
+Follow-Ups:
+
+Date: 2007-Feb-23 22:25
+By: wolfgangb
+
+Comment:
+The output shown is &quot;the steel produced this month so far&quot;. It is shown for 
+the moment you click on the building. Then it is updated on the 1st of every
+month. That explains why you get zero. Still thinking about this part of the
+problem.
+
+Now for the huge amount of coal: due to a bug the industry still takes on more coal when full. Fixed that in svn, lets see how if it influences gameplay.
+The ore was a similar issue, industry was taking more ore while it was not completely full. That part is fixed in r1141.
+-------------------------------------------------------
+
+Date: 2007-Feb-22 18:11
+By: bugmenot
+
+Comment:
+Similar problem with light industries. In 1.0.3 too.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10458&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10458&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000049.html">[Lincity-ng-devel] water resources
+</A></li>
+	<LI>Next message: <A HREF="000051.html">[Lincity-ng-devel] [Bug #8169] does not work on windows xp
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#50">[ date ]</a>
+              <a href="thread.html#50">[ thread ]</a>
+              <a href="subject.html#50">[ subject ]</a>
+              <a href="author.html#50">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

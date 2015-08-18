@@ -1,0 +1,203 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Avery - on to a more specific question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Avery%20-%20on%20to%20a%20more%20specific%20question&In-Reply-To=%3CAANLkTin6MmtpDwL7O6fpPcq7uAFcgAM7sUoyYu7rApXu%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000983.html">
+   <LINK REL="Next"  HREF="000985.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Avery - on to a more specific question</H1>
+    <B>Avery White</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Avery%20-%20on%20to%20a%20more%20specific%20question&In-Reply-To=%3CAANLkTin6MmtpDwL7O6fpPcq7uAFcgAM7sUoyYu7rApXu%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] Avery - on to a more specific question">praiseresound at gmail.com
+       </A><BR>
+    <I>Thu Sep 23 03:02:12 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000983.html">[Lincity-ng-devel] [Bug #17530] Game crashes late on OpenSuSE 11.3
+</A></li>
+        <LI>Next message: <A HREF="000985.html">[Lincity-ng-devel] Avery - Additional Functions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#984">[ date ]</a>
+              <a href="thread.html#984">[ thread ]</a>
+              <a href="subject.html#984">[ subject ]</a>
+              <a href="author.html#984">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello all,
+
+So I think I'm a bit closer to figuring this out (maybe not).
+
+Goal:
+If you remember my goal was to begin creating pop-up dialog boxes that
+contain a checkbox in which the player can select to implement an LID.
+Checking the box corresponds to buying the LID, unchecking corresponds to
+selling it.
+
+Files:
+/lincity/lin-city.h
+/lincity/modules/residential.cpp
+/lincity-ng/Dialog.cpp
+/lincity-ng/Dialog.h
+/gui/residential.xml (new file based on tradedialog.xml)
+
+Implementation so far...
+
+Edit #1
+**********************************************************************************
+Working backwards and using the market as an example, I've created a flag in
+the lin-city.h file:
+
+#define FLAG_LID 1
+
+Edit #2
+**********************************************************************************
+This is where I started to become uncertain concerning the global variables
+and flags. I made a
+change to the residential.cpp file by adding the following lines to the end
+of the do_residence function:
+
+ if(MP_INFO(x, y).int_6 &gt; 0){
+        //admittedly, this is a hack...just needed a quick way to pipeline
+the LID cost
+        //to the rest of the algorithm
+        // perhaps create a variable total_cost_of_residence to add
+everything to?
+        unemployment_cost += 500;
+    }
+
+My thinking was that since int_6 is unused...I could use that to indicate
+that the player has chosen
+to implement an LID by setting it to 1 (using it as a flag...). I call it a
+'hack' because I'm not creating
+its own variable, I'm just piggy-backing on the existing unemployment_cost -
+I'm just trying to get this
+working - which is NOT a good philosophy...I know :(
+
+Edits 3, 4, and 5
+*************************************************************************************
+Both of these are within the Dialog.cpp file
+Here, I created two new functions in an attempt to replicate what the market
+is doing...
+
+Before I could do that I added these lines to the Dialog method (near line
+88) in the switch statement:
+
+case EDIT_RESIDENTIAL:
+        editResidential();
+        break;
+
+Incidentally, EDIT_RESIDENTIAL is defined as follows in the Dialog.hpp file
+
+#define EDIT_RESIDENTIAL 10
+
+
+The first function looks like this:
+
+
+void Dialog::editResidential(){
+    if( !desktop ) {
+        std::cerr &lt;&lt; &quot;No desktop found.\n&quot;;
+        return;
+    }
+    try {
+        myDialogComponent = loadGUIFile( &quot;gui/residential.xml&quot; );
+        assert( myDialogComponent != 0);
+        registerDialog();
+        blockingDialogIsOpen = true;
+        iAmBlocking = true;
+    } catch(std::exception&amp; e) {
+        std::cerr &lt;&lt; &quot;Couldn't display dialog 'residential.xml': &quot;
+            &lt;&lt; e.what() &lt;&lt; &quot;\n&quot;;
+        return;
+    }
+    // set Dialog to Residential-Data
+    Paragraph* p = getParagraph( *myDialogComponent, &quot;DialogTitle&quot; );
+    std::stringstream title;
+    title &lt;&lt; _(&quot;Residential&quot;) &lt;&lt; &quot; ( &quot; &lt;&lt; pointX &lt;&lt;&quot; , &quot; &lt;&lt; pointY &lt;&lt; &quot; )&quot;;
+    p-&gt;setText( title.str() );
+
+    CheckButton* cb;
+    cb = getCheckButton( *myDialogComponent, &quot;LID&quot; );
+    if( MP_INFO( pointX,pointY ).flag &amp; FLAG_LID ) cb-&gt;check(); else
+cb-&gt;uncheck();
+
+    Button* applyButton = getButton( *myDialogComponent, &quot;Apply&quot; );
+    applyButton-&gt;clicked.connect( makeCallback(*this,
+&amp;Dialog::applyResidentialCB ) ); // NOTE THE CHANGE HERE!!
+    Button* gotoButton = getButton( *myDialogComponent, &quot;goto&quot; );
+    gotoButton-&gt;clicked.connect( makeCallback( *this,
+&amp;Dialog::gotoButtonClicked ) );
+}
+
+
+As editResidential suggests I needed the applyResidentialCB function:
+
+void Dialog::applyResidentialCB(Button* b){
+    CheckButton* cb;
+
+    cb = getCheckButton( *myDialogComponent, &quot;BuyLID&quot;);
+    if(cb-&gt;state== CheckButton::STATE_CHECKED){
+        MP_INFO(pointX,pointY).flags |= FLAG_LID;
+    }else{
+        MP_INFO(pointX,pointY).flags &amp;= ~FLAG_LID;
+    }
+
+    desktop-&gt;remove( myDialogComponent );
+    blockingDialogIsOpen = false;
+    unRegisterDialog();
+}
+
+
+********************************************************************************************************
+
+The residential.xml file that lives in /data/gui/ is attached
+
+********************************************************************************************************
+
+Two questions
+
+1) Am I on the right track using a combination of the unused integer values
+in MP_INFO (i.e. int_3, int_6)
+with the FLAG_LID ?
+
+2) I'm not getting a dialog to pop-up on residential double-click...what am
+I missing?
+
+Kind Regards,
+
+Avery
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000983.html">[Lincity-ng-devel] [Bug #17530] Game crashes late on OpenSuSE 11.3
+</A></li>
+	<LI>Next message: <A HREF="000985.html">[Lincity-ng-devel] Avery - Additional Functions
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#984">[ date ]</a>
+              <a href="thread.html#984">[ thread ]</a>
+              <a href="subject.html#984">[ subject ]</a>
+              <a href="author.html#984">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

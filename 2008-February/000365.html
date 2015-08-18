@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] New messages in messages.pot
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20New%20messages%20in%20messages.pot&In-Reply-To=%3C200802241656.10007.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000371.html">
+   <LINK REL="Next"  HREF="000396.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] New messages in messages.pot</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20New%20messages%20in%20messages.pot&In-Reply-To=%3C200802241656.10007.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] New messages in messages.pot">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Feb 24 16:56:09 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000371.html">[Lincity-ng-devel] New messages in messages.pot
+</A></li>
+        <LI>Next message: <A HREF="000396.html">[Lincity-ng-devel] New messages in messages.pot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#365">[ date ]</a>
+              <a href="thread.html#365">[ thread ]</a>
+              <a href="subject.html#365">[ subject ]</a>
+              <a href="author.html#365">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le dimanche 24 f&#233;vrier 2008, magicfox a &#233;crit&#160;:
+&gt;<i> Hi to all,
+</I>&gt;<i> 
+</I>&gt;<i> I found little inconstancies in messages.pot vs translation files.
+</I>&gt;<i> It will be interesting to have a rule in jam file to update all 
+</I>&gt;<i> translation files.
+</I>The messages.pot are updated at each build, but not the xy.po.
+I guess it is for historical reason, to let translators update when
+they do something ?
+
+&gt;<i> I spent &quot;some&quot; time to retrieve the correct file order to reduce diff 
+</I>&gt;<i> file and I'm sure that the process not create it in file name 
+</I>&gt;<i> alphabetical order...
+</I>Oh! there is a small ugly script src/tools/update_po.sh that can do it.
+(in debian msgmerge is provided by the gettext package).
+I added it recently, to remember the correct syntax ...
+
+Really this should be added in Jam, but it adds a dependency on one more
+package. At least this must be written somewhere in the doc and the wiki !
+&gt;<i> 
+</I>&gt;<i> Please find here after of sample of French update.
+</I>&gt;<i> Of course the most changes was in line number comments.
+</I>Well, all po file should be updated soon :)
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000371.html">[Lincity-ng-devel] New messages in messages.pot
+</A></li>
+	<LI>Next message: <A HREF="000396.html">[Lincity-ng-devel] New messages in messages.pot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#365">[ date ]</a>
+              <a href="thread.html#365">[ thread ]</a>
+              <a href="subject.html#365">[ subject ]</a>
+              <a href="author.html#365">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

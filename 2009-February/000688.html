@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] interesting segfault while debugging
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20interesting%20segfault%20while%20debugging&In-Reply-To=%3C200902030405.22846.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000686.html">
+   <LINK REL="Next"  HREF="000689.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] interesting segfault while debugging</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20interesting%20segfault%20while%20debugging&In-Reply-To=%3C200902030405.22846.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] interesting segfault while debugging">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Feb  3 04:05:22 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000686.html">[Lincity-ng-devel] interesting segfault while debugging
+</A></li>
+        <LI>Next message: <A HREF="000689.html">[Lincity-ng-devel] [Patch #2681] Disable SDL signal handlers for	debug build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#688">[ date ]</a>
+              <a href="thread.html#688">[ thread ]</a>
+              <a href="subject.html#688">[ subject ]</a>
+              <a href="author.html#688">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel (and Jacky)
+
+I used to debug lincity in window mode (-w -S 800x600) with gdb and it worked
+well on debian/ubuntu for the engine. I have not tried to put breakpoints
+in the UI/render SDL or GL code.
+
+&gt;<i> Oh, one more thing I should have mentioned: when it crashes in gdb, gdb
+</I>&gt;<i> informs me of an internal error and prompts me to core dump so I can report
+</I>&gt;<i> the bug.  When I say yes, I get the screen change, so once again, something
+</I>&gt;<i> is intercepting the signal that gdb sends its self to core dump and I never
+</I>&gt;<i> get a core file!
+</I>2 cents question : does your environment variable allow coredump ?
+ ulimit -c
+ ulimit -c unlimited; gdb ...
+
+(once i got mad due to this ;-) 
+
+
+btw Daniel, your mail client is configured to send responses to you 
+(reply-to is set); it would be nice to remove this in order to have
+ all answers on the list :-)
+
+Cheers
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000686.html">[Lincity-ng-devel] interesting segfault while debugging
+</A></li>
+	<LI>Next message: <A HREF="000689.html">[Lincity-ng-devel] [Patch #2681] Disable SDL signal handlers for	debug build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#688">[ date ]</a>
+              <a href="thread.html#688">[ thread ]</a>
+              <a href="subject.html#688">[ subject ]</a>
+              <a href="author.html#688">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

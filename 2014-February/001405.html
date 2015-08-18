@@ -1,0 +1,193 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #19275] lincity-ng 2.9.beta cannot be built	twice in a row
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2014-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2319275%5D%20lincity-ng%202.9.beta%20cannot%20be%20built%0A%09twice%20in%20a%20row&In-Reply-To=%3C201402041857.s14IvXU2000354%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001404.html">
+   <LINK REL="Next"  HREF="001406.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #19275] lincity-ng 2.9.beta cannot be built	twice in a row</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2319275%5D%20lincity-ng%202.9.beta%20cannot%20be%20built%0A%09twice%20in%20a%20row&In-Reply-To=%3C201402041857.s14IvXU2000354%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #19275] lincity-ng 2.9.beta cannot be built	twice in a row">admin at berlios.de
+       </A><BR>
+    <I>Tue Feb  4 19:57:33 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001404.html">[Lincity-ng-devel] i18n patches
+</A></li>
+        <LI>Next message: <A HREF="001406.html">[Lincity-ng-devel] [Bug #19275] lincity-ng 2.9.beta cannot be built	twice in a row
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1405">[ date ]</a>
+              <a href="thread.html#1405">[ thread ]</a>
+              <a href="subject.html#1405">[ subject ]</a>
+              <a href="author.html#1405">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #19275, was updated on 2014-Feb-03 23:12
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: apoleon
+Assigned to : none
+Summary: lincity-ng 2.9.beta cannot be built twice in a row
+
+Details: while I was packaging version 2.9.beta for Debian GNU/Linux, I discovered that it is not possible to build the game twice in a row. The reason for this is that some object and static libraries are not cleaned by jam.
+
+It would be great, if those files could be removed by jam.
+
+Here is some output that shows which files are affected.
+
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/PhysfsStream/libphysfsstream.a: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/PhysfsStream/libphysfsstream.a in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/gui/liblincity_gui.a: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/gui/liblincity_gui.a in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ButtonInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ButtonInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ButtonPanel.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ButtonPanel.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/CheckButton.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/CheckButton.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Config.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Config.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Debug.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Debug.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Dialog.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Dialog.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/EconomyGraph.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/EconomyGraph.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ErrorInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ErrorInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Game.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Game.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/GameView.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/GameView.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/HelpWindow.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/HelpWindow.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MainLincity.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MainLincity.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MainMenu.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MainMenu.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MapEdit.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MapEdit.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MiniMap.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MiniMap.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Mps.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Mps.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MpsInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/MpsInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/PBar.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/PBar.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/PbarInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/PbarInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Permutator.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Permutator.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ReadPngInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ReadPngInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ScreenInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/ScreenInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Sound.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Sound.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/TimerInterface.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/TimerInterface.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Util.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/Util.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/binreloc.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/binreloc.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/main.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/main.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/readdir.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity-ng/readdir.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/lincity/liblincity_lib.a: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/lincity/liblincity_lib.a in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/tinygettext/libtinygettext.a: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/tinygettext/libtinygettext.a in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/tools/xmlgettext/XmlReader.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/tools/xmlgettext/XmlReader.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to build/x86_64-pc-linux-gnu/optimize/src/tools/xmlgettext/main.o: binary file contents changed
+dpkg-source: error: add build/x86_64-pc-linux-gnu/optimize/src/tools/xmlgettext/main.o in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: warning: executable mode 0755 of 'config.status' will not be represented in diff
+dpkg-source: error: cannot represent change to lincity-ng: binary file contents changed
+dpkg-source: error: add lincity-ng in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: cannot represent change to xmlgettext: binary file contents changed
+dpkg-source: error: add xmlgettext in debian/source/include-binaries if you want to store the modified binary in the debian tarball
+dpkg-source: error: unrepresentable changes to source
+
+Follow-Ups:
+
+Date: 2014-Feb-04 19:57
+By: wolfgangb
+
+Comment:
+Are you sure these tools don't change do anything else?  
+&quot;./configure ; jam -q -dax ; jam -q -dax&quot; 
+as well as 
+&quot;./configure ; jam -q -dax ; ./configure ; jam -q -dax &quot; 
+works for me. 
+-------------------------------------------------------
+
+Date: 2014-Feb-04 12:00
+By: apoleon
+
+Comment:
+This issue is also present in 2.0. There is nothing Debian specific about it because the helper tools simply call
+
+jam -q -dax
+
+during the build step. That means you should be able to reproduce it by running the configure and build steps twice in a row. Ideally all created files are cleaned after the game was built and the build process starts with a clean source tree again.  Otherwise Debian's dpkg will detect those additional files and abort.
+-------------------------------------------------------
+
+Date: 2014-Feb-04 08:53
+By: wolfgangb
+
+Comment:
+Is that a new problem or is the issue also in 2.0? No idea what exactly happens when you use Debian specific scrips to build Lincity, do you also get the problem when calling jam twice without 3rd party wrappers?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=19275&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=19275&amp;group_id=2929</A>
+</PRE>
+
+
+
+
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001404.html">[Lincity-ng-devel] i18n patches
+</A></li>
+	<LI>Next message: <A HREF="001406.html">[Lincity-ng-devel] [Bug #19275] lincity-ng 2.9.beta cannot be built	twice in a row
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1405">[ date ]</a>
+              <a href="thread.html#1405">[ thread ]</a>
+              <a href="subject.html#1405">[ subject ]</a>
+              <a href="author.html#1405">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

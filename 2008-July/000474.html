@@ -1,0 +1,151 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #14200] Floating point exception at startup
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314200%5D%20Floating%20point%20exception%20at%20startup&In-Reply-To=%3C200807141850.m6EIoHXN002615%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000475.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #14200] Floating point exception at startup</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314200%5D%20Floating%20point%20exception%20at%20startup&In-Reply-To=%3C200807141850.m6EIoHXN002615%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #14200] Floating point exception at startup">admin at berlios.de
+       </A><BR>
+    <I>Mon Jul 14 20:50:17 CEST 2008</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000475.html">[Lincity-ng-devel] [Bug #14206] gcc  4.3.1 warning
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#474">[ date ]</a>
+              <a href="thread.html#474">[ thread ]</a>
+              <a href="subject.html#474">[ subject ]</a>
+              <a href="author.html#474">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14200, was updated on 2008-Jul-14 20:50
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: rore
+Assigned to : none
+Summary: Floating point exception at startup
+
+Details: * Lincity-ng svn trunk r1451, with debug-mode enabled (same behavior without it)
+* Running on a debian amd64/x86_64
+
+lincity-ng crashes at startup with a &quot;Exception en point flottant&quot; (floating point exception) message. It just has the time to create a black window before crashing.
+
+The gdb messages are:
+
+This GDB was configured as &quot;x86_64-linux-gnu&quot;...
+Using host libthread_db library &quot;/lib/libthread_db.so.1&quot;.
+(gdb) run -m
+Starting program: /home/rore/softs/lincity-shared/bin/lincity-ng -m
+[Thread debugging using libthread_db enabled]
+Starting lincity-ng (version 1.92.svn) in Debug Mode...
+[/home/rore/.lincity-ng] is in the search path.
+[/home/rore/.lincity] is in the search path.
+[/home/rore/softs/lincity-shared/share/lincity-ng] is in the search path.
+[/home/rore/.lincity-ng] is the write directory.
+Language is &quot;fr_FR&quot;.
+ fast = 9
+[New Thread 0x2acad9ac1dc0 (LWP 21146)]
+[New Thread 0x40802950 (LWP 21149)]
+open /dev/sequencer or /dev/snd/seq: No such file or directory
+[New Thread 0x41003950 (LWP 21150)]
+[New Thread 0x41804950 (LWP 21151)]
+OpenGL Mode 1024x768
+[New Thread 0x42079950 (LWP 21152)]
+[Thread 0x41003950 (LWP 21150) exited]
+old file format, so load with old function, and then convert to new format
+ ldsv_version = 113 
+prog_box:'Chargement de la sc&#232;ne' 0%
+prog_box:'' 0%
+prog_box:'' 0%
+prog_box:'' 3%
+prog_box:'' 6%
+prog_box:'' 9%
+prog_box:'' 12%
+prog_box:'' 15%
+prog_box:'' 18%
+prog_box:'' 21%
+prog_box:'' 24%
+prog_box:'' 27%
+prog_box:'' 30%
+prog_box:'' 33%
+prog_box:'' 36%
+prog_box:'' 39%
+prog_box:'' 39%
+prog_box:'' 42%
+prog_box:'' 45%
+prog_box:'' 48%
+prog_box:'' 51%
+prog_box:'' 54%
+prog_box:'' 57%
+prog_box:'' 60%
+prog_box:'' 63%
+prog_box:'' 66%
+prog_box:'' 66%
+prog_box:'' 69%
+prog_box:'' 72%
+prog_box:'' 75%
+prog_box:'' 78%
+prog_box:'' 81%
+prog_box:'' 84%
+prog_box:'' 87%
+prog_box:'' 90%
+prog_box:'' 92%
+prog_box:'' 94%
+prog_box:'' 96%
+prog_box:'' 98%
+prog_box:'' 99%
+prog_box:'' 100%
+
+Program received signal SIGFPE, Arithmetic exception.
+[Switching to Thread 0x2acad9ac1dc0 (LWP 21146)]
+0x000000000049de7a in setup_land () at src/lincity/init_game.cpp:236
+236                     abs((ALT(x,y) - alt0) * 19 / alt_step) + 3 * (ALT(x,y) * ALT(x,y)) /1000000 ;
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14200&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14200&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000475.html">[Lincity-ng-devel] [Bug #14206] gcc  4.3.1 warning
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#474">[ date ]</a>
+              <a href="thread.html#474">[ thread ]</a>
+              <a href="subject.html#474">[ subject ]</a>
+              <a href="author.html#474">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

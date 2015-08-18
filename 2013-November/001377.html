@@ -1,0 +1,248 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] SVN testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3C527D4A53.7020907%40Gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001376.html">
+   <LINK REL="Next"  HREF="001378.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] SVN testing</H1>
+    <B>Kristian Cramberger</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3C527D4A53.7020907%40Gmail.com%3E"
+       TITLE="[Lincity-ng-devel] SVN testing">cman.lincity at gmail.com
+       </A><BR>
+    <I>Fri Nov  8 21:32:19 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001376.html">[Lincity-ng-devel] SVN testing
+</A></li>
+        <LI>Next message: <A HREF="001378.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1377">[ date ]</a>
+              <a href="thread.html#1377">[ thread ]</a>
+              <a href="subject.html#1377">[ subject ]</a>
+              <a href="author.html#1377">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I would be happy to do the coding for new images. Just go ahead and put 
+the sprites on the svn.
+btw I have no idea about making sprites what so ever.
+
+have fun
+Kristian
+
+
+On 11/08/2013 08:34 PM, Ivar ten Cate wrote:
+&gt;<i> Hi,
+</I>&gt;<i>
+</I>&gt;<i> Sounds good. I am only able to draw the necessary sprites and add them to
+</I>&gt;<i> images.xml. I don't know anything about actual coding.
+</I>&gt;<i>
+</I>&gt;<i> Regards,
+</I>&gt;<i> Ivar
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 2013/11/8 Kristian Cramberger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">cman.lincity at gmail.com</A>&gt;
+</I>&gt;<i>
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Anything should be possible now. just put the png to the tiles folder and
+</I>&gt;&gt;<i> add an entry in images.xml.
+</I>&gt;&gt;<i> Then the image will be loaded. The order of the images defines the &quot;type&quot;
+</I>&gt;&gt;<i> starting from 0. I would always
+</I>&gt;&gt;<i> put new sprites at the end, otherwise the existing types would be shifted.
+</I>&gt;&gt;<i> And then of course the corresponding source file from src/lincity/modules
+</I>&gt;&gt;<i> should actually also set the new &quot;type&quot;.
+</I>&gt;&gt;<i> For powerlines over transport/water we would need to make a smarter
+</I>&gt;&gt;<i> connect transport. But that should be doable. All we need is adding
+</I>&gt;&gt;<i> another magic 4x4 table plus the
+</I>&gt;&gt;<i> number of bridge entrances.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Cheers
+</I>&gt;&gt;<i> Kristian
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> On 11/07/2013 10:46 PM, Ivar ten Cate wrote:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Hi,
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> What kind of new sprites are possible right now? If possible I'd like to
+</I>&gt;&gt;&gt;<i> do
+</I>&gt;&gt;&gt;<i> some proper sprites for crossings between power lines, roads and/or
+</I>&gt;&gt;&gt;<i> railroad. Not having them in the game looks just bad.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Greetings,
+</I>&gt;&gt;&gt;<i> Ivar
+</I>&gt;&gt;&gt;<i> Op 7 nov. 2013 11:36 schreef &quot;Cman&quot; &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">cman.lincity at gmail.com</A>&gt;:
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i>   hello,
+</I>&gt;&gt;&gt;&gt;<i> very sharp eyes! The cricket place was the very last reourceID in
+</I>&gt;&gt;&gt;&gt;<i> images.xml and the reader just finished without ever checking if he left
+</I>&gt;&gt;&gt;&gt;<i> the last context, easy enough to fix.
+</I>&gt;&gt;&gt;&gt;<i> If anyone ever wanted to add new sprites (rather than updating existing
+</I>&gt;&gt;&gt;&gt;<i> ones), that would be a good test for the image loading.
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> Cheers
+</I>&gt;&gt;&gt;&gt;<i> Kristian
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i> On 06.11.2013 22:43, Ivar ten Cate wrote:
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>   Thanks for the explanation :)
+</I>&gt;&gt;&gt;&gt;&gt;<i> Everything seems to work fine now. The cricket field sprites don't load,
+</I>&gt;&gt;&gt;&gt;&gt;<i> but I guess that's a minor bug.
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> Greetings,
+</I>&gt;&gt;&gt;&gt;&gt;<i> Ivar
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> 2013/11/5 Khristian Cramberger &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">cman.lincity at gmail.com</A>&gt;
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>    update (1761)
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> loading images in one thread and destroying them upon texture creation
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> in
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> another thread
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> was a really bad idea. Now the loader gets the mutex and keeps it until
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> it
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> has parsed
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> the entire images.xml. At exiting the loaderthread sets textures_ready
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> =
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> true. And only then
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> drawTile attempts to claim the mutex and proceed with texture
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> generation
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> and display.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> Without mutual interuptions the loading is much faster and the all
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> coloured tiles are updated
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> in one shot.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> Maybe later we could move the loaderthread to initLincity. All
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> GraphicsInfo is now stored in
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> the respective Constructiongroups anyway and we could already load
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> while
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> the user spends
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> a few seconds in the mainmenu.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> Kristian
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> On 11/04/2013 08:10 PM, Ivar ten Cate wrote:
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>    Hello,
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> You did great work with the code improvements!
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> I have tested the latest SVN revision (1758). Compiling and installing
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> went
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> fine, but the game crashes while loading a savegame or scenario. It
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> loads
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> the gui and a few sprites,but crashes halfway parsing png files. The
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> terminal gives one of these error messages:
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> *XIO:  fatal IO error 11 (Resource temporarily unavailable) on X
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> server
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> &quot;:0&quot;*
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> *      after 198 requests (198 known processed) with 11 events
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> remaining.*
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> **** Error in `lincity-ng': malloc(): memory corruption (fast):
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> 0x0860b968
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> ****
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> *segmentation fault*
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> Does the game run out of memory? I didn't have this issue with
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> previous
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> revisions. I'm running the game in Lubuntu 13.04 in VirtualBox. My
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> host
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> system is Windows 7 64bit. I have allocated 1gb of memory to the
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> virtual
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> OS. Raising to 2gb didn't help.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> I hope this information is useful.
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> Greetings,
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> Ivar
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>    _______________________________________________
+</I>&gt;&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>    _______________________________________________
+</I>&gt;&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;&gt;<i>   _______________________________________________
+</I>&gt;&gt;&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;&gt;<i>   _______________________________________________
+</I>&gt;&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;<i> _______________________________________________
+</I>&gt;&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001376.html">[Lincity-ng-devel] SVN testing
+</A></li>
+	<LI>Next message: <A HREF="001378.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1377">[ date ]</a>
+              <a href="thread.html#1377">[ thread ]</a>
+              <a href="subject.html#1377">[ subject ]</a>
+              <a href="author.html#1377">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,191 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [PATCH 2/2 for 2.0] Modify display of track,	roads &amp; rail
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPATCH%202/2%20for%202.0%5D%20Modify%20display%20of%20track%2C%0A%09roads%20%26%20rail&In-Reply-To=%3C1365123145-21429-2-git-send-email-daniel.santos%40pobox.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001302.html">
+   <LINK REL="Next"  HREF="001298.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [PATCH 2/2 for 2.0] Modify display of track,	roads &amp; rail</H1>
+    <B>danielfsantos at att.net</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPATCH%202/2%20for%202.0%5D%20Modify%20display%20of%20track%2C%0A%09roads%20%26%20rail&In-Reply-To=%3C1365123145-21429-2-git-send-email-daniel.santos%40pobox.com%3E"
+       TITLE="[Lincity-ng-devel] [PATCH 2/2 for 2.0] Modify display of track,	roads &amp; rail">danielfsantos at att.net
+       </A><BR>
+    <I>Fri Apr  5 02:52:25 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001302.html">[Lincity-ng-devel] [PATCH 1/2 for 2.0] Store monthy cargo movement	stats
+</A></li>
+        <LI>Next message: <A HREF="001298.html">[Lincity-ng-devel] [PATCH] Show direction and qty of cargo movement on transport
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1303">[ date ]</a>
+              <a href="thread.html#1303">[ thread ]</a>
+              <a href="subject.html#1303">[ subject ]</a>
+              <a href="author.html#1303">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Signed-off-by: Daniel Santos &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">daniel.santos at pobox.com</A>&gt;
+---
+ src/lincity/modules/rail.cpp  | 19 ++++++++++---------
+ src/lincity/modules/road.cpp  | 19 ++++++++++---------
+ src/lincity/modules/track.cpp | 19 ++++++++++---------
+ 3 files changed, 30 insertions(+), 27 deletions(-)
+
+diff --git a/src/lincity/modules/rail.cpp b/src/lincity/modules/rail.cpp
+index ffa6df9..4c91d8f 100644
+--- a/src/lincity/modules/rail.cpp
++++ b/src/lincity/modules/rail.cpp
+@@ -11,7 +11,7 @@
+ 
+ /* ---------------------------------------------------------------------
+    For track, road and rail:
+-  
++
+    int_1 contains the amount of food
+    int_2 contains the amount of jobs
+    int_3 contains the amount of coal
+@@ -42,17 +42,18 @@ void do_rail(int x, int y)
+ 
+ void mps_rail(int x, int y)
+ {
++    const Map_Point_Info *minfo = &amp;MP_INFO(x, y);
++    const struct vec2 *stats = transport_get_stats(x, y);
+     int i = 0;
+ 
+     mps_store_title(i++, _(main_groups[MP_GROUP(x, y)].name));
+     i++;
+ 
+-    mps_store_sfp(i++, _(&quot;Food&quot;), MP_INFO(x, y).int_1 * 100.0 / MAX_FOOD_ON_RAIL);
+-    mps_store_sfp(i++, _(&quot;Jobs&quot;), MP_INFO(x, y).int_2 * 100.0 / MAX_JOBS_ON_RAIL);
+-    mps_store_sfp(i++, _(&quot;Coal&quot;), MP_INFO(x, y).int_3 * 100.0 / MAX_COAL_ON_RAIL);
+-    mps_store_sfp(i++, _(&quot;Goods&quot;), MP_INFO(x, y).int_4 * 100.0 / MAX_GOODS_ON_RAIL);
+-    mps_store_sfp(i++, _(&quot;Ore&quot;), MP_INFO(x, y).int_5 * 100.0 / MAX_ORE_ON_RAIL);
+-    mps_store_sfp(i++, _(&quot;Steel&quot;), MP_INFO(x, y).int_6 * 100.0 / MAX_STEEL_ON_RAIL);
+-    mps_store_sfp(i++, _(&quot;Waste&quot;), MP_INFO(x, y).int_7 * 100.0 / MAX_WASTE_ON_RAIL);
+-
++    mps_store_ss(i++, _(&quot;Food&quot;), transport_format_cargo(minfo-&gt;int_1, stats++, MAX_FOOD_ON_RAIL));
++    mps_store_ss(i++, _(&quot;Jobs&quot;), transport_format_cargo(minfo-&gt;int_2, stats++, MAX_JOBS_ON_RAIL));
++    mps_store_ss(i++, _(&quot;Coal&quot;), transport_format_cargo(minfo-&gt;int_3, stats++, MAX_COAL_ON_RAIL));
++    mps_store_ss(i++, _(&quot;Goods&quot;), transport_format_cargo(minfo-&gt;int_4, stats++, MAX_GOODS_ON_RAIL));
++    mps_store_ss(i++, _(&quot;Ore&quot;), transport_format_cargo(minfo-&gt;int_5, stats++, MAX_ORE_ON_RAIL));
++    mps_store_ss(i++, _(&quot;Steel&quot;), transport_format_cargo(minfo-&gt;int_6, stats++, MAX_STEEL_ON_RAIL));
++    mps_store_ss(i++, _(&quot;Waste&quot;), transport_format_cargo(minfo-&gt;int_7, stats++, MAX_WASTE_ON_RAIL));
+ }
+diff --git a/src/lincity/modules/road.cpp b/src/lincity/modules/road.cpp
+index fde0ca7..516ee03 100644
+--- a/src/lincity/modules/road.cpp
++++ b/src/lincity/modules/road.cpp
+@@ -11,7 +11,7 @@
+ 
+ /* ---------------------------------------------------------------------
+    For track, road and rail:
+-  
++
+    int_1 contains the amount of food
+    int_2 contains the amount of jobs
+    int_3 contains the amount of coal
+@@ -37,17 +37,18 @@ void do_road(int x, int y)
+ 
+ void mps_road(int x, int y)
+ {
++    const Map_Point_Info *minfo = &amp;MP_INFO(x, y);
++    const struct vec2 *stats = transport_get_stats(x, y);
+     int i = 0;
+ 
+     mps_store_title(i++, _(main_groups[MP_GROUP(x, y)].name));
+     i++;
+ 
+-    mps_store_sfp(i++, _(&quot;Food&quot;), MP_INFO(x, y).int_1 * 100.0 / MAX_FOOD_ON_ROAD);
+-    mps_store_sfp(i++, _(&quot;Jobs&quot;), MP_INFO(x, y).int_2 * 100.0 / MAX_JOBS_ON_ROAD);
+-    mps_store_sfp(i++, _(&quot;Coal&quot;), MP_INFO(x, y).int_3 * 100.0 / MAX_COAL_ON_ROAD);
+-    mps_store_sfp(i++, _(&quot;Goods&quot;), MP_INFO(x, y).int_4 * 100.0 / MAX_GOODS_ON_ROAD);
+-    mps_store_sfp(i++, _(&quot;Ore&quot;), MP_INFO(x, y).int_5 * 100.0 / MAX_ORE_ON_ROAD);
+-    mps_store_sfp(i++, _(&quot;Steel&quot;), MP_INFO(x, y).int_6 * 100.0 / MAX_STEEL_ON_ROAD);
+-    mps_store_sfp(i++, _(&quot;Waste&quot;), MP_INFO(x, y).int_7 * 100.0 / MAX_WASTE_ON_ROAD);
+-
++    mps_store_ss(i++, _(&quot;Food&quot;), transport_format_cargo(minfo-&gt;int_1, stats++, MAX_FOOD_ON_ROAD));
++    mps_store_ss(i++, _(&quot;Jobs&quot;), transport_format_cargo(minfo-&gt;int_2, stats++, MAX_JOBS_ON_ROAD));
++    mps_store_ss(i++, _(&quot;Coal&quot;), transport_format_cargo(minfo-&gt;int_3, stats++, MAX_COAL_ON_ROAD));
++    mps_store_ss(i++, _(&quot;Goods&quot;), transport_format_cargo(minfo-&gt;int_4, stats++, MAX_GOODS_ON_ROAD));
++    mps_store_ss(i++, _(&quot;Ore&quot;), transport_format_cargo(minfo-&gt;int_5, stats++, MAX_ORE_ON_ROAD));
++    mps_store_ss(i++, _(&quot;Steel&quot;), transport_format_cargo(minfo-&gt;int_6, stats++, MAX_STEEL_ON_ROAD));
++    mps_store_ss(i++, _(&quot;Waste&quot;), transport_format_cargo(minfo-&gt;int_7, stats++, MAX_WASTE_ON_ROAD));
+ }
+diff --git a/src/lincity/modules/track.cpp b/src/lincity/modules/track.cpp
+index b7ee2d6..65fc6a1 100644
+--- a/src/lincity/modules/track.cpp
++++ b/src/lincity/modules/track.cpp
+@@ -11,7 +11,7 @@
+ 
+ /* ---------------------------------------------------------------------
+    For track, road and rail:
+-  
++
+    int_1 contains the amount of food
+    int_2 contains the amount of jobs
+    int_3 contains the amount of coal
+@@ -28,17 +28,18 @@ void do_track(int x, int y)
+ 
+ void mps_track(int x, int y)
+ {
++    const Map_Point_Info *minfo = &amp;MP_INFO(x, y);
++    const struct vec2 *stats = transport_get_stats(x, y);
+     int i = 0;
+ 
+     mps_store_title(i++, _(main_groups[MP_GROUP(x, y)].name));
+     i++;
+ 
+-    mps_store_sfp(i++, _(&quot;Food&quot;), MP_INFO(x, y).int_1 * 100.0 / MAX_FOOD_ON_TRACK);
+-    mps_store_sfp(i++, _(&quot;Jobs&quot;), MP_INFO(x, y).int_2 * 100.0 / MAX_JOBS_ON_TRACK);
+-    mps_store_sfp(i++, _(&quot;Coal&quot;), MP_INFO(x, y).int_3 * 100.0 / MAX_COAL_ON_TRACK);
+-    mps_store_sfp(i++, _(&quot;Goods&quot;), MP_INFO(x, y).int_4 * 100.0 / MAX_GOODS_ON_TRACK);
+-    mps_store_sfp(i++, _(&quot;Ore&quot;), MP_INFO(x, y).int_5 * 100.0 / MAX_ORE_ON_TRACK);
+-    mps_store_sfp(i++, _(&quot;Steel&quot;), MP_INFO(x, y).int_6 * 100.0 / MAX_STEEL_ON_TRACK);
+-    mps_store_sfp(i++, _(&quot;Waste&quot;), MP_INFO(x, y).int_7 * 100.0 / MAX_WASTE_ON_TRACK);
+-
++    mps_store_ss(i++, _(&quot;Food&quot;), transport_format_cargo(minfo-&gt;int_1, stats++, MAX_FOOD_ON_TRACK));
++    mps_store_ss(i++, _(&quot;Jobs&quot;), transport_format_cargo(minfo-&gt;int_2, stats++, MAX_JOBS_ON_TRACK));
++    mps_store_ss(i++, _(&quot;Coal&quot;), transport_format_cargo(minfo-&gt;int_3, stats++, MAX_COAL_ON_TRACK));
++    mps_store_ss(i++, _(&quot;Goods&quot;), transport_format_cargo(minfo-&gt;int_4, stats++, MAX_GOODS_ON_TRACK));
++    mps_store_ss(i++, _(&quot;Ore&quot;), transport_format_cargo(minfo-&gt;int_5, stats++, MAX_ORE_ON_TRACK));
++    mps_store_ss(i++, _(&quot;Steel&quot;), transport_format_cargo(minfo-&gt;int_6, stats++, MAX_STEEL_ON_TRACK));
++    mps_store_ss(i++, _(&quot;Waste&quot;), transport_format_cargo(minfo-&gt;int_7, stats++, MAX_WASTE_ON_TRACK));
+ }
+-- 
+1.8.1.5
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001302.html">[Lincity-ng-devel] [PATCH 1/2 for 2.0] Store monthy cargo movement	stats
+</A></li>
+	<LI>Next message: <A HREF="001298.html">[Lincity-ng-devel] [PATCH] Show direction and qty of cargo movement on transport
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1303">[ date ]</a>
+              <a href="thread.html#1303">[ thread ]</a>
+              <a href="subject.html#1303">[ subject ]</a>
+              <a href="author.html#1303">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

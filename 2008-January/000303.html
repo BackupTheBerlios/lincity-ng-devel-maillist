@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Some questions about speed and code
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Some%20questions%20about%20speed%20and%20code&In-Reply-To=%3C200801292301.57849.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000302.html">
+   <LINK REL="Next"  HREF="000304.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Some questions about speed and code</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Some%20questions%20about%20speed%20and%20code&In-Reply-To=%3C200801292301.57849.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Some questions about speed and code">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Jan 29 23:01:57 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000302.html">[Lincity-ng-devel] creating a port issues!
+</A></li>
+        <LI>Next message: <A HREF="000304.html">[Lincity-ng-devel] Some questions about speed and code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#303">[ date ]</a>
+              <a href="thread.html#303">[ thread ]</a>
+              <a href="subject.html#303">[ subject ]</a>
+              <a href="author.html#303">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le mardi 29 janvier 2008, alainb at BerliOS a &#233;crit&#160;:
+&gt;<i> Author: alainb
+</I>&gt;<i> Date: 2008-01-29 22:42:27 +0100 (Tue, 29 Jan 2008)
+</I>&gt;<i> New Revision: 1361
+</I>
+
+Hi
+
+I have changed a little the animation and time management in order to
+- avoid skipping frames in fast_speed =&gt; much nicer animation
+- have a faster fast_speed (use command line &quot;-q 1&quot; for max speed)
+
+Question 1:
+I tested on my laptop which is quite old but have a rather good graphic card
+(geforce 420 MX). I wonder if it is still fast with a low-end graphic card
+and lowend CPU (as the changes in transport makes the engine 20% slower)
+
+Question 2:
+I messed up in Config.stuff. I don't understand where/why/when the
+userconfig.xml file is read and why it does not overwrite the command
+line values.
+
+Also, the date still shows days in fast speed, but in my previous test it
+did not and it was really faster than current.
+
+It would be nice if someone could explain how this is done (in gdb
+it is not so easy to understand, bt does not explain everything ;-)
+
+Cheers
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000302.html">[Lincity-ng-devel] creating a port issues!
+</A></li>
+	<LI>Next message: <A HREF="000304.html">[Lincity-ng-devel] Some questions about speed and code
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#303">[ date ]</a>
+              <a href="thread.html#303">[ thread ]</a>
+              <a href="subject.html#303">[ subject ]</a>
+              <a href="author.html#303">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] lincity_oldgui compile on debian etch
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20lincity_oldgui%20compile%20on%20debian%20etch&In-Reply-To=%3C200704081224.25361.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000126.html">
+   <LINK REL="Next"  HREF="000128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] lincity_oldgui compile on debian etch</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20lincity_oldgui%20compile%20on%20debian%20etch&In-Reply-To=%3C200704081224.25361.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] lincity_oldgui compile on debian etch">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Apr  8 12:24:25 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000126.html">[Lincity-ng-devel] lincity_oldgui questions
+</A></li>
+        <LI>Next message: <A HREF="000128.html">[Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>agreed, Etch is current &quot;testing&quot; but is frozen, and should be released now
+(in debian words it means tomorrow or in 6 monthes ;-)
+
+Le samedi 7 avril 2007 23:17, Wolfgang Becker a &#233;crit&#160;:
+&gt;<i> On 20070407 alain Baeckeroot &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">alain.baeckeroot at laposte.net</A>&gt; wrote:
+</I>&gt;<i> &gt; On debian etch, I tried to ./configure --enable-debug to see what's going on:
+</I>&gt;<i> &gt; - needed to add &quot;-lX11&quot; to link lincity_oldgui
+</I>&gt;<i> 
+</I>&gt;<i> That is added automatically here.
+</I>For NG, &quot;jam -dx&quot; shows this flags for linking:
+-lxml2   -L/usr/lib -lSDL -lSDL_image -lSDL_mixer -lSDL_ttf -lSDL_gfx
+-lphysfs -lGL  -lm  -lz
+
+For old_gui 
+-L/usr/lib -lSDL -lSDL_image -lphysfs  -lz
+but not -lX11.
+
+I guess it comes from autoconfig tools/files but i know nothing in it.
+In config.log i have:
+configure:5820: checking LIBXML_LIBS
+configure:5823: result: -lxml2
+
+configure:5851: checking for X
+configure:6021: gcc -o conftest     conftest.c -lX11  &gt;&amp;5
+configure:6027: $? = 0
+configure:6086: result: libraries , headers 
+
+i think i should have something like:
+   checking for X
+   result: libraries -lX11, headers /usr/include/X11
+
+So it looks like there is a bug somewhere, but i don't know which package
+causes this.
+
+Alain
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000126.html">[Lincity-ng-devel] lincity_oldgui questions
+</A></li>
+	<LI>Next message: <A HREF="000128.html">[Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#127">[ date ]</a>
+              <a href="thread.html#127">[ thread ]</a>
+              <a href="subject.html#127">[ subject ]</a>
+              <a href="author.html#127">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

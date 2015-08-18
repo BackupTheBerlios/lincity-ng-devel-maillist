@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #10485] Segmentation fault
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310485%5D%20Segmentation%20fault&In-Reply-To=%3C200706241555.l5OFtHnM020856%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000162.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #10485] Segmentation fault</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310485%5D%20Segmentation%20fault&In-Reply-To=%3C200706241555.l5OFtHnM020856%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #10485] Segmentation fault">admin at berlios.de
+       </A><BR>
+    <I>Sun Jun 24 17:55:17 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000162.html">[Lincity-ng-devel] [Bug #10686] transport always saturates
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10485, was updated on 2007-Feb-25 14:19
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: noidee
+Assigned to : none
+Summary: Segmentation fault
+
+Details: Every time
+i have slackware 
+gcc version 3.4.6
+
+
+Starting lincity-ng (version 1.1.0)...
+[/home/noidee/.lincity] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+LINCITY_HOME: /usr/local/share/lincity-ng
+Segmentation fault
+
+
+gdb lincity-ng
+GNU gdb 6.5
+Copyright (C) 2006 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB.  Type &quot;show warranty&quot; for details.
+This GDB was configured as &quot;i486-slackware-linux&quot;...Using host libthread_db library &quot;/lib/tls/libthrea
+d_db.so.1&quot;.
+
+(gdb) run
+Starting program: /usr/local/bin/lincity-ng
+Failed to read a valid object file image from memory.
+[Thread debugging using libthread_db enabled]
+[New Thread -1226737952 (LWP 23546)]
+Starting lincity-ng (version 1.1.0)...
+[/home/noidee/.lincity] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+LINCITY_HOME: /usr/local/share/lincity-ng
+[New Thread -1227166800 (LWP 23549)]
+[New Thread -1235555408 (LWP 23550)]
+
+Program received signal SIGSEGV, Segmentation fault.
+[Switching to Thread -1235555408 (LWP 23550)]
+0xb797cb00 in strcmp () from /lib/tls/libc.so.6
+(gdb) bt
+#0  0xb797cb00 in strcmp () from /lib/tls/libc.so.6
+#1  0xb7ca3603 in enumFilesCallback (data=0xb65ae270, str=0x818dcbf &quot;Health1.wav&quot;) at physfs.c:1468
+#2  0xb7cac891 in __PHYSFS_platformEnumerateFiles (
+    dirname=0x818d9a8 &quot;/usr/local/share/lincity-ng/sounds&quot;, omitSymLinks=0,
+    callback=0xb7ca35b0 &lt;enumFilesCallback&gt;, callbackdata=0xb65ae270) at posix.c:289
+#3  0xb7ca5c2c in DIR_enumerateFiles (opaque=0x817df18, dname=0xb65ae210 &quot;sounds&quot;, omitSymLinks=0,
+    cb=0xb7ca35b0 &lt;enumFilesCallback&gt;, callbackdata=0xb65ae270) at dir.c:113
+#4  0xb7ca3854 in PHYSFS_enumerateFilesCallback (_fname=0x0,
+    callback=0xb7ca35b0 &lt;enumFilesCallback&gt;, data=0xb65ae270) at physfs.c:1576
+#5  0xb7ca38cb in PHYSFS_enumerateFiles (path=0x817f604 &quot;sounds/&quot;) at physfs.c:1539
+#6  0x0805073f in Sound::loadWaves (this=0x817f408)
+    at /usr/lib/gcc/i486-slackware-linux/3.4.6/../../../../include/c++/3.4.6/bits/basic_string.h:1456
+#7  0x0805102f in Sound::soundThread (ptr=0x817f408) at src/lincity-ng/Sound.cpp:45
+#8  0xb7d922cb in SDL_RunThread () from /usr/lib/libSDL-1.2.so.0
+#9  0xb7ddb33d in SVGA_keyboardcallback () from /usr/lib/libSDL-1.2.so.0
+#10 0xb7d4e20e in start_thread () from /lib/tls/libpthread.so.0
+#11 0xb79dc0de in clone () from /lib/tls/libc.so.6
+
+
+
+Follow-Ups:
+
+Date: 2007-Jun-24 17:55
+By: wolfgangb
+
+Comment:
+Timeout. Assume wrong libs. Reopen if it was something else.
+-------------------------------------------------------
+
+Date: 2007-Feb-25 14:49
+By: wolfgangb
+
+Comment:
+Do you use the stable version of PhysicsFS?
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=6709&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=6709&amp;group_id=2929</A>
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10485&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10485&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000162.html">[Lincity-ng-devel] [Bug #10686] transport always saturates
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#163">[ date ]</a>
+              <a href="thread.html#163">[ thread ]</a>
+              <a href="subject.html#163">[ subject ]</a>
+              <a href="author.html#163">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

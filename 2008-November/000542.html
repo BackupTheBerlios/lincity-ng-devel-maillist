@@ -1,0 +1,240 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314577%5D%20LinCityNG%20segfaults%20randomly%20in%20game&In-Reply-To=%3C200811091958.mA9JwZKA016282%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000541.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314577%5D%20LinCityNG%20segfaults%20randomly%20in%20game&In-Reply-To=%3C200811091958.mA9JwZKA016282%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game">admin at berlios.de
+       </A><BR>
+    <I>Sun Nov  9 20:58:35 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000541.html">[Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#542">[ date ]</a>
+              <a href="thread.html#542">[ thread ]</a>
+              <a href="subject.html#542">[ subject ]</a>
+              <a href="author.html#542">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14577, was updated on 2008-Sep-29 09:27
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: calum
+Assigned to : none
+Summary: LinCityNG segfaults randomly in game
+
+Details: At random times, lincity will segfault.
+It doesn't seem to be related to anything I am doing at the time.
+
+The machine is otherwise stable, and I don't have any problems with other apps, libs, etc.
+
+$ lincity-ng
+Starting lincity-ng (version 1.1.2)...
+[/home/calum/.lincity] is in the search path.
+[/usr/share/games/lincity-ng] is in the search path.
+LINCITY_HOME: /usr/share/games/lincity-ng
+Mesa: Initializing x86-64 optimizations
+Mesa: Mesa 7.2 DEBUG build Sep 27 2008 20:56:19
+Mesa warning: couldn't open libtxc_dxtn.so, software DXTn compression/decompression unavailable
+OpenGL Mode 1024x768
+remove( /home/calum/.lincity/1_2008-09-24_15_4)
+total_time 364801
+remove( /home/calum/.lincity/2_2008-09-24_15_29)
+total_time 369503
+Segmentation fault
+
+This didn't happen with the previous version I was running.
+Running Gentoo's version games-simulation/lincity-ng-1.1.2
+Previous version that worked fine was lincity-ng-1.1.0
+
+Please advise as to how I can help to solve this.
+
+Follow-Ups:
+
+Date: 2008-Nov-09 19:58
+By: calum
+
+Comment:
+Hmm, well, as a non-developer player of the game, it's counter intuitive that you can't put 2 windmills near one 200 person residence, and have that working.
+
+I'd suggest that that rule is changed, and that each windmill nearby can add to it. But it certainly needs some flagging up in documentation if you decide to leave it as is, as the map I uploaded has many windmills around each large residence, and I was wondering how many a single residence needed to power it.
+Of course, if I'd known that only one made any difference, I'd probably not have hit the 128 grid limit. :)
+
+I did notice though that the more inhabitants, the more power required.
+-------------------------------------------------------
+
+Date: 2008-Nov-09 19:44
+By: jaky_lincity
+
+Comment:
+Old windmills produce between 463 kW (techlevel 3%) and 652 kW (techlevel 45%) of power. A residence with 200 inhabitants needs at least 630 kW of power. The problem is that this power has to come from ONE grid (is this a bug or a feature?). As all old windmills are on different grids the power would have to come from one windmill which would have to be build after techlevel 40%.
+I usually don't even try to get power to the residences till I get a power grid. I only use the old windmills to power some farms. 
+-------------------------------------------------------
+
+Date: 2008-Nov-09 16:10
+By: calum
+
+Comment:
+Well, I'm not at the stage where I can build other power stations or transmission lines.
+
+Perhaps I have too many windmills, but those big 200 resident places don't even seem to be OK for power with about 7 of them around.
+
+Anyway, I'm no expert on the game, so it's likely I'll make mistakes while building my city. :)
+-------------------------------------------------------
+
+Date: 2008-Nov-09 15:03
+By: wolfgangb
+
+Comment:
+Old style windmills produce mechanical power which is good enough to power some buildings. So they are power grids, too. With MAX_GRIDS=128 you have too many windmills. I don't see why you need so many but maybe we should increase that limit anyway. 
+-------------------------------------------------------
+
+Date: 2008-Nov-05 20:06
+By: calum
+
+Comment:
+Heya,
+
+Patch applied, and crashing upon new windmills has stopped.
+Thanks for that.
+
+It all seems to be working, apart from now, when I build anything, I get a message complaining about too many power grids.
+
+Well, I'm not at the tech level yet to build power stations and power lines, so joining them up is something I can't do.
+
+And to have it complaining with every build is too much.
+Perhaps it could check if I have the tech level to build power grids before moaning?
+
+Also, can windmills be part of power grids? I didn't think so.
+-------------------------------------------------------
+
+Date: 2008-Nov-05 18:07
+By: none
+
+Comment:
+I was not able to reproduce the crash on my computer, but I found an off-by-one error in power.cpp, which gets triggered when you reach the maximum number of power grids. Can you please test, if the patch at <A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2588&amp;group_id=2929">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2588&amp;group_id=2929</A> fixes your problem. Maybe you also have to apply the patch from <A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2586&amp;group_id=2929">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2586&amp;group_id=2929</A> .
+-------------------------------------------------------
+
+Date: 2008-Nov-04 14:01
+By: calum
+
+Comment:
+I have put it here:
+
+<A HREF="http://rapidshare.com/files/160574915/6_Y00316_Tech019_Cash_043M_P10562.html">http://rapidshare.com/files/160574915/6_Y00316_Tech019_Cash_043M_P10562.html</A>
+
+Apparently, it can only be downloaded 10 times, so save it down :)
+
+If I add a windmill between the 3 farms and the market, it crashes every single time.
+
+Let me know what else you need from me.
+
+C
+-------------------------------------------------------
+
+Date: 2008-Nov-04 03:45
+By: none
+
+Comment:
+Can you please upload a savegame and describe how to reproduce the crash. With this information I could try to debug the problem.
+
+Jaky
+-------------------------------------------------------
+
+Date: 2008-Oct-22 16:34
+By: calum
+
+Comment:
+OK.
+
+It's definitely to do with power.
+
+I installed the latest version from SVN, and that didn't make much difference.
+
+I have a lot of windmills, and adding two more makes it crash every time.
+Also, it crashed when I was trying to move to coal power stations
+
+-------------------------------------------------------
+
+Date: 2008-Oct-22 15:32
+By: calum
+
+Comment:
+No, it's not that I have no citizens left.
+
+I have got it narrowed down to a saved game, where I can reproduce it every time.
+
+I have run strace, and can't see anything immediately obvious.
+
+I've renamed my .lincity/ and .lincityrc, and only copied the one saved game in.
+
+Perhaps I can upload the game somewhere, and tell the steps I use to make it segfault?
+
+I see this in dmesg when it crashes.
+
+strace[1882:#0] general protection rip:2b5c0cc38bc3 rsp:7fff9e0f4b40 error:0
+lincity-ng[1883:#0]: segfault at 00002aaac2c8b8d0 rip 00002aaac2c8b8d0 rsp 00007fff5b342d78 error 14
+strace[1900:#0] general protection rip:2ae77752dbc3 rsp:7fff33802240 error:0
+strace[1907:#0] general protection rip:2ae961cf0bc3 rsp:7fff4903ea80 error:0
+
+My compiler is 4.1.2
+-------------------------------------------------------
+
+Date: 2008-Sep-29 17:21
+By: wolfgangb
+
+Comment:
+Just guessing here, but do you have no more citizens left? Then you hit bug #12684 <A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12684&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12684&amp;group_id=2929</A>
+
+Get <A HREF="http://prdownload.berlios.de/lincity-ng/lincity-ng-1.1.2-bugfix.zip">http://prdownload.berlios.de/lincity-ng/lincity-ng-1.1.2-bugfix.zip</A> to fix it.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14577&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14577&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000541.html">[Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#542">[ date ]</a>
+              <a href="thread.html#542">[ thread ]</a>
+              <a href="subject.html#542">[ subject ]</a>
+              <a href="author.html#542">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

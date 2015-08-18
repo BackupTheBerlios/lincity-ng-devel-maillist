@@ -1,0 +1,402 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Localization was broken (+) - patches
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2014-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Localization%20was%20broken%20%28%2B%29%20-%20patches&In-Reply-To=%3C52F4CCC4.7060404%40foramnagaidhlig.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001418.html">
+   <LINK REL="Next"  HREF="001422.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Localization was broken (+) - patches</H1>
+    <B>F&#242;ram na G&#224;idhlig</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Localization%20was%20broken%20%28%2B%29%20-%20patches&In-Reply-To=%3C52F4CCC4.7060404%40foramnagaidhlig.net%3E"
+       TITLE="[Lincity-ng-devel] Localization was broken (+) - patches">fios at foramnagaidhlig.net
+       </A><BR>
+    <I>Fri Feb  7 13:08:36 CET 2014</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001418.html">[Lincity-ng-devel] Localization was broken (+)
+</A></li>
+        <LI>Next message: <A HREF="001422.html">[Lincity-ng-devel] Really AWFUL!!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1421">[ date ]</a>
+              <a href="thread.html#1421">[ thread ]</a>
+              <a href="subject.html#1421">[ subject ]</a>
+              <a href="author.html#1421">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>There are a whole lot more of these.
+
+I fixed most of them with the attached patches, but they haven't been 
+committed yet.
+
+We also need to look at the terminology mismatches between the lintypes 
+file and the modules. If one of the devs could tell me which of these 
+two we consider canon, I'll be happy to provide a patch.
+
+e.g. Water well &lt;&gt; Water tower
+
+We should also make up our minds regarding the naming of forest/commune, 
+heavy industry/steel works. I went for &quot;forest&quot; and &quot;steel works&quot; in my 
+translation.
+
+
+
+06/02/2014 20:47, sgr&#236;obh ASM:
+&gt;<i> I found many problems with localization.
+</I>&gt;<i>
+</I>&gt;<i> For example commit 746014664f059192373f245ec72a0d5647c0e0d0 by cman79:
+</I>&gt;<i>
+</I>&gt;<i> +    mps_store_sddp(i++, &quot;Fertility&quot;, ugwCount, 4);
+</I>&gt;<i> +    mps_store_sfp(i++,&quot;busy&quot;, (float)busy);
+</I>&gt;<i> +    mps_store_sddp(i++, _(&quot;Pollution&quot;), world(x,y)-&gt;pollution,
+</I>&gt;<i> MAX_POLLUTION_AT_WATERWELL);
+</I>&gt;<i>
+</I>&gt;<i> Why is &quot;Fertility&quot; without gettext?
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> ---
+</I>&gt;<i> Best regards,
+</I>&gt;<i> Leonid Myravjev
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> On 7 February 2014 00:13, ASM &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">asm at asm.pp.ru</A>&gt; wrote:
+</I>&gt;&gt;<i> Hi folks!
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> I decided to fix and update Russian translation.
+</I>&gt;&gt;<i> But I found that the localization was broken by cman79 at Commit 1c89e436:
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> -        case UserOperation::ACTION_QUERY:
+</I>&gt;&gt;<i> -            tooltip &lt;&lt; _( &quot;Query Tool&quot; ); break;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> +        case ACTION_QUERY:
+</I>&gt;&gt;<i> +            tooltip &lt;&lt;  &quot;Query Tool&quot; ; break;
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> Why did you do this?
+</I>&gt;&gt;<i> Please return it back.
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> P.S&gt; BerliOS close soon. Where will be Lincity moved? To github?
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> ---
+</I>&gt;&gt;<i> Best regards,
+</I>&gt;&gt;<i> Leonid Myravjev
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> -----
+</I>&gt;<i> No virus found in this message.
+</I>&gt;<i> Checked by AVG - www.avg.com
+</I>&gt;<i> Version: 2014.0.4259 / Virus Database: 3697/7070 - Release Date: 02/07/14
+</I>&gt;<i>
+</I>&gt;<i>
+</I>-------------- next part --------------
+Index: src/lincity/UserOperation.cpp
+===================================================================
+--- src/lincity/UserOperation.cpp	(revision 1815)
++++ src/lincity/UserOperation.cpp	(working copy)
+@@ -1,6 +1,7 @@
+ #include &quot;UserOperation.h&quot;
+ #include &lt;iostream&gt;
+ #include &quot;lin-city.h&quot;
++#include &quot;tinygettext/gettext.hpp&quot;
+ 
+ static int last_warning_message_group = 0;
+ 
+@@ -77,30 +78,30 @@
+     switch(action)
+     {
+         case ACTION_QUERY:
+-            tooltip &lt;&lt;  &quot;Query Tool&quot; ; break;
++            tooltip &lt;&lt;  _(&quot;Query Tool&quot;) ; break;
+         case ACTION_BUILD:
+-            tooltip &lt;&lt; constructionGroup-&gt;name;
++            tooltip &lt;&lt; _(constructionGroup-&gt;name);
+             switch(constructionGroup-&gt;group)
+             {
+-                case GROUP_RESIDENCE_LL: tooltip &lt;&lt;  &quot;: 50 tenants, low birthrate, high deathrate&quot; ; break;
+-                case GROUP_RESIDENCE_ML: tooltip &lt;&lt;  &quot;: 100 tenants, high birthrate, low deathrate&quot; ; break;
+-                case GROUP_RESIDENCE_HL: tooltip &lt;&lt;  &quot;: 200 tenants, high birthrate, high deathrate&quot; ; break;
+-                case GROUP_RESIDENCE_LH: tooltip &lt;&lt;  &quot;: 100 tenants, low birthrate, high deathrate&quot; ; break;
+-                case GROUP_RESIDENCE_MH: tooltip &lt;&lt;  &quot;: 200 tenants, high birthrate, low deathrate&quot; ; break;
+-                case GROUP_RESIDENCE_HH: tooltip &lt;&lt;  &quot;: 400 tenants, high birthrate, high deathrate&quot; ;
++                case GROUP_RESIDENCE_LL: tooltip &lt;&lt;  _(&quot;: 50 tenants, low birthrate, high deathrate&quot;) ; break;
++                case GROUP_RESIDENCE_ML: tooltip &lt;&lt;  _(&quot;: 100 tenants, high birthrate, low deathrate&quot;) ; break;
++                case GROUP_RESIDENCE_HL: tooltip &lt;&lt;  _(&quot;: 200 tenants, high birthrate, high deathrate&quot;) ; break;
++                case GROUP_RESIDENCE_LH: tooltip &lt;&lt;  _(&quot;: 100 tenants, low birthrate, high deathrate&quot;) ; break;
++                case GROUP_RESIDENCE_MH: tooltip &lt;&lt;  _(&quot;: 200 tenants, high birthrate, low deathrate&quot;) ; break;
++                case GROUP_RESIDENCE_HH: tooltip &lt;&lt;  _(&quot;: 400 tenants, high birthrate, high deathrate&quot;) ;
+             }
+             break;
+         case ACTION_BULLDOZE:
+-            tooltip &lt;&lt;  &quot;Bulldozer&quot; ; break;
++            tooltip &lt;&lt;  _(&quot;Bulldozer&quot;) ; break;
+         case ACTION_EVACUATE:
+-            tooltip &lt;&lt; &quot;Evacuate&quot; ; break;
++            tooltip &lt;&lt; _(&quot;Evacuate&quot;) ; break;
+         case ACTION_FLOOD:
+-            tooltip &lt;&lt;  &quot;Water&quot; ; break;
++            tooltip &lt;&lt;  _(&quot;Water&quot;) ; break;
+         default:
+-            tooltip &lt;&lt; &quot;unknown useroperation&quot;;
++            tooltip &lt;&lt; _(&quot;unknown user operation&quot;);
+     }
+     if( !root ){
+-        tooltip &lt;&lt; &quot; [Click right for help.]&quot;;
++        tooltip &lt;&lt; _(&quot; [Click right for help.]&quot;);
+     }
+     return tooltip.str();
+ }
+Index: src/lincity-ng/MpsInterface.cpp
+===================================================================
+--- src/lincity-ng/MpsInterface.cpp	(revision 1815)
++++ src/lincity-ng/MpsInterface.cpp	(working copy)
+@@ -127,11 +127,11 @@
+                     mps_store_sdd(0,world(mps_x, mps_y)-&gt;getTileConstructionGroup()-&gt;name, mps_x, mps_y);
+                     //mps_store_sdd(0,main_groups[world(mps_x, mps_y)-&gt;getGroup()].name, mps_x, mps_y);
+ 
+-                        mps_store_title(2, &quot;no further information available&quot; );
++                        mps_store_title(2, _(&quot;no further information available&quot;));
+ 
+                     if( world(mps_x, mps_y)-&gt;is_bare() )
+                     {
+-                        mps_store_title(8,&quot;build something here&quot; );
++                        mps_store_title(8, _(&quot;build something here&quot;));
+                     }
+  /*#ifdef DEBUG
+                     mps_store_sd(10, &quot;x&quot;, mps_x);
+@@ -433,48 +433,48 @@
+     int cashflow = 0;
+     currentMPS = globalMPS;
+ 
+-    mps_store_title(i++,&quot;Tax Income&quot;);
++    mps_store_title(i++,_(&quot;Tax Income&quot;));
+ 
+     cashflow += ly_income_tax;
+     num_to_ansi (s, sizeof(s), ly_income_tax);
+-    mps_store_ss(i++,&quot;Income&quot;, s);
++    mps_store_ss(i++,_(&quot;Income&quot;), s);
+ 
+     cashflow += ly_coal_tax;
+     num_to_ansi(s, sizeof(s), ly_coal_tax);
+-    mps_store_ss(i++,&quot;Coal&quot;, s);
++    mps_store_ss(i++,_(&quot;Coal&quot;), s);
+ 
+     cashflow += ly_goods_tax;
+     num_to_ansi(s, sizeof(s), ly_goods_tax);
+-    mps_store_ss(i++,&quot;Goods&quot;, s);
++    mps_store_ss(i++,_(&quot;Goods&quot;), s);
+ 
+     cashflow += ly_export_tax;
+     num_to_ansi(s, sizeof(s), ly_export_tax);
+-    mps_store_ss(i++,&quot;Export&quot;, s);
++    mps_store_ss(i++,_(&quot;Export&quot;), s);
+ 
+     mps_store_title(i++, &quot;&quot;);
+ 
+-    mps_store_title(i++,&quot;Expenses&quot;);
++    mps_store_title(i++,_(&quot;Expenses&quot;));
+ 
+     cashflow -= ly_unemployment_cost;
+     num_to_ansi(s, sizeof(s), ly_unemployment_cost);
+-    mps_store_ss(i++,&quot;Unemp.&quot;, s);
++    mps_store_ss(i++,_(&quot;Unemp.&quot;), s);
+ 
+     cashflow -= ly_transport_cost;
+     num_to_ansi(s, sizeof(s), ly_transport_cost);
+-    mps_store_ss(i++,&quot;Transport&quot;, s);
++    mps_store_ss(i++,_(&quot;Transport&quot;), s);
+ 
+     cashflow -= ly_import_cost;
+     num_to_ansi(s, sizeof(s), ly_import_cost);
+-    mps_store_ss(i++,&quot;Imports&quot;, s);
++    mps_store_ss(i++,_(&quot;Imports&quot;), s);
+ 
+     cashflow -= ly_other_cost;
+     num_to_ansi(s, sizeof(s), ly_other_cost);
+-    mps_store_ss(i++,&quot;Others&quot;, s);
++    mps_store_ss(i++,_(&quot;Others&quot;), s);
+ 
+     mps_store_title(i++, &quot;&quot; );
+ 
+     num_to_ansi(s, sizeof(s), cashflow);
+-    mps_store_ss(i++,&quot;Net&quot;, s);
++    mps_store_ss(i++,_(&quot;Net&quot;), s);
+ 
+     currentMPS = 0;
+ }
+@@ -486,34 +486,34 @@
+     char s[12];
+ 
+     currentMPS = globalMPS;
+-    mps_store_title(i++,&quot;Other Costs&quot;);
++    mps_store_title(i++,_(&quot;Other Costs&quot;));
+ 
+     /* Don't write year if it's negative. */
+     year = (total_time / NUMOF_DAYS_IN_YEAR) - 1;
+     if (year &gt;= 0) {
+-    mps_store_sd(i++, &quot;For year&quot;, year);
++    mps_store_sd(i++, _(&quot;For year&quot;), year);
+     }
+     mps_store_title(i++,&quot;&quot;);
+     num_to_ansi(s,sizeof(s),ly_interest);
+-    mps_store_ss(i++,&quot;Interest&quot;,s);
++    mps_store_ss(i++,_(&quot;Interest&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_school_cost);
+-    mps_store_ss(i++,&quot;Schools&quot;,s);
++    mps_store_ss(i++,_(&quot;Schools&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_university_cost);
+-    mps_store_ss(i++,&quot;Univers.&quot;,s);
++    mps_store_ss(i++,_(&quot;Univers.&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_deaths_cost);
+-    mps_store_ss(i++,&quot;Deaths&quot;,s);
++    mps_store_ss(i++,_(&quot;Deaths&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_windmill_cost);
+-    mps_store_ss(i++,&quot;Windmill&quot;,s);
++    mps_store_ss(i++,_(&quot;Windmill&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_health_cost);
+-    mps_store_ss(i++,&quot;Hospital&quot;,s);
++    mps_store_ss(i++,_(&quot;Hospital&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_rocket_pad_cost);
+-    mps_store_ss(i++,&quot;Rockets&quot;,s);
++    mps_store_ss(i++,_(&quot;Rockets&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_fire_cost);
+-    mps_store_ss(i++,&quot;Fire Stn&quot;,s);
++    mps_store_ss(i++,_(&quot;Fire Stn&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_cricket_cost);
+-    mps_store_ss(i++,&quot;Sport&quot;,s);
++    mps_store_ss(i++,_(&quot;Sport&quot;),s);
+     num_to_ansi(s,sizeof(s),ly_recycle_cost);
+-    mps_store_ss(i++,&quot;Recycle&quot;,s);
++    mps_store_ss(i++,_(&quot;Recycle&quot;),s);
+ 
+     currentMPS = 0;
+ }
+@@ -527,21 +527,21 @@
+ 
+     currentMPS = globalMPS;
+ 
+-    mps_store_title(i++,&quot;Population&quot;);
++    mps_store_title(i++,_(&quot;Population&quot;));
+     mps_store_title(i++,&quot;&quot;);
+-    mps_store_sd(i++,&quot;Total&quot;,tp);
+-    mps_store_sd(i++,&quot;Housed&quot;,population);
+-    mps_store_sd(i++,&quot;Homeless&quot;,people_pool);
+-    mps_store_sd(i++,&quot;Shanties&quot;,Counted&lt;Shanty&gt;::getInstanceCount());
+-    mps_store_sd(i++,&quot;Unnat. Deaths&quot;,unnat_deaths);
+-    mps_store_title(i++,&quot;Unemployment&quot;);
+-    mps_store_sd(i++,&quot;Claims&quot;,tunemployed_population/days);
+-    mps_store_sfp(i++,&quot;Rate&quot;,
++    mps_store_sd(i++,_(&quot;Total&quot;),tp);
++    mps_store_sd(i++,_(&quot;Housed&quot;),population);
++    mps_store_sd(i++,_(&quot;Homeless&quot;),people_pool);
++    mps_store_sd(i++,_(&quot;Shanties&quot;),Counted&lt;Shanty&gt;::getInstanceCount());
++    mps_store_sd(i++,_(&quot;Unnat. Deaths&quot;),unnat_deaths);
++    mps_store_title(i++,_(&quot;Unemployment&quot;));
++    mps_store_sd(i++,_(&quot;Claims&quot;),tunemployed_population/days);
++    mps_store_sfp(i++,_(&quot;Rate&quot;),
+           (((tunemployed_population/days) * 100.0) / tp));
+-    mps_store_title(i++,&quot;Starvation&quot;);
+-    mps_store_sd(i++,&quot;Cases&quot;,tstarving_population/days);
++    mps_store_title(i++,_(&quot;Starvation&quot;));
++    mps_store_sd(i++,_(&quot;Cases&quot;),tstarving_population/days);
+ 
+-    mps_store_sfp(i++,&quot;Rate&quot;,
++    mps_store_sfp(i++,_(&quot;Rate&quot;),
+           (((tstarving_population/days) * 100.0) / tp));
+ 
+     currentMPS = 0;
+
+-------------- next part --------------
+Index: src/lincity-ng/Dialog.cpp
+===================================================================
+--- src/lincity-ng/Dialog.cpp	(revision 1815)
++++ src/lincity-ng/Dialog.cpp	(working copy)
+@@ -370,41 +370,41 @@
+     if (cheat_flag){
+         setParagraphN( &quot;statistic_text&quot;, line++, _(&quot;----- IN TEST MODE -------&quot;) );
+     }
+-    snprintf (outf, maxlength,&quot;%s %s&quot;, _(&quot;Game statistics from LinCity-NG Version&quot;), PACKAGE_VERSION);
++    snprintf (outf, maxlength, _(&quot;Game statistics from LinCity-NG Version %s&quot;), PACKAGE_VERSION);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+     if (strlen (given_scene) &gt; 3){
+-        snprintf (outf, maxlength,&quot;%s - %s&quot;, _(&quot;Initial loaded scene&quot;), given_scene);
++        snprintf (outf, maxlength, _(&quot;Initial loaded scene - %s&quot;), given_scene);
+         setParagraphN( &quot;statistic_text&quot;, line++, outf );
+     }
+     if (sustain_flag){
+         snprintf (outf, maxlength, &quot;%s&quot;, _(&quot;Economy is sustainable&quot;));
+         setParagraphN( &quot;statistic_text&quot;, line++, outf );
+     }
+-    snprintf (outf, maxlength, &quot;%s %d %s %d %s.&quot;,
+-        _(&quot;Population&quot;), population + people_pool, _(&quot;of which&quot;),  people_pool, _(&quot;are not housed&quot;));
++    snprintf (outf, maxlength, _(&quot;Population: %1$d, of which %2$d are not housed&quot;),
++	population + people_pool, people_pool);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+-    snprintf (outf, maxlength, &quot;%s %d %s %d %s %d&quot;,
++    snprintf (outf, maxlength, &quot;%s: %d   %s: %d   %s: %d&quot;,
+         _(&quot;Max population&quot;), max_pop_ever,  _(&quot;Number evacuated&quot;), total_evacuated, _(&quot;Total births&quot;), total_births);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+-    snprintf (outf, maxlength, &quot;%s %s %04d %s %8d %s %5.1f (%5.1f)&quot;,
++    snprintf (outf, maxlength, &quot;%s: %s %04d   %s: %8d   %s: %5.1f (%5.1f)&quot;,
+         _(&quot;Date&quot;),  current_month(total_time), current_year(total_time),
+         _(&quot;Money&quot;), total_money, _(&quot;Tech-level&quot;),
+         (float) tech_level * 100.0 / MAX_TECH_LEVEL,
+         (float) highest_tech_level * 100.0 / MAX_TECH_LEVEL);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+-    snprintf (outf, maxlength, &quot;%s %7d %s %8.3f&quot;,
++    snprintf (outf, maxlength, &quot;%s: %7d   %s: %8.3f&quot;,
+         _(&quot;Deaths by starvation&quot;), total_starve_deaths,
+         _(&quot;History&quot;), starve_deaths_history);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+-    snprintf (outf, maxlength, &quot;%s %7d   %s %8.3f&quot;,
++    snprintf (outf, maxlength, &quot;%s: %7d   %s: %8.3f&quot;,
+         _(&quot;Deaths from pollution&quot;), total_pollution_deaths,
+         _(&quot;History&quot;), pollution_deaths_history);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+-    snprintf (outf, maxlength, &quot;%s %7d   %s %8.3f&quot;,
++    snprintf (outf, maxlength, &quot;%s: %7d   %s: %8.3f&quot;,
+         _(&quot;Years of unemployment&quot;), total_unemployed_years,
+         _(&quot;History&quot;), unemployed_history);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+-    snprintf (outf, maxlength, &quot;%s %2d  %s %2d&quot;,
++    snprintf (outf, maxlength, &quot;%s: %2d  %s: %2d&quot;,
+         _(&quot;Rockets launched&quot;), rockets_launched,
+         _(&quot;Successful launches&quot;), rockets_launched_success);
+     setParagraphN( &quot;statistic_text&quot;, line++, outf );
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001418.html">[Lincity-ng-devel] Localization was broken (+)
+</A></li>
+	<LI>Next message: <A HREF="001422.html">[Lincity-ng-devel] Really AWFUL!!
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1421">[ date ]</a>
+              <a href="thread.html#1421">[ thread ]</a>
+              <a href="subject.html#1421">[ subject ]</a>
+              <a href="author.html#1421">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Should the beach scenario be easy ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Should%20the%20beach%20scenario%20be%20easy%20%3F&In-Reply-To=%3C200901072004.39967.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000593.html">
+   <LINK REL="Next"  HREF="000596.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Should the beach scenario be easy ?</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Should%20the%20beach%20scenario%20be%20easy%20%3F&In-Reply-To=%3C200901072004.39967.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Should the beach scenario be easy ?">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Wed Jan  7 20:04:39 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000593.html">[Lincity-ng-devel] Should the beach scenario be easy ?
+</A></li>
+        <LI>Next message: <A HREF="000596.html">[Lincity-ng-devel] trees and pollution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#594">[ date ]</a>
+              <a href="thread.html#594">[ thread ]</a>
+              <a href="subject.html#594">[ subject ]</a>
+              <a href="author.html#594">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le mercredi 7 janvier 2009, Ivar ten Cate a &#233;crit&#160;:
+
+&gt;<i> Do you know how to add trees? It would be cool if the user could
+</I>&gt;<i> select trees in the button panel and build them. Trees would reduce
+</I>&gt;<i> the amount of pollution, like parks. What do you think of this?
+</I>
+Its looks like my secret plan for 2.x ;-)
+
+Currently the nature of one tile is picked randomly in one table, which
+depends on the distance to water and altitude (kind of &quot;realistic&quot; model),
+which was roughly hand tuned to be playable and good looking.
+
+So far only bulldozzed area becomes green again after some time, but we
+could do random change each N turn (pick for one tile in its table) and
+we would have a very similar map , but with living trees (roughly near water
+60%trees, far from water or high = 10% trees, very high or no water = desert)
+
+I thought of things like this, with a &quot;ecosystem simulator&quot;:
+- distance to water and altitude impact land/trees. 
+   I want to add pollution impact
+- trees2 need to be surrounded by 2/4 tree1
+
+Also the game stay simple, so in my idea, the player does not control the
+land/forest (as in Real Life), but it can observe what happens, and take
+care (or not).
+
+I need to solve one problem with rivers and lake with the new terrain
+generator, which is a bit difficult, but i think the most important is to
+release 2.0 as it contains many new cool stuff (graphics, translations,
+bridges, some bug fixes, code clean up and new file format more easy for
+debugging and extenting....)
+
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000593.html">[Lincity-ng-devel] Should the beach scenario be easy ?
+</A></li>
+	<LI>Next message: <A HREF="000596.html">[Lincity-ng-devel] trees and pollution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#594">[ date ]</a>
+              <a href="thread.html#594">[ thread ]</a>
+              <a href="subject.html#594">[ subject ]</a>
+              <a href="author.html#594">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

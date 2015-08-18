@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] population, jobs, market and transport.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20population%2C%20jobs%2C%20market%20and%20transport.&In-Reply-To=%3C200703041633.30521.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000079.html">
+   <LINK REL="Next"  HREF="000081.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] population, jobs, market and transport.</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20population%2C%20jobs%2C%20market%20and%20transport.&In-Reply-To=%3C200703041633.30521.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] population, jobs, market and transport.">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Mar  4 16:33:30 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000079.html">[Lincity-ng-devel] [Bug #10544] Market cannot control buy/sell
+</A></li>
+        <LI>Next message: <A HREF="000081.html">[Lincity-ng-devel] population, jobs, market and transport.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#80">[ date ]</a>
+              <a href="thread.html#80">[ thread ]</a>
+              <a href="subject.html#80">[ subject ]</a>
+              <a href="author.html#80">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi 
+
+I noticed that it is possible to have total jobs in market 
+greater than the total population, and this does not include the 
+number of jobs on transport or stored in buildings. Also the &quot;jobs&quot;
+can drop to nearly zero and the economy still work fine.
+This is very counter intuitive :-)
+
+Unless i miss something in the source (hmm this is possible ;-),
+this is due to a feature of the engine: jobs are treated like other
+goods, so they can be stored in markets/transports/factories, which is
+really practical and simple, and is _needed_ for transport.
+
+Obviously, people are not ordinary goods that can be stored in
+market/transport for later use :)
+To fix this without completely breaking the engine, especially job 
+propagation through transports, i'm wondering about the following :
+total_jobs = sum of successful get_jobs 
+	(this is still slightly approximated because building
+	can get jobs and not use them imediatly due to a shortage
+	of another resource, but this will not last very long, the
+	job_stock will soon be full. This is easy to implement
+	it needs only a change in get_jobs, whereas exact computation
+	demand modification of all the modules, so for a first try
+	this should be enough)
+
+unemployment = jobs successfully provided by residences - total_jobs 
+	+ number of failure to provide jobs due to market full of job (this
+				is current unemployment)
+
+additional unemployment cost begin if unemployment &gt; few % to keep the 
+behavior similar to current engine.
+ 
+Due to the job &quot;stocks&quot; unemployment could be negative, which means the
+demand for jobs is greater than the number of available jobs, so sooner
+or later some factories will not be supplied with jobs.
+This would need a change in ECO minigraph to draw negative values,
+and also in unemployment minimap : negative unemployment could be shown
+let's say in yellow (negative but currently supplied) and white (unsupplied).
+
+This could give a nice minimap:
+if on one side we have all houses and far away all industries, with very poor
+transport between, there would be unemployment (red) in houses, and (yellow
+and white) in factories.
+
+Any comment will be considered :)
+Cheers
+Alain
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: 5_jobs_gt_population
+Type: application/x-gzip
+Size: 12437 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20070304/82521245/attachment.bin">https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20070304/82521245/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000079.html">[Lincity-ng-devel] [Bug #10544] Market cannot control buy/sell
+</A></li>
+	<LI>Next message: <A HREF="000081.html">[Lincity-ng-devel] population, jobs, market and transport.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#80">[ date ]</a>
+              <a href="thread.html#80">[ thread ]</a>
+              <a href="subject.html#80">[ subject ]</a>
+              <a href="author.html#80">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

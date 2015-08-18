@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C47F9088E.8010806%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000446.html">
+   <LINK REL="Next"  HREF="000448.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road bridge</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C47F9088E.8010806%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road bridge">magicfox at magic.fr
+       </A><BR>
+    <I>Sun Apr  6 19:29:50 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000446.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+        <LI>Next message: <A HREF="000448.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#447">[ date ]</a>
+              <a href="thread.html#447">[ thread ]</a>
+              <a href="subject.html#447">[ subject ]</a>
+              <a href="author.html#447">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+&gt;<i>     Here is the first patch to manage track and road bridges.
+</I>&gt;<i>     Bridges are build by using track/road dragging on the water.
+</I>&gt;<i> 
+</I>&gt;<i> I've tested your patch and it worked. Dragging tracks and roads results 
+</I>&gt;<i> into a bridge. I found one problem: the bridges aren't complete, there 
+</I>&gt;<i> are some pieces missing. Look at this image: 
+</I>&gt;<i> <A HREF="http://img119.imageshack.us/img119/2388/lincitybridgesuh0.png">http://img119.imageshack.us/img119/2388/lincitybridgesuh0.png</A> (the black 
+</I>&gt;<i> dots indicates where I started dragging the track/road). There were no 
+</I>&gt;<i> problems with (noticeable) performance loss. Good work! :)
+</I>
+I can't reproduce your problem with water in the middle of the bridge.
+The bridge section can be also build section by section in the water and 
+the connect_transport function do the job.
+
+The first time when you build a bridge, you are prompted by a dialogue 
+to confirm or not the construction. The positive answer is stored in 
+global variable (build_bridge_flag).
+At the first time, just the one section of the dragging tool can be 
+build directly. The problem is with dragging tool and dialogue.
+We're waiting for the answer of player and just only one tile coordinate 
+is stored.
+May be we need and it's better to push in a stack all tiles of dragging 
+that are dependent to the answer.
+It's a bit more complicated but I'll have a look to that.
+
+&gt;<i>     For a road or track section between 2 bridge sections (and
+</I>&gt;<i>     entrances), we need a pillar bridge section with green; for the
+</I>&gt;<i>     moment I have toggled it to bridge (without over cost).
+</I>&gt;<i> 
+</I>&gt;<i> Do you mean something like this: 
+</I>&gt;<i> <A HREF="http://img86.imageshack.us/img86/7579/roadbridgepg1em8.png?">http://img86.imageshack.us/img86/7579/roadbridgepg1em8.png?</A>
+</I> &gt;
+Yes is that ! :) (for the track and rail bridges too)
+May be the green near the water doesn't need to be a real square.
+Thanks for your job too ;-)
+&gt;<i> --
+</I>&gt;<i> Ivar
+</I>--
+Thierry
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000446.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+	<LI>Next message: <A HREF="000448.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#447">[ date ]</a>
+              <a href="thread.html#447">[ thread ]</a>
+              <a href="subject.html#447">[ subject ]</a>
+              <a href="author.html#447">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

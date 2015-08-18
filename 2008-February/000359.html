@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2313192%5D%20No%20Component%20specified%20in%20cell%202%2C%201&In-Reply-To=%3C200802241003.m1OA3psl021037%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000358.html">
+   <LINK REL="Next"  HREF="000360.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2313192%5D%20No%20Component%20specified%20in%20cell%202%2C%201&In-Reply-To=%3C200802241003.m1OA3psl021037%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1">admin at berlios.de
+       </A><BR>
+    <I>Sun Feb 24 11:03:51 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000358.html">[Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1
+</A></li>
+        <LI>Next message: <A HREF="000360.html">[Lincity-ng-devel] New messages in messages.pot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#359">[ date ]</a>
+              <a href="thread.html#359">[ thread ]</a>
+              <a href="subject.html#359">[ subject ]</a>
+              <a href="author.html#359">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #13192, was updated on 2008-Feb-24 04:54
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: legend_wok
+Assigned to : none
+Summary: No Component specified in cell 2, 1
+
+Details: Hello.
+
+ I am playing Lincity-NG 1.1.2 on Debian testing (Lenny). I installed the game using apt.
+ On the console, I'm getting the error
+
+No Component specified in cell 2, 1
+Segmentation fault
+
+ How I get the error: Start new game with empty board. I start with building 2x2 residentials for 200 citizens somewhere on the map. Then I build tracks that surround the residentials and a market. When I build more residentials, Lincity crashes with the above error. It seems that the error only occurs when time advances. I didn't get the error when the game was paused.
+
+Follow-Ups:
+
+Date: 2008-Feb-24 11:03
+By: alainb
+
+Comment:
+Do you have farms in your city ?
+
+If not, then there is starvation, so all people die, then &quot;you lose&quot; and hit the bug 012684 (which is fixed in svn).
+Thanks for telling us if it is the case.
+
+If not can you provide more informations (or a saved game that crashes when running)
+
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=13192&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=13192&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000358.html">[Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1
+</A></li>
+	<LI>Next message: <A HREF="000360.html">[Lincity-ng-devel] New messages in messages.pot
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#359">[ date ]</a>
+              <a href="thread.html#359">[ thread ]</a>
+              <a href="subject.html#359">[ subject ]</a>
+              <a href="author.html#359">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

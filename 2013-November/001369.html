@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] SVN testing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3CCAPpku8b71YjDQh7KXvUSeTUAz6zDQ6ZY3jSVVh63fhahWJg%3DWA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001368.html">
+   <LINK REL="Next"  HREF="001370.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] SVN testing</H1>
+    <B>Ivar ten Cate</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SVN%20testing&In-Reply-To=%3CCAPpku8b71YjDQh7KXvUSeTUAz6zDQ6ZY3jSVVh63fhahWJg%3DWA%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] SVN testing">varivar at gmail.com
+       </A><BR>
+    <I>Mon Nov  4 20:10:58 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001368.html">[Lincity-ng-devel] Scottish Gaelic translation
+</A></li>
+        <LI>Next message: <A HREF="001370.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1369">[ date ]</a>
+              <a href="thread.html#1369">[ thread ]</a>
+              <a href="subject.html#1369">[ subject ]</a>
+              <a href="author.html#1369">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+You did great work with the code improvements!
+
+I have tested the latest SVN revision (1758). Compiling and installing went
+fine, but the game crashes while loading a savegame or scenario. It loads
+the gui and a few sprites,but crashes halfway parsing png files. The
+terminal gives one of these error messages:
+
+*XIO:  fatal IO error 11 (Resource temporarily unavailable) on X server
+&quot;:0&quot;*
+*      after 198 requests (198 known processed) with 11 events remaining.*
+
+
+**** Error in `lincity-ng': malloc(): memory corruption (fast): 0x0860b968
+****
+
+
+*segmentation fault*
+
+
+Does the game run out of memory? I didn't have this issue with previous
+revisions. I'm running the game in Lubuntu 13.04 in VirtualBox. My host
+system is Windows 7 64bit. I have allocated 1gb of memory to the virtual
+OS. Raising to 2gb didn't help.
+
+
+I hope this information is useful.
+
+Greetings,
+Ivar
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001368.html">[Lincity-ng-devel] Scottish Gaelic translation
+</A></li>
+	<LI>Next message: <A HREF="001370.html">[Lincity-ng-devel] SVN testing
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1369">[ date ]</a>
+              <a href="thread.html#1369">[ thread ]</a>
+              <a href="subject.html#1369">[ subject ]</a>
+              <a href="author.html#1369">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

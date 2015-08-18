@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] experimental land
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20experimental%20land&In-Reply-To=%3C201002061106.17418.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000900.html">
+   <LINK REL="Next"  HREF="000902.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] experimental land</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20experimental%20land&In-Reply-To=%3C201002061106.17418.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] experimental land">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sat Feb  6 11:06:17 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000900.html">[Lincity-ng-devel] experimental land
+</A></li>
+        <LI>Next message: <A HREF="000902.html">[Lincity-ng-devel] experimental land
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#901">[ date ]</a>
+              <a href="thread.html#901">[ thread ]</a>
+              <a href="subject.html#901">[ subject ]</a>
+              <a href="author.html#901">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Ivar
+
+Le 05/02/2010 &#224; 10:00, Ivar ten Cate a &#233;crit :
+&gt;<i> 
+</I>&gt;<i> 2010/1/25 Alain Baeckeroot &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">alain.baeckeroot at laposte.net</A>&gt;:
+</I>&gt;<i> &gt; I have commited an improvement in the attempted new land generation:
+</I>&gt;<i> &gt; Idea:
+</I>&gt;<i> &gt; - find local minimum = bottom of a lake
+</I>&gt;<i> &gt; - fill the lake until it overfills and create a river, which will end out of the map
+</I>&gt;<i> I just tried your new land generator, and i think it's a big
+</I>&gt;<i> improvement. The random land generator actually generates random land
+</I>&gt;<i> now :)
+</I>thanks
+
+&gt;<i> Rivers are having hills as well, they should be flat, but I
+</I>&gt;<i> guess you're working on that.
+</I>I dont understand what you are saying.
+Are you talking of the lake surface in 3D view ?
+I agree it should be flat, lets says we see the bottom of the lake, not the
+surface of it.
+But the river are not flat, they follow the local slope, they are the real
+rivers which correspond to the topography of the map (as in RL).
+
+&gt;<i> 
+</I>&gt;<i> I'm wondering how you will implement the the graphics for this. Are we
+</I>&gt;<i> going to use 2D tiles for the landscapes? If so there should be a
+</I>&gt;<i> constant height difference between two height levels. Otherwise we
+</I>&gt;<i> would need an infinite amount of tiles. Or are you going to use a real
+</I>&gt;<i> 3D engine to render a true 3d terrain?
+</I>Maybe the 3d view will just be an &quot;experimental&quot; options, and not visible
+for the standard game ?  What do you (and other) think ?
+I find this view very addictive, so also very frustrating because
+it break some graphics, (for example the really nice bridges just
+look bad in 3d view)
+
+I wanted to see this 3d, and hope this can (re-)motivate other people,
+
+I see only one solution for keeping current tiles: 
+- warp them to insure continuity of the ground
+- maybe draw &quot;warped-ground&quot; first, and building without ground ?
+
+I think this is the maximum we can do with current isomectric view and
+tiles, and that jumping to a real 3d is not feasible soon (and i am
+not even competent to estimate the workload)
+
+
+&gt;<i> 
+</I>&gt;<i> It's great that we are able to chose a climate type in the new game
+</I>&gt;<i> menu now. I just think the temperate climate should have less desert
+</I>&gt;<i> tiles.
+</I>I'll do some tuning to fix this.
+
+I saw you draw other tiles while i was away from Lincity, great job again :)
+
+Greetings.
+Alain
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000900.html">[Lincity-ng-devel] experimental land
+</A></li>
+	<LI>Next message: <A HREF="000902.html">[Lincity-ng-devel] experimental land
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#901">[ date ]</a>
+              <a href="thread.html#901">[ thread ]</a>
+              <a href="subject.html#901">[ subject ]</a>
+              <a href="author.html#901">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

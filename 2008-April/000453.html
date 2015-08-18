@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C4807BF23.20004%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000452.html">
+   <LINK REL="Next"  HREF="000454.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road bridge</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C4807BF23.20004%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road bridge">magicfox at magic.fr
+       </A><BR>
+    <I>Thu Apr 17 23:20:35 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000452.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+        <LI>Next message: <A HREF="000454.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#453">[ date ]</a>
+              <a href="thread.html#453">[ thread ]</a>
+              <a href="subject.html#453">[ subject ]</a>
+              <a href="author.html#453">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>     The patch vs svn rev.1436 is included, it now implements track,road
+</I>&gt;<i>     and rail bridges.
+</I>&gt;<i>     The build cost display is updated to manage bridges.
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> Nice. But I still have the problem I described some emails ago. Maybe I 
+</I>&gt;<i> haven't patched your patch the right way (this is the second time ever I 
+</I>&gt;<i> used a patch). How I've patched it: I've placed your patch in the trunk 
+</I>&gt;<i> directory (working copy), then I opened the terminal and used the 
+</I>&gt;<i> command: patch &lt; track-road-bridge-vs1436.patch. The problem is that the 
+</I>&gt;<i> patch couldn't find some files, after which I had to type in the path to 
+</I>&gt;<i> the file. Is this normal, or did I something wrong?
+</I>&gt;<i> 
+</I>&gt;<i> Ivar.
+</I>
+Hi,
+After a svn checkout, gunzip the patch then move it to lincity-ng/trunk/
+You have to use -p0 option to leave the paths of the patch unchanged 
+like this:
+patch -p0 &lt; track-road-bridge-vs1436.patch
+After the compilation, I saw that we have a problem with automatic xml 
+generation and the file data/gui/build_bridge_yn.xml is overwritten with 
+a size of 0.
+As a workaround, back-up it _before_ compilation then restore it later.
+
+I'm looking the manage a stack of tiles for dialogue in dragging mode 
+but I'm not ready with it. The first time, build one bridge section in 
+the water, answer yes and then later you can build all the bridge with 
+dragging at the same time.
+--
+Thierry
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000452.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+	<LI>Next message: <A HREF="000454.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#453">[ date ]</a>
+              <a href="thread.html#453">[ thread ]</a>
+              <a href="subject.html#453">[ subject ]</a>
+              <a href="author.html#453">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15191] Crash in winXP if exception is	thrown during start:
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315191%5D%20Crash%20in%20winXP%20if%20exception%20is%0A%09thrown%20during%20start%3A&In-Reply-To=%3C200902031932.n13JWmM2015448%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000693.html">
+   <LINK REL="Next"  HREF="000695.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15191] Crash in winXP if exception is	thrown during start:</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315191%5D%20Crash%20in%20winXP%20if%20exception%20is%0A%09thrown%20during%20start%3A&In-Reply-To=%3C200902031932.n13JWmM2015448%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15191] Crash in winXP if exception is	thrown during start:">admin at berlios.de
+       </A><BR>
+    <I>Tue Feb  3 20:32:48 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000693.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+        <LI>Next message: <A HREF="000695.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#694">[ date ]</a>
+              <a href="thread.html#694">[ thread ]</a>
+              <a href="subject.html#694">[ subject ]</a>
+              <a href="author.html#694">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15191, was updated on 2009-Feb-03 19:32
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: Windows
+Priority: 5
+Submitted by: jaky_lincity
+Assigned to : none
+Summary: Crash in winXP if exception is thrown during start:
+
+Details: On my windows lincity crashes often during startup. Sometimes I get the following message in stderr.txt:
+Fatal signal: Segmentation Fault (SDL Parachute Deployed)
+
+This is an english Windows XP Professional 32-bit in a virtual machine with lincity-ng 2.0 installed with the official installer.
+
+Below is some debug output which I made with a self-compiled debug build. It shows that it crashes while handling the exception which is raised if there is no extra font file available for the used language. I found a mingw-bugreport about crashes during exception handling:
+<A HREF="http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1120267&amp;group_id=2435&amp;atid=102435">http://sourceforge.net/tracker/index.php?func=detail&amp;aid=1120267&amp;group_id=2435&amp;atid=102435</A>
+They say you have to use the -mthreads compiler option for programs that use threads. When I compile lincity-ng with this option it doesn't crash anymore on my computer.
+
+A workaround is to make a copy of data\fonts\sans.ttf with the name sans-en_US.ttf. That prevents the crash from this particular exception.
+
+Below are two different debug outputs from the crash:
+
+GNU gdb 6.8
+Copyright (C) 2008 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;<A HREF="http://gnu.org/licenses/gpl.html">http://gnu.org/licenses/gpl.html</A>&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;
+and &quot;show warranty&quot; for details.
+This GDB was configured as &quot;i686-pc-mingw32&quot;...
+(gdb) run
+Starting program: z:\lincity-ng/lincity-ng.exe 
+[New thread 2224.0x1b8]
+[New thread 2224.0x96c]
+[New thread 2224.0x98c]
+[New thread 2224.0x994]
+[New thread 2224.0x990]
+[New thread 2224.0x9a4]
+[New thread 2224.0x9c0]
+[New thread 2224.0x9e0]
+[New thread 2224.0x9ec]
+
+Program received signal SIGSEGV, Segmentation fault.
+0x033ffd57 in ?? ()
+(gdb) bt
+#0  0x033ffd57 in ?? ()
+#1  0x004c4ba4 in _Unwind_SjLj_RaiseException ()
+    at C:/MinGW/bin/../lib/gcc/mingw32/3.4.5/../../../../include/c++/3.4.5/iostream:77
+#2  0x004bb1fd in __cxa_throw ()
+    at C:/MinGW/bin/../lib/gcc/mingw32/3.4.5/../../../../include/c++/3.4.5/iostream:77
+#3  0x004b5168 in getPhysfsSDLRWops (filename=@0x22dc20)
+    at src/PhysfsStream/PhysfsSDL.cpp:80
+#4  0x0046c6ac in FontManager::getFont (this=0x1f6cb18, style=0x22de90)
+    at src/gui/FontManager.cpp:70
+#5  0x00467b29 in Paragraph::resize (this=0x1f779b0, width=-1, height=-1)
+    at src/gui/Paragraph.cpp:257
+#6  0x0045c504 in CheckButton::parse (this=0x4493ad8, reader=@0x22f270)
+    at src/lincity-ng/CheckButton.cpp:192
+#7  0x004d58a1 in INTERN_CheckButtonFactory::createComponent (this=0x543250, 
+    reader=@0x22f270) at src/lincity-ng/CheckButton.cpp:431
+#8  0x00464dd3 in createComponent (type=@0x22e400, reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:54
+#9  0x0046553e in parseEmbeddedComponent (reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:90
+#10 0x00478c0d in TableLayout::parse (this=0x1ff2a28, reader=@0x22f270)
+    at src/gui/TableLayout.cpp:188
+#11 0x004d5bcd in INTERN_TableLayoutFactory::createComponent (this=0x5435f8, 
+    reader=@0x22f270) at src/gui/TableLayout.cpp:466
+#12 0x00464dd3 in createComponent (type=@0x22e8d0, reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:54
+#13 0x0046553e in parseEmbeddedComponent (reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:90
+#14 0x00478c0d in TableLayout::parse (this=0x33ffac8, reader=@0x22f270)
+    at src/gui/TableLayout.cpp:188
+#15 0x004d5bcd in INTERN_TableLayoutFactory::createComponent (this=0x5435f8, 
+    reader=@0x22f270) at src/gui/TableLayout.cpp:466
+#16 0x00464dd3 in createComponent (type=@0x22eda0, reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:54
+#17 0x0046553e in parseEmbeddedComponent (reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:90
+#18 0x0047ca4b in Panel::parse (this=0x20062b8, reader=@0x22f270)
+    at src/gui/Panel.cpp:92
+#19 0x004d2c39 in INTERN_PanelFactory::createComponent (this=0x543628, 
+    reader=@0x22f270) at src/gui/Panel.cpp:135
+#20 0x00464dd3 in createComponent (type=@0x22f280, reader=@0x22f270)
+    at src/gui/ComponentLoader.cpp:54
+#21 0x00461f47 in ImportFactory::createComponent (this=0x1695f30, 
+    reader=@0x22fac0) at src/gui/ComponentFactory.cpp:92
+#22 0x00464dd3 in createComponent (type=@0x22f500, reader=@0x22fac0)
+    at src/gui/ComponentLoader.cpp:54
+#23 0x0046553e in parseEmbeddedComponent (reader=@0x22fac0)
+    at src/gui/ComponentLoader.cpp:90
+#24 0x00478c0d in TableLayout::parse (this=0x1f6ef50, reader=@0x22fac0)
+    at src/gui/TableLayout.cpp:188
+#25 0x004d5bcd in INTERN_TableLayoutFactory::createComponent (this=0x5435f8, 
+    reader=@0x22fac0) at src/gui/TableLayout.cpp:466
+#26 0x00464dd3 in createComponent (type=@0x22f9d0, reader=@0x22fac0)
+    at src/gui/ComponentLoader.cpp:54
+#27 0x0046b0d7 in Desktop::parse (this=0x169e730, reader=@0x22fac0)
+    at src/gui/Desktop.cpp:68
+#28 0x0046526d in loadGUIFile (filename=@0x22fbc0)
+    at src/gui/ComponentLoader.cpp:71
+#29 0x00444c69 in Game::Game (this=0x1f6cb48) at src/lincity-ng/Game.cpp:52
+#30 0x00448ab6 in mainLoop () at src/lincity-ng/main.cpp:331
+#31 0x00449aeb in SDL_main (argc=1, argv=0x16945d0)
+    at src/lincity-ng/main.cpp:492
+#32 0x004b7ab5 in console_main (argc=1, argv=0x16945d0)
+    at ./src/main/win32/SDL_win32_main.c:246
+#33 0x004b7d4f in WinMain (hInst=0x400000, hPrev=0x0, szCmdLine=0x241efd &quot;&quot;, 
+    sw=10) at ./src/main/win32/SDL_win32_main.c:382
+#34 0x004b76a1 in main ()
+    at C:/MinGW/bin/../lib/gcc/mingw32/3.4.5/../../../../include/c++/3.4.5/iostream:77
+
+
+Starting program: z:\lincity-ng/lincity-ng.exe 
+[New thread 2488.0x9bc]
+[New thread 2488.0xa2c]
+[New thread 2488.0x6e4]
+[New thread 2488.0xa30]
+[New thread 2488.0xa14]
+[New thread 2488.0xa6c]
+[New thread 2488.0xa48]
+[New thread 2488.0x8f4]
+[New thread 2488.0xad0]
+
+Program received signal SIGSEGV, Segmentation fault.
+0x77c35ca5 in msvcrt!_except_handler3 () from C:\WINDOWS\system32\msvcrt.dll
+(gdb) bt
+#0  0x77c35ca5 in msvcrt!_except_handler3 ()
+   from C:\WINDOWS\system32\msvcrt.dll
+#1  0x004c4ba4 in _Unwind_SjLj_RaiseException ()
+    at C:/MinGW/bin/../lib/gcc/mingw32/3.4.5/../../../../include/c++/3.4.5/iostream:77
+Backtrace stopped: frame did not save the PC
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15191&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15191&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000693.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+	<LI>Next message: <A HREF="000695.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#694">[ date ]</a>
+              <a href="thread.html#694">[ thread ]</a>
+              <a href="subject.html#694">[ subject ]</a>
+              <a href="author.html#694">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

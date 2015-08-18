@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Interest in contributions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C200902021300.25525.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000679.html">
+   <LINK REL="Next"  HREF="000683.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Interest in contributions?</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C200902021300.25525.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Interest in contributions?">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Mon Feb  2 13:00:25 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000679.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+        <LI>Next message: <A HREF="000683.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#682">[ date ]</a>
+              <a href="thread.html#682">[ thread ]</a>
+              <a href="subject.html#682">[ subject ]</a>
+              <a href="author.html#682">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Daniel
+
+Welcome in lincity-ng.
+I'm not very active currently, but know the engine rather well and can try to
+answer some of your questions :-)
+
+Le lundi 2 f&#233;vrier 2009, Daniel Santos a &#233;crit&#160;:
+&gt;<i> 
+</I>&gt;<i> I started playing lincity-ng a few weeks ago and have had a good deal of fun
+</I>&gt;<i> with it, despite the fact that I have yet to win a game (I'm still learning
+</I>&gt;<i> :).  None the less, I wanted to measure the dev team's interest in patch
+</I>&gt;<i> submissions.  
+</I>You can post your patches at <A HREF="http://developer.berlios.de/patch/?group_id=2929">http://developer.berlios.de/patch/?group_id=2929</A>
+so that we can try them, and if interested integrated them in the code.
+
+Patches that simplify the code, and increase readability are welcome now that
+computers are much more powerful.
+Also eliminating dead code (if some remains) is a good idea.
+
+&gt;<i> So anyway, I've done a little development to:
+</I>&gt;<i> * Add a config option for statistical display mode with the settings
+</I>&gt;<i> &quot;percentage&quot;, &quot;values&quot; and &quot;both&quot; and added a new function void
+</I>&gt;<i> mps_store_sddp(int i, const char * s, int cur, int max) to
+</I>&gt;<i> src/gui_interface/mps.h and src/lincity-ng/MpsInterface.cpp to use in place
+</I>&gt;<i> of mps_store_sfp.  This function, based upon the config setting displays
+</I>&gt;<i> either a precentage (as mps_store_sfp currently does), values in the form of
+</I>&gt;<i> &quot;cur/max&quot; or both in the form of &quot;cur/max (p%)&quot;.
+</I>Sounds good idea. Units are somewhat strange in the display, maybe percentages
+would be better.
+
+.../...
+&gt;<i> 
+</I>&gt;<i> I've also made a few changes so far that actually alter game-play.
+</I>Its frightening to change the engine, because it has lots of interactions, and
+is globally non-linear (even if each module is quasi linear)
+
+What is the aim ?
+How big is the impact ?
+Sustanability should be kept (or nealry kept) and also it must be possible
+to win with rocket evacuation.
+.../...
+&gt;<i> * Adding a get_jobs2 function to src/lincity/modules/market.h/cpp to
+</I>&gt;<i> eventually replace get_jobs.  This function will return the number of jobs
+</I>&gt;<i> acquired and will acquisition less jobs than requested.  Then I plan to
+</I>&gt;<i> modify all calls to get_jobs to accept what jobs it can get and attempt
+</I>&gt;<i> production with a minimal work force rather than completely abort. 
+</I>
+If you don't have the workers you need, then maybe you can produce nothing.
+I have thought a lot about this. Your patch would smooth the engine, making
+the output more proportional to the workforce. Currently, there are
+ discontinuities / hysteresis in the engine, and smoothing this would be a
+big change.
+
+&gt;<i> There are 
+</I>&gt;<i> however a lot of nuances I don't quite understand yet, like the fact that the
+</I>&gt;<i> current get_jobs will not return true unless the 150% of the requested jobs
+</I>&gt;<i> are actually available.
+</I>My understanding is: you need a large pool of workers in order to find the
+people you need. This is done by the 150% (which is a very kind coeff) 
+
+The engine has been created by a very clever guy, with many subtles things
+like this hidden in many places (eg i love shanties management ;-).
+It has done &quot;as simple as possible, but not simpler&quot; model of socio-economics
+where imho he catched the essentials.
+
+
+&gt;<i> * I plan on changing the text &quot;Jobs&quot; for mps_market to &quot;Workers&quot; to properly
+</I>&gt;<i> reflect that this is a surplus of workers available.
+</I>yes good idea. It clarify things for players.
+
+&gt;<i> * Finally, I don't yet understand the locale framework and what needs to be
+</I>&gt;<i> done to realign all the .pot translation files, as I've noticed that they
+</I>&gt;<i> explicitly specify the source file names &amp; line numbers where each string  is
+</I>&gt;<i> substituted.
+</I>The strings are grabbed at compilation time (maybe if you activate one option, 
+i dont remember) and the english reference file is updated automatically.
+The script in src/tools/update_po.sh is used to sync everything with english.
+The .pot file are build by tool which add the numbering in comments, and
+can be edited with poedit (or whatever you like) to do the needed translations.
+ 
+&gt;<i> 
+</I>&gt;<i> So I'm mostly playing around at this point and learning the app &amp; concepts
+</I>&gt;<i> behind the game design, but if any of what I'm doing can be of interest to
+</I>&gt;<i> you guys, I would be more than happy to contribute some.  This is the 1st sim
+</I>&gt;<i> game I've worked on and I'm rather enjoying learning from it. :)
+</I>Enjoy playing and patching :-)
+Also <A HREF="http://lincity-ng.berlios.de/wiki/index.php/Main_Page">http://lincity-ng.berlios.de/wiki/index.php/Main_Page</A> contains many
+things (docs, whishlist ...).
+
+Don't hesitate to subscribe to and post on the list before begining to one task :-)
+
+Cheers
+Alain.
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000679.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+	<LI>Next message: <A HREF="000683.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#682">[ date ]</a>
+              <a href="thread.html#682">[ thread ]</a>
+              <a href="subject.html#682">[ subject ]</a>
+              <a href="author.html#682">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

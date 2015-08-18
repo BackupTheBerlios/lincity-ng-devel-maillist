@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] How to set required tech_level?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20How%20to%20set%20required%20tech_level%3F&In-Reply-To=%3CCAM6Skh%3D9DQByG0JWovQdORCw0iOnGptL22fQFpXF0dOw3P9gEQ%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001342.html">
+   <LINK REL="Next"  HREF="001344.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] How to set required tech_level?</H1>
+    <B>Amit Ahire</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20How%20to%20set%20required%20tech_level%3F&In-Reply-To=%3CCAM6Skh%3D9DQByG0JWovQdORCw0iOnGptL22fQFpXF0dOw3P9gEQ%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] How to set required tech_level?">amitahire at gmail.com
+       </A><BR>
+    <I>Thu Jul 25 11:34:12 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001342.html">[Lincity-ng-devel] [Bug #19064] Segmentation error
+</A></li>
+        <LI>Next message: <A HREF="001344.html">[Lincity-ng-devel] How to set required tech_level?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1343">[ date ]</a>
+              <a href="thread.html#1343">[ thread ]</a>
+              <a href="subject.html#1343">[ subject ]</a>
+              <a href="author.html#1343">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I want to build a new city/map - to set a predefined city. With a bigger
+WORLD_LEN. I could use the &quot;good_times&quot; level to test all the modules in
+the game, but it has been built with the WORLD_LEN of 100.
+
+And I also tried editing the tech_level but I am not sure why it doesn't
+increase the level (probably there is some check in some module). With
+every update - the tech_level goes to 0. I tried changing the values when I
+am saving the level. It worked for Money and population (Although the
+population changes after one tick to represent the current population of
+the map )
+
+Two possibilities that dont work :
+
+engglobs.cpp - changing int tech_level doesn't work.
+loadsave.cpp or xmlloadsave.cpp - Either in saveXMLfile() and writing to
+gzprintf - SaveGlobals(). Or changing the value of tech_level while loading
+- loadGlobals() or loadXMLfile().
+
+Even tried changing the highest_tech_level variable - thinking
+probably along the line it does some check and compares it. But nothing.
+
+Any pointers?
+
+Also I am tring to run the level ROCKET_98 but its runs very slowly. Anyone
+has any idea how many building/modules the engine can handle without
+slowing down? I want to run with quickness 8 or 9 and full animation.
+
+With regards
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001342.html">[Lincity-ng-devel] [Bug #19064] Segmentation error
+</A></li>
+	<LI>Next message: <A HREF="001344.html">[Lincity-ng-devel] How to set required tech_level?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1343">[ date ]</a>
+              <a href="thread.html#1343">[ thread ]</a>
+              <a href="subject.html#1343">[ subject ]</a>
+              <a href="author.html#1343">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

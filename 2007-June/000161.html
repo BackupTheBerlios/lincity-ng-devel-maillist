@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #10982] UI bug when tech level decreases
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-June/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310982%5D%20UI%20bug%20when%20tech%20level%20decreases&In-Reply-To=%3C200706241552.l5OFqe5Z015285%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000162.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #10982] UI bug when tech level decreases</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310982%5D%20UI%20bug%20when%20tech%20level%20decreases&In-Reply-To=%3C200706241552.l5OFqe5Z015285%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #10982] UI bug when tech level decreases">admin at berlios.de
+       </A><BR>
+    <I>Sun Jun 24 17:52:40 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000162.html">[Lincity-ng-devel] [Bug #10686] transport always saturates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#161">[ date ]</a>
+              <a href="thread.html#161">[ thread ]</a>
+              <a href="subject.html#161">[ subject ]</a>
+              <a href="author.html#161">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10982, was updated on 2007-May-04 00:27
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: None
+Priority: 5
+Submitted by: alainb
+Assigned to : none
+Summary: UI bug when tech level decreases
+
+Details: Scenario good time, initial tech is 60.
+bulldoze all schools and universitys, select solar plant, put at max speed and wait until tech drops below 50.
+below 50 solar plant are not allowed, but the button turn grey and it is not even possbiel to build a windmill.
+
+Same thing happens accross games (reinitialisation of interface seems incomplete) :
+return to main menu and load a game with lower tech and the button is still grey  (idem with parks and farms ....)
+
+I think its the same bug that is reported on happypenguin, where an additional message appears.
+
+Follow-Ups:
+
+Date: 2007-Jun-24 17:52
+By: wolfgangb
+
+Comment:
+The problem was you can no longer open the menu when the item is disabled. That is fixed in r1225.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10982&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10982&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000162.html">[Lincity-ng-devel] [Bug #10686] transport always saturates
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#161">[ date ]</a>
+              <a href="thread.html#161">[ thread ]</a>
+              <a href="subject.html#161">[ subject ]</a>
+              <a href="author.html#161">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

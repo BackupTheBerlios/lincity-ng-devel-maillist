@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20MP_%2A%20lookups%20with%20bad%20coordinates%20cause%0A%09segfaults&In-Reply-To=%3C201011071626.22027.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001029.html">
+   <LINK REL="Next"  HREF="001038.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20MP_%2A%20lookups%20with%20bad%20coordinates%20cause%0A%09segfaults&In-Reply-To=%3C201011071626.22027.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Nov  7 16:26:21 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001029.html">[Lincity-ng-devel] Development site WAS: Re: Lincity-ng-devel	Digest, Vol 48, Issue 1
+</A></li>
+        <LI>Next message: <A HREF="001038.html">[Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1033">[ date ]</a>
+              <a href="thread.html#1033">[ thread ]</a>
+              <a href="subject.html#1033">[ subject ]</a>
+              <a href="author.html#1033">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hi Henri
+
+Le 30/10/2010 &#224; 21:20, Henri Kemppainen a &#233;crit :
+&gt;<i> 
+</I>&gt;<i> I'm getting a good amount of segfaults when poking out of the board
+</I>&gt;<i> boundaries while trying to build or bulldoze.  This happens at least in
+</I>&gt;<i> GameView::bulldozeCost and GameView::buildCost where it uses the MP_*
+</I>&gt;<i> macros. 
+</I>
+Which version do you use ?
+On which plateform ? (vista, debian lenny ...)
+
+Can yo send me (to my personnal email, not to the list) a game with this
+behavior and tell me roughtly how to reproduce
+(eg buldoze on north, or build farm south west should be enought)
+
+&gt;<i> The coordinates are never checked for validity so it's going to
+</I>&gt;<i> segfault.
+</I>
+Afaik coordinates are checked, and this is visible by the cursor color (red / blue)
+
+&gt;<i> 
+</I>&gt;<i> I wouldn't be surprised if there are more problems like this (looks like
+</I>&gt;<i> you already fixed a similar one with waterwell placement) so it might
+</I>&gt;<i> not be a good idea to only add checks in the two functions I mentioned.
+</I>
+I cannot reproduce this, so i really need more informations
+Cheers
+Alain
+
+
+&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001029.html">[Lincity-ng-devel] Development site WAS: Re: Lincity-ng-devel	Digest, Vol 48, Issue 1
+</A></li>
+	<LI>Next message: <A HREF="001038.html">[Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1033">[ date ]</a>
+              <a href="thread.html#1033">[ thread ]</a>
+              <a href="subject.html#1033">[ subject ]</a>
+              <a href="author.html#1033">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

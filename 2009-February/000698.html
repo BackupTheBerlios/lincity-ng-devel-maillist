@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Interest in contributions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C20090204051638.GA2072%40desktop%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000687.html">
+   <LINK REL="Next"  HREF="000680.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Interest in contributions?</H1>
+    <B>Jaky</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C20090204051638.GA2072%40desktop%3E"
+       TITLE="[Lincity-ng-devel] Interest in contributions?">jaky_lincity at mail.ru
+       </A><BR>
+    <I>Wed Feb  4 07:14:31 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000687.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+        <LI>Next message: <A HREF="000680.html">[Lincity-ng-devel] interesting segfault while debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#698">[ date ]</a>
+              <a href="thread.html#698">[ thread ]</a>
+              <a href="subject.html#698">[ subject ]</a>
+              <a href="author.html#698">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Sun, Feb 01, 2009 at 09:19:59PM -0800, Daniel Santos wrote:
+&gt;<i> So anyway, I've done a little development to:
+</I>&gt;<i> * Add a config option for statistical display mode with the settings
+</I>&gt;<i> &quot;percentage&quot;, &quot;values&quot; and &quot;both&quot; and added a new function void
+</I>&gt;<i> mps_store_sddp(int i, const char * s, int cur, int max) to
+</I>&gt;<i> src/gui_interface/mps.h and src/lincity-ng/MpsInterface.cpp to use in place
+</I>&gt;<i> of mps_store_sfp.  This function, based upon the config setting displays
+</I>&gt;<i> either a precentage (as mps_store_sfp currently does), values in the form of
+</I>&gt;<i> &quot;cur/max&quot; or both in the form of &quot;cur/max (p%)&quot;.
+</I>
+When I started with lincity one year ago I did something very similar. It just didn't have the config setting. I never published a patch, because I wanted to wait till 2.0 was released. I'll attach the patch to this mail. Maybe you can use something of it. To some buildings I also added more information. E.g. Jobs and Tech-level to the light industry. The changes to stats.cpp and pbar.cpp change the display of the stats tap, so that it shows the real values. Originally the numbers were divided by some arbitrary values. The changes in stats.cpp and pbar.cpp are independent of the others and could be applied to svn separately.
+
+&gt;<i> There are
+</I>&gt;<i> however a lot of nuances I don't quite understand yet, like the fact that the
+</I>&gt;<i> current get_jobs will not return true unless the 150% of the requested jobs
+</I>&gt;<i> are actually available.
+</I>
+Maybe this is also to prevent that a building which needs a lot of jobs can starve the other buildings of jobs.
+
+&gt;<i> * I plan on changing the text &quot;Jobs&quot; for mps_market to &quot;Workers&quot; to properly
+</I>&gt;<i> reflect that this is a surplus of workers available
+</I>
+I'm not sure if &quot;Workers&quot; is the best word for it. It may be better than &quot;Jobs&quot; though. But when I read workers in the market, I somehow imagine that the people are taken out of their houses and stuffed in a supermarket. The concept here seems more like &quot;saved man-days&quot;. But man-days does not sound so good. Maybe we could name it &quot;Work&quot; or &quot;Labour&quot;. What do the others think ?
+
+Jaky
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: real_values-2009-02-04.patch
+Type: text/x-diff
+Size: 24437 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20090204/2147dfbd/attachment.patch">https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20090204/2147dfbd/attachment.patch</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000687.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+	<LI>Next message: <A HREF="000680.html">[Lincity-ng-devel] interesting segfault while debugging
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#698">[ date ]</a>
+              <a href="thread.html#698">[ thread ]</a>
+              <a href="subject.html#698">[ subject ]</a>
+              <a href="author.html#698">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

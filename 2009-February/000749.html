@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15203]  640x480 is not playable
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315203%5D%20%20640x480%20is%20not%20playable&In-Reply-To=%3C200902181321.n1IDL58G010177%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000748.html">
+   <LINK REL="Next"  HREF="000750.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15203]  640x480 is not playable</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315203%5D%20%20640x480%20is%20not%20playable&In-Reply-To=%3C200902181321.n1IDL58G010177%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15203]  640x480 is not playable">admin at berlios.de
+       </A><BR>
+    <I>Wed Feb 18 14:21:05 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000748.html">[Lincity-ng-devel] Pollution
+</A></li>
+        <LI>Next message: <A HREF="000750.html">[Lincity-ng-devel] [Bug #15307] Total population increase,	housed decrease
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#749">[ date ]</a>
+              <a href="thread.html#749">[ thread ]</a>
+              <a href="subject.html#749">[ subject ]</a>
+              <a href="author.html#749">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15203, was updated on 2009-Feb-05 07:45
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: alainb
+Assigned to : none
+Summary:  640x480 is not playable
+
+Details: 
+The statistic window is too big and cannot be closed once it is open !
+We should either get smaller fonts/layout or prevent screen size below 800x600. 
+
+Follow-Ups:
+
+Date: 2009-Feb-18 13:21
+By: jaky_lincity
+
+Comment:
+Big dialogs could also be a problem for bigger resolutions. The statistics graph I'm working on would look better and be more useable if I would not have to restrict the high to 600 pixel. I'd also like to add more details to the normal stats dialog which would also make it bigger. I see three possibilities to solve this problem:
+The easiest would be to make the stats dialog smaller. But that would be very small on high resolutions.
+A more flexible solution could be to make the window-component resizeable and make sure it won't be bigger than the whole screen. This way the game would be useable in 640x480, but it won't look good. Or we could add a possibility to load different gui files for different resolutions. This would be more work, but this way the game could be better optimized for very low / big resolutions.
+-------------------------------------------------------
+
+Date: 2009-Feb-05 21:01
+By: wolfgangb
+
+Comment:
+While we can't test and support every possible resolution it still should be 
+possible to set any resolution. At least for advanced users.  If it does not work:
+thats what you get for playing in an untested resolution. 
+
+-------------------------------------------------------
+
+Date: 2009-Feb-05 08:22
+By: danielsantos
+
+Comment:
+It's not too big on my screen (at 1920x1200) so whatever you do, just please make sure you only shrink it where it's needed (i.e., on smaller displays).
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15203&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15203&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000748.html">[Lincity-ng-devel] Pollution
+</A></li>
+	<LI>Next message: <A HREF="000750.html">[Lincity-ng-devel] [Bug #15307] Total population increase,	housed decrease
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#749">[ date ]</a>
+              <a href="thread.html#749">[ thread ]</a>
+              <a href="subject.html#749">[ subject ]</a>
+              <a href="author.html#749">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road	bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%09bridge&In-Reply-To=%3C480A22E8.6070100%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000456.html">
+   <LINK REL="Next"  HREF="000459.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road	bridge</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%09bridge&In-Reply-To=%3C480A22E8.6070100%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road	bridge">magicfox at magic.fr
+       </A><BR>
+    <I>Sat Apr 19 18:50:48 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000456.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+        <LI>Next message: <A HREF="000459.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#457">[ date ]</a>
+              <a href="thread.html#457">[ thread ]</a>
+              <a href="subject.html#457">[ subject ]</a>
+              <a href="author.html#457">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+&gt;<i> * It is possible to build partial bridges. You should have to build
+</I>&gt;<i>   the whole thing at once.
+</I>What's the matter, the player isn't he the architect of the city ?
+
+&gt;<i> * Couldn't open file 'gui/build_bridge_yn.xml'. Do we need a dialog at
+</I>&gt;<i>   all? Maybe that causes the partial bridges for me.
+</I>As I explained, we have a problem at compilation time where this file is
+truncated to zero length.
+When it is present you are prompted one time to build the bridge and
+only one section is build because dialogue can't handle many tiles.
+I plan to manage a stack to avoid this problem on the first build.
+
+&gt;<i> * If you bulldoze a part of the bridge the rest just stays there.
+</I>&gt;<i>   The whole bride should be destroyed at once.
+</I>&gt;<i> * Bulldozing the bridge also destroys the river. Water should stay.
+</I>&gt;<i> * Is is possible to build railroad bridges even if there is no room
+</I>&gt;<i>   for the ramp. No incomplete bridges again.
+</I>This is an unchanged behaviour, you got desert on bulldoze.
+Bulldozing only one part of a bridge with the rest intact doesn't hurt
+me at all but this my opinion.
+
+&gt;<i> * 'Can build' indicator is wrong.
+</I>What do you mean ? color of cursor ?
+Do you have checked the new build cost calculation ?
+
+&gt;<i> * No idea if the costs for building and maintenance are balanced.
+</I>I have set the parameters of track/road/rail bridges to 200K/500K/1M and
+600K/1.5M/3M per section on water at maxi level.
+What is your idea about ?
+
+&gt;<i> * Prevent user form building crossroads with bridges. 
+</I>&gt;<i>   Probably already solved when partial bridges are impossible.
+</I>I not sure that the player wants to build a field of a same transport
+near each other but the fact is you can obtain very artistic shapes with
+that. ;-)
+
+&gt;<i> Tsch&#252;&#223;,
+</I>&gt;<i> Wolfgang
+</I>
+Of course the bridge patch is open for review/add-on/correction and I'm
+interesting about all opinion.
+Salut
+--
+Thierry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000456.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+	<LI>Next message: <A HREF="000459.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#457">[ date ]</a>
+              <a href="thread.html#457">[ thread ]</a>
+              <a href="subject.html#457">[ subject ]</a>
+              <a href="author.html#457">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

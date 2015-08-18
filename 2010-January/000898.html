@@ -1,0 +1,202 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #16784] segfault on perssing button
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316784%5D%20segfault%20on%20perssing%20button&In-Reply-To=%3C201001310624.o0V6OTIu000602%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000897.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #16784] segfault on perssing button</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316784%5D%20segfault%20on%20perssing%20button&In-Reply-To=%3C201001310624.o0V6OTIu000602%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #16784] segfault on perssing button">admin at berlios.de
+       </A><BR>
+    <I>Sun Jan 31 07:24:29 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000897.html">[Lincity-ng-devel] [Patch #2920] It look as solve bug with dialog	generator.
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#898">[ date ]</a>
+              <a href="thread.html#898">[ thread ]</a>
+              <a href="subject.html#898">[ subject ]</a>
+              <a href="author.html#898">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #16784, was updated on 2010-Jan-31 09:24
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: o01eg
+Assigned to : none
+Summary: segfault on perssing button
+
+Details: When I press on &quot;Show coal depots&quot; I get exception &quot;GUI file didn't define 'Yes' (type 6Button)&quot; and then SIGABRT.
+Backtrace:
+(gdb) bt full
+#0  0x00007ffff5c59f25 in raise () from /lib/libc.so.6
+No symbol table info available.
+#1  0x00007ffff5c5b2c0 in abort () from /lib/libc.so.6
+No symbol table info available.
+#2  0x00007ffff64ded44 in __gnu_cxx::__verbose_terminate_handler() () from /usr/lib/gcc/x86_64-pc-linux-gnu/4.3.4/libstdc++.so.6
+No symbol table info available.
+#3  0x00007ffff64dd196 in ?? () from /usr/lib/gcc/x86_64-pc-linux-gnu/4.3.4/libstdc++.so.6
+No symbol table info available.
+#4  0x00007ffff64dd1c3 in std::terminate() () from /usr/lib/gcc/x86_64-pc-linux-gnu/4.3.4/libstdc++.so.6
+No symbol table info available.
+#5  0x00007ffff64dd2aa in __cxa_throw () from /usr/lib/gcc/x86_64-pc-linux-gnu/4.3.4/libstdc++.so.6
+No symbol table info available.
+#6  0x00000000004689ff in findComponent&lt;Button&gt; (result=0x7fffffffcd38, tree=..., name=...) at src/lincity-ng/Util.cpp:42
+        msg = &lt;incomplete type&gt;
+        component = 0x0
+        casted_component = 0x4da987
+#7  0x0000000000467a9a in getButton (tree=..., name=...) at src/lincity-ng/Util.cpp:61
+        result = 0x7fffffffce10
+#8  0x00000000004194c8 in Dialog::coalSurvey (this=0x7fffe84186f0) at src/lincity-ng/Dialog.cpp:297
+        yesButton = 0x7fffe86593d0
+        noButton = 0xffffffffffffffff
+        __PRETTY_FUNCTION__ = &quot;void Dialog::coalSurvey()&quot;
+#9  0x000000000041ba1d in Dialog (this=0x7fffe84186f0, type=6) at src/lincity-ng/Dialog.cpp:62
+        msg = &lt;incomplete type&gt;
+#10 0x000000000043cbc9 in MiniMap::mapViewButtonClicked (this=0x7fffe89e14d0, button=0x7fffe9141a10, mousebutton=1)
+    at src/lincity-ng/MiniMap.cpp:429
+        root = 0x7fffe86593d0
+        name = {static npos = 18446744073709551615, 
+          _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;__gnu_cxx::new_allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;}, &lt;No data fields&gt;}, 
+            _M_p = 0x7fffe9145458 &quot;MapViewCoal&quot;}}
+        newMode = MiniMap::COAL
+#11 0x000000000043fbeb in Callback&lt;MiniMap, CheckButton*, int&gt;::operator() (this=0x7fffe866e480, arg1=0x7fffe9141a10, arg2=1)
+    at ./src/gui/callback/Callback.hpp:43
+No locals.
+#12 0x00000000004205cf in Signal&lt;CheckButton*, int&gt;::operator() (this=0x7fffe9141a50, arg1=0x7fffe9141a10, arg2=1)
+    at ./src/gui/callback/Signal.hpp:45
+        i = {_M_node = 0x7fffe866e4b0}
+#13 0x000000000041e0d4 in CheckButton::event (this=0x7fffe9141a10, event=...) at src/lincity-ng/CheckButton.cpp:295
+        nochange = false
+        oldstate = CheckButton::STATE_CLICKED
+#14 0x0000000000477e5f in Component::eventChild (this=0x7fffe9127e50, child=..., event=..., visible=true) at src/gui/Component.cpp:103
+        ev = {type = Event::MOUSEBUTTONUP, mousepos = {x = 9.5, y = 9.5}, mousemove = {x = 0, y = 0}, mousebutton = 1, keysym = {
+            scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, elapsedTime = -2.56698849e-28}
+        __PRETTY_FUNCTION__ = &quot;bool Component::eventChild(Child&amp;, const Event&amp;, bool)&quot;
+#15 0x0000000000477ec5 in Component::event (this=0x7fffe9127e50, event=...) at src/gui/Component.cpp:116
+        child = @0x7fffe9145c08
+        i = {&lt;std::iterator&lt;std::random_access_iterator_tag, Child, long, Child*, Child&amp;&gt;&gt; = {&lt;No data fields&gt;}, current = {
+            _M_current = 0x7fffe9145c30}}
+        visible = true
+#16 0x0000000000477e5f in Component::eventChild (this=0x7fffe89d9c20, child=..., event=..., visible=true) at src/gui/Component.cpp:103
+        ev = {type = Event::MOUSEBUTTONUP, mousepos = {x = 199, y = 12}, mousemove = {x = 0, y = 0}, mousebutton = 1, keysym = {
+            scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, elapsedTime = -2.56698849e-28}
+        __PRETTY_FUNCTION__ = &quot;bool Component::eventChild(Child&amp;, const Event&amp;, bool)&quot;
+#17 0x0000000000477ec5 in Component::event (this=0x7fffe89d9c20, event=...) at src/gui/Component.cpp:116
+        child = @0x7fffe9121f08
+        i = {&lt;std::iterator&lt;std::random_access_iterator_tag, Child, long, Child*, Child&amp;&gt;&gt; = {&lt;No data fields&gt;}, current = {
+            _M_current = 0x7fffe9121f30}}
+        visible = true
+#18 0x0000000000477e5f in Component::eventChild (this=0x7fffe8692590, child=..., event=..., visible=true) at src/gui/Component.cpp:103
+        ev = {type = Event::MOUSEBUTTONUP, mousepos = {x = 199, y = 212}, mousemove = {x = 0, y = 0}, mousebutton = 1, keysym = {
+            scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, elapsedTime = -2.56698849e-28}
+        __PRETTY_FUNCTION__ = &quot;bool Component::eventChild(Child&amp;, const Event&amp;, bool)&quot;
+#19 0x0000000000477ec5 in Component::event (this=0x7fffe8692590, event=...) at src/gui/Component.cpp:116
+        child = @0x7fffe89d9be8
+        i = {&lt;std::iterator&lt;std::random_access_iterator_tag, Child, long, Child*, Child&amp;&gt;&gt; = {&lt;No data fields&gt;}, current = {
+            _M_current = 0x7fffe89d9c10}}
+        visible = true
+#20 0x0000000000477e5f in Component::eventChild (this=0x7fffe8c2e1c0, child=..., event=..., visible=true) at src/gui/Component.cpp:103
+        ev = {type = Event::MOUSEBUTTONUP, mousepos = {x = 373, y = 257}, mousemove = {x = 0, y = 0}, mousebutton = 1, keysym = {
+            scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, elapsedTime = -2.56698849e-28}
+        __PRETTY_FUNCTION__ = &quot;bool Component::eventChild(Child&amp;, const Event&amp;, bool)&quot;
+#21 0x0000000000477ec5 in Component::event (this=0x7fffe8c2e1c0, event=...) at src/gui/Component.cpp:116
+        child = @0x7fffe86711e0
+        i = {&lt;std::iterator&lt;std::random_access_iterator_tag, Child, long, Child*, Child&amp;&gt;&gt; = {&lt;No data fields&gt;}, current = {
+            _M_current = 0x7fffe8671208}}
+        visible = true
+#22 0x0000000000477e5f in Component::eventChild (this=0x7fffe865dfa0, child=..., event=..., visible=true) at src/gui/Component.cpp:103
+        ev = {type = Event::MOUSEBUTTONUP, mousepos = {x = 373, y = 257}, mousemove = {x = 0, y = 0}, mousebutton = 1, keysym = {
+            scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, elapsedTime = -2.56698849e-28}
+        __PRETTY_FUNCTION__ = &quot;bool Component::eventChild(Child&amp;, const Event&amp;, bool)&quot;
+#23 0x0000000000477ec5 in Component::event (this=0x7fffe865dfa0, event=...) at src/gui/Component.cpp:116
+        child = @0x7fffe9123e80
+        i = {&lt;std::iterator&lt;std::random_access_iterator_tag, Child, long, Child*, Child&amp;&gt;&gt; = {&lt;No data fields&gt;}, current = {
+            _M_current = 0x7fffe9123ea8}}
+        visible = true
+#24 0x0000000000477e5f in Component::eventChild (this=0x7fffe86593d0, child=..., event=..., visible=true) at src/gui/Component.cpp:103
+        ev = {type = Event::MOUSEBUTTONUP, mousepos = {x = 1141, y = 831}, mousemove = {x = 0, y = 0}, mousebutton = 1, keysym = {
+            scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, elapsedTime = -2.56698849e-28}
+        __PRETTY_FUNCTION__ = &quot;bool Component::eventChild(Child&amp;, const Event&amp;, bool)&quot;
+#25 0x0000000000477ec5 in Component::event (this=0x7fffe86593d0, event=...) at src/gui/Component.cpp:116
+        child = @0x7fffe834beb8
+        i = {&lt;std::iterator&lt;std::random_access_iterator_tag, Child, long, Child*, Child&amp;&gt;&gt; = {&lt;No data fields&gt;}, current = {
+            _M_current = 0x7fffe834bee0}}
+        visible = true
+#26 0x000000000047b965 in Desktop::event (this=0x7fffe86593d0, event=...) at src/gui/Desktop.cpp:78
+No locals.
+#27 0x0000000000424b24 in Game::run (this=0x7fffe834c950) at src/lincity-ng/Game.cpp:209
+        gui_event = {type = Event::MOUSEBUTTONUP, mousepos = {x = 1141, y = 831}, mousemove = {x = 0, y = 0}, mousebutton = 1, 
+          keysym = {scancode = 32 ' ', sym = SDLK_UNKNOWN, mod = 4294957056, unicode = 32767}, inside = true, 
+          elapsedTime = -2.56698849e-28}
+        ticks = 10900
+        elapsedTime = 0.0920000002
+        event = {type = 6 '\006', active = {type = 6 '\006', gain = 0 '\000', state = 1 '\001'}, key = {type = 6 '\006', 
+            which = 0 '\000', state = 1 '\001', keysym = {scancode = 117 'u', sym = SDLK_UNKNOWN, mod = KMOD_NONE, unicode = 0}}, 
+          motion = {type = 6 '\006', which = 0 '\000', state = 1 '\001', x = 1141, y = 831, xrel = 0, yrel = 0}, button = {
+            type = 6 '\006', which = 0 '\000', button = 1 '\001', state = 0 '\000', x = 1141, y = 831}, jaxis = {type = 6 '\006', 
+            which = 0 '\000', axis = 1 '\001', value = 1141}, jball = {type = 6 '\006', which = 0 '\000', ball = 1 '\001', xrel = 1141, 
+            yrel = 831}, jhat = {type = 6 '\006', which = 0 '\000', hat = 1 '\001', value = 0 '\000'}, jbutton = {type = 6 '\006', 
+            which = 0 '\000', button = 1 '\001', state = 0 '\000'}, resize = {type = 6 '\006', w = 54461557, h = 0}, expose = {
+            type = 6 '\006'}, quit = {type = 6 '\006'}, user = {type = 6 '\006', code = 54461557, data1 = 0x0, data2 = 0x0}, syswm = {
+            type = 6 '\006', msg = 0x0}}
+        fpsTicks = 10900
+        lastticks = 10900
+        desktop = 0x7fffe86593d0
+        frame = 0
+#28 0x00000000004694ac in mainLoop () at src/lincity-ng/main.cpp:359
+        menu = {_M_ptr = 0x7fffe81fd9c0}
+        game = {_M_ptr = 0x7fffe834c950}
+        state = INGAME
+        nextstate = INGAME
+        __PRETTY_FUNCTION__ = &quot;void mainLoop()&quot;
+#29 0x000000000046b05c in main (argc=1, argv=0x7fffffffda48) at src/lincity-ng/main.cpp:499
+        result = 0
+        sound = {_M_ptr = 0x8447d0}
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16784&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16784&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000897.html">[Lincity-ng-devel] [Patch #2920] It look as solve bug with dialog	generator.
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#898">[ date ]</a>
+              <a href="thread.html#898">[ thread ]</a>
+              <a href="subject.html#898">[ subject ]</a>
+              <a href="author.html#898">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

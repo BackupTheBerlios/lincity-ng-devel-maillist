@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Understanding the Code &amp; Debugging.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Understanding%20the%20Code%20%26%20Debugging.&In-Reply-To=%3CCAM6Skh%3DofBDz8vm5UjJ3T98mU3CybMKJyrrLe2QRoO2BAGwq9Q%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001326.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Understanding the Code &amp; Debugging.</H1>
+    <B>Amit Ahire</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Understanding%20the%20Code%20%26%20Debugging.&In-Reply-To=%3CCAM6Skh%3DofBDz8vm5UjJ3T98mU3CybMKJyrrLe2QRoO2BAGwq9Q%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] Understanding the Code &amp; Debugging.">amitahire at gmail.com
+       </A><BR>
+    <I>Thu May 30 11:13:34 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001326.html">[Lincity-ng-devel] Lincity installing
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1327">[ date ]</a>
+              <a href="thread.html#1327">[ thread ]</a>
+              <a href="subject.html#1327">[ subject ]</a>
+              <a href="author.html#1327">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I am trying to understand the codebase of Lincity-ng and I mostly get it
+but I have some questions.
+
+First - Debugging.
+
+I tried getting the code base to work in Windows. After setting everything
+up I get SDL.h not found - I tried everything under the sun but still
+nothing. So for now I have started working in linux. I got the lincity-ng
+setup in Eclipse (so that I can easily navigate the code) and it compiles.
+But I was wondering how can I debug the code? I tried using gdb (and also
+DDD). But in DDD it shows the source code of main() and I can follow the
+code line by line only till SDL_Init() - as soon it hits it I loose my
+keyboard and mouse to the game context. And I cannot debug further. How do
+you think I should proceed further?
+
+I was going through the Jamfile and I saw that there are different profiles
+configured. And one for 'Debug' - Do you reckon I should do that? But I
+dont think I could go line by line with the code ( it mostly consist of
+#ifdef DEBUG and std::cout, right?? )
+
+Second - How and where the mouse interactions with components handled??
+
+I went through the main() - I found the where keyboard input is handled.
+Also how mouse is used to navigate in the city. But where or how is the
+mouse interaction with the components handled. Maybe I overlooked
+something. ( I am trying to change the population model in the game)
+
+Looking for the reply. Thanks.
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001326.html">[Lincity-ng-devel] Lincity installing
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1327">[ date ]</a>
+              <a href="thread.html#1327">[ thread ]</a>
+              <a href="subject.html#1327">[ subject ]</a>
+              <a href="author.html#1327">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

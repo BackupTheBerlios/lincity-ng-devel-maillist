@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Patch] Correct cursor color
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%5D%20Correct%20cursor%20color&In-Reply-To=%3C48C6D880.5010204%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000489.html">
+   <LINK REL="Next"  HREF="000491.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Patch] Correct cursor color</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%5D%20Correct%20cursor%20color&In-Reply-To=%3C48C6D880.5010204%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] [Patch] Correct cursor color">magicfox at magic.fr
+       </A><BR>
+    <I>Tue Sep  9 22:11:44 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000489.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+        <LI>Next message: <A HREF="000491.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#490">[ date ]</a>
+              <a href="thread.html#490">[ thread ]</a>
+              <a href="subject.html#490">[ subject ]</a>
+              <a href="author.html#490">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i>     Can you (like the bug report) compile a debug version and use the gdb
+</I>&gt;<i>     debugger to analyse it with more details ?
+</I>&gt;<i> 
+</I>&gt;<i> I've compiled the game in debug mode, I've pasted the output when 
+</I>&gt;<i> starting the game below.
+</I>&gt;<i> 
+</I>&gt;<i> /<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">ivar at ivar-desktop</A>:~/Downloads/Lincity-ng_svn$ lincity-ng
+</I>&gt;<i> Starting lincity-ng (version 1.92.svn) in Debug Mode...
+</I>&gt;<i> [/home/ivar/.lincity-ng] is in the search path.
+</I>&gt;<i> [/home/ivar/.lincity] is in the search path.
+</I>&gt;<i> [/usr/local/share/lincity-ng] is in the search path.
+</I>&gt;<i> [/home/ivar/.lincity-ng] is the write directory.
+</I>&gt;<i> Language is &quot;nl_NL&quot;.
+</I>&gt;<i>  fast = 9
+</I>&gt;<i> OpenGL Mode 1024x768
+</I>&gt;<i> old file format, so load with old function, and then convert to new format
+</I>&gt;<i>  ldsv_version = 113
+</I>&gt;<i> prog_box:'Bezig scene laden' 0%
+</I>&gt;<i> prog_box:'' 0%
+</I>&gt;<i> prog_box:'' 0%
+</I>&gt;<i> prog_box:'' 3%
+</I>&gt;<i> prog_box:'' 6%
+</I>&gt;<i> prog_box:'' 9%
+</I>&gt;<i> prog_box:'' 12%
+</I>&gt;<i> prog_box:'' 15%
+</I>&gt;<i> prog_box:'' 18%
+</I>&gt;<i> prog_box:'' 21%
+</I>&gt;<i> prog_box:'' 24%
+</I>&gt;<i> prog_box:'' 27%
+</I>&gt;<i> prog_box:'' 30%
+</I>&gt;<i> prog_box:'' 33%
+</I>&gt;<i> prog_box:'' 36%
+</I>&gt;<i> prog_box:'' 39%
+</I>&gt;<i> prog_box:'' 39%
+</I>&gt;<i> prog_box:'' 42%
+</I>&gt;<i> prog_box:'' 45%
+</I>&gt;<i> prog_box:'' 48%
+</I>&gt;<i> prog_box:'' 51%
+</I>&gt;<i> prog_box:'' 54%
+</I>&gt;<i> prog_box:'' 57%
+</I>&gt;<i> prog_box:'' 60%
+</I>&gt;<i> prog_box:'' 63%
+</I>&gt;<i> prog_box:'' 66%
+</I>&gt;<i> prog_box:'' 66%
+</I>&gt;<i> prog_box:'' 69%
+</I>&gt;<i> prog_box:'' 72%
+</I>&gt;<i> prog_box:'' 75%
+</I>&gt;<i> prog_box:'' 78%
+</I>&gt;<i> prog_box:'' 81%
+</I>&gt;<i> prog_box:'' 84%
+</I>&gt;<i> prog_box:'' 87%
+</I>&gt;<i> prog_box:'' 90%
+</I>&gt;<i> prog_box:'' 92%
+</I>&gt;<i> prog_box:'' 94%
+</I>&gt;<i> prog_box:'' 96%
+</I>&gt;<i> prog_box:'' 98%
+</I>&gt;<i> prog_box:'' 99%
+</I>&gt;<i> prog_box:'' 100%
+</I>&gt;<i> Drijvende-komma-berekeningsfout (floating-point-exception)/
+</I>
+Hi Ivar,
+
+Well; you have compiled the debug version, that's great
+but we have to use symbolic information.
+To run it under debugger, use
+$ gdb lincity-ng in a terminal
+
+If this is the same problem like the bug #14200, the error line is
+displayed and we can investigated more.
+--
+Thierry
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000489.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+	<LI>Next message: <A HREF="000491.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#490">[ date ]</a>
+              <a href="thread.html#490">[ thread ]</a>
+              <a href="subject.html#490">[ subject ]</a>
+              <a href="author.html#490">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

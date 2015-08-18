@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316633%5D%20Gameplay%20is%20extremely%20slow&In-Reply-To=%3C201001191630.o0JGU9MP005092%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000871.html">
+   <LINK REL="Next"  HREF="000873.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316633%5D%20Gameplay%20is%20extremely%20slow&In-Reply-To=%3C201001191630.o0JGU9MP005092%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow">admin at berlios.de
+       </A><BR>
+    <I>Tue Jan 19 17:30:09 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000871.html">[Lincity-ng-devel] [Bug #16275] Once more - Vista 32b startup error
+</A></li>
+        <LI>Next message: <A HREF="000873.html">[Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#872">[ date ]</a>
+              <a href="thread.html#872">[ thread ]</a>
+              <a href="subject.html#872">[ subject ]</a>
+              <a href="author.html#872">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #16633, was updated on 2010-Jan-05 16:21
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: letharion
+Assigned to : none
+Summary: Gameplay is extremely slow
+
+Details: I just installed 2.0 on Gentoo Linux.
+I start the game from terminal and create a new world.
+The cpu usage goes to near 100%, and the game runs really slow, say 2-3fps.
+
+Terminal output:
+Starting lincity-ng (version 2.0)...
+[/home/letharion/.lincity-ng] is in the search path.
+[/usr/share/games/lincity-ng] is in the search path.
+[/home/letharion/.lincity-ng] is the write directory.
+Language is &quot;en_US&quot;.
+ fast = 9
+OpenGL Mode 1024x768
+ ldsv_version = 1322
+Starting lincity-ng (version 2.0)...
+[/home/letharion/.lincity-ng] is in the search path.
+[/usr/share/games/lincity-ng] is in the search path.
+[/home/letharion/.lincity-ng] is the write directory.
+Language is &quot;en_US&quot;.
+ fast = 9
+OpenGL Mode 1024x768
+ ldsv_version = 1322
+
+
+Follow-Ups:
+
+Date: 2010-Jan-19 17:30
+By: letharion
+
+Comment:
+$ cat /proc/cpuinfo | head -n8
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 15
+model name      : Intel(R) Core(TM)2 Quad CPU    Q6600  @ 2.40GHz
+stepping        : 11
+cpu MHz         : 2393.488
+cache size      : 4096 KB
+$ lspci | grep VGA
+01:00.0 VGA compatible controller: nVidia Corporation G92 [GeForce 8800 GTS 512] (rev a2)
+
+lincity --sdl worked a lot better :)
+It seems like I was using the xorg-x11 implementation of opengl (Not sure what that means) so I tried switching to nvidia, which gives:
+
+$ lincity-ng --gl
+Starting lincity-ng (version 2.0)...
+[/home/letharion/.lincity-ng] is in the search path.
+[/usr/share/games/lincity-ng] is in the search path.
+[/home/letharion/.lincity-ng] is the write directory.
+Language is &quot;en_US&quot;.
+ fast = 9
+* Fallback to software mode.
+Segmentation fault
+
+My personal problem, the slowness, is now &quot;solved&quot; by using SDL. There seems to be some problem with using the nvidia-driver however. I'm using version 190.53.
+-------------------------------------------------------
+
+Date: 2010-Jan-19 17:06
+By: jaky_lincity
+
+Comment:
+Could you give us some more details about your system? What CPU and graphics card do you have? Are you using a driver with hardware acceleration? Do other opengl-games run better?
+Please try the sdl-mode (lincity-ng --sdl). Maybe it's working better on your computer. With lincity-ng --gl you can switch back to the opengl-mode.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16633&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16633&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000871.html">[Lincity-ng-devel] [Bug #16275] Once more - Vista 32b startup error
+</A></li>
+	<LI>Next message: <A HREF="000873.html">[Lincity-ng-devel] [Bug #16633] Gameplay is extremely slow
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#872">[ date ]</a>
+              <a href="thread.html#872">[ thread ]</a>
+              <a href="subject.html#872">[ subject ]</a>
+              <a href="author.html#872">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

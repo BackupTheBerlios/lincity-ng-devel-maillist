@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road	bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%09bridge&In-Reply-To=%3C480B81A3.4030203%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000460.html">
+   <LINK REL="Next"  HREF="000463.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road	bridge</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%09bridge&In-Reply-To=%3C480B81A3.4030203%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road	bridge">magicfox at magic.fr
+       </A><BR>
+    <I>Sun Apr 20 19:47:15 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000460.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+        <LI>Next message: <A HREF="000463.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#462">[ date ]</a>
+              <a href="thread.html#462">[ thread ]</a>
+              <a href="subject.html#462">[ subject ]</a>
+              <a href="author.html#462">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;&gt;&gt;<i> * It is possible to build partial bridges. You should have to build
+</I>&gt;&gt;&gt;<i>   the whole thing at once.
+</I>&gt;&gt;<i> What's the matter, the player isn't he the architect of the city ?
+</I>&gt;<i> 
+</I>&gt;<i> It looks broken. Visual feedback indicates unconnected transport,
+</I>&gt;<i> for the engine they are connected. But maybe it is not that important.
+</I>I think that the player will take care to keep the transport connected 
+and if we have place the look is correct too.
+
+&gt;&gt;<i> As I explained, we have a problem at compilation time where this file is
+</I>&gt;&gt;<i> truncated to zero length.
+</I>&gt;<i> 
+</I>&gt;<i> What problem? Anyway, I removed the dialogue code for now, it also
+</I>&gt;<i> enabled bulldozing water without warning.
+</I>If you change the file data/gui/dialogs/build_bridge_yn.xml,
+the compilation fails with:
+XSLTProc data/gui/build_bridge_yn.xml
+runtime error: file data/gui/dialogs/dialogs.xsl line 118 element copy-of
+Variable 'buttonbar' has not been declared.
+xmlXPathCompiledEval: evaluation failed
+         xsltproc -o data/gui/build_bridge_yn.xml 
+data/gui/dialogs/dialogs.xsl data/gui/dialogs/build_bridge_yn.xml
+...failed XSLTProc data/gui/build_bridge_yn.xml ...
+...removing data/gui/build_bridge_yn.xml
+...failed updating 1 target(s)...
+
+and the file data/gui/build_bridge_yn.xml is overwritten with a size of 0.
+
+May be the dialogue isn't important, I'm not be insistent with that.
+
+&gt;&gt;<i> This is an unchanged behaviour, you got desert on bulldoze.
+</I>&gt;<i> 
+</I>&gt;<i> Removing a bridge for 1M and restoring water for a similar sum
+</I>&gt;<i> sounds too expensive. I changed it so you can bulldoze just the
+</I>&gt;<i> bridge.
+</I>&gt;<i> 
+</I>&gt;&gt;&gt;<i> * 'Can build' indicator is wrong.
+</I>&gt;&gt;<i> What do you mean ? color of cursor ?
+</I>&gt;<i> 
+</I>&gt;<i> Yes. Fixed in SVN, too.
+</I>I saw, thanks.
+
+&gt;&gt;<i> I have set the parameters of track/road/rail bridges to 200K/500K/1M and
+</I>&gt;&gt;<i> 600K/1.5M/3M per section on water at maxi level.
+</I>&gt;&gt;<i> What is your idea about ?
+</I>&gt;<i> 
+</I>&gt;<i> Too expensive IMO. Just bulldozing the water is cheaper that way. Is
+</I>&gt;<i> 1000 times the cost of the same transport on land realistic?
+</I>You set per section bridge to 1K/100K/500K and 3K/300K/1.5M at a level 
+of 100%. It's correct for me.
+1.5M is greater than bulldozing water but river must stay connected with 
+a bridge.
+
+&gt;<i> Tsch&#252;&#223;,
+</I>&gt;<i> Wolfgang
+</I>--
+Thierry
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000460.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+	<LI>Next message: <A HREF="000463.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#462">[ date ]</a>
+              <a href="thread.html#462">[ thread ]</a>
+              <a href="subject.html#462">[ subject ]</a>
+              <a href="author.html#462">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

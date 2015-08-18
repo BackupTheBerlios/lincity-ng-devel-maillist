@@ -1,0 +1,149 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Map Creation Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Map%20Creation%20Question&In-Reply-To=%3CAANLkTikBNr%3DoFF6ygWEiF_LpFGTPv%2BoHnwmWB%2BdztJte%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000949.html">
+   <LINK REL="Next"  HREF="000954.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Map Creation Question</H1>
+    <B>Avery White</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Map%20Creation%20Question&In-Reply-To=%3CAANLkTikBNr%3DoFF6ygWEiF_LpFGTPv%2BoHnwmWB%2BdztJte%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] Map Creation Question">praiseresound at gmail.com
+       </A><BR>
+    <I>Wed Jul 28 21:41:00 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000949.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+        <LI>Next message: <A HREF="000954.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#952">[ date ]</a>
+              <a href="thread.html#952">[ thread ]</a>
+              <a href="subject.html#952">[ subject ]</a>
+              <a href="author.html#952">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Alain,
+
+I think the work that my project is dealing with might be useful to the
+project. We are using data from a watershed model to serve as a backend (to
+be affixed to LinCity-NG on the frontend). Before I explain the entirety of
+what I'm working I think a little background information is in order.
+
+A Low Impact Development (LID) is a water resources 'trick' used to help
+rainwater get into the ground so that it doesn't stay on roads, stagnate
+(i.e. on a parking lot), build (i.e. and cause flooding), etc. These kinds
+of things have to do with the sustainability of the watershed...to make
+people more aware of this (and what can be done), I would like to add some
+parameters to a custom map that will determine the effectiveness of LID
+placement.
+
+I want to add checkbox menus (i.e. like the market) to some of the
+structures - players will check mark LID's that they would like and the
+map's effectiveness values will determine how good of a decision that
+actually is. For my little project, I'm going to strip down much of LinCity
+for a kind of proof-of-concept-just-for-show-project-toy example. However,
+it would be cool to integrate some of this post-project. With the topography
+in place, this could get very interesting. I'll be trying to play around
+with the map files by hand (unless you have a more efficient option
+available offhand)...could you give me some instruction how to use the
+keyboard interface for map manipulation (in the meantime)? I use vim so
+terminal-text editing shouldn't be a problem.
+
+Kind Regards,
+
+Avery
+
+
+
+On Wed, Jul 28, 2010 at 2:24 PM, Alain Baeckeroot &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">alain.baeckeroot at laposte.net</A>&gt; wrote:
+
+&gt;<i>
+</I>&gt;<i> Le 28/07/2010 &#224; 20:57, Avery White a &#233;crit :
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Hi,
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I'm having trouble figuring out how to edit .scn files. Can someone
+</I>&gt;<i> provide
+</I>&gt;<i> &gt; some direction here (or list of things to Google?).
+</I>&gt;<i> &gt;
+</I>&gt;<i>
+</I>&gt;<i> hi again
+</I>&gt;<i>
+</I>&gt;<i> The .scn are just gziped file
+</I>&gt;<i> You can ungzipp them, then use a text editor, but the format is not very
+</I>&gt;<i> easy for
+</I>&gt;<i> hand edit.
+</I>&gt;<i>
+</I>&gt;<i> depending on what you want it may be easier to compile with debug options
+</I>&gt;<i> VARIANT=debug jam
+</I>&gt;<i> then launch the program in gdb and change the values then save
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> I am currently working on the map generator. I build it as a separate
+</I>&gt;<i> tool, with a keyboard-only interface. It is significantly simpler and
+</I>&gt;<i> faster
+</I>&gt;<i> than the current code
+</I>&gt;<i>
+</I>&gt;<i> I planed to integrate it again in lincity-ng with a nice user interface
+</I>&gt;<i> once it is finished (very soon), but i can already commit it in a
+</I>&gt;<i> subdirectory (src/tools/ seems a good place).
+</I>&gt;<i>
+</I>&gt;<i> Maybe i'll do it as a separate project too, with an option
+</I>&gt;<i> to &quot;save as lincity-ng map&quot; as i have several ideas that could be
+</I>&gt;<i> usefull for other games too.
+</I>&gt;<i>
+</I>&gt;<i> So far the main feature that can be of interest for you, is that the
+</I>&gt;<i> map generator have altitude, and the lakes/rivers correspond to the
+</I>&gt;<i> topography.
+</I>&gt;<i> There is neither erosion nor sediment transport.
+</I>&gt;<i>
+</I>&gt;<i> I wanted to integrated pollution transport with the water, so the data
+</I>&gt;<i> structure
+</I>&gt;<i> can afford it, but so far nothing is done in the simulation.
+</I>&gt;<i>
+</I>&gt;<i> kind regards
+</I>&gt;<i> Alain
+</I>&gt;<i>
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000949.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+	<LI>Next message: <A HREF="000954.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#952">[ date ]</a>
+              <a href="thread.html#952">[ thread ]</a>
+              <a href="subject.html#952">[ subject ]</a>
+              <a href="author.html#952">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

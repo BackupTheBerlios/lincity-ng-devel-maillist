@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15339] native resolution 1024x600 -	lincity is not running
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315339%5D%20native%20resolution%201024x600%20-%0A%09lincity%20is%20not%20running&In-Reply-To=%3C200903031644.n23GiJpj020181%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000772.html">
+   <LINK REL="Next"  HREF="000774.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15339] native resolution 1024x600 -	lincity is not running</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315339%5D%20native%20resolution%201024x600%20-%0A%09lincity%20is%20not%20running&In-Reply-To=%3C200903031644.n23GiJpj020181%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15339] native resolution 1024x600 -	lincity is not running">admin at berlios.de
+       </A><BR>
+    <I>Tue Mar  3 17:44:19 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000772.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+        <LI>Next message: <A HREF="000774.html">[Lincity-ng-devel] New Team member
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#773">[ date ]</a>
+              <a href="thread.html#773">[ thread ]</a>
+              <a href="subject.html#773">[ subject ]</a>
+              <a href="author.html#773">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15339, was updated on 2009-Mar-03 09:21
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: Windows
+Priority: 5
+Submitted by: tom123
+Assigned to : none
+Summary: native resolution 1024x600 - lincity is not running
+
+Details: hi,
+
+my problem is that i&#180;ve got a netbook with a native max resolution of 1024x600 and lincity is not running with that
+ heres the content of the errormsg of stderr.txt
+
+tinygettext: expected 'msgid' keyword, got 
+ at line 1492
+ fast = 9
+Unexpected exception: Couldn't set video mode (1024x768-0bpp) : No video mode large enough for 1024x768
+
+i tried to change the xml files lincityconfig.xml and userconfig.xml but nothing changed (replaced the resolution)
+
+can anyone help me pls?
+
+best regards tom
+
+
+Follow-Ups:
+
+Date: 2009-Mar-03 15:42
+By: tom123
+
+Comment:
+hey :)
+
+it works now in fullscreen ( u have to start the .exe several times ..dont know why..but it works properly then)
+i used lincity-ng -g -f -S 1024x600 
+
+and i implemented in my shortcut
+
+thx alot :)
+-------------------------------------------------------
+
+Date: 2009-Mar-03 15:39
+By: alainb
+
+Comment:
+what command line do you type ? It might interest other people
+
+(for archive, its a Intel GMA 950 graphic chip)
+
+
+-------------------------------------------------------
+
+Date: 2009-Mar-03 14:59
+By: tom123
+
+Comment:
+i got a medion akoia netbook
+intel atom 1gb ram onboard graphic
+
+
+it works now but not in fullscreen..and i have to type the command several times..but it works anyhow... 
+
+thanks for your support :)
+-------------------------------------------------------
+
+Date: 2009-Mar-03 14:52
+By: alainb
+
+Comment:
+ what is your hardware (CPU RAM, graphic card and memory, or model of netbook :-) )
+
+can you try both openGL and SDL mode:
+ lincity-ng -g -f -S 1024x600 
+ lincity-ng -s -f -S 1024x600
+
+and see if makes any difference.
+
+-------------------------------------------------------
+
+Date: 2009-Mar-03 14:21
+By: tom123
+
+Comment:
+ok UPDATE
+
+after typing the command several times it works?!
+
+BUT: its unplayable... the screen is refreshing every sec
+
+i tried 800x600..same effect
+
+
+-------------------------------------------------------
+
+Date: 2009-Mar-03 14:13
+By: tom123
+
+Comment:
+ok i tried that on cmd of win
+
+the only i got is a black screen with a cursor ..for 1 sec ..than back to win...hmmm
+-------------------------------------------------------
+
+Date: 2009-Mar-03 14:08
+By: tom123
+
+Comment:
+oh..i think i forgot to say that i&#180;m running win xp system :D sorry for that
+i thougt u knew that because i wrote it into the &quot;windows&quot; bug group
+-------------------------------------------------------
+
+Date: 2009-Mar-03 13:34
+By: alainb
+
+Comment:
+can you try using command line (open a terminal, it should be somewhere in program / accessories / terminal)
+ lincity-ng -f -S 1024x600
+
+This should work
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15339&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15339&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000772.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+	<LI>Next message: <A HREF="000774.html">[Lincity-ng-devel] New Team member
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#773">[ date ]</a>
+              <a href="thread.html#773">[ thread ]</a>
+              <a href="subject.html#773">[ subject ]</a>
+              <a href="author.html#773">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

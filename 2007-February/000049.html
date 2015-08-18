@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] water resources
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20water%20resources&In-Reply-To=%3C200702231536.11647.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000048.html">
+   <LINK REL="Next"  HREF="000050.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] water resources</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20water%20resources&In-Reply-To=%3C200702231536.11647.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] water resources">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Fri Feb 23 16:36:11 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000048.html">[Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)
+</A></li>
+        <LI>Next message: <A HREF="000050.html">[Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#49">[ date ]</a>
+              <a href="thread.html#49">[ thread ]</a>
+              <a href="subject.html#49">[ subject ]</a>
+              <a href="author.html#49">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi everybody
+
+I believe that the only (serious :) lack to lincity(-ng) is water management.
+I expanded significantly the section
+<A HREF="http://lincity-ng.berlios.de/wiki/index.php/Wish_list#Water.">http://lincity-ng.berlios.de/wiki/index.php/Wish_list#Water.</A>
+
+I m thinking about implementing it:
+#  Water availability can be computed from the initial map, from shortest
+ distance to navigable water. Areas without water should be yellow-brown
+ like desert.
+# new building = well/water station (with a range), who feed all human
+ activities, so everything except mines, tips, windmills, solar plants,
+ power lines, transports, monuments (they nearly all exist in Sahara)
+ =&gt; need to adapt mini map and informations
+
+Later should come the most interesting part: pollution 
+# water quality (like pollution):
+ very good = cristal clear, good = drinkable, not bad = agriculture quality, 
+ bad = industrial quality, mortal.
+# contamination of water by pollution (industries, tips, high tech farms)
+ and propagation of pollution along the water path.
+# contamination of air due to polluted waters.
+# depollution with parks along the path or around the well.
+
+Refinement:
+# Areas without water could need high-tech deep well and/or pipes to feed
+ the water station.
+
+One big issue would be the incompatibility with previous versions. This would
+need either a &quot;compatibilty-mode&quot; (no water) or add some kind of
+subsidy to enable one player to add water capacities to his city.
+
+I just gave a quick look at the engine, so i don't realize how difficult
+it can be, and i m new to C++ (i know a little C, but mainly i was
+fortran developper in fluid dynamics). I think it would take some monthes
+before this work smoothly.
+
+Well, i hope to have lots of comments/criticism about this :)
+Cheers
+Alain
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000048.html">[Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)
+</A></li>
+	<LI>Next message: <A HREF="000050.html">[Lincity-ng-devel] [Bug #10458] weird heavy industries informations	(0 or &gt;100%)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#49">[ date ]</a>
+              <a href="thread.html#49">[ thread ]</a>
+              <a href="subject.html#49">[ subject ]</a>
+              <a href="author.html#49">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

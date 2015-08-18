@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] experimental land
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20experimental%20land&In-Reply-To=%3C201001261719.49792.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000883.html">
+   <LINK REL="Next"  HREF="000884.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] experimental land</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20experimental%20land&In-Reply-To=%3C201001261719.49792.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] experimental land">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Jan 26 17:19:49 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000883.html">[Lincity-ng-devel] experimental land
+</A></li>
+        <LI>Next message: <A HREF="000884.html">[Lincity-ng-devel] [Bug #16759] Linux dual screen : fullscreen is	weird !
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#886">[ date ]</a>
+              <a href="thread.html#886">[ thread ]</a>
+              <a href="subject.html#886">[ subject ]</a>
+              <a href="author.html#886">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Jacky and everybody
+
+Le 26/01/2010 &#224; 15:41, Jaky a &#233;crit :
+&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> On Mon, Jan 25, 2010 at 09:58:35PM +0100, Alain Baeckeroot wrote:
+</I>&gt;<i> &gt; All comments are welcome, i hope it could be the default land generation
+</I>&gt;<i> &gt; for the next release (imminent iirc)
+</I>&gt;<i> 
+</I>&gt;<i> I'm not sure if we should make the new terrain generator the default in a version which we release soon. I think it would be better to get some more opinions and testing. Maybe there are people who prefer the old terrain generator. 
+</I>&gt;<i> We could also allow the user to choose between different generators when starting a new game.
+</I>&gt;<i> 
+</I>you are right, i'll put it as a command-line option (or maybe a choice in the page &quot;new game&quot;)
+
+
+&gt;<i> If I try to compile without VARIANT=experimental I get the following error:
+</I>&gt;<i> cc1plus: warnings being treated as errors
+</I>&gt;<i> src/lincity/init_game.cpp:694: warning: &#8216;void sort_by_altitude(int, int*, int*)&#8217; defined but not used
+</I>&gt;<i> 
+</I>&gt;<i> Do you still need sort_by_altitude or should we just delete the function?
+</I>Indeed, it is no more used currently, but i guess it can be useful to supress high altitude
+lakes (in order to make a drier land, or control %water in map).
+I comment it out
+
+
+&gt;<i> 
+</I>&gt;<i> I discovered another minor bug: Sometimes one tile of water is missing between a lake and a river. I think that happens if the first river tile is diagonal to the last lake tile.
+</I>Yes, i see it now you pointed it.
+It's weird i thought &quot;connect_river&quot; would eliminate this. I'll have a look at this.
+
+Alain
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000883.html">[Lincity-ng-devel] experimental land
+</A></li>
+	<LI>Next message: <A HREF="000884.html">[Lincity-ng-devel] [Bug #16759] Linux dual screen : fullscreen is	weird !
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#886">[ date ]</a>
+              <a href="thread.html#886">[ thread ]</a>
+              <a href="subject.html#886">[ subject ]</a>
+              <a href="author.html#886">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

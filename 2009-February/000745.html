@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Pollution
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Pollution&In-Reply-To=%3C20090211024534.GA2022%40desktop%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000744.html">
+   <LINK REL="Next"  HREF="000746.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Pollution</H1>
+    <B>Jaky</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Pollution&In-Reply-To=%3C20090211024534.GA2022%40desktop%3E"
+       TITLE="[Lincity-ng-devel] Pollution">jaky_lincity at mail.ru
+       </A><BR>
+    <I>Wed Feb 11 03:47:51 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000744.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+        <LI>Next message: <A HREF="000746.html">[Lincity-ng-devel] Pollution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#745">[ date ]</a>
+              <a href="thread.html#745">[ thread ]</a>
+              <a href="subject.html#745">[ subject ]</a>
+              <a href="author.html#745">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+In the discussion about pollution in Bug #15177 several people said that the light industry pollution is too high. As I said in this bug report I propose to reduce the pollution from about 90/day to 1.8/day. I attached a patch to do that.
+
+There seems to be a bug in the way the market burns waste. ATM it only burns waste if it is connected to a track. The second patch I attached fixes that. It also reduces the amount of waste burned from 70% of the market capacity to 10% of the market capacity. That way it is easier to see for the player that their markets are full of waste. The pollution/waste is also reduced slightly so that it is the same as when burning waste on the transport.
+What do the other developers think about it ? Should I commit these patches ?
+
+Jaky
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: reduce_light_industry_pollution.patch
+Type: text/x-diff
+Size: 2056 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20090211/290c90ac/attachment.patch">https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20090211/290c90ac/attachment.patch</A>&gt;
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: waste-burn.patch
+Type: text/x-diff
+Size: 2239 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20090211/290c90ac/attachment-0001.patch">https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20090211/290c90ac/attachment-0001.patch</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000744.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+	<LI>Next message: <A HREF="000746.html">[Lincity-ng-devel] Pollution
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#745">[ date ]</a>
+              <a href="thread.html#745">[ thread ]</a>
+              <a href="subject.html#745">[ subject ]</a>
+              <a href="author.html#745">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

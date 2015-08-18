@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] new ideas
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20new%20ideas&In-Reply-To=%3C20100119051232.GB2023%40desktop%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000869.html">
+   <LINK REL="Next"  HREF="000875.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] new ideas</H1>
+    <B>Jaky</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20new%20ideas&In-Reply-To=%3C20100119051232.GB2023%40desktop%3E"
+       TITLE="[Lincity-ng-devel] new ideas">jaky_lincity at mail.ru
+       </A><BR>
+    <I>Tue Jan 19 06:12:32 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000869.html">[Lincity-ng-devel] Next Release: 2.1
+</A></li>
+        <LI>Next message: <A HREF="000875.html">[Lincity-ng-devel] new ideas
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#868">[ date ]</a>
+              <a href="thread.html#868">[ thread ]</a>
+              <a href="subject.html#868">[ subject ]</a>
+              <a href="author.html#868">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi Alain,
+
+I like your new terrain generator and the 3D view. It results in more interesting and realistic terrain. 
+But rivers which start and stop in the middle of nowhere look out of place in the normal view. I hope you'll find the time to implement lake filling or erosion, which looks like a good way to improve the rivers.
+In case there are still rivers which don't leave the map, I suggest that they're not navigable to prevent ports on them.
+
+I also found some bugs in the code. On my computer they result in segfaults when I tried to start a new game. I attached a patch which fixes the segfaults. I didn't commit the patch, because I'm not sure if it changes the behaviour of the terrain generator.
+
+Jaky
+
+Here is some debug output from gdb for two of the three different segfaults I got:
+
+Program received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0xb76b76c0 (LWP 25778)]
+0x080e96d5 in new_setup_river () at src/lincity/init_game.cpp:543
+543                 dx2 = float (ALT(i + 2, j) + ALT(i - 2, j) - 2 * ALT(i,j)) * 0.25;
+(gdb) print i
+$1 = 98
+(gdb) print j
+$2 = 43
+(gdb) bt
+#0  0x080e96d5 in new_setup_river () at src/lincity/init_game.cpp:543
+#1  0x080eae4d in new_setup_river_ground () at src/lincity/init_game.cpp:488
+#2  0x080ebd3b in new_city (originx=0x81e93b8, originy=0x81e93bc, random_village=1) at src/lincity/init_game.cpp:174
+#3  0x0806ab7c in MainMenu::newGameStartVillageClicked (this=0xb270478) at src/lincity-ng/MainMenu.cpp:724
+#4  0x08071c05 in Callback&lt;MainMenu, Button*, void&gt;::operator() (this=0xbd76ce8, arg1=0xc780728) at ./src/gui/callback/Callback.hpp:63
+#5  0x080c454b in Signal&lt;Button*, void&gt;::operator() (this=0xc78075c, arg1=0xc780728) at src/gui/callback/Signal.hpp:88
+#6  0x080c2b63 in Button::event (this=0xc780728, event=@0xbfc0c2b8) at src/gui/Button.cpp:305
+#7  0x080bb3c7 in Component::eventChild (this=0xc77ff60, child=@0xc7288b8, event=@0xbfc0c338, visible=true) at src/gui/Component.cpp:103
+#8  0x080bb436 in Component::event (this=0xc77ff60, event=@0xbfc0c338) at src/gui/Component.cpp:116
+#9  0x080bb3c7 in Component::eventChild (this=0xc773ef0, child=@0xc728920, event=@0xbfc0c3b8, visible=true) at src/gui/Component.cpp:103
+#10 0x080bb436 in Component::event (this=0xc773ef0, event=@0xbfc0c3b8) at src/gui/Component.cpp:116
+#11 0x080bb3c7 in Component::eventChild (this=0xc773d70, child=@0xc77a108, event=@0xbfc0c494, visible=true) at src/gui/Component.cpp:103
+#12 0x080bb436 in Component::event (this=0xc773d70, event=@0xbfc0c494) at src/gui/Component.cpp:116
+#13 0x080b0144 in Desktop::event (this=0xc773d70, event=@0xbfc0c494) at src/gui/Desktop.cpp:78
+#14 0x0806a2fb in MainMenu::run (this=0xb270478) at src/lincity-ng/MainMenu.cpp:828
+#15 0x080a592b in mainLoop () at src/lincity-ng/main.cpp:354
+#16 0x080a748a in main (argc=1, argv=0xbfc0c644) at src/lincity-ng/main.cpp:501
+
+--------------------------
+
+mountainity = 381
+alt min = 0; max = 20141
+alt_step 2014 mountain pass : x 2, y 22, norm 43.250000
+alt_step 2014 mountain pass : x 6, y 36, norm 37.250000
+alt_step 2014 mountain pass : x 7, y 2, norm 36.250000
+alt_step 2014 mountain pass : x 7, y 3, norm 34.250000
+local minimum : x 13, y 20
+alt_step 2014 mountain pass : x 28, y 40, norm 11.250000
+alt_step 2014 mountain pass : x 34, y 62, norm 134.500000
+local minimum : x 73, y 9
+alt_step 2014 mountain pass : x 88, y 10, norm 109.000000
+
+#pass c = 7
+#top t = 13
+#lak l = 5
+#para p = 0
+
+
+Program received signal SIGSEGV, Segmentation fault.
+[Switching to Thread 0xb76ad6c0 (LWP 10450)]
+0x080e789b in new_setup_one_river (num_river=7, c=7, colx=0xbfdda2e0, coly=0xbfdd06a0, t=13, topx=0xbfdc6a60, topy=0xbfdbce20, l=5, lakx=0xbfdb31e0, laky=0xbfda95a0)
+at src/lincity/init_game.cpp:685
+685                 if (ALT(x + di[n], y + dj[n]) &lt; alt) {
+(gdb) print x
+$1 = 99
+(gdb) print n
+$2 = 2
+(gdb) print di[n]
+$3 = 1
+(gdb) bt
+#0  0x080e789b in new_setup_one_river (num_river=7, c=7, colx=0xbfdda2e0, coly=0xbfdd06a0, t=13, topx=0xbfdc6a60, topy=0xbfdbce20, l=5, lakx=0xbfdb31e0, laky=0xbfda95a0)
+at src/lincity/init_game.cpp:685
+#1  0x080ea498 in new_setup_river () at src/lincity/init_game.cpp:628
+#2  0x080eae4d in new_setup_river_ground () at src/lincity/init_game.cpp:488
+#3  0x080ebd3b in new_city (originx=0x81e93b8, originy=0x81e93bc, random_village=1) at src/lincity/init_game.cpp:174
+#4  0x0806ab7c in MainMenu::newGameStartVillageClicked (this=0xb45b7908) at src/lincity-ng/MainMenu.cpp:724
+#5  0x08071c05 in Callback&lt;MainMenu, Button*, void&gt;::operator() (this=0xb43bc340, arg1=0xb43f2010) at ./src/gui/callback/Callback.hpp:63
+#6  0x080c454b in Signal&lt;Button*, void&gt;::operator() (this=0xb43f2044, arg1=0xb43f2010) at src/gui/callback/Signal.hpp:88
+#7  0x080c2b63 in Button::event (this=0xb43f2010, event=@0xbfe044b8) at src/gui/Button.cpp:305
+#8  0x080bb3c7 in Component::eventChild (this=0xb43f1860, child=@0xb43f2cb8, event=@0xbfe04538, visible=true) at src/gui/Component.cpp:103
+#9  0x080bb436 in Component::event (this=0xb43f1860, event=@0xbfe04538) at src/gui/Component.cpp:116
+#10 0x080bb3c7 in Component::eventChild (this=0xb43f40d0, child=@0xb43f2d20, event=@0xbfe045b8, visible=true) at src/gui/Component.cpp:103
+#11 0x080bb436 in Component::event (this=0xb43f40d0, event=@0xbfe045b8) at src/gui/Component.cpp:116
+#12 0x080bb3c7 in Component::eventChild (this=0xb43f4010, child=@0xb03f2ea0, event=@0xbfe04694, visible=true) at src/gui/Component.cpp:103
+#13 0x080bb436 in Component::event (this=0xb43f4010, event=@0xbfe04694) at src/gui/Component.cpp:116
+#14 0x080b0144 in Desktop::event (this=0xb43f4010, event=@0xbfe04694) at src/gui/Desktop.cpp:78
+#15 0x0806a2fb in MainMenu::run (this=0xb45b7908) at src/lincity-ng/MainMenu.cpp:828
+#16 0x080a592b in mainLoop () at src/lincity-ng/main.cpp:354
+#17 0x080a748a in main (argc=1, argv=0xbfe04844) at src/lincity-ng/main.cpp:501
+(gdb) print y
+$4 = 75
+(gdb) print dj[n]
+$5 = 0
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000869.html">[Lincity-ng-devel] Next Release: 2.1
+</A></li>
+	<LI>Next message: <A HREF="000875.html">[Lincity-ng-devel] new ideas
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#868">[ date ]</a>
+              <a href="thread.html#868">[ thread ]</a>
+              <a href="subject.html#868">[ subject ]</a>
+              <a href="author.html#868">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2312684%5D%20%22You%20lose%22%20segfault&In-Reply-To=%3C200712112019.lBBKJ1wB019178%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000237.html">
+   <LINK REL="Next"  HREF="000239.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2312684%5D%20%22You%20lose%22%20segfault&In-Reply-To=%3C200712112019.lBBKJ1wB019178%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault">admin at berlios.de
+       </A><BR>
+    <I>Tue Dec 11 21:19:01 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000237.html">[Lincity-ng-devel] New: games/lincity-ng (fwd)
+</A></li>
+        <LI>Next message: <A HREF="000239.html">[Lincity-ng-devel] Translations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #12684, was updated on 2007-Dec-10 19:27
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: Fixed
+Bug Group: None
+Priority: 7
+Submitted by: deanna
+Assigned to : none
+Summary: &quot;You lose&quot; segfault
+
+Details: Several people have reported that lincity-ng will segfault on OpenBSD.  This seems to be happening when the population reaches 0 and the game is attempting to print the message &quot;You lose.&quot;  This is lincity-ng 1.1.2. 
+
+The discussion is here on the openbsd ports mailing list:
+<A HREF="http://marc.info/?l=openbsd-ports&amp;m=119354039224899&amp;w=2">http://marc.info/?l=openbsd-ports&amp;m=119354039224899&amp;w=2</A>
+
+And here is the backtrace.
+
+#0  Dialog::msgDialog(std::string, std::string) (this=0x80721120) at stl_list.h:155
+155         : _List_iterator_base(__x)
+(gdb) bt
+#0  Dialog::msgDialog(std::string, std::string) (this=0x80721120) at stl_list.h:155
+#1  0x1c00fc7f in Dialog (this=0x80721120, type=9) at src/lincity-ng/Dialog.cpp:77
+#2  0x1c0470cd in EconomyGraph::updateData() (this=0x8bce1200) at stl_alloc.h:652
+#3  0x1c052be2 in print_stats () at src/lincity-ng/ScreenInterface.cpp:347
+#4  0x1c006bbc in execute_timestep () at src/lincity-ng/MainLincity.cpp:75
+#5  0x1c02d142 in Game::run() (this=0x801a5fd0) at src/lincity-ng/Game.cpp:260
+#6  0x1c009723 in mainLoop () at memory:271
+#7  0x1c009f8f in main (argc=2, argv=0xcfbe4090) at src/lincity-ng/main.cpp:465
+(gdb) bt full
+#0  Dialog::msgDialog(std::string, std::string) (this=0x80721120) at stl_list.h:155
+        message = {static npos = 4294967295, _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;},
+    _M_p = 0x801a5b30 &quot;&#200;\035&quot;}, static _S_empty_rep_storage = {0, 0, 751, 0}}
+        extraString = {static npos = 4294967295, _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;},
+    _M_p = 0x801a5b30 &quot;&#200;\035&quot;}, static _S_empty_rep_storage = {0, 0, 751, 0}}
+        filename = {static npos = 4294967295, _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;},
+    _M_p = 0x7e4bd5ac &quot;gui/allgone.xml&quot;}, static _S_empty_rep_storage = {0, 0, 751, 0}}
+        myDialogComponent = {_M_ptr = 0x888e8440}
+        noButton = (class Button *) 0x0
+#1  0x1c00fc7f in Dialog (this=0x80721120, type=9) at src/lincity-ng/Dialog.cpp:77
+        msg = {&lt;std::iostream&gt; = {&lt;&gt; = {&lt;No data fields&gt;}, &lt;&gt; = {&lt;No data fields&gt;}, &lt;No data fields&gt;},
+  _M_stringbuf = {&lt;&gt; = {&lt;No data fields&gt;}, _M_string = {static npos = 4294967295,
+      _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;}, _M_p = 0x3c004f2e &quot;You lose.&quot;},
+      static _S_empty_rep_storage = {0, 0, 751, 0}}}}
+        message = {static npos = 4294967295, _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;},
+    _M_p = 0x801a5b30 &quot;&#200;\035&quot;}, static _S_empty_rep_storage = {0, 0, 751, 0}}
+        extraString = {static npos = 4294967295, _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;},
+    _M_p = 0x801a5b30 &quot;&#200;\035&quot;}, static _S_empty_rep_storage = {0, 0, 751, 0}}
+#2  0x1c0470cd in EconomyGraph::updateData() (this=0x8bce1200) at stl_alloc.h:652
+        message = {static npos = 4294967295, _M_dataplus = {&lt;std::allocator&lt;char&gt;&gt; = {&lt;No data fields&gt;},
+    _M_p = 0x880c15bc &quot;You lose.&quot;}, static _S_empty_rep_storage = {0, 0, 751, 0}}
+        i = -809617028
+        f = -nan(0x400000)
+        h = -2145756368
+        root = (class Component *) 0xcfbe3c50
+#3  0x1c052be2 in print_stats () at src/lincity-ng/ScreenInterface.cpp:347
+No locals.
+#4  0x1c006bbc in execute_timestep () at src/lincity-ng/MainLincity.cpp:75
+        oldTime = 233978
+        now = 233978
+        mStepTime = 2154959136
+#5  0x1c02d142 in Game::run() (this=0x801a5fd0) at src/lincity-ng/Game.cpp:260
+        gui_event = {type = UPDATE, mousepos = {x = 0, y = 0}, mousemove = {x = 0, y = 0}, mousebutton = 1,
+  keysym = {scancode = 40 '(', sym = 469981779, mod = 1006647229, unicode = 50308}, inside = true,
+  elapsedTime = 0.0289999992}
+        ticks = 233958
+        elapsedTime = -2.42043481e-39
+        event = {type = 1 '\001', active = {type = 1 '\001', gain = 0 '\0', state = 6 '\006'}, key = {
+    type = 1 '\001', which = 0 '\0', state = 6 '\006', keysym = {scancode = 0 '\0', sym = SDLK_UNKNOWN,
+      mod = KMOD_NONE, unicode = 0}}, motion = {type = 1 '\001', which = 0 '\0', state = 6 '\006', x = 0,
+    y = 0, xrel = 0, yrel = 0}, button = {type = 1 '\001', which = 0 '\0', button = 6 '\006', state = 0 '\0',
+    x = 0, y = 0}, jaxis = {type = 1 '\001', which = 0 '\0', axis = 6 '\006', value = 0}, jball = {
+    type = 1 '\001', which = 0 '\0', ball = 6 '\006', xrel = 0, yrel = 0}, jhat = {type = 1 '\001',
+    which = 0 '\0', hat = 6 '\006', value = 0 '\0'}, jbutton = {type = 1 '\001', which = 0 '\0',
+    button = 6 '\006', state = 0 '\0'}, resize = {type = 1 '\001', w = 0, h = 0}, expose = {type = 1 '\001'},
+  quit = {type = 1 '\001'}, user = {type = 1 '\001', code = 0, data1 = 0x0, data2 = 0x0}, syswm = {
+    type = 1 '\001', msg = 0x0}}
+        fpsTicks = 233747
+        lastticks = 233958
+        frame = 8
+#6  0x1c009723 in mainLoop () at memory:271
+        menu = {_M_ptr = 0x81565240}
+        game = {_M_ptr = 0x801a5fd0}
+
+
+
+Follow-Ups:
+
+Date: 2007-Dec-11 21:19
+By: wolfgangb
+
+Comment:
+Bad regression which affects all platforms.
+
+Quick fix: replace data/gui/allgone.xml by
+<A HREF="http://svn.berlios.de/viewcvs/*checkout*/lincity-ng/trunk/data/gui/allgone.xml?rev=908">http://svn.berlios.de/viewcvs/*checkout*/lincity-ng/trunk/data/gui/allgone.xml?rev=908</A>
+
+Fixed in SVN r1315.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12684&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=12684&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000237.html">[Lincity-ng-devel] New: games/lincity-ng (fwd)
+</A></li>
+	<LI>Next message: <A HREF="000239.html">[Lincity-ng-devel] Translations
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#238">[ date ]</a>
+              <a href="thread.html#238">[ thread ]</a>
+              <a href="subject.html#238">[ subject ]</a>
+              <a href="author.html#238">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

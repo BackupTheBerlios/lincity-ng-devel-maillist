@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] New music system
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20New%20music%20system&In-Reply-To=%3C4EF8640A.4070300%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001181.html">
+   <LINK REL="Next"  HREF="001183.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] New music system</H1>
+    <B>Heikki Ketoharju</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20New%20music%20system&In-Reply-To=%3C4EF8640A.4070300%40gmail.com%3E"
+       TITLE="[Lincity-ng-devel] New music system">heikki.ketoharju at gmail.com
+       </A><BR>
+    <I>Mon Dec 26 13:09:46 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001181.html">[Lincity-ng-devel] [Bug #16931] Proposal for a new layout of	interface
+</A></li>
+        <LI>Next message: <A HREF="001183.html">[Lincity-ng-devel] new site on fedorahosted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1182">[ date ]</a>
+              <a href="thread.html#1182">[ thread ]</a>
+              <a href="subject.html#1182">[ subject ]</a>
+              <a href="author.html#1182">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello everyone!
+
+Few days back I sent a little patch for music handling to the new 
+mailing list. Because there wasn't any responses, I decided to subscribe 
+also to the old lincity-NG mailing list. So this mail is cross-posted. 
+Apologies for that.
+
+I have coded a little bit more now in christmas time and the new music 
+system has developed nicely. Someone should now test if my modifications 
+really work. Is there any bugs? Recource hogging?
+
+Attached patch should work with svn revision 1618 (the newest one). Also 
+attached is music theme file default.xml. It should be in 
+&quot;music/default/default.xml&quot; with the old songs.
+
+Here is what works now:
+
+  * It's possible to create several music themes in 'music/' folder via 
+subfolders or alternatively using just different xml-files.
+  * Theme can be read from xml file, but game should work also with 
+plain music files.
+  * It's possible to play different songs in different tech-levels (for 
+example after windmills have been invented)
+  * Game loops through all the songs. (No more infinite City Blues.ogg ;)
+  * There is simple command for changing between the tracks. (Not 
+implemented in GUI)
+
+Future plans:
+
+  * Transport control buttons ingame
+  * There isn't any way to change music theme from GUI
+  * Search music themes from LINCITY_HOME (or whatever it is)
+  * Make xml file more flexible to allow grouping songs by tech level.
+  * Playlist starts from beginning after visiting Options screen. This 
+is because game restarts.
+  * Randomize option for songs could be reasonable?
+  * Maybe there should be a menu music different from game music?
+  * A whole new musical score for Lincity-NG! I have few themes sketched 
+already.
+
+I'm doing this in my spare time because I really like the game, but got 
+tired because of archaic music system. Hopefully you like my modifications?
+
+All comments and ideas conserning the future plans are welcome!
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001181.html">[Lincity-ng-devel] [Bug #16931] Proposal for a new layout of	interface
+</A></li>
+	<LI>Next message: <A HREF="001183.html">[Lincity-ng-devel] new site on fedorahosted
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1182">[ date ]</a>
+              <a href="thread.html#1182">[ thread ]</a>
+              <a href="subject.html#1182">[ subject ]</a>
+              <a href="author.html#1182">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

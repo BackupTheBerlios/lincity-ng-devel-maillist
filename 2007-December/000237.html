@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] New: games/lincity-ng (fwd)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20New%3A%20games/lincity-ng%20%28fwd%29&In-Reply-To=%3C20071210183756.GA4571%40greg.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000236.html">
+   <LINK REL="Next"  HREF="000238.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] New: games/lincity-ng (fwd)</H1>
+    <B>Wolfgang Becker</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20New%3A%20games/lincity-ng%20%28fwd%29&In-Reply-To=%3C20071210183756.GA4571%40greg.local%3E"
+       TITLE="[Lincity-ng-devel] New: games/lincity-ng (fwd)">uafr at gmx.de
+       </A><BR>
+    <I>Mon Dec 10 19:37:56 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000236.html">[Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault
+</A></li>
+        <LI>Next message: <A HREF="000238.html">[Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2007-12-10 Antti Harri &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">iku at openbsd.fi</A>&gt; wrote:
+&gt;<i> I can.  It happens while attempting to write a message window
+</I>&gt;<i> saying &quot;You lose&quot; when the population falls to zero.  This is
+</I>&gt;<i> game over, so not as evil a bug as it seemed.
+</I>
+Nice work. I can reproduce that. Really bad regression, it used to
+work. Looks like all test players managed to avoid that situation.
+It is caused by a missing button definition in data/gui/allgone.xml
+Replacing it by the old version
+<A HREF="http://svn.berlios.de/viewcvs/*checkout*/lincity-ng/trunk/data/gui/allgone.xml?rev=908">http://svn.berlios.de/viewcvs/*checkout*/lincity-ng/trunk/data/gui/allgone.xml?rev=908</A>
+solves the problem. 
+
+Tsch&#252;&#223;,
+Wolfgang
+-- 
+Wolfgang Becker  ***  eMail <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">uafr at gmx.de</A>  ***  <A HREF="http://uafr.freeshell.org/">http://uafr.freeshell.org/</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000236.html">[Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault
+</A></li>
+	<LI>Next message: <A HREF="000238.html">[Lincity-ng-devel] [Bug #12684] &quot;You lose&quot; segfault
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#237">[ date ]</a>
+              <a href="thread.html#237">[ thread ]</a>
+              <a href="subject.html#237">[ subject ]</a>
+              <a href="author.html#237">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,89 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Pollution
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Pollution&In-Reply-To=%3C20090211193002.GA2021%40desktop%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000747.html">
+   <LINK REL="Next"  HREF="000749.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Pollution</H1>
+    <B>Jaky</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Pollution&In-Reply-To=%3C20090211193002.GA2021%40desktop%3E"
+       TITLE="[Lincity-ng-devel] Pollution">jaky_lincity at mail.ru
+       </A><BR>
+    <I>Wed Feb 11 20:30:02 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000747.html">[Lincity-ng-devel] Pollution
+</A></li>
+        <LI>Next message: <A HREF="000749.html">[Lincity-ng-devel] [Bug #15203]  640x480 is not playable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#748">[ date ]</a>
+              <a href="thread.html#748">[ thread ]</a>
+              <a href="subject.html#748">[ subject ]</a>
+              <a href="author.html#748">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On Wed, Feb 11, 2009 at 08:50:13AM +0100, Alain Baeckeroot wrote:
+&gt;<i> &gt; In the discussion about pollution in Bug #15177 several people said that the light industry pollution is too high. As I said in this bug report I propose to reduce the pollution from about 90/day to 1.8/day. I attached a patch to do that.
+</I>&gt;<i> hmm reduce from 90 to 1.8 seems huge !
+</I>&gt;<i> If its possible to manage pollution 90 with parks, i don't think its good
+</I>&gt;<i> to reduce this so drastically. Pollution _must_ be a (manageable) problem :-)
+</I>&gt;<i> For very high tech (more than 200) pollution is not a problem. I have
+</I>&gt;<i> not checked recently for tech near 50-100. 
+</I>
+It is possible to manage 90 pollution with parks ;-) . But you would need about 90 parks for every light industry. Or you build them at the edge of the map. Luckily lincity doesn't have neighbours who could complain. 
+
+As I pointed out in the bugreport, the light industry pollution in the original lincity was 10/day. The 90/day was probably an unintended side effect of the change which reduced pollution after tech-level 100%. The reason I proposed to reduce it below the original value was to make it lower than the pollution from heavy industry which is 5/day. To me it is counterintuitive that the light industry emits more pollution than the heavy industry. If 1.8/day is too low we could increase the pollution from the heavy industry to 10/day and use 5.4/day for the light industry (INDUSTRY_L_POL_PER_GOOD = 0.003).
+
+&gt;<i> 
+</I>&gt;<i> &gt; There seems to be a bug in the way the market burns waste. ATM it only burns waste if it is connected to a track. The second patch I attached fixes that.
+</I>&gt;<i> yes this is a bug !
+</I>&gt;<i> 
+</I>&gt;<i> &gt; It also reduces the amount of waste burned from 70% of the market capacity to 10% of the market capacity. That way it is easier to see for the player that their markets are full of waste. The pollution/waste is also reduced slightly so that it is the same as when burning waste on the transport. 
+</I>&gt;<i> Yes, ok if 10% burn is greater than waste &quot;production&quot; each turn
+</I>
+Good point. I didn't think about it. 
+This 10% is 7680 waste. You need to consume 23040 goods to produce that much waste. You would need 13 light factories to produce so much goods and 30 universities or 115 full high-tech high-density houses or 2 rocket pads to consume them. In theory that is possible to produce so much waste, but I don't think that somebody will manage to do that in a normal game. To prevent that from happening the market could burn all the waste which is over 90% . 
+
+&gt;<i> 
+</I>&gt;<i> btw, i'm in job travel for 1 week, so i probably won't check lincity meanwhile.
+</I>
+Have a nice trip. 
+
+Jaky
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000747.html">[Lincity-ng-devel] Pollution
+</A></li>
+	<LI>Next message: <A HREF="000749.html">[Lincity-ng-devel] [Bug #15203]  640x480 is not playable
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#748">[ date ]</a>
+              <a href="thread.html#748">[ thread ]</a>
+              <a href="subject.html#748">[ subject ]</a>
+              <a href="author.html#748">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

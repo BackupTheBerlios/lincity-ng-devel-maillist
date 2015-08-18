@@ -1,0 +1,100 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Coding style question. Sharing code ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Coding%20style%20question.%20Sharing%20code%20%3F&In-Reply-To=%3C200704291927.27817.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000149.html">
+   <LINK REL="Next"  HREF="000150.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Coding style question. Sharing code ?</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Coding%20style%20question.%20Sharing%20code%20%3F&In-Reply-To=%3C200704291927.27817.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Coding style question. Sharing code ?">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Apr 29 19:27:27 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000149.html">[Lincity-ng-devel] Code from other projects
+</A></li>
+        <LI>Next message: <A HREF="000150.html">[Lincity-ng-devel] [Lincity-ng-commit] r1198 -	trunk/src/lincity-ng
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#152">[ date ]</a>
+              <a href="thread.html#152">[ thread ]</a>
+              <a href="subject.html#152">[ subject ]</a>
+              <a href="author.html#152">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le dimanche 22 avril 2007 23:58, Wolfgang Becker a &#233;crit&#160;:
+&gt;<i> On 20070422 alain Baeckeroot &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">alain.baeckeroot at laposte.net</A>&gt; wrote:
+</I>&gt;<i> &gt; So i wanted to know if there is a prefered style for coding ?
+</I>&gt;<i> 
+</I>&gt;<i> Indent four spaces, no tab chars. But looking at src/lincity-ng
+</I>&gt;<i> shows there are other preferences, too.
+</I>&gt;<i> 
+</I>&gt;<i> A already defined style is a good idea. Saves us a lot of discussion
+</I>&gt;<i> and the document is already there. Even better:
+</I>&gt;<i> 
+</I>&gt;<i> &gt; There is also the tiny script Lindent which allow to automagically
+</I>&gt;<i> &gt; reformat everything.
+</I>&gt;<i> &gt; <A HREF="http://lxr.linux.no/source/scripts/Lindent">http://lxr.linux.no/source/scripts/Lindent</A>
+</I>&gt;<i> &gt; #!/bin/sh
+</I>&gt;<i> &gt; indent -npro -kr -i8 -ts8 -sob -l80 -ss -ncs &quot;$@&quot;
+</I>&gt;<i> 
+</I>&gt;<i> I still think eight is too big but just saying &quot;we use linux style&quot;
+</I>&gt;<i> more simple than &quot;we use linux style but with some changes ...&quot;.
+</I>Hmm, ok. But Lincity-NG is C++ with some long names, so indentation 4
+can be the correct thing.  (pi = 3 is good enough for lincity ;-)
+
+&gt;<i>  
+</I>&gt;<i> &gt; I vote for `./Lindent src/lincity/*.cpp src/lincity/modules/*.cpp`
+</I>&gt;<i> &gt; before next release :)
+</I>&gt;<i> 
+</I>&gt;<i> We have to be careful with code that we share with other projects,
+</I>&gt;<i> but AFAIK thats all in tinygettext/, or is there something else?
+</I>Also, are there other project using some code from NG ?
+I had a quick look at Battle Of Antargis
+<A HREF="http://antargis.berlios.de/index.php?page=screenshots">http://antargis.berlios.de/index.php?page=screenshots</A>
+and their old isometric view reminds me something...
+Is it SDL toolkit, or was there some common code ?
+
+Lincity engine had some important fixes in NG, so i think if
+someone want to reuse it he should use -ng one not the old, not
+to speak of future improvements :)
+
+Cheers
+Alain
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000149.html">[Lincity-ng-devel] Code from other projects
+</A></li>
+	<LI>Next message: <A HREF="000150.html">[Lincity-ng-devel] [Lincity-ng-commit] r1198 -	trunk/src/lincity-ng
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#152">[ date ]</a>
+              <a href="thread.html#152">[ thread ]</a>
+              <a href="subject.html#152">[ subject ]</a>
+              <a href="author.html#152">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,131 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Too Many Options?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Too%20Many%20Options%3F&In-Reply-To=%3C201003091738.15484.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000905.html">
+   <LINK REL="Next"  HREF="000912.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Too Many Options?</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Too%20Many%20Options%3F&In-Reply-To=%3C201003091738.15484.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Too Many Options?">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Mar  9 17:38:13 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000905.html">[Lincity-ng-devel] Too Many Options?
+</A></li>
+        <LI>Next message: <A HREF="000912.html">[Lincity-ng-devel] Too Many Options?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#910">[ date ]</a>
+              <a href="thread.html#910">[ thread ]</a>
+              <a href="subject.html#910">[ subject ]</a>
+              <a href="author.html#910">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Le 07/03/2010 &#224; 11:21, Wolfgang Becker a &#233;crit :
+&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> 
+</I>&gt;<i> the &quot;MiniMap overlay mode&quot; button cycles through five different modes.
+</I>&gt;<i> Normal, transparent map overlay, map only, elevated, elevated with opaque
+</I>&gt;<i> overlay. IMO a bit too much. What about an extra height on/off button?
+</I>I agree 5 modes are too much, and a new button could is welcome if we 
+add this &quot;3d view&quot;
+
+&gt;<i> Or is the new renderer too experimental to be part of 2.1? Then we add
+</I>&gt;<i> the button later.
+</I>It works nicely for me in various screen size and zoom factor.
+The only default i saw is with maximum zoom, sometimes the on-screen-southest
+tiles (near x=100, y=100) are weirdly suppressed, due to the way visible
+tiles are guestimated (i could not find a simple way to do better).
+Maybe it can be worked around by adjusting one constant (scale3d ...)
+
+&gt;<i> 
+</I>&gt;<i> In the &quot;New Game&quot; screen, you either select a scenario and then
+</I>&gt;<i> click start or you click on one of five texts below the scenario
+</I>&gt;<i> list. Each starts the game instantly. I'd like to change that to
+</I>&gt;<i> select and click start in all cases.
+</I>yes.
+
+&gt;<i> Are the three &quot;New random land&quot;
+</I>&gt;<i> ready for release, or are they just for testing?
+</I>I need to do some parameter tuning (desert is not desert enought,
+temperate is too dry, wetland has often too much water)
+
+&gt;<i> 
+</I>&gt;<i> The &quot;Options&quot; menu contains a &quot;resolution&quot; selector which offers
+</I>&gt;<i> lots of resolutions. All but 1024x768 are not really well tested,
+</I>&gt;<i> some of them are way to small to be useful, most of the are
+</I>&gt;<i> strange. 896x672? Maybe on some laptop. While all other options are
+</I>&gt;<i> applied at once, resolution is changed after pressing &quot;ok&quot;. If I
+</I>&gt;<i> select a resolution not in that list by command line that will be
+</I>&gt;<i> the only option in the menu. Leave it as is, remove it for now? A
+</I>&gt;<i> list with hardcoded &quot;useful&quot; resolution won't work given the number
+</I>&gt;<i> of different screen formats.
+</I>I tested various screen resolutions from command line in window mode
+(800x600 for debugging, 1800x1000 to play, 640x480 to test)
+
+What is the smallest screen we want to be playable ?
+Btw, i dont lke too much the current layout of the interface, i prefer
+the old-lincity layout wiht more visible information at once.
+I am currently having fun with gimp and try to draw a playable interface
+for 640x400 (maybe for next release not this one)
+I tried to upload it as a patch : 
+<A HREF="https://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2945&amp;group_id=2929">https://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2945&amp;group_id=2929</A>
+
+I m not sure it worked :(. This berlios interface is too ugly, is there a
+chance to have trac or redmine or some kind of recent and decent project
+management tool on berlios (also firefox refuses to connect me due to 
+obsolete/wrong security certificate)
+
+Cheers,
+Alain
+
+
+PS :  
+&gt;<i> Bye,
+</I>this sounds weird to me (non english native speaker) i feel like you are going
+to leave us, i hope this is not the case.
+
+&gt;<i> Wolfgang
+</I>&gt;<i> -- 
+</I>&gt;<i> Wolfgang Becker  ***  eMail <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">uafr at gmx.de</A>  ***  <A HREF="http://uafr.freeshell.org/">http://uafr.freeshell.org/</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000905.html">[Lincity-ng-devel] Too Many Options?
+</A></li>
+	<LI>Next message: <A HREF="000912.html">[Lincity-ng-devel] Too Many Options?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#910">[ date ]</a>
+              <a href="thread.html#910">[ thread ]</a>
+              <a href="subject.html#910">[ subject ]</a>
+              <a href="author.html#910">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

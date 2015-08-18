@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #5320] Just crashes on FreeBSD-5.4
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%235320%5D%20Just%20crashes%20on%20FreeBSD-5.4&In-Reply-To=%3C200704141318.l3EDIFvx023888%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000137.html">
+   <LINK REL="Next"  HREF="000139.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #5320] Just crashes on FreeBSD-5.4</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%235320%5D%20Just%20crashes%20on%20FreeBSD-5.4&In-Reply-To=%3C200704141318.l3EDIFvx023888%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #5320] Just crashes on FreeBSD-5.4">admin at berlios.de
+       </A><BR>
+    <I>Sat Apr 14 15:18:15 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000137.html">[Lincity-ng-devel] [Bug #5320] Just crashes on FreeBSD-5.4
+</A></li>
+        <LI>Next message: <A HREF="000139.html">[Lincity-ng-devel] [Patch #1862] GUI pt_BR translation to Lincity-NG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #5320, was updated on 2005-Oct-11 06:35
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: jnbek
+Assigned to : none
+Summary: Just crashes on FreeBSD-5.4
+
+Details: I'll be playing the game, and all of a sudden it just crashes, and goes back to the Window Manager on FreeBSD-5.4-RELEASE-p7 using KDE 3.4.1/Xorg 6.8.2. I ran it from an xterm to see what the error was, it's not very informative, but maybe it'll help. 
+
+here's on run on gdb while trying to load a previous game:
+
+GNU gdb 6.1.1 [FreeBSD]
+Copyright 2004 Free Software Foundation, Inc.
+GDB is free software, covered by the GNU General Public License, and you are
+welcome to change it and/or distribute copies of it under certain conditions.
+Type &quot;show copying&quot; to see the conditions.
+There is absolutely no warranty for GDB.  Type &quot;show warranty&quot; for details.
+This GDB was configured as &quot;i386-marcel-freebsd&quot;.
+(gdb) exec-file /usr/local/bin/lincity-ng
+(gdb) run
+Starting program: /usr/local/bin/lincity-ng 
+(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...Starting lincity-ng (version 1.0.1)...
+[/root/.lincity] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+LINCITY_HOME: /usr/local/share/lincity-ng
+(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...Xlib:  extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.
+Xlib:  extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.
+* Fallback to software mode.
+SDL Mode 1024x768
+Assertion failed: (p1.x &lt;= p2.x &amp;&amp; p1.y &lt;= p2.y), function Rect2D, file src/gui/Rect2D.hpp, line 43.
+
+Program terminated with signal SIGABRT, Aborted.
+The program no longer exists.
+(gdb) 
+and here's some more gdb, it ran pretty well for a little over an hour before this crash:
+(gdb) run
+Starting program: /usr/local/bin/lincity-ng 
+(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...Starting lincity-ng (version 1.0.1)...
+[/root/.lincity] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+LINCITY_HOME: /usr/local/share/lincity-ng
+(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...(no debugging symbols found)...Xlib:  extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.
+Xlib:  extension &quot;GLX&quot; missing on display &quot;:0.0&quot;.
+* Fallback to software mode.
+SDL Mode 1024x768
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+[Switching to LWP 100133]
+0x280e19d8 in .rtld_start () from /libexec/ld-elf.so.1
+(gdb) 
+
+
+Follow-Ups:
+
+Date: 2007-Apr-14 07:42
+By: alainb
+
+Comment:
+It seems to be fixed, for 1.0.3 and 1.1.0.
+
+See also :
+<A HREF="http://lincity-ng.berlios.de/wiki/index.php/Download/Installation#FreeBSD">http://lincity-ng.berlios.de/wiki/index.php/Download/Installation#FreeBSD</A>
+
+-------------------------------------------------------
+
+Date: 2005-Oct-11 13:44
+By: wolfgangb
+
+Comment:
+So Lincity-NG compiles with BSD too?  Nice work, any problems porting it? Sorry, no idea why it is not working, maybe you could recompile it
+again with debug mode enabled? (configure --enable-debug)
+That might produce some more hints.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=5320&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=5320&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000137.html">[Lincity-ng-devel] [Bug #5320] Just crashes on FreeBSD-5.4
+</A></li>
+	<LI>Next message: <A HREF="000139.html">[Lincity-ng-devel] [Patch #1862] GUI pt_BR translation to Lincity-NG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#138">[ date ]</a>
+              <a href="thread.html#138">[ thread ]</a>
+              <a href="subject.html#138">[ subject ]</a>
+              <a href="author.html#138">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

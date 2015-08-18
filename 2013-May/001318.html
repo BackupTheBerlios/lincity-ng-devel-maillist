@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] SDL(*).h : No file or directory - But they are	present in the include path.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SDL%28%2A%29.h%20%3A%20No%20file%20or%20directory%20-%20But%20they%20are%0A%09present%20in%20the%20include%20path.&In-Reply-To=%3CCAM6SkhkJRTu%3DMV1aZ6mpd9%2BF8VifcyrZ0YK0x278gFUvHdMm0w%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001316.html">
+   <LINK REL="Next"  HREF="001319.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] SDL(*).h : No file or directory - But they are	present in the include path.</H1>
+    <B>Amit Ahire</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SDL%28%2A%29.h%20%3A%20No%20file%20or%20directory%20-%20But%20they%20are%0A%09present%20in%20the%20include%20path.&In-Reply-To=%3CCAM6SkhkJRTu%3DMV1aZ6mpd9%2BF8VifcyrZ0YK0x278gFUvHdMm0w%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] SDL(*).h : No file or directory - But they are	present in the include path.">amitahire at gmail.com
+       </A><BR>
+    <I>Thu May  2 18:37:56 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001316.html">[Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it -	Apparent solution.
+</A></li>
+        <LI>Next message: <A HREF="001319.html">[Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1318">[ date ]</a>
+              <a href="thread.html#1318">[ thread ]</a>
+              <a href="subject.html#1318">[ subject ]</a>
+              <a href="author.html#1318">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+Was compiling from src in windows 7 and Mingw. I am sure I have installed
+all the libs and dependencies. As it './configure's and compiles
+(partially). Just a side note - I have lincity compiling in linux (ubuntu
+VM). So I have something to compare against.
+
+Currently I dont understand :
+
+1) SDL.h ( or others) are not found. I have all the includes correctly. I
+am attaching the configure output
+
+<A HREF="http://pastebin.com/PcuKQRrW">http://pastebin.com/PcuKQRrW</A>
+
+and the jam build step
+
+<A HREF="http://pastebin.com/nxKm7axG">http://pastebin.com/nxKm7axG</A> -- (Part 1) - Some parts skipped - I dont why
+- mkdir sometimes doesnt work correctly.  Around line 150.
+
+
+        mkdir -p &quot;./build/i686-pc-mingw32/optimize/src/gui\PainterGL&quot;
+
+...failed MkDir1 ./build/i686-pc-mingw32/optimize/src/gui\PainterGL ...
+...skipped &lt;T!src!gui!&gt;PainterGL\PainterGL.o for lack
+of&lt;dir&gt;./build/i686-pc-mingw32/optimize/src/gui\PainterGL...
+...skipped &lt;T!src!gui!&gt;PainterGL\TextureGL.o for lack
+of&lt;dir&gt;./build/i686-pc-mingw32/optimize/src/gui\PainterGL...
+...skipped &lt;T!src!gui!&gt;PainterGL\TextureManagerGL.o for lack
+of&lt;dir&gt;./build/i686-pc-mingw32/optimize/src/gui\PainterGL...
+MkDir1 ./build/i686-pc-mingw32/optimize/src/gui\PainterSDL
+
+
+<A HREF="http://pastebin.com/z7L2ffbK">http://pastebin.com/z7L2ffbK</A> -- (part 2) -- Where it shows SDL.h: no such
+file or directory. I think its not in the pastebin file (didnt print).
+
+Here is the screen shot -
+<A HREF="http://i1268.photobucket.com/albums/jj568/amitahire/sdl-h-nada.png">http://i1268.photobucket.com/albums/jj568/amitahire/sdl-h-nada.png</A>
+
+I had a hard time installing SDL_mixer and PhysicsFS(oh the nightmares!) -
+but finally did it. And I searched on Google for SDL not found issues (they
+are a lot) - also implemented them (including the path even though it was
+correct) - But still nada. Hence I turn to you guidance.
+
+2) Also it doesn't seem to compile and runthe included xmlgettext tool.
+
+...failed C++ ./build/i686-pc-mingw32/optimize/src/tools/xmlgettext\main.o
+...
+...skipped xmlgettext.exe for lack of &lt;T!src!tools!xmlgettext!&gt;main.o...
+...skipped &lt;T!data!&gt;locale/gui\messages.pot for lack of xmlgettext.exe...
+XGetText actions too long (max 2046)!
+
+
+Can anyone help or guess what I am doing wrong here? I am pretty sure I got
+all the libs installed, linked and included. I am also including the
+configure output (<A HREF="http://pastebin.com/Y86nZg3k">http://pastebin.com/Y86nZg3k</A>) and jam build output(
+<A HREF="http://pastebin.com/NegG8794">http://pastebin.com/NegG8794</A>) from my linux compilation which works
+perfectly. Any help or pointer will be appreciated. Thanks.
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001316.html">[Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it -	Apparent solution.
+</A></li>
+	<LI>Next message: <A HREF="001319.html">[Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1318">[ date ]</a>
+              <a href="thread.html#1318">[ thread ]</a>
+              <a href="subject.html#1318">[ subject ]</a>
+              <a href="author.html#1318">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

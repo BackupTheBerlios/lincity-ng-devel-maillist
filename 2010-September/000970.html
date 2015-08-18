@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Avery - Updated TODO Questions
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Avery%20-%20Updated%20TODO%20Questions&In-Reply-To=%3C201009021316.46901.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000971.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Avery - Updated TODO Questions</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Avery%20-%20Updated%20TODO%20Questions&In-Reply-To=%3C201009021316.46901.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Avery - Updated TODO Questions">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Thu Sep  2 13:16:46 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000971.html">[Lincity-ng-devel] should we rewrite the GUI and other part ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#970">[ date ]</a>
+              <a href="thread.html#970">[ thread ]</a>
+              <a href="subject.html#970">[ subject ]</a>
+              <a href="author.html#970">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le 02/09/2010 &#224; 00:03, Avery White a &#233;crit :
+&gt;<i> Alain,
+</I>&gt;<i> 
+</I>Hi again Avery
+(i reply on the list...)
+
+&gt;<i> I think I figure out most of the things I had mentioned in my previous
+</I>&gt;<i> email. As I had said before, I'm trying to take out the fire functionality.
+</I>&gt;<i> On the simulation side, I think I have everything done. However, on the
+</I>&gt;<i> graphics side...it's proving to be more challenging. What is the user-menu
+</I>&gt;<i> on the left side of the screen called? I'm trying to remove the firestation
+</I>&gt;<i> entity (Monument, health, sports field, etc).
+</I>
+The UI is described in xml files located in /data/gui
+
+the main toolbar is in /data/gui/buttonpanel.xml
+and related actions are in /src/lincity-ng/ButtonPanel.cpp
+
+&gt;<i> 
+</I>&gt;<i> To do this, I've commented out the firestation group in &quot;lintypes.cpp&quot; 
+</I>
+&gt;<i> (and
+</I>&gt;<i> the GROUP_FIRESTATION variable in a variety of other places)...but this only
+</I>&gt;<i> moves the descriptions around (i.e. now the &quot;firestation&quot; is gone, but
+</I>&gt;<i> places a monument instead...like the array just went back to the first
+</I>&gt;<i> element (which is monument in that menu), consequently, &quot;Sports Field&quot; is
+</I>&gt;<i> now &quot;Shanty Town&quot;...which is the next group listed in lintypes.cpp, near
+</I>&gt;<i> line 400). So the behavior I'm getting is pseudo-predictable. 
+</I>
+oh oh !
+As you saw you should not modify lintypes.cpp, because it a declaration
+with initialisation :
+  struct GROUP main_groups[NUM_OF_GROUPS] = {
+  ...
+  }
+If you comment out some part, the count will change, so you'll need to 
+change all the numbers in groups.h and modify all saved files accordingly!
+
+You should just leave it untouched, or add your new builings at the end of
+the list (and in groups.h ...)
+
+&gt;<i> I just wish I
+</I>&gt;<i> could eliminate the graphic entirely. Any thoughts would be appreciated.
+</I>
+I am not sure i understand what you want:
+- use a saved game and replace all existing firestations by (let's say) trees
+or 
+- de-activate firestations (and supress them from tools) but keep their graphics
+if some exists (as they are nice buildings :-) )
+
+
+Alain
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000971.html">[Lincity-ng-devel] should we rewrite the GUI and other part ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#970">[ date ]</a>
+              <a href="thread.html#970">[ thread ]</a>
+              <a href="subject.html#970">[ subject ]</a>
+              <a href="author.html#970">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

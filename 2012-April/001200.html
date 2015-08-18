@@ -1,0 +1,150 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18585] Patch: fasten setup_land()
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318585%5D%20Patch%3A%20fasten%20setup_land%28%29&In-Reply-To=%3C201204202010.q3KKAaNE011229%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001199.html">
+   <LINK REL="Next"  HREF="001201.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18585] Patch: fasten setup_land()</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318585%5D%20Patch%3A%20fasten%20setup_land%28%29&In-Reply-To=%3C201204202010.q3KKAaNE011229%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18585] Patch: fasten setup_land()">admin at berlios.de
+       </A><BR>
+    <I>Fri Apr 20 22:10:36 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001199.html">[Lincity-ng-devel] [Bug #18584] &quot;Start with empty board&quot; looks text,	but is button (patch)
+</A></li>
+        <LI>Next message: <A HREF="001201.html">[Lincity-ng-devel] [Bug #18586] Patch: scrollbars: up/down-buttons	for use
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1200">[ date ]</a>
+              <a href="thread.html#1200">[ thread ]</a>
+              <a href="subject.html#1200">[ subject ]</a>
+              <a href="author.html#1200">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18585, was updated on 2012-Apr-20 12:10
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: Patch: fasten setup_land()
+
+Details: Function void setup_land(void) on src/lincity/init_game.cpp has some speed issues.
+a) Calling for each map piece
+            if (MP_TYPE(x, y) == CST_WATER)
+                MP_INFO(x, y).flags |= FLAG_HAS_UNDERGROUND_WATER;
+
+Even it has already done
+            if (MP_TYPE(x, y) == CST_WATER) {
+                int navigable = MP_INFO(x, y).flags &amp; FLAG_IS_RIVER;
+                set_mappoint(x, y, CST_WATER);
+                MP_INFO(x, y).flags |= navigable;
+                MP_INFO(x, y).flags |= FLAG_HAS_UNDERGROUND_WATER;
+            }
+
+b) This is only minor tweakup
+-int d2w = (xw - x) * (xw - x) + (yw - y) * (yw - y);
++int d2w = (xw - x) * (xw - x);   //only 'x'-part
++if (d2w &gt; d2w_min)               //this is already too big
++    continue;                    //do not calculate 'y'-part
++d2w = d2w + (yw - y) * (yw - y); //calculate and add 'y'-part
+ if (d2w &lt; d2w_min) {
+     d2w_min = d2w;
+
+c) This global variable is checked inside loop. It is used inside loop, but not set.
+    /* Altitude has same effect as distance */
+    if( alt_step == 0 ){
+       alt_step = 400;
+    }
+
+   
+d) most notably is algorithm for calculating for each land-piece it's nearest river-piece
+     for (y = 0; y &lt; WORLD_SIDE_LEN; y++) {
+         for (x = 0; x &lt; WORLD_SIDE_LEN; x++) {
+            if (IS_RIVER(x, y))
+                 continue;
+
+             for (yw = 0; yw &lt; WORLD_SIDE_LEN; yw++) {
+                 for (xw = 0; xw &lt; WORLD_SIDE_LEN; xw++) {
+                     int d2w;
+                     if (!IS_RIVER(xw, yw))
+                         continue;
+        ....
+
+So it is O(n^4), where n=WORLD_SIDE_LEN. Currently WORLD_SIDE_LEN=100, so it is looped
+10^8=100M times.
+
+My implementation is:
+//collect rivers
+    for (y = 0; y &lt; WORLD_SIDE_LEN; y++) {
+        for (x = 0; x &lt; WORLD_SIDE_LEN; x++) {
+            if (IS_RIVER(x, y)) {
+                riversX[count_rivers] = x;
+                riversY[count_rivers] = y;
+                count_rivers++;
+           }
+       }
+    }
+
+//loop over map, skip rivers
+     for (y = 0; y &lt; WORLD_SIDE_LEN; y++) {
+         for (x = 0; x &lt; WORLD_SIDE_LEN; x++) {
+            if (IS_RIVER(x, y))
+                continue;
+            for (i=0;i&lt;count_rivers;i++) {
+
+    ....
+
+
+So it is run n^2 + R*n^2, where R is number of river-pieces.
+In worst case (whole map is only river-pieces) the R=n^2, so strictly speaking this is also O(n^4), but we know that R is about 490 (when n=100), so now loop is run 10000 + 490000 = 0.5M times.
+
+Patch is pushed to the gitorious:
+<A HREF="https://gitorious.org/lincity-n900/lincity-n900/commit/214161d058acd41f91d8a8d736f99c1055088622">https://gitorious.org/lincity-n900/lincity-n900/commit/214161d058acd41f91d8a8d736f99c1055088622</A>
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18585&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18585&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001199.html">[Lincity-ng-devel] [Bug #18584] &quot;Start with empty board&quot; looks text,	but is button (patch)
+</A></li>
+	<LI>Next message: <A HREF="001201.html">[Lincity-ng-devel] [Bug #18586] Patch: scrollbars: up/down-buttons	for use
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1200">[ date ]</a>
+              <a href="thread.html#1200">[ thread ]</a>
+              <a href="subject.html#1200">[ subject ]</a>
+              <a href="author.html#1200">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

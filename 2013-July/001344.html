@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] How to set required tech_level?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20How%20to%20set%20required%20tech_level%3F&In-Reply-To=%3C51F0FC93.3000503%40gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001343.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] How to set required tech_level?</H1>
+    <B>Cman</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20How%20to%20set%20required%20tech_level%3F&In-Reply-To=%3C51F0FC93.3000503%40gmail.com%3E"
+       TITLE="[Lincity-ng-devel] How to set required tech_level?">cman.lincity at gmail.com
+       </A><BR>
+    <I>Thu Jul 25 12:23:15 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001343.html">[Lincity-ng-devel] How to set required tech_level?
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1344">[ date ]</a>
+              <a href="thread.html#1344">[ thread ]</a>
+              <a href="subject.html#1344">[ subject ]</a>
+              <a href="author.html#1344">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Amit,
+
+I believe the most recent version of Lincity should work nicely for 
+creating new scenarios. If you deactivate &quot;binary mode&quot; in options
+the gz. files will be compressed ASCII text. You cannot easily change 
+the WORLD_SIDE_LEN in a savegame because the number of stored tiles must 
+fit. Also all statistical quantities like population will be updated 
+every day, month or year. Cheating on them is rather useless.
+However if you change the techlevel, total money or peoplepool in a .gz 
+savegame, that works nicely. I did that many times for testing stuff.
+
+The current implementation is that old format savegames can be read only 
+partially. I did not care about providing a translation from int1...int7
+to the state in every specific Construction class. To avoid 
+total_population == 0 all residences are provided with 5 people at 
+construction. You may want to boost that for converting scenarios more 
+quickly.
+initiaialization of tech_level and money would need to be done in 
+cleargame() in initgame.cpp.
+If you set those inside loadCityNG() in the MainLincity.cpp ine 130 it 
+should also work independent of the actual format that was loaded
+
+For the engine performance, the simulation now runs through a vector of 
+active modules, it is independent of mapsize. I dont think you can 
+possibly run into a performance problem up to 10k active constructions. 
+However Graphics is the bottleneck, especially if you zoom out on a huge 
+map. Savegame size also becomes a matter with huge maps.
+
+I hope I could help with that.
+
+Cheers
+cman79
+
+
+On 25.07.2013 11:34, Amit Ahire wrote:
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> I want to build a new city/map - to set a predefined city. With a bigger
+</I>&gt;<i> WORLD_LEN. I could use the &quot;good_times&quot; level to test all the modules in
+</I>&gt;<i> the game, but it has been built with the WORLD_LEN of 100.
+</I>&gt;<i>
+</I>&gt;<i> And I also tried editing the tech_level but I am not sure why it doesn't
+</I>&gt;<i> increase the level (probably there is some check in some module). With
+</I>&gt;<i> every update - the tech_level goes to 0. I tried changing the values when I
+</I>&gt;<i> am saving the level. It worked for Money and population (Although the
+</I>&gt;<i> population changes after one tick to represent the current population of
+</I>&gt;<i> the map )
+</I>&gt;<i>
+</I>&gt;<i> Two possibilities that dont work :
+</I>&gt;<i>
+</I>&gt;<i> engglobs.cpp - changing int tech_level doesn't work.
+</I>&gt;<i> loadsave.cpp or xmlloadsave.cpp - Either in saveXMLfile() and writing to
+</I>&gt;<i> gzprintf - SaveGlobals(). Or changing the value of tech_level while loading
+</I>&gt;<i> - loadGlobals() or loadXMLfile().
+</I>&gt;<i>
+</I>&gt;<i> Even tried changing the highest_tech_level variable - thinking
+</I>&gt;<i> probably along the line it does some check and compares it. But nothing.
+</I>&gt;<i>
+</I>&gt;<i> Any pointers?
+</I>&gt;<i>
+</I>&gt;<i> Also I am tring to run the level ROCKET_98 but its runs very slowly. Anyone
+</I>&gt;<i> has any idea how many building/modules the engine can handle without
+</I>&gt;<i> slowing down? I want to run with quickness 8 or 9 and full animation.
+</I>&gt;<i>
+</I>&gt;<i> With regards
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001343.html">[Lincity-ng-devel] How to set required tech_level?
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1344">[ date ]</a>
+              <a href="thread.html#1344">[ thread ]</a>
+              <a href="subject.html#1344">[ subject ]</a>
+              <a href="author.html#1344">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

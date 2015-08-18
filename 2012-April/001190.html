@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18562] Saving config crash on ARM-linux
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318562%5D%20Saving%20config%20crash%20on%20ARM-linux&In-Reply-To=%3C201204141738.q3EHc6TF016563%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001189.html">
+   <LINK REL="Next"  HREF="001191.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18562] Saving config crash on ARM-linux</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318562%5D%20Saving%20config%20crash%20on%20ARM-linux&In-Reply-To=%3C201204141738.q3EHc6TF016563%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18562] Saving config crash on ARM-linux">admin at berlios.de
+       </A><BR>
+    <I>Sat Apr 14 19:38:06 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001189.html">[Lincity-ng-devel] Which site is in use?
+</A></li>
+        <LI>Next message: <A HREF="001191.html">[Lincity-ng-devel] [Bug #18563] StatisticWindow too height,	and no scrollbars
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1190">[ date ]</a>
+              <a href="thread.html#1190">[ thread ]</a>
+              <a href="subject.html#1190">[ subject ]</a>
+              <a href="author.html#1190">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18562, was updated on 2012-Apr-14 09:38
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: Saving config crash on ARM-linux
+
+Details: Quitting game causes segmentation fault (every time), with backtrace:
+
+#0  0x40329cd8 in std::ostream::sentry::sentry(std::ostream&amp;) () from /usr/lib/libstdc++.so.6
+#1  0x4032aed8 in std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp; std::__ostream_insert&lt;char, std::char_traits&lt;char&gt; &gt;(std::basic_ostream&lt;char, std::char_traits&lt;char&gt; &gt;&amp;, char const*, int) () from /usr/lib/libstdc++.so.6
+#2  0x00065f84 in Config::save (this=0x204df8)
+    at /scratchbox/compilers/cs2007q3-glibc2.5-arm7/bin/../lib/gcc/arm-none-linux-gnueabi/4.2.1/../../../../arm-none-linux-gnueabi/include/c++/4.2.1/ostream:517
+#3  0x0003a160 in main (argc=5, argv=0xbe8bc674) at src/lincity-ng/main.cpp:427
+
+As seen, used compiler is gcc-4.2.1 and target (and host) is ARM-linux.
+
+I tested commenting out code from Config::save()
+This is safe to execute: OFileStream userconfig( &quot;userconfig.xml&quot; );
+But next one segfaults: userconfig &lt;&lt; &quot;&lt;?xml version=\&quot;1.0\&quot;?&gt;\n&quot;;
+
+When crash, it will make empty file  ~/.lincity-ng/userconfig.xml (so it has write access).
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18562&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18562&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001189.html">[Lincity-ng-devel] Which site is in use?
+</A></li>
+	<LI>Next message: <A HREF="001191.html">[Lincity-ng-devel] [Bug #18563] StatisticWindow too height,	and no scrollbars
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1190">[ date ]</a>
+              <a href="thread.html#1190">[ thread ]</a>
+              <a href="subject.html#1190">[ subject ]</a>
+              <a href="author.html#1190">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

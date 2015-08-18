@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Updating PO files from Template
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-August/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Updating%20PO%20files%20from%20Template&In-Reply-To=%3C20130810235434.GA7991%40pitr.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001352.html">
+   <LINK REL="Next"  HREF="001349.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Updating PO files from Template</H1>
+    <B>Wolfgang Becker</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Updating%20PO%20files%20from%20Template&In-Reply-To=%3C20130810235434.GA7991%40pitr.local%3E"
+       TITLE="[Lincity-ng-devel] Updating PO files from Template">uafr at gmx.de
+       </A><BR>
+    <I>Sun Aug 11 01:54:34 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001352.html">[Lincity-ng-devel] Updating PO files from Template
+</A></li>
+        <LI>Next message: <A HREF="001349.html">[Lincity-ng-devel] Multiplayer planned?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1353">[ date ]</a>
+              <a href="thread.html#1353">[ thread ]</a>
+              <a href="subject.html#1353">[ subject ]</a>
+              <a href="author.html#1353">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>On 2013-08-11 Volkan Gezer &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">volkangezer at gmail.com</A>&gt; wrote:
+&gt;<i> I am not sure if there is a script who checks for POT file to update
+</I>&gt;<i> PO files. For example, for Turkish, the total number of strings
+</I>
+At the moment there is no such script.
+
+&gt;<i> (untranslated, translated and fuzzy) were less than POT file. I
+</I>
+Then something went wrong in an older commit. There should be no
+fuzzy strings in the po files. Maybe last time some work in progress
+got uploaded. Fuzzy is usually wrong and untranslated is usually
+pointless to have in .po.
+
+&gt;<i> Also in help pages the same problem. There were some missing files
+</I>&gt;<i> that I needed to copy from help/en.
+</I>
+The help system does not use .po files at all so you have to create
+new files from scratch. No need to copy untranslated files, if a
+file is not found in the current language help/en/ is used instead.
+
+Wolfgang
+-- 
+Wolfgang Becker  ***  eMail <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">uafr at gmx.de</A>  ***  <A HREF="http://uafr.freeshell.org/">http://uafr.freeshell.org/</A>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001352.html">[Lincity-ng-devel] Updating PO files from Template
+</A></li>
+	<LI>Next message: <A HREF="001349.html">[Lincity-ng-devel] Multiplayer planned?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1353">[ date ]</a>
+              <a href="thread.html#1353">[ thread ]</a>
+              <a href="subject.html#1353">[ subject ]</a>
+              <a href="author.html#1353">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

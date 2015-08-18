@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Pollution from light industry (possible bug)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Pollution%20from%20light%20industry%20%28possible%20bug%29&In-Reply-To=%3CE1JRGTo-000OfP-00.jaky_lincity-mail-ru%40f97.mail.ru%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000345.html">
+   <LINK REL="Next"  HREF="000351.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Pollution from light industry (possible bug)</H1>
+    <B>Jaky abcdef</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Pollution%20from%20light%20industry%20%28possible%20bug%29&In-Reply-To=%3CE1JRGTo-000OfP-00.jaky_lincity-mail-ru%40f97.mail.ru%3E"
+       TITLE="[Lincity-ng-devel] Pollution from light industry (possible bug)">jaky_lincity at mail.ru
+       </A><BR>
+    <I>Tue Feb 19 01:37:04 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000345.html">[Lincity-ng-devel] [Lincity-ng-commit] r1384 -	trunk/src/lincity-ng
+</A></li>
+        <LI>Next message: <A HREF="000351.html">[Lincity-ng-devel] Fwd: Re: Pollution from light industry bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#349">[ date ]</a>
+              <a href="thread.html#349">[ thread ]</a>
+              <a href="subject.html#349">[ subject ]</a>
+              <a href="author.html#349">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I think there is a bug in the pollution generation of the light industry.
+
+In light_industry.cpp is a comment which says:
+&quot;Pollution is based on goods produced and is affected by tech level above 1000 (displayed as 100) whereupon it is reduced by one percent per 10 tech_level points.&quot;
+If I understand the code correctly 1000 tech points are displayed as 0.1 or 0.1% to the user. As the code stands now the pollution from light industries is reduced starting at tech-level 0.1% till at tech-level 0.2% there is no more pollution from light industry.
+I think this is the reason why I have never seen pollution from light industry. If I replace the 1000's in the code which follows the comment with MAX_TECH_LEVEL, the light industry starts to produce pollution.
+See the attached patch for a possible fix.
+
+Jaky
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: l_industry_pollution.patch
+Type: application/octet-stream
+Size: 1352 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20080219/5b621fbc/attachment.obj">https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20080219/5b621fbc/attachment.obj</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000345.html">[Lincity-ng-devel] [Lincity-ng-commit] r1384 -	trunk/src/lincity-ng
+</A></li>
+	<LI>Next message: <A HREF="000351.html">[Lincity-ng-devel] Fwd: Re: Pollution from light industry bugfix
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#349">[ date ]</a>
+              <a href="thread.html#349">[ thread ]</a>
+              <a href="subject.html#349">[ subject ]</a>
+              <a href="author.html#349">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

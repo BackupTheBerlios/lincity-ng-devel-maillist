@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18563] StatisticWindow too height,	and no scrollbars
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318563%5D%20StatisticWindow%20too%20height%2C%0A%09and%20no%20scrollbars&In-Reply-To=%3C201208061951.q76JptOn003635%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001224.html">
+   <LINK REL="Next"  HREF="001226.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18563] StatisticWindow too height,	and no scrollbars</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318563%5D%20StatisticWindow%20too%20height%2C%0A%09and%20no%20scrollbars&In-Reply-To=%3C201208061951.q76JptOn003635%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18563] StatisticWindow too height,	and no scrollbars">admin at berlios.de
+       </A><BR>
+    <I>Mon Aug  6 21:51:55 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001224.html">[Lincity-ng-devel] [Bug #18454] New Repository?
+</A></li>
+        <LI>Next message: <A HREF="001226.html">[Lincity-ng-devel] [Bug #18568] Crash: New game menu: 'ok' before	scenario is chosen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1225">[ date ]</a>
+              <a href="thread.html#1225">[ thread ]</a>
+              <a href="subject.html#1225">[ subject ]</a>
+              <a href="author.html#1225">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18563, was updated on 2012-Apr-15 10:33
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Duplicate
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: StatisticWindow too height, and no scrollbars
+
+Details: I'm running game with only 480px height and statistics not fit the screen, there are no 'okey' button visible. (workaround: back to mainmenu, back to game)
+
+If gamestats.xml are just shrinked, all content will still fit to the dialog.
+-&lt;Window xmlns=&quot;<A HREF="http://lincity-ng.berlios.de/gui">http://lincity-ng.berlios.de/gui</A>&quot; border=&quot;5&quot; titlesize=&quot;25&quot; width=&quot;650&quot; height=&quot;600&quot; name=&quot;GameStats&quot;&gt;
++&lt;Window xmlns=&quot;<A HREF="http://lincity-ng.berlios.de/gui">http://lincity-ng.berlios.de/gui</A>&quot; border=&quot;5&quot; titlesize=&quot;25&quot; width=&quot;650&quot; height=&quot;480&quot; name=&quot;GameStats&quot;&gt;
+
+Here is game on 'height=480'=device, which also show gamestats: <A HREF="http://youtu.be/MOlwcbGu7u0">http://youtu.be/MOlwcbGu7u0</A>
+(generating statistics take time) 
+
+Follow-Ups:
+
+Date: 2012-Aug-06 21:51
+By: wolfgangb
+
+Comment:
+r1535 | alainb | 2009-03-03 16:20:29 +0100 (Tue, 03 Mar 2009) | 2 lines
+reduce stats window size and fonts (13), so 640x480 is playable
+ fix #015203
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18563&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18563&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001224.html">[Lincity-ng-devel] [Bug #18454] New Repository?
+</A></li>
+	<LI>Next message: <A HREF="001226.html">[Lincity-ng-devel] [Bug #18568] Crash: New game menu: 'ok' before	scenario is chosen
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1225">[ date ]</a>
+              <a href="thread.html#1225">[ thread ]</a>
+              <a href="subject.html#1225">[ subject ]</a>
+              <a href="author.html#1225">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

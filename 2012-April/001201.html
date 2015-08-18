@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18586] Patch: scrollbars: up/down-buttons	for use
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318586%5D%20Patch%3A%20scrollbars%3A%20up/down-buttons%0A%09for%20use&In-Reply-To=%3C201204210640.q3L6egep014948%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001200.html">
+   <LINK REL="Next"  HREF="001202.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18586] Patch: scrollbars: up/down-buttons	for use</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318586%5D%20Patch%3A%20scrollbars%3A%20up/down-buttons%0A%09for%20use&In-Reply-To=%3C201204210640.q3L6egep014948%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18586] Patch: scrollbars: up/down-buttons	for use">admin at berlios.de
+       </A><BR>
+    <I>Sat Apr 21 08:40:42 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001200.html">[Lincity-ng-devel] [Bug #18585] Patch: fasten setup_land()
+</A></li>
+        <LI>Next message: <A HREF="001202.html">[Lincity-ng-devel] [Bug #18587] Patch: load/save menus,	no icon for back (only text)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1201">[ date ]</a>
+              <a href="thread.html#1201">[ thread ]</a>
+              <a href="subject.html#1201">[ subject ]</a>
+              <a href="author.html#1201">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18586, was updated on 2012-Apr-20 22:40
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: Patch: scrollbars: up/down-buttons for use
+
+Details: Scrollbars (cedits/help/messages) have up/dow-buttons, but they are not doing anything. With this patch, they scrolls some fixed amount.
+
+--- a/src/gui/ScrollBar.cpp
++++ b/src/gui/ScrollBar.cpp
+@@ -244,11 +244,32 @@ ScrollBar::setValue(float value)
+ void
+ ScrollBar::buttonPressed(Button* button)
+ {
++    //std::cout &lt;&lt; &quot;scrollbar::buttonPressed \n&quot;;
++    int newValue = currentVal;
++    if(button == button1().getComponent()) {
++       //std::cout &lt;&lt; &quot; scrollbar::buttonPressed #1=up\n&quot;;
++       newValue -= 100;
++       if (newValue&lt;minVal) 
++           newValue = minVal;
++    }
++
++    if(button == button2().getComponent()) {
++       //std::cout &lt;&lt; &quot; scrollbar::buttonPressed #2=down\n&quot;;
++       newValue += 100;
++       if (newValue&gt;maxVal) 
++           newValue = maxVal;
++    }
++
++    setValue(newValue);
++    valueChanged(this, currentVal);
++ 
++    /*
+     if(button == button1().getComponent()) {
+         scrollspeed = -SCROLLSPEED;
+     } else {
+         scrollspeed = SCROLLSPEED;
+     }
++    */
+ }
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18586&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18586&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001200.html">[Lincity-ng-devel] [Bug #18585] Patch: fasten setup_land()
+</A></li>
+	<LI>Next message: <A HREF="001202.html">[Lincity-ng-devel] [Bug #18587] Patch: load/save menus,	no icon for back (only text)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1201">[ date ]</a>
+              <a href="thread.html#1201">[ thread ]</a>
+              <a href="subject.html#1201">[ subject ]</a>
+              <a href="author.html#1201">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

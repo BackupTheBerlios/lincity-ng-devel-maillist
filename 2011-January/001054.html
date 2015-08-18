@@ -1,0 +1,284 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #17840] Blank option in new game menu
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317840%5D%20Blank%20option%20in%20new%20game%20menu&In-Reply-To=%3C201101052109.p05L9KbA010732%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001053.html">
+   <LINK REL="Next"  HREF="001055.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #17840] Blank option in new game menu</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317840%5D%20Blank%20option%20in%20new%20game%20menu&In-Reply-To=%3C201101052109.p05L9KbA010732%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #17840] Blank option in new game menu">admin at berlios.de
+       </A><BR>
+    <I>Wed Jan  5 22:09:20 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001053.html">[Lincity-ng-devel] [Bug #17840] Blank option in new game menu
+</A></li>
+        <LI>Next message: <A HREF="001055.html">[Lincity-ng-devel] project infrastructure choice.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1054">[ date ]</a>
+              <a href="thread.html#1054">[ thread ]</a>
+              <a href="subject.html#1054">[ subject ]</a>
+              <a href="author.html#1054">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17840, was updated on 2011-Jan-04 17:43
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: confirmed
+Status: Open
+Resolution: Fixed
+Bug Group: None
+Priority: 5
+Submitted by: samaan
+Assigned to : wolfgangb
+Summary: Blank option in new game menu
+
+Details: LinCityNG version: 2.0
+
+When I click in &quot;New Game&quot; option the scenarios list show 6 options but it exists just 5 scenarios in fact. If I select the last (blank) option and click in &quot;Start&quot;, the applications crash.
+
+Follow-Ups:
+
+Date: 2011-Jan-05 22:09
+By: wolfgangb
+
+Comment:
+It works fine on my machine.  Any local changes in the gui files? Otherwise I'm out of ideas right now. 
+-------------------------------------------------------
+
+Date: 2011-Jan-05 19:02
+By: samaan
+
+Comment:
+It's in SVN version, revision 1607.
+-------------------------------------------------------
+
+Date: 2011-Jan-05 18:42
+By: wolfgangb
+
+Comment:
+Is the new crash in svn version or from a patched 2.0? 
+-------------------------------------------------------
+
+Date: 2011-Jan-05 14:13
+By: samaan
+
+Comment:
+Now the application crashes when I click in &quot;New Game&quot;, &quot;Load&quot;, &quot;Save&quot; or &quot;Options&quot;. Stack below:
+
+#0  0xb7bd94d9 in std::_List_node_base::hook(std::_List_node_base*) () from /usr/lib/libstdc++.so.6
+#1  0x0806e7d9 in MainMenu::fillNewGameMenu (this=0x828bae8) at /usr/include/c++/4.3/bits/stl_list.h:1342
+#2  0x0806f9c4 in MainMenu::loadNewGameMenu (this=0x828bae8) at src/lincity-ng/MainMenu.cpp:250
+#3  0x0806fa6c in MainMenu::newGameButtonClicked (this=0x828bae8) at src/lincity-ng/MainMenu.cpp:692
+#4  0x080b7e67 in Button::event (this=0x828c048, event=@0xbfffeccc) at src/gui/callback/Signal.hpp:88
+#5  0x080a509e in Component::event (this=0x82bc0a0, event=@0xbfffed2c) at src/gui/Component.cpp:101
+#6  0x080a509e in Component::event (this=0x82bb7d0, event=@0xbfffedb8) at src/gui/Component.cpp:101
+#7  0x080a29ca in Desktop::event (this=0x82bb7d0, event=@0xbfffedb8) at src/gui/Desktop.cpp:78
+#8  0x0806b54b in MainMenu::run (this=0x828bae8) at src/lincity-ng/MainMenu.cpp:894
+#9  0x0809692e in mainLoop () at src/lincity-ng/main.cpp:396
+#10 0x08097761 in main (argc=-1212898840, argv=0xbffff004) at src/lincity-ng/main.cpp:557
+
+-------------------------------------------------------
+
+Date: 2011-Jan-04 23:01
+By: wolfgangb
+
+Comment:
+Fixed in revision 1606. 
+
+loadCityNG already did a check if the file exists but it also accepted directories.
+Not any longer.
+-------------------------------------------------------
+
+Date: 2011-Jan-04 21:12
+By: wolfgangb
+
+Comment:
+At least that one is easy to reproduce. 
+-------------------------------------------------------
+
+Date: 2011-Jan-04 17:46
+By: samaan
+
+Comment:
+To solve this bug I remove the blank option from menu. I do not know if here is the better place to put my resolution, so I am so sorry if it ins't. My patch:
+
+Index: lincity-ng-2.0/data/gui/newgame.xml
+===================================================================
+--- lincity-ng-2.0.orig/data/gui/newgame.xml
++++ lincity-ng-2.0/data/gui/newgame.xml
+@@ -25,7 +25,7 @@
+ 		&lt;/cell&gt;
+ 		
+ 		&lt;cell row=&quot;2&quot; col=&quot;1&quot;&gt;
+-		&lt;TableLayout rows=&quot;8&quot; cols=&quot;3&quot;&gt;
++		&lt;TableLayout rows=&quot;7&quot; cols=&quot;3&quot;&gt;
+ 			&lt;colsize col=&quot;1&quot; relative=&quot;4&quot;/&gt;
+ 			&lt;colsize col=&quot;2&quot; relative=&quot;10&quot;/&gt;
+ 			&lt;colsize col=&quot;3&quot; relative=&quot;15&quot;/&gt;
+@@ -76,15 +76,6 @@
+ 			&lt;text-caption style=&quot;button&quot;&gt;Savegame 1234567890&lt;/text-caption&gt;
+ 			&lt;image src=&quot;images/gui/buttons/savebutton.png&quot;/&gt;
+ 			&lt;image-hover src=&quot;images/gui/buttons/savebutton-hover.png&quot;/&gt;
+-			&lt;image-clicked src=&quot;images/gui/buttons/savebutton-clicked.png&quot;/&gt;
+-			&lt;image-checked src=&quot;images/gui/buttons/savebutton-checked.png&quot;/&gt;
+-			&lt;/CheckButton&gt;
+-			&lt;/cell&gt;
+-			&lt;cell row=&quot;7&quot; col=&quot;2&quot;&gt;
+-			&lt;CheckButton name=&quot;File5&quot;&gt;
+-			&lt;text-caption style=&quot;button&quot;&gt;Savegame 1234567890&lt;/text-caption&gt;
+-			&lt;image src=&quot;images/gui/buttons/savebutton.png&quot;/&gt;
+-			&lt;image-hover src=&quot;images/gui/buttons/savebutton-hover.png&quot;/&gt;
+ 			&lt;image-clicked src=&quot;images/gui/buttons/savebutton-clicked.png&quot;/&gt;
+ 			&lt;image-checked src=&quot;images/gui/buttons/savebutton-checked.png&quot;/&gt;
+ 			&lt;/CheckButton&gt;
+Index: lincity-ng-2.0/src/lincity-ng/MainMenu.cpp
+===================================================================
+--- lincity-ng-2.0.orig/src/lincity-ng/MainMenu.cpp
++++ lincity-ng-2.0/src/lincity-ng/MainMenu.cpp
+@@ -101,7 +101,7 @@ MainMenu::loadMainMenu()
+ 
+ void MainMenu::fillNewGameMenu()
+ {
+-  const std::string buttonNames[]={&quot;File0&quot;,&quot;File1&quot;,&quot;File2&quot;,&quot;File3&quot;,&quot;File4&quot;,&quot;File5&quot;};
++  const std::string buttonNames[]={&quot;File0&quot;,&quot;File1&quot;,&quot;File2&quot;,&quot;File3&quot;,&quot;File4&quot;};
+   
+   char **files= PHYSFS_enumerateFiles(&quot;opening&quot;);
+   
+@@ -109,7 +109,7 @@ void MainMenu::fillNewGameMenu()
+ 
+   fileMap.clear(); 
+  
+-  for(int i=0;i&lt;6;i++)
++  for(unsigned int i=0; i&lt;sizeof(buttonNames) / sizeof(std::string); i++)
+   {
+     CheckButton *button=getCheckButton(*newGameMenu.get(),buttonNames[i]);
+     
+@@ -147,14 +147,14 @@ void MainMenu::fillNewGameMenu()
+ 
+ void MainMenu::fillLoadMenu( bool save /*= false*/ )
+ {
+-    const std::string buttonNames[]={&quot;File0&quot;,&quot;File1&quot;,&quot;File2&quot;,&quot;File3&quot;,&quot;File4&quot;,&quot;File5&quot;};
++    const std::string buttonNames[]={&quot;File0&quot;,&quot;File1&quot;,&quot;File2&quot;,&quot;File3&quot;,&quot;File4&quot;};
+   
+     char** rc = PHYSFS_enumerateFiles(&quot;/&quot;);
+ 
+     char* curfile;
+     CheckButton *button;
+ 
+-    for(int i=0;i&lt;6;i++) {
++    for(unsigned int i=0; i&lt;sizeof(buttonNames) / sizeof(std::string); i++){
+     	char* recentfile = NULL;
+         PHYSFS_sint64 t = 0;
+ 
+@@ -368,7 +368,7 @@ MainMenu::selectLoadSaveGameButtonClicke
+        after an existing one.
+     */
+        
+-    const std::string bs[]={&quot;File0&quot;,&quot;File1&quot;,&quot;File2&quot;,&quot;File3&quot;,&quot;File4&quot;,&quot;File5&quot;,&quot;&quot;};
++    const std::string bs[]={&quot;File0&quot;,&quot;File1&quot;,&quot;File2&quot;,&quot;File3&quot;,&quot;File4&quot;,&quot;&quot;};
+     for(int i=0;std::string(bs[i]).length();i++) {
+         CheckButton *b=getCheckButton(*currentMenu,bs[i]);
+         if(b-&gt;getName()!=button-&gt;getName()){
+Index: lincity-ng-2.0/data/gui/loadgame.xml
+===================================================================
+--- lincity-ng-2.0.orig/data/gui/loadgame.xml
++++ lincity-ng-2.0/data/gui/loadgame.xml
+@@ -11,7 +11,7 @@
+ 		&lt;Paragraph style=&quot;menutitle&quot; translatable=&quot;yes&quot;&gt;Load Game&lt;/Paragraph&gt;
+ 		&lt;/cell&gt;
+ 		&lt;cell row=&quot;2&quot; col=&quot;1&quot;&gt;
+-		&lt;TableLayout rows=&quot;8&quot; cols=&quot;3&quot;&gt;
++		&lt;TableLayout rows=&quot;7&quot; cols=&quot;3&quot;&gt;
+ 			&lt;colsize col=&quot;1&quot; relative=&quot;4&quot;/&gt;
+ 			&lt;colsize col=&quot;2&quot; relative=&quot;10&quot;/&gt;
+ 			&lt;colsize col=&quot;3&quot; relative=&quot;15&quot;/&gt;
+@@ -61,15 +61,6 @@
+ 				&lt;text-caption style=&quot;boxtext&quot;&gt;Savegame 123456789012345678901234567890&lt;/text-caption&gt;
+ 				&lt;image src=&quot;images/gui/buttons/savebutton.png&quot;/&gt;
+ 				&lt;image-hover src=&quot;images/gui/buttons/savebutton-hover.png&quot;/&gt;
+-				&lt;image-clicked src=&quot;images/gui/buttons/savebutton-clicked.png&quot;/&gt;
+-				&lt;image-checked src=&quot;images/gui/buttons/savebutton-checked.png&quot;/&gt;
+-			&lt;/CheckButton&gt;
+-			&lt;/cell&gt;
+-			&lt;cell row=&quot;7&quot; col=&quot;2&quot;&gt;
+-			&lt;CheckButton name=&quot;File5&quot;&gt;
+-				&lt;text-caption style=&quot;boxtext&quot;&gt;Savegame 123456789012345678901234567890&lt;/text-caption&gt;
+-				&lt;image src=&quot;images/gui/buttons/savebutton.png&quot;/&gt;
+-				&lt;image-hover src=&quot;images/gui/buttons/savebutton-hover.png&quot;/&gt;
+ 				&lt;image-clicked src=&quot;images/gui/buttons/savebutton-clicked.png&quot;/&gt;
+ 				&lt;image-checked src=&quot;images/gui/buttons/savebutton-checked.png&quot;/&gt;
+ 			&lt;/CheckButton&gt;
+Index: lincity-ng-2.0/data/gui/savegame.xml
+===================================================================
+--- lincity-ng-2.0.orig/data/gui/savegame.xml
++++ lincity-ng-2.0/data/gui/savegame.xml
+@@ -11,7 +11,7 @@
+ 		&lt;Paragraph style=&quot;menutitle&quot; translatable=&quot;yes&quot;&gt;Save Game&lt;/Paragraph&gt;
+ 		&lt;/cell&gt;
+ 		&lt;cell row=&quot;2&quot; col=&quot;1&quot;&gt;
+-		&lt;TableLayout rows=&quot;8&quot; cols=&quot;3&quot;&gt;
++		&lt;TableLayout rows=&quot;7&quot; cols=&quot;3&quot;&gt;
+ 		&lt;!--	&lt;rowsize row=&quot;1&quot; fixed=&quot;50&quot;/&gt;
+ 			&lt;rowsize row=&quot;4&quot; fixed=&quot;50&quot;/&gt;  --&gt;
+ 			&lt;colsize col=&quot;1&quot; relative=&quot;4&quot;/&gt;
+@@ -63,15 +63,6 @@
+ 				&lt;text-caption style=&quot;boxtext&quot;&gt;Savegame 123456789012345678901234567890&lt;/text-caption&gt;
+ 				&lt;image src=&quot;images/gui/buttons/savebutton.png&quot;/&gt;
+ 				&lt;image-hover src=&quot;images/gui/buttons/savebutton-hover.png&quot;/&gt;
+-				&lt;image-clicked src=&quot;images/gui/buttons/savebutton-clicked.png&quot;/&gt;
+-				&lt;image-checked src=&quot;images/gui/buttons/savebutton-checked.png&quot;/&gt;
+-			&lt;/CheckButton&gt;
+-			&lt;/cell&gt;
+-			&lt;cell row=&quot;7&quot; col=&quot;2&quot;&gt;
+-			&lt;CheckButton name=&quot;File5&quot;&gt;
+-				&lt;text-caption style=&quot;boxtext&quot;&gt;Savegame 123456789012345678901234567890&lt;/text-caption&gt;
+-				&lt;image src=&quot;images/gui/buttons/savebutton.png&quot;/&gt;
+-				&lt;image-hover src=&quot;images/gui/buttons/savebutton-hover.png&quot;/&gt;
+ 				&lt;image-clicked src=&quot;images/gui/buttons/savebutton-clicked.png&quot;/&gt;
+ 				&lt;image-checked src=&quot;images/gui/buttons/savebutton-checked.png&quot;/&gt;
+ 			&lt;/CheckButton&gt;
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17840&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17840&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001053.html">[Lincity-ng-devel] [Bug #17840] Blank option in new game menu
+</A></li>
+	<LI>Next message: <A HREF="001055.html">[Lincity-ng-devel] project infrastructure choice.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1054">[ date ]</a>
+              <a href="thread.html#1054">[ thread ]</a>
+              <a href="subject.html#1054">[ subject ]</a>
+              <a href="author.html#1054">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

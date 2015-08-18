@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] informations about building + translations
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20informations%20about%20building%20%2B%20translations&In-Reply-To=%3C200704242221.15801.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000150.html">
+   <LINK REL="Next"  HREF="000153.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] informations about building + translations</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20informations%20about%20building%20%2B%20translations&In-Reply-To=%3C200704242221.15801.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] informations about building + translations">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Apr 24 22:21:15 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000150.html">[Lincity-ng-devel] [Lincity-ng-commit] r1198 -	trunk/src/lincity-ng
+</A></li>
+        <LI>Next message: <A HREF="000153.html">[Lincity-ng-devel] how to add a new dialog message ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#151">[ date ]</a>
+              <a href="thread.html#151">[ thread ]</a>
+              <a href="subject.html#151">[ subject ]</a>
+              <a href="author.html#151">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+I believe that the informations (mps_...) about how work a building
+are sometimes misleading, and can cause some confusion to the player,
+who believe the building does not work because it has 0% in inventory
+but at the same time shows efficiency 100%.
+An easy workaround would be to replace &quot;inventory&quot; by &quot;surplus&quot;. This
+is exactly the same thing as the inventory is done after the building
+did its production, but seems much more clear if you don't have read
+the modules sources.
+
+But this need some changes in all the translations too, so i won't 
+commit this change without explicit approval (i'm getting more cautious :-)
+
+Also for light and industries, the translation is
+_(&quot;light&quot;) _(&quot;industry&quot;) and it should be _(&quot;Light industry&quot;)
+because at least in french the translation is not word by word,
+and is in reverse order &quot;industrie l&#233;g&#232;re&quot;.
+
+Last, _if_ we want to display more precise information on how/why a
+building work or not, we can store information in (x+1,y)... like
+what is done for &quot;port&quot; and display these in mps_ . I don't know if
+it is a good idea or not.
+
+Cheers.
+Alain
+
+PS: currently i can spend a lot of time on lincity-NG but
+i'll slow down very soon ;-)
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000150.html">[Lincity-ng-devel] [Lincity-ng-commit] r1198 -	trunk/src/lincity-ng
+</A></li>
+	<LI>Next message: <A HREF="000153.html">[Lincity-ng-devel] how to add a new dialog message ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#151">[ date ]</a>
+              <a href="thread.html#151">[ thread ]</a>
+              <a href="subject.html#151">[ subject ]</a>
+              <a href="author.html#151">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

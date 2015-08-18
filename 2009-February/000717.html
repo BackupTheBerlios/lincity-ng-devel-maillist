@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Lake image
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Lake%20image&In-Reply-To=%3C331576.32592.qm%40web31910.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000715.html">
+   <LINK REL="Next"  HREF="000719.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Lake image</H1>
+    <B>Daniel Santos</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Lake%20image&In-Reply-To=%3C331576.32592.qm%40web31910.mail.mud.yahoo.com%3E"
+       TITLE="[Lincity-ng-devel] Lake image">javatroubadour at yahoo.com
+       </A><BR>
+    <I>Thu Feb  5 09:34:31 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000715.html">[Lincity-ng-devel] Lake image
+</A></li>
+        <LI>Next message: <A HREF="000719.html">[Lincity-ng-devel] Lake image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#717">[ date ]</a>
+              <a href="thread.html#717">[ thread ]</a>
+              <a href="subject.html#717">[ subject ]</a>
+              <a href="author.html#717">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I love the new trees &amp; grass visually.  I find it difficult to navigate
+however.  I'm currently playing a game that's heavily forested and when I hit
+H to hide the buildings I like to be able to see where every building is by
+the squares at their bases, but the trees obscure large portions of this
+making it difficult to figure out (much more so than on a more grassy or
+desert area).  So I hope that some compromise can be reached that doesn't
+remove the trees, reeds and grass that I really love.
+
+Perhaps in certain view modes the tall terrain images (trees, reeds, etc.)
+can be drawn first and then the squares drawn over them.  I know will look
+really non-intuitive and non-3d though. :(  Maybe there's a way to draw the
+trees so that they are drawn with a transparency over the squares where the
+building foundations are?  The problem with this is that the background
+(under the trees) will be darker than normal as the trees will be faded both
+where they overlap and where they don't.  I don't know OpenGL very well at
+all, but the only other way I know to avoid this is to draw all of the tall
+terrain images first (trees, forest, etc.) and then draw everything a second
+time, and draw the trees at half alpha on the second pass.  This would end up
+causing them to be drawn twice, but then they would only be semi-transparent
+where they overlap the building foundations -- for that matter, this would
+work when rendering with or without hiding the buildings.
+
+Maybe something similar can work for water too?  When generating a map that
+has a lot of marshes, I also cannot see where they are unless two tiles are
+joined making a more pronounced water image.  I basically have to attempt to
+build something and hover to determine where they are (or go into an
+alternate map view to see the water).
+
+Daniel
+
+
+
+      
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000715.html">[Lincity-ng-devel] Lake image
+</A></li>
+	<LI>Next message: <A HREF="000719.html">[Lincity-ng-devel] Lake image
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#717">[ date ]</a>
+              <a href="thread.html#717">[ thread ]</a>
+              <a href="subject.html#717">[ subject ]</a>
+              <a href="author.html#717">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

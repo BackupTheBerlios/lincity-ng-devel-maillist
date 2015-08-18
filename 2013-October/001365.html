@@ -1,0 +1,83 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] difficulties using SDL from src/lincity
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-October/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20difficulties%20using%20SDL%20from%20src/lincity&In-Reply-To=%3C526AB701.8030606%40Gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001366.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] difficulties using SDL from src/lincity</H1>
+    <B>Khristian Cramberger</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20difficulties%20using%20SDL%20from%20src/lincity&In-Reply-To=%3C526AB701.8030606%40Gmail.com%3E"
+       TITLE="[Lincity-ng-devel] difficulties using SDL from src/lincity">cman.lincity at gmail.com
+       </A><BR>
+    <I>Fri Oct 25 20:22:57 CEST 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001366.html">[Lincity-ng-devel] using SDL from src/lincity RESOLVED
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1365">[ date ]</a>
+              <a href="thread.html#1365">[ thread ]</a>
+              <a href="subject.html#1365">[ subject ]</a>
+              <a href="author.html#1365">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello Everyone,
+
+I would really like to include SDL related stuff from src/lincity. But I 
+have no idea how to accomplish this.
+
+I have tested a work-around with void* instead of Mix_Chunk* implemented 
+for blacksmith only. Does anyone know
+how to for instance &quot;#include lincity-ng/Sound.cpp&quot; inside 
+&quot;lincity/lintypes.h&quot;? The sound worked but somehow
+all animation stopped.
+
+I would need that to load the *.wav directly into arrays of each 
+ConstructionGroup. Constructions (aka modules) can than choose on their own
+a sound to play. Later the same mechanism could be used for the 
+data/images/tile graphics.  Just put the pngs to the folder and then 
+modify /lincity/modules/whatever.cpp to actually use the nth image in 
+animation. Then there would no longer be the need
+for global type management. Adding new graphics should become much more 
+simple to handle.
+
+
+cheers
+Khristian
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001366.html">[Lincity-ng-devel] using SDL from src/lincity RESOLVED
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1365">[ date ]</a>
+              <a href="thread.html#1365">[ thread ]</a>
+              <a href="subject.html#1365">[ subject ]</a>
+              <a href="author.html#1365">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

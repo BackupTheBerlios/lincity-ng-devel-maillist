@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] diagonal track
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20diagonal%20track&In-Reply-To=%3C47D2D363.5080603%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000419.html">
+   <LINK REL="Next"  HREF="000424.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] diagonal track</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20diagonal%20track&In-Reply-To=%3C47D2D363.5080603%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] diagonal track">magicfox at magic.fr
+       </A><BR>
+    <I>Sat Mar  8 18:56:51 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000419.html">[Lincity-ng-devel] diagonal track
+</A></li>
+        <LI>Next message: <A HREF="000424.html">[Lincity-ng-devel] diagonal track
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#420">[ date ]</a>
+              <a href="thread.html#420">[ thread ]</a>
+              <a href="subject.html#420">[ subject ]</a>
+              <a href="author.html#420">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Looks much better then the staircase shape :). For the normal corners I 
+</I>&gt;<i> prefer using the
+</I>&gt;<i> old track images. It would be nice if the user can construct diagonal 
+</I>&gt;<i> roads with the road
+</I>&gt;<i> building function. Currently when you try to build a diagonal track, you 
+</I>&gt;<i> get a straight track
+</I>&gt;<i> with a 90 degrees corner in the middle of the track.
+</I>&gt;<i> 
+</I>&gt;<i> Ivar
+</I>
+Hi Ivar,
+
+In my demo, I used the previous corners to manage diagonal tracks 
+pictures (no program change).
+If we use 4 new pictures for diagonal tracks, a load of an old map with 
+staircase stay unchanged, but it's acceptable.
+
+Here is a quick test patch to build in diagonal mode with the existent 
+track picture (corners).
+The next step is to implement the new 4 pictures for diagonal tracks 
+(and 4 for roads) ;-)
+The prefix can be trackdxx but for the moment you have to use
+trackur, trackdr, tracklu and trackld.png
+--
+Thierry
+-------------- next part --------------
+A non-text attachment was scrubbed...
+Name: use-diagonal.diff
+Type: application/patch
+Size: 3244 bytes
+Desc: not available
+URL: &lt;<A HREF="https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20080308/81ac22cc/attachment.bin">https://lists.berlios.de/pipermail/lincity-ng-devel/attachments/20080308/81ac22cc/attachment.bin</A>&gt;
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000419.html">[Lincity-ng-devel] diagonal track
+</A></li>
+	<LI>Next message: <A HREF="000424.html">[Lincity-ng-devel] diagonal track
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#420">[ date ]</a>
+              <a href="thread.html#420">[ thread ]</a>
+              <a href="subject.html#420">[ subject ]</a>
+              <a href="author.html#420">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

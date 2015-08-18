@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #11770] patch for gcc 4.3 (snapshot)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-August/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2311770%5D%20patch%20for%20gcc%204.3%20%28snapshot%29&In-Reply-To=%3C200708152203.l7FM3RUu023899%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000185.html">
+   <LINK REL="Next"  HREF="000187.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #11770] patch for gcc 4.3 (snapshot)</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2311770%5D%20patch%20for%20gcc%204.3%20%28snapshot%29&In-Reply-To=%3C200708152203.l7FM3RUu023899%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #11770] patch for gcc 4.3 (snapshot)">admin at berlios.de
+       </A><BR>
+    <I>Thu Aug 16 00:03:27 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000185.html">[Lincity-ng-devel] [Bug #11770] patch for gcc 4.3 (snapshot)
+</A></li>
+        <LI>Next message: <A HREF="000187.html">[Lincity-ng-devel] Release 1.1.1 out now
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #11770, was updated on 2007-Aug-15 01:37
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: None
+Priority: 5
+Submitted by: goneri
+Assigned to : none
+Summary: patch for gcc 4.3 (snapshot)
+
+Details: Hi,
+
+A patch for gcc 4.3 and the last stable release is avalaible here:
+<A HREF="http://svn.debian.org/wsvn/pkg-games/packages/trunk/lincity-ng/debian/patches/gcc-4.3.diff?op=file&amp;rev=0&amp;sc=0">http://svn.debian.org/wsvn/pkg-games/packages/trunk/lincity-ng/debian/patches/gcc-4.3.diff?op=file&amp;rev=0&amp;sc=0</A>
+
+This is another very minor patch to remove the wrong Application section:
+<A HREF="http://svn.debian.org/wsvn/pkg-games/packages/trunk/lincity-ng/debian/patches/remove-Application-section-from-desktopfile.diff?op=file&amp;rev=0&amp;sc=0">http://svn.debian.org/wsvn/pkg-games/packages/trunk/lincity-ng/debian/patches/remove-Application-section-from-desktopfile.diff?op=file&amp;rev=0&amp;sc=0</A>
+
+&quot;Application&quot; is not an official section (see: <A HREF="http://standards.freedesktop.org/menu-spec/1.0/apa.html">http://standards.freedesktop.org/menu-spec/1.0/apa.html</A>)
+
+Cheers,
+
+    Gon&#233;ri
+
+Follow-Ups:
+
+Date: 2007-Aug-16 00:03
+By: wolfgangb
+
+Comment:
+Committed the parts of the patch we did not have already as r1257.
+Looks like it does not break anything and if its good for gcc4.3 we want it for 1.1.1. :-)
+-------------------------------------------------------
+
+Date: 2007-Aug-15 23:47
+By: wolfgangb
+
+Comment:
+Removed &quot;Application&quot;  from desktop file.
+
+There was a patch for gcc 4.3 compatibility applied in April as SVN r1171.
+Last time I checked there still was no gcc 4.3 so no idea if that patch was good enough. Is lincity-ng-1.1.1pre.tar.bz2 working with gcc 4.3?
+
+BTW, it there a better way to get your patch than copy&amp;paste?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11770&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11770&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000185.html">[Lincity-ng-devel] [Bug #11770] patch for gcc 4.3 (snapshot)
+</A></li>
+	<LI>Next message: <A HREF="000187.html">[Lincity-ng-devel] Release 1.1.1 out now
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#186">[ date ]</a>
+              <a href="thread.html#186">[ thread ]</a>
+              <a href="subject.html#186">[ subject ]</a>
+              <a href="author.html#186">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

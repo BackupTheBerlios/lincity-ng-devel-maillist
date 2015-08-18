@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C47EA11ED.5020808%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000442.html">
+   <LINK REL="Next"  HREF="000439.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road bridge</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Finished%20the%20track%20bridge%20and%20the%20road%20bridge&In-Reply-To=%3C47EA11ED.5020808%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road bridge">magicfox at magic.fr
+       </A><BR>
+    <I>Wed Mar 26 10:05:49 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000442.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+        <LI>Next message: <A HREF="000439.html">[Lincity-ng-devel] [Bug #13408] [feature request] Screenshot	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#443">[ date ]</a>
+              <a href="thread.html#443">[ thread ]</a>
+              <a href="subject.html#443">[ subject ]</a>
+              <a href="author.html#443">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+&gt;&gt;&gt;<i> I hope it's possible to add these bridges to the code (I can't do that, 
+</I>&gt;&gt;&gt;<i> I know nothing of programming:(
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> I'll draw the rail bridge soon.
+</I>&gt;&gt;&gt;<i>
+</I>&gt;&gt;&gt;<i> Greetings, Ivar.
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i> I've make a begin of test to implement build bridge with track dragging 
+</I>&gt;&gt;<i> tool.
+</I>&gt;<i> nice
+</I>&gt;<i> 
+</I>&gt;&gt;<i> The building is not hard to code and it's possible to manage bridges as 
+</I>&gt;&gt;<i> a type of transport with a water flag to let the simulation engine 
+</I>&gt;&gt;<i> unchanged.
+</I>&gt;<i> very nice
+</I>&gt;<i> 
+</I>&gt;&gt;<i> But in this case and without a special group for bridge, the 
+</I>&gt;&gt;<i> neighbourhood of bridge tiles, cost and bulldoze managements have to be 
+</I>&gt;&gt;<i> reviewed.
+</I>&gt;&gt;<i> For example, I get green in water near the bridge or a cost of $1 to 
+</I>&gt;&gt;<i> bulldoze a part of a track bridge...
+</I>&gt;<i> A new building need a new group, so 3 more groups for 3 bridges.
+</I>&gt;<i> Then for each new types are needed for specifying the tile used (access ramp,
+</I>&gt;<i> orientation)
+</I>&gt;<i> 
+</I>&gt;<i> Maybe we can put bridge (not access ramp) also in group_water (or is_water...)
+</I>&gt;<i> so connect_rivers will find the correct water tile. 
+</I>&gt;<i> 
+</I>&gt;<i> Also a new loadsave_version must be set to prevent loading newer games with
+</I>&gt;<i> older versions (this gives unmodifiables tiles). 
+</I>&gt;<i> loadsave.h #define WATERWELL_V2 1322     (i used svn commit number)
+</I>&gt;<i> I can do this if you don't feel confident in modifying loadsave stuff.
+</I>Thank for your proposition, I'll let you to manage it when I'll be quite 
+ready with build managements.
+&gt;<i> 
+</I>&gt;&gt;<i> We can also update engine to consider bridges as a transport.
+</I>&gt;<i> This should need to just add bridges in 
+</I>&gt;<i> transport.h XY_IS_TRANSPORT
+</I>&gt;<i> 
+</I>&gt;<i> Something alike is defined in
+</I>&gt;<i> lin-city.h #define GROUP_IS_TRANSPORT(group) \
+</I>This sound simple, cool ,-)
+&gt;<i> 
+</I>&gt;<i> These 2 are nearly redundant, i had no time to check if we can suppress one, but
+</I>&gt;<i> the idea is to keep only one. I'd prefer to keep transport.h.
+</I>These are not exactly the same, lin_city.h has GROUP_POWER_LINE too as a 
+transport.
+&gt;<i> 
+</I>&gt;&gt;<i> Any comment from maintainers where is the best way to manage it ?
+</I>&gt;<i> transport stuff and connect rivers can become performance critical. My last
+</I>&gt;<i> simplification of code gave a significant slowdown, but i kept (in comment)
+</I>&gt;<i> original code unrolled and much faster. So, if it is needed we can do it
+</I>&gt;<i> again...
+</I>&gt;<i> 
+</I>&gt;<i> Alain.
+</I>&gt;<i> 
+</I>&gt;<i> PS: btw, i messed my computer up while doing upgrade to debian/testing to be
+</I>&gt;<i> sure that everything work smoothly &lt;:o) I'm currently fixing this...
+</I>
+Thanks for yours explanations, I'm going to take care of your 
+performance advice.
+Some work have to be done before I can present a decent implementation 
+of bridges.
+So Ivar, you have some time too to create new tiles or enhance existing 
+tracks for example ;-)
+--
+Thierry
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000442.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+	<LI>Next message: <A HREF="000439.html">[Lincity-ng-devel] [Bug #13408] [feature request] Screenshot	functionality
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#443">[ date ]</a>
+              <a href="thread.html#443">[ thread ]</a>
+              <a href="subject.html#443">[ subject ]</a>
+              <a href="author.html#443">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

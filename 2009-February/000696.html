@@ -1,0 +1,140 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315177%5D%20Inexplicable%20population%20crash.&In-Reply-To=%3C200902040029.n140Te5F015251%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000695.html">
+   <LINK REL="Next"  HREF="000697.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315177%5D%20Inexplicable%20population%20crash.&In-Reply-To=%3C200902040029.n140Te5F015251%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.">admin at berlios.de
+       </A><BR>
+    <I>Wed Feb  4 01:29:40 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000695.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+        <LI>Next message: <A HREF="000697.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#696">[ date ]</a>
+              <a href="thread.html#696">[ thread ]</a>
+              <a href="subject.html#696">[ subject ]</a>
+              <a href="author.html#696">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15177, was updated on 2009-Feb-01 08:35
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: alonzotg
+Assigned to : none
+Summary: Inexplicable population crash. 
+
+Details: I'm an experienced SimCity 2000 player. I earned power plant tech, started building out my power grid. (thought my population was about 3,800).. Then I started having trouble lighting up my substations. I started tracking down the problem and found my population had crashed to nothing, I had lost most of my tech, and since nobody was paying for my infrastructure I was now a hundred million dollars in the hole (and no population). I thought it was food related so I set to import food, -- my farms had no workers... My city started burning down for lack of fire fighters. I managed to get my population up to about 2,000 and then it started dropping again and I couldn't figure out what the cause was. The people there had no desire to work for the power company. There was nothing I could do to get my population back to normal so I decided it was a bug and gave up.
+
+Follow-Ups:
+
+Date: 2009-Feb-04 00:29
+By: jaky_lincity
+
+Comment:
+I agree with you Ivar. The pollution of the light industry is probably to high. In the original lincity light industries had a pollution of 10/day and heavy industries 5/day.
+Sometime after the last release of lincity, but before lincity-ng this was changed so that the pollution should depend on the amount of goods produced and be reduced after tech-level 100%. 
+This changed the pollution to goods_produced*0.05 per day. A light industry can produce up to 1800 goods/day if it has enough power, steel and jobs. This results in 90 pollution/day.
+But due to a bug this was never working and light industries didn't emit any pollution.
+Last year I noticed this bug and wrote a patch to fix it, which was added to 2.0. But I always assumed (wrongly) that this had been working in the past and that this was the intended amount of pollution.
+
+I propose to change INDUSTRY_L_POL_PER_GOOD in lin-city.h from 0.05 to 0.001. That way the maximum pollution would be 1.8/day. To cope with non-integer values for the pollution/day, the code could be changed to emit 10 times the pollution, but only every 10 days.
+
+I think it would also be good to add a warning about pollution to the help of industries, coal power plants and coal mines.
+Somehow we also need to warn the player if he has to much waste in his markets. The pollution from burning waste is quite severe and can also kill many inhabitants.
+
+Jaky
+-------------------------------------------------------
+
+Date: 2009-Feb-03 18:32
+By: ivar
+
+Comment:
+I agree with Alon, the pollution from factories is way to high. Especially the light factory should make less pollution, or we should change it's name and graphic (&quot;light industry&quot; doesn't sound like it's very polluting). Living near a factory in real life isn't as deadly as Lincity suggests, otherwise nobody on earth would have survived the industrial revolution around 200 years ago.
+
+
+-------------------------------------------------------
+
+Date: 2009-Feb-03 07:06
+By: danielsantos
+
+Comment:
+Now perhaps you understand the problem the real world is facing.
+-------------------------------------------------------
+
+Date: 2009-Feb-01 20:29
+By: alonzotg
+
+Comment:
+Pollution? That's absurd, two reasons: 
+
+1.  Unless the factories are belching cyanide, it just ain't that deadly, see Mexico City. 
+
+2. You can't buy parks when you're in the hole and if you can't build parks you can't clean up your city and get out of the hole therefore either pollution should be self-cleaning if you raze the factories or I should find a less frustrating way to waste my time! =( 
+-------------------------------------------------------
+
+Date: 2009-Feb-01 17:10
+By: jaky_lincity
+
+Comment:
+They could have died from pollution. Have a look at the gamestats. You can see there how many people died from starvation or pollution during the whole game. You can also look at the pollution overlay. You should not have people living in the red areas. You can use parks to fight the pollution.
+
+-------------------------------------------------------
+
+Date: 2009-Feb-01 11:21
+By: bugmenot
+
+Comment:
+Can you upload the saved game somewhere?
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15177&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15177&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000695.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+	<LI>Next message: <A HREF="000697.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#696">[ date ]</a>
+              <a href="thread.html#696">[ thread ]</a>
+              <a href="subject.html#696">[ subject ]</a>
+              <a href="author.html#696">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

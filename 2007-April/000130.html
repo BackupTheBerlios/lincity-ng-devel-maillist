@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%20%231949%5D%20SDL%20Speedup%20-%20This%20caches%20zoomed%0A%09textures&In-Reply-To=%3C200704101819.l3AIJ75p007326%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000129.html">
+   <LINK REL="Next"  HREF="000131.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%20%231949%5D%20SDL%20Speedup%20-%20This%20caches%20zoomed%0A%09textures&In-Reply-To=%3C200704101819.l3AIJ75p007326%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures">admin at berlios.de
+       </A><BR>
+    <I>Tue Apr 10 20:19:07 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000129.html">[Lincity-ng-devel] A Study on Free/Open Source Software Defect	Management
+</A></li>
+        <LI>Next message: <A HREF="000131.html">[Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#130">[ date ]</a>
+              <a href="thread.html#130">[ thread ]</a>
+              <a href="subject.html#130">[ subject ]</a>
+              <a href="author.html#130">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Patch #1949 has been updated. 
+
+Project: lincity-ng
+Category: None
+Status: Open
+Submitted by: flavor
+Assigned to : none
+Summary: SDL Speedup - This caches zoomed textures
+
+Follow-Ups:
+
+Date: 2007-Apr-10 13:19
+By: flavor
+
+Comment:
+This caches zoomed textures, but I also added another optimization.
+
+This version also clips off textures that are not on screen.  SDL_BlitSurface would normally do that, but if we get that far, we've already zoomed the texture.  There is no reason to zoom a texture that is off screen.
+
+Does anyone care about these optimizations?
+-------------------------------------------------------
+
+Date: 2007-Apr-09 17:14
+By: flavor
+
+Comment:
+Sorry, I realized that I had SMOOTHING_ON and it should probablly be SMOOTHING_OFF.  This is a minor change to the patch.
+-------------------------------------------------------
+
+-------------------------------------------------------
+For more info, visit:
+
+<A HREF="http://developer.berlios.de/patch/?func=detailpatch&amp;patch_id=1949&amp;group_id=2929">http://developer.berlios.de/patch/?func=detailpatch&amp;patch_id=1949&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000129.html">[Lincity-ng-devel] A Study on Free/Open Source Software Defect	Management
+</A></li>
+	<LI>Next message: <A HREF="000131.html">[Lincity-ng-devel] [Patch #1949] SDL Speedup - This caches zoomed	textures
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#130">[ date ]</a>
+              <a href="thread.html#130">[ thread ]</a>
+              <a href="subject.html#130">[ subject ]</a>
+              <a href="author.html#130">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

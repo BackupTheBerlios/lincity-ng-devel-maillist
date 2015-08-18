@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #17371] lincity never start
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317371%5D%20lincity%20never%20start&In-Reply-To=%3C201109030856.p838u1Pn026373%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001130.html">
+   <LINK REL="Next"  HREF="001132.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #17371] lincity never start</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317371%5D%20lincity%20never%20start&In-Reply-To=%3C201109030856.p838u1Pn026373%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #17371] lincity never start">admin at berlios.de
+       </A><BR>
+    <I>Sat Sep  3 10:56:01 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001130.html">[Lincity-ng-devel] [Bug #17380] Random Crash to desktop on windows
+</A></li>
+        <LI>Next message: <A HREF="001132.html">[Lincity-ng-devel] [Bug #17045] window size problem unr
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1131">[ date ]</a>
+              <a href="thread.html#1131">[ thread ]</a>
+              <a href="subject.html#1131">[ subject ]</a>
+              <a href="author.html#1131">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17371, was updated on 2010-Jul-19 09:08
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Closed
+Resolution: Invalid
+Bug Group: Windows
+Priority: 5
+Submitted by: ni-hao
+Assigned to : none
+Summary: lincity never start
+
+Details: Lincity NG isn't started. I have a duelscreen and Windows Vista.
+
+At first the display resolution go down, then the screen is black. Then a messagebox with the Text.:&quot;LinCity NG does not work anymore&quot;.
+
+Follow-Ups:
+
+Date: 2010-Jul-22 12:47
+By: alainb
+
+Comment:
+
+* Does it work in single screen ? (i repeat that SDL do not support dual screen currently)
+
+* @golman60 : if it works as an admin (not avised to do), i guess there is some configuration to do inside your system to allow it to run.
+
+* @ni-hao : LinCity-NG do not ask for a CD, i suppose it is something wrong in a path (wich letter is asked for ? C:\ ... ?)
+
+
+-------------------------------------------------------
+
+Date: 2010-Jul-21 20:39
+By: goldman60
+
+Comment:
+I was having a similar problem on windows 7 and I was able to get Lincity to start by running it as an admin
+-------------------------------------------------------
+
+Date: 2010-Jul-21 11:06
+By: ni-hao
+
+Comment:
+The program starts but exits immediately, when you first start the program had asked for a CD, since I have fooled some and it started, sometimes I'll go to the start screen but shortly afterwards it off immediately, all without an errormessage.
+
+Sorry for my bad english.
+-------------------------------------------------------
+
+Date: 2010-Jul-21 10:44
+By: alainb
+
+Comment:
+Do it start in window mode (not fullscreen) ?
+from command line :
+lincity-ng -s -w -S 800x600 
+
+or edit the lincity-ng\userconfig.xml  file and write fullscreen=&quot;no&quot;
+
+Currently the SDL grahic library  used does not support dual screen, i guess it is the cause of the problem.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17371&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17371&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001130.html">[Lincity-ng-devel] [Bug #17380] Random Crash to desktop on windows
+</A></li>
+	<LI>Next message: <A HREF="001132.html">[Lincity-ng-devel] [Bug #17045] window size problem unr
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1131">[ date ]</a>
+              <a href="thread.html#1131">[ thread ]</a>
+              <a href="subject.html#1131">[ subject ]</a>
+              <a href="author.html#1131">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

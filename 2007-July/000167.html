@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #11552] Scenarios will not load under	windows
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2311552%5D%20Scenarios%20will%20not%20load%20under%0A%09windows&In-Reply-To=%3C200707160442.l6G4g5Cc009232%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000166.html">
+   <LINK REL="Next"  HREF="000168.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #11552] Scenarios will not load under	windows</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2311552%5D%20Scenarios%20will%20not%20load%20under%0A%09windows&In-Reply-To=%3C200707160442.l6G4g5Cc009232%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #11552] Scenarios will not load under	windows">admin at berlios.de
+       </A><BR>
+    <I>Mon Jul 16 06:42:05 CEST 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000166.html">[Lincity-ng-devel] [Bug #11552] Scenarios will not load under	windows
+</A></li>
+        <LI>Next message: <A HREF="000168.html">[Lincity-ng-devel] [Bug #11605] Link for Windows broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #11552, was updated on 2007-Jul-13 15:03
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: Works For Me
+Bug Group: None
+Priority: 5
+Submitted by: uioped1
+Assigned to : none
+Summary: Scenarios will not load under windows
+
+Details: The main app, but if I try to start a new game or if I press the continue button, the game will freeze using 100% of one CPU.  This happens whether I try to load a scenario or try to start a blank or random map.
+
+the following messages are printed to standard out.  Notice the paths for the data directory:
+
+Starting lincity-ng (version 1.1.0)...
+Couldn't add 'g:/msys/1.0/local/share/lincity-ng' to physfs searchpath: File not found
+[C:\Documents and Settings\user\.lincity] is in the search path.
+[C:\Program Files\LinCity-NG\/data] is in the search path.
+LINCITY_HOME: C:\Program Files\LinCity-NG\/data
+OpenGL Mode 1024x768
+
+Follow-Ups:
+
+Date: 2007-Jul-15 20:42
+By: uioped1
+
+Comment:
+StdErr.txt gets created, but is blank and is cleaned up at closing.
+I have confirmed that it works on my laptop with a Pentium M.  I will try again without using openGL.
+The machine is a core2 Duo using onboard video.
+
+I guess my original post was missing a few words.  The menus all work with the exception that any time the main game screen is opened, the app goes into an endless loop.  The screen does not change at all, but does repaint if it is in window mode.
+-------------------------------------------------------
+
+Date: 2007-Jul-14 15:39
+By: wolfgangb
+
+Comment:
+Works for me. When running Lincity on Windows XP I get
+a similar output to stdout.txt:
+Starting lincity-ng (version 1.1.0)...
+Couldn't add 'g:/msys/1.0/local/share/lincity-ng' to physfs searchpath: File not found
+[C:\Documents and Settings\Wolfgang Becker\.lincity] is in the search path.
+[C:\Program Files\LinCity-NG\/data] is in the search path.
+LINCITY_HOME: C:\Program Files\LinCity-NG\/data
+OpenGL Mode 1024x768
+
+So the usual questions: Anything in stderr.txt? What machine/video card/etc. you use?
+-------------------------------------------------------
+
+Date: 2007-Jul-13 15:03
+By: uioped1
+
+Comment:
+This is under winxp 32
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11552&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=11552&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000166.html">[Lincity-ng-devel] [Bug #11552] Scenarios will not load under	windows
+</A></li>
+	<LI>Next message: <A HREF="000168.html">[Lincity-ng-devel] [Bug #11605] Link for Windows broken
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#167">[ date ]</a>
+              <a href="thread.html#167">[ thread ]</a>
+              <a href="subject.html#167">[ subject ]</a>
+              <a href="author.html#167">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

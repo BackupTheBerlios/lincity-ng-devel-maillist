@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18587] Patch: load/save menus,	no icon for back (only text)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-August/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318587%5D%20Patch%3A%20load/save%20menus%2C%0A%09no%20icon%20for%20back%20%28only%20text%29&In-Reply-To=%3C201208061912.q76JCAeW001785%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001220.html">
+   <LINK REL="Next"  HREF="001222.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18587] Patch: load/save menus,	no icon for back (only text)</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318587%5D%20Patch%3A%20load/save%20menus%2C%0A%09no%20icon%20for%20back%20%28only%20text%29&In-Reply-To=%3C201208061912.q76JCAeW001785%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18587] Patch: load/save menus,	no icon for back (only text)">admin at berlios.de
+       </A><BR>
+    <I>Mon Aug  6 21:12:10 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001220.html">[Lincity-ng-devel] [Patch #2912] Fix segfault in experimental	terrain generation
+</A></li>
+        <LI>Next message: <A HREF="001222.html">[Lincity-ng-devel] [Bug #15777] Couldn't add 'G:/msys/1... to physfs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1221">[ date ]</a>
+              <a href="thread.html#1221">[ thread ]</a>
+              <a href="subject.html#1221">[ subject ]</a>
+              <a href="author.html#1221">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18587, was updated on 2012-Apr-21 11:14
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: Patch: load/save menus, no icon for back (only text)
+
+Details: This patch add icon for back on save/load-menu. It also use relative marginals (not fixed), so text are not colliding even on small screen (and some locales)
+
+             diff --git a/data/gui/loadgame.xml b/data/gui/loadgame.xml
+index a3f22c5..ff833c4 100644
+--- a/data/gui/loadgame.xml
++++ b/data/gui/loadgame.xml
+@@ -81,16 +81,17 @@
+                        &lt;rowsize row=&quot;1&quot; relative=&quot;1&quot;/&gt;
+                        &lt;rowsize row=&quot;2&quot; relative=&quot;3&quot;/&gt;
+                        &lt;rowsize row=&quot;3&quot; relative=&quot;1&quot;/&gt;
+-                       &lt;colsize col=&quot;1&quot; fixed=&quot;75&quot;/&gt;
+-                       &lt;colsize col=&quot;4&quot; fixed=&quot;75&quot;/&gt;
++                       &lt;colsize col=&quot;1&quot; relative=&quot;1&quot;/&gt;
++                       &lt;colsize col=&quot;2&quot; relative=&quot;10&quot;/&gt;
++                       &lt;colsize col=&quot;3&quot; relative=&quot;10&quot;/&gt;
++                       &lt;colsize col=&quot;4&quot; relative=&quot;1&quot;/&gt;
+   
+                        &lt;cell row=&quot;2&quot; col=&quot;2&quot; halign=&quot;left&quot;&gt;
+                        &lt;Button name=&quot;BackButton&quot;&gt;
+-                               &lt;text style=&quot;button&quot; translatable=&quot;yes&quot;&gt;Back&lt;/text&gt;
+-                               &lt;text-hover style=&quot;button-hover&quot;
+-                               translatable=&quot;yes&quot;&gt;Back&lt;/text-hover&gt;
+-                               &lt;text-clicked style=&quot;button-clicked&quot;
+-                               translatable=&quot;yes&quot;&gt;Back&lt;/text-clicked&gt;
++                               &lt;text-caption style=&quot;button&quot; translatable=&quot;yes&quot;&gt;Back&lt;/text-caption&gt;
++                               &lt;image src=&quot;images/mainmenu/buttons/back.png&quot;/&gt;
++                               &lt;image-hover src=&quot;images/mainmenu/buttons/back-hover.png&quot;/&gt;
++                               &lt;image-clicked src=&quot;images/mainmenu/buttons/back-clicked.png&quot;/&gt;
+                        &lt;/Button&gt;
+                        &lt;/cell&gt;
+                        &lt;cell row=&quot;2&quot; col=&quot;3&quot; halign=&quot;right&quot;&gt;
+diff --git a/data/gui/savegame.xml b/data/gui/savegame.xml
+index 49fb9af..6500d06 100644
+--- a/data/gui/savegame.xml
++++ b/data/gui/savegame.xml
+@@ -83,16 +83,17 @@
+                        &lt;rowsize row=&quot;1&quot; relative=&quot;1&quot;/&gt;
+                        &lt;rowsize row=&quot;2&quot; relative=&quot;3&quot;/&gt;
+                        &lt;rowsize row=&quot;3&quot; relative=&quot;1&quot;/&gt;
+-                       &lt;colsize col=&quot;1&quot; fixed=&quot;75&quot;/&gt;
+-                       &lt;colsize col=&quot;4&quot; fixed=&quot;75&quot;/&gt;
++                       &lt;colsize col=&quot;1&quot; relative=&quot;1&quot;/&gt;
++                       &lt;colsize col=&quot;2&quot; relative=&quot;10&quot;/&gt;
++                       &lt;colsize col=&quot;3&quot; relative=&quot;10&quot;/&gt;
++                       &lt;colsize col=&quot;4&quot; relative=&quot;1&quot;/&gt;
+ 
+                        &lt;cell row=&quot;2&quot; col=&quot;2&quot; halign=&quot;left&quot;&gt;
+                        &lt;Button name=&quot;BackButton&quot;&gt;
+-                               &lt;text style=&quot;button&quot; translatable=&quot;yes&quot;&gt;Back&lt;/text&gt;
+-                               &lt;text-hover style=&quot;button-hover&quot;
+-                               translatable=&quot;yes&quot;&gt;Back&lt;/text-hover&gt;
+-                               &lt;text-clicked style=&quot;button-clicked&quot;
+-                               translatable=&quot;yes&quot;&gt;Back&lt;/text-clicked&gt;
++                               &lt;text-caption style=&quot;button&quot; translatable=&quot;yes&quot;&gt;Back&lt;/text-caption&gt;
++                               &lt;image src=&quot;images/mainmenu/buttons/back.png&quot;/&gt;
++                               &lt;image-hover src=&quot;images/mainmenu/buttons/back-hover.png&quot;/&gt;
++                               &lt;image-clicked src=&quot;images/mainmenu/buttons/back-clicked.png&quot;/&gt;
+                        &lt;/Button&gt;
+                        &lt;/cell&gt;
+                        &lt;cell row=&quot;2&quot; col=&quot;3&quot; halign=&quot;right&quot;&gt;
+
+
+Follow-Ups:
+
+Date: 2012-Aug-06 21:12
+By: wolfgangb
+
+Comment:
+Patch text gets messed up somehow. Fixed anyway in revision 1624.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18587&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18587&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001220.html">[Lincity-ng-devel] [Patch #2912] Fix segfault in experimental	terrain generation
+</A></li>
+	<LI>Next message: <A HREF="001222.html">[Lincity-ng-devel] [Bug #15777] Couldn't add 'G:/msys/1... to physfs
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1221">[ date ]</a>
+              <a href="thread.html#1221">[ thread ]</a>
+              <a href="subject.html#1221">[ subject ]</a>
+              <a href="author.html#1221">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

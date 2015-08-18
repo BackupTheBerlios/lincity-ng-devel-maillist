@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #19106] Segfault when searching for coal
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2319106%5D%20Segfault%20when%20searching%20for%20coal&In-Reply-To=%3C201309020641.r826fJIY029476%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001360.html">
+   <LINK REL="Next"  HREF="001362.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #19106] Segfault when searching for coal</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2319106%5D%20Segfault%20when%20searching%20for%20coal&In-Reply-To=%3C201309020641.r826fJIY029476%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #19106] Segfault when searching for coal">admin at berlios.de
+       </A><BR>
+    <I>Mon Sep  2 08:41:19 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001360.html">[Lincity-ng-devel] [Bug #19106] Segfault when searching for coal
+</A></li>
+        <LI>Next message: <A HREF="001362.html">[Lincity-ng-devel] [Bug #19106] Segfault when searching for coal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1361">[ date ]</a>
+              <a href="thread.html#1361">[ thread ]</a>
+              <a href="subject.html#1361">[ subject ]</a>
+              <a href="author.html#1361">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #19106, was updated on 2013-Aug-31 20:48
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: joequant
+Assigned to : none
+Summary: Segfault when searching for coal
+
+Details: I get a segfault in 1712 when looking for coal.  What is happening is that lincity-ng is not finding the &quot;yes&quot; button in the coal dialog box and crashing when it deals with the null pointer.  This may be an artifact of either the xsltproc 1.1 patch that I submitted or the fact that I'm using an zh_TW locale.
+
+Would like to get feedback as to whether this is working for other people, both with and without the 1.1 patch.  I can't remove the 1.1 patch since it won't compile for me otherwise.
+
+Follow-Ups:
+
+Date: 2013-Sep-01 22:41
+By: joequant
+
+Comment:
+Can someone mark this bug as resolved.  It's fixed with the new 1.1 patch.
+-------------------------------------------------------
+
+Date: 2013-Sep-01 22:40
+By: joequant
+
+Comment:
+I've uploaded a revised 1.1 patch that doesn't segfault.
+-------------------------------------------------------
+
+Date: 2013-Sep-01 19:22
+By: joequant
+
+Comment:
+Thanks for the information.  Any ideas on how to fix the patch?  The trouble is that without the patch lincity-ng gives me undefined variable errors on xsltproc 1.1 and won't compile at all :-(
+-------------------------------------------------------
+
+Date: 2013-Aug-31 23:36
+By: wolfgangb
+
+Comment:
+No crash with 1712 for me. With patch it does crash, because the patch removes essential buttons from several dialogs, including coal_survey_yn.xml
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=19106&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=19106&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001360.html">[Lincity-ng-devel] [Bug #19106] Segfault when searching for coal
+</A></li>
+	<LI>Next message: <A HREF="001362.html">[Lincity-ng-devel] [Bug #19106] Segfault when searching for coal
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1361">[ date ]</a>
+              <a href="thread.html#1361">[ thread ]</a>
+              <a href="subject.html#1361">[ subject ]</a>
+              <a href="author.html#1361">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

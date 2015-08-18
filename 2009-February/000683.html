@@ -1,0 +1,173 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Interest in contributions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C243460.51285.qm%40web31902.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000682.html">
+   <LINK REL="Next"  HREF="000684.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Interest in contributions?</H1>
+    <B>Daniel Santos</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C243460.51285.qm%40web31902.mail.mud.yahoo.com%3E"
+       TITLE="[Lincity-ng-devel] Interest in contributions?">javatroubadour at yahoo.com
+       </A><BR>
+    <I>Mon Feb  2 14:31:13 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000682.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+        <LI>Next message: <A HREF="000684.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#683">[ date ]</a>
+              <a href="thread.html#683">[ thread ]</a>
+              <a href="subject.html#683">[ subject ]</a>
+              <a href="author.html#683">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+ooh!  Thanks for the response! :)
+
+I've been very careful to keep the pure-C code pure C, while using features
+that modern compilers do well with that older ones didn't, like inlined
+functions and static const global variables vs #defines for common functions
+&amp; global constants.  I have a slightly improved get_stuff function now that
+actually shrinks code slightly and adds a very minimal number of extra
+instructions per execution.  The original coders were definitely some very
+clever guys!
+
+&gt;<i> &gt; I've also made a few changes so far that actually alter game-play.
+</I>&gt;<i> Its frightening to change the engine, because it has lots of interactions,
+</I>&gt;<i> and
+</I>&gt;<i> is globally non-linear (even if each module is quasi linear)
+</I>&gt;<i> 
+</I>&gt;<i> What is the aim ?
+</I>&gt;<i> How big is the impact ?
+</I>&gt;<i> Sustanability should be kept (or nealry kept) and also it must be possible
+</I>&gt;<i> to win with rocket evacuation.
+</I>
+I agree with you on alterations to game play, 1000%.  The modifications are
+to basically allow tech bonuses on more buildings.  As an example, it doesn't
+matter at which tech level you build a mill, it will always perform the same.
+ The numbers will all appear in lin-city.h so as to be easily tweakable. 
+These are the current values I'm using as example (removing the &quot;static const
+float&quot; from each so it wont word wrap):
+
+POTTERY_TECH_BONUS_PROD          = 0.25f;
+POTTERY_TECH_BONUS_STORAGE       = POTTERY_TECH_BONUS_PROD / 2.f;
+POTTERY_TECH_BONUS_ACQUISITION   = POTTERY_TECH_BONUS_PROD / 2.f;
+POTTERY_TECH_BONUS_CONSUMPTION   = POTTERY_TECH_BONUS_PROD / 2.f;
+
+BLACKSMITH_TECH_BONUS_PROD       = 0.375f;
+BLACKSMITH_TECH_BONUS_STORAGE    = BLACKSMITH_TECH_BONUS_PROD / 3.f;
+BLACKSMITH_TECH_BONUS_ACQUISITION= BLACKSMITH_TECH_BONUS_PROD / 2.5f;
+BLACKSMITH_TECH_BONUS_CONSUMPTION= BLACKSMITH_TECH_BONUS_PROD / 2.5f;
+
+MILL_TECH_BONUS_PROD             = 0.50f;
+MILL_TECH_BONUS_STORAGE          = MILL_TECH_BONUS_PROD / 4.f;
+MILL_TECH_BONUS_ACQUISITION      = MILL_TECH_BONUS_PROD / 3.f;
+MILL_TECH_BONUS_CONSUMPTION      = MILL_TECH_BONUS_PROD / 3.f;
+
+These are intended to be more generic variables for the do_&lt;building&gt;()
+functions and represent the bonus to be applied at 100 tech beyond the
+minimal build tech level (in other words, multiplied by (float)(MP_TECH(x, y)
+- GROUP_&lt;building&gt;_TECH) / MAX_TECH_LEVEL).
+
+In summary, the &quot;prod&quot; the bonus to production (of whatever is made),
+&quot;storage&quot; to what it can store, &quot;acquisition&quot; to the amount when it calls
+get_stuff/get_jobs and &quot;consumption&quot; to what is used (jobs, coal, etc.). I
+don't necessarily believe these are appropriate values, it's just a starting
+point.  The main issue that I have is that many buildings continue to cost
+more to build as time goes by, but yield no extra benefit and should
+legitimately become more efficient as technology increases. So the aim is to
+more accurately reflect real world economies and the progression of
+manufacturing as it pertains to technological advances.  My initial numbers
+basically say that pottery doesn't have as much room for streamlining, but
+blacksmithing has more and mills have even more.  Compare this with farms
+who's _TECH_BONUS_PROD value is 1.0f (or +100% bonus at tech level 100). The
+impact would be an increase in output per map cells and resources used, so
+naturally it may need to be offset elsewhere for game balance.  The example
+&quot;bonuses&quot; to consumption above actually increase consumption, it just
+increases it more slowly than production, yielding an overall improvement to
+efficiency.
+
+&gt;<i> My understanding is: you need a large pool of workers in order to find the
+</I>&gt;<i> people you need. This is done by the 150% (which is a very kind coeff) 
+</I>cool, thanks!  I had actually considered this, that there would be louts
+littering the job market that just aren't suitable for much, as well as the
+simple fact of some people not wanting particular types of work and being
+willing to wait for a better job.  I've already completed this functionality
+for getting jobs from both the market and transport (I have a new get_stuff
+function), so I'll figure out how to re-introduce this 150% functionality
+(basically, that only 2/3rds of a worker population are suitable).
+
+&gt;<i> The strings are grabbed at compilation time (maybe if you activate one
+</I>&gt;<i> option, 
+</I>&gt;<i> i dont remember) and the english reference file is updated automatically.
+</I>&gt;<i> The script in src/tools/update_po.sh is used to sync everything with
+</I>&gt;<i> english.
+</I>&gt;<i> The .pot file are build by tool which add the numbering in comments, and
+</I>&gt;<i> can be edited with poedit (or whatever you like) to do the needed
+</I>&gt;<i> translations.
+</I>Ahh, wonderful!  I did notice seeing something at the end of the build each
+time related to the .pot files.  Luckily, I'm familiar with the basics of the
+jam-based build system because I've worked on Glest, which matze also happen
+work on, and used his jam-based build system on.
+
+So I'm subscribed to the list and when I get things ironed out a bit I'll
+post a patch (or probably try to separate the functionality into separate
+patches).
+
+Finally, I added a mechanism to calculate and display a monthly running
+average of output for each building (only implemented for pottery, blacksmith
+and mill thus far).  Every day, when do_&lt;building&gt;() is called, it calls a
+function I added to stats.h/cpp that adds that day's production value into a
+stack that holds NUMOF_DAYS_IN_MONTH values, drops the old value and provides
+a mechanism to quickly retrieve the average. It's not a terribly important
+feature imo, but I rather like it.  The down side is that I either need to
+add a mechanism to load_game to re-init empty buffers or bump the saved game
+version and add it to save_game and load_game (i.e., have it save the month
+of history).  I'll probably do one of the two and then actually play a game
+for a little while. :)
+
+Thanks for the help!
+Daniel
+
+
+
+
+      
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000682.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+	<LI>Next message: <A HREF="000684.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#683">[ date ]</a>
+              <a href="thread.html#683">[ thread ]</a>
+              <a href="subject.html#683">[ subject ]</a>
+              <a href="author.html#683">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

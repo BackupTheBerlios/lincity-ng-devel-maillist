@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #6881] &quot;Welcome&quot; image and &quot;communes&quot; are	white
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%236881%5D%20%22Welcome%22%20image%20and%20%22communes%22%20are%0A%09white&In-Reply-To=%3C200809131707.m8DH7AUG008473%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000498.html">
+   <LINK REL="Next"  HREF="000501.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #6881] &quot;Welcome&quot; image and &quot;communes&quot; are	white</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%236881%5D%20%22Welcome%22%20image%20and%20%22communes%22%20are%0A%09white&In-Reply-To=%3C200809131707.m8DH7AUG008473%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #6881] &quot;Welcome&quot; image and &quot;communes&quot; are	white">admin at berlios.de
+       </A><BR>
+    <I>Sat Sep 13 19:07:10 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000498.html">[Lincity-ng-devel] [Bug #14200] Floating point exception at startup
+</A></li>
+        <LI>Next message: <A HREF="000501.html">[Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#499">[ date ]</a>
+              <a href="thread.html#499">[ thread ]</a>
+              <a href="subject.html#499">[ subject ]</a>
+              <a href="author.html#499">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #6881, was updated on 2006-Mar-26 09:31
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Wont Fix
+Bug Group: None
+Priority: 5
+Submitted by: rafalbilski
+Assigned to : none
+Summary: &quot;Welcome&quot; image and &quot;communes&quot; are white
+
+Details: This is very similar to bug #004390.
+Is this because &quot;GL_MAX_TEXTURE_SIZE = 512&quot; vs &quot;width=1024&quot;?
+
+%export MESA_DEBUG=1
+
+% lincity-ng -g
+Starting lincity-ng (version 1.0.2)...
+[/home/rafal/.lincity] is in the search path.
+[/usr/share/games/lincity-ng] is in the search path.
+LINCITY_HOME: /usr/share/games/lincity-ng
+__driCreateNewScreen_20050727 - succeeded
+cpu vendor: CentaurHauls
+cpu name: VIA Nehemiah
+MMX cpu detected.
+SSE cpu detected.
+Not testing OS support for SSE, leaving enabled.
+Mesa warning: software DXTn compression/decompression available
+OpenGL Mode 1024x768
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=1024, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=2048, height=1024, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=64, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=64, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=32, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=512, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=512, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=512, depth=1)
+Mesa: User error: GL_INVALID_VALUE in glTexImage2D(level=0, width=1024, height=512, depth=1)
+
+% gl-info
+__driCreateNewScreen_20050727 - succeeded
+cpu vendor: CentaurHauls
+cpu name: VIA Nehemiah
+MMX cpu detected.
+SSE cpu detected.
+Not testing OS support for SSE, leaving enabled.
+Mesa warning: software DXTn compression/decompression available
+GL_VENDOR = &quot;VIA Technology&quot;
+GL_RENDERER = &quot;Mesa DRI CastleRock (CLE266) 20050526 x86/MMX/SSE&quot;
+GL_VERSION = &quot;1.2 Mesa 6.4.2&quot;
+GL_EXTENSIONS = &quot;GL_ARB_imaging GL_ARB_multisample GL_ARB_multitexture GL_ARB_point_parameters GL_ARB_texture_env_add GL_ARB_texture_env_combine GL_ARB_texture_mirrored_repeat GL_ARB_transpose_matrix GL_ARB_window_pos GL_EXT_abgr GL_EXT_bgra GL_EXT_blend_color GL_EXT_blend_minmax GL_EXT_blend_subtract GL_EXT_clip_volume_hint GL_EXT_compiled_vertex_array GL_EXT_convolution GL_EXT_copy_texture GL_EXT_draw_range_elements GL_EXT_fog_coord GL_EXT_histogram GL_EXT_packed_pixels GL_EXT_point_parameters GL_EXT_polygon_offset GL_EXT_rescale_normal GL_EXT_secondary_color GL_EXT_separate_specular_color GL_EXT_stencil_wrap GL_EXT_subtexture GL_EXT_texture GL_EXT_texture3D GL_EXT_texture_edge_clamp GL_EXT_texture_env_add GL_EXT_texture_env_combine GL_EXT_texture_lod_bias GL_EXT_texture_object GL_EXT_vertex_array GL_APPLE_packed_pixels GL_IBM_rasterpos_clip GL_IBM_texture_mirrored_repeat GL_MESA_window_pos GL_NV_blend_square GL_NV_light_max_exponent GL_NV_texgen_reflection GL_OES_read_for!
+ mat GL_SGI_color_matrix GL_SGI_color_table GL_SGIS_texture_edge_clamp GL_SGIS_texture_lod&quot;
+GL_RED_BITS = 8
+GL_GREEN_BITS = 8
+GL_BLUE_BITS = 8
+GL_ALPHA_BITS = 8
+GL_DEPTH_BITS = 24
+GL_INDEX_BITS = 0
+GL_STENCIL_BITS = 8
+GL_ACCUM_RED_BITS = 0
+GL_ACCUM_GREEN_BITS = 0
+GL_ACCUM_BLUE_BITS = 0
+GL_ACCUM_ALPHA_BITS = 0
+GL_AUX_BUFFERS = 0
+GL_MAX_ATTRIB_STACK_DEPTH = 16
+GL_MAX_NAME_STACK_DEPTH = 64
+GL_MAX_TEXTURE_STACK_DEPTH = 10
+GL_MAX_PROJECTION_STACK_DEPTH = 32
+GL_MAX_MODELVIEW_STACK_DEPTH = 32
+GL_MAX_CLIP_PLANES = 6
+GL_MAX_EVAL_ORDER = 30
+GL_MAX_LIGHTS = 8
+GL_MAX_LIST_NESTING = 64
+GL_MAX_TEXTURE_SIZE = 512
+GL_MAX_VIEWPORT_DIMS = 4096,4096
+GL_POINT_SIZE_GRANULARITY = 1
+GL_POINT_SIZE_RANGE = 1,1
+Default values:
+
+GL_UNPACK_ALIGNMENT = 4
+GL_UNPACK_ROW_LENGTH = 0
+GL_UNPACK_SKIP_PIXELS = 0
+GL_UNPACK_SKIP_ROWS = 0
+GL_BLEND_SRC = 1
+GL_BLEND_DST = 0
+
+
+Follow-Ups:
+
+Date: 2008-Sep-13 19:07
+By: wolfgangb
+
+Comment:
+Hardware/driver limitation. 
+-------------------------------------------------------
+
+Date: 2006-Mar-27 23:35
+By: rafalbilski
+
+Comment:
+Yes. It works in SDL mode.
+No. I have &gt;32MB free.
+No. SDL mode is slower than Mesa.
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000498.html">[Lincity-ng-devel] [Bug #14200] Floating point exception at startup
+</A></li>
+	<LI>Next message: <A HREF="000501.html">[Lincity-ng-devel] [Bug #13192] No Component specified in cell 2, 1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#499">[ date ]</a>
+              <a href="thread.html#499">[ thread ]</a>
+              <a href="subject.html#499">[ subject ]</a>
+              <a href="author.html#499">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

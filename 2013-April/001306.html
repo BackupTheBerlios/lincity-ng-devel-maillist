@@ -1,0 +1,241 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [PATCH 1/2 for head] Store monthy cargo movement	stats
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPATCH%201/2%20for%20head%5D%20Store%20monthy%20cargo%20movement%0A%09stats&In-Reply-To=%3C1365124804-21896-1-git-send-email-daniel.santos%40pobox.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001305.html">
+   <LINK REL="Next"  HREF="001307.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [PATCH 1/2 for head] Store monthy cargo movement	stats</H1>
+    <B>danielfsantos at att.net</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPATCH%201/2%20for%20head%5D%20Store%20monthy%20cargo%20movement%0A%09stats&In-Reply-To=%3C1365124804-21896-1-git-send-email-daniel.santos%40pobox.com%3E"
+       TITLE="[Lincity-ng-devel] [PATCH 1/2 for head] Store monthy cargo movement	stats">danielfsantos at att.net
+       </A><BR>
+    <I>Fri Apr  5 03:20:03 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001305.html">[Lincity-ng-devel] [PATCH 2/2 for 2.0] Modify display of track,	roads &amp; rail
+</A></li>
+        <LI>Next message: <A HREF="001307.html">[Lincity-ng-devel] [PATCH 2/2 for head] Modify display of track,	roads &amp; rail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1306">[ date ]</a>
+              <a href="thread.html#1306">[ thread ]</a>
+              <a href="subject.html#1306">[ subject ]</a>
+              <a href="author.html#1306">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Stores cargo movement on transport, keeping a running total for the
+month. At the end of the month, an average velocity and direction is
+calculated which can be displayed to help players see where what's
+actually *moving* on transport (as opposed to what is simply being
+stored there), as well as which direction it is moving.
+
+Signed-off-by: Daniel Santos &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">daniel.santos at pobox.com</A>&gt;
+---
+ src/lincity/init_game.cpp |  1 +
+ src/lincity/stats.cpp     |  2 ++
+ src/lincity/transport.cpp | 57 +++++++++++++++++++++++++++++++++++++++++++++++
+ src/lincity/transport.h   | 18 +++++++++++++++
+ 4 files changed, 78 insertions(+)
+
+diff --git a/src/lincity/init_game.cpp b/src/lincity/init_game.cpp
+index b4c4b3a..7830c18 100644
+--- a/src/lincity/init_game.cpp
++++ b/src/lincity/init_game.cpp
+@@ -101,6 +101,7 @@ void clear_game(void)
+     highest_tech_level = 0;
+     rockets_launched = 0;
+     rockets_launched_success = 0;
++    transport_clear_monthly();
+     init_inventory();
+     update_avail_modules(0);
+ 
+diff --git a/src/lincity/stats.cpp b/src/lincity/stats.cpp
+index 7996f25..39d65d5 100644
+--- a/src/lincity/stats.cpp
++++ b/src/lincity/stats.cpp
+@@ -12,6 +12,7 @@
+ #include &quot;engglobs.h&quot;
+ #include &quot;gui_interface/pbar_interface.h&quot;
+ #include &quot;stats.h&quot;
++#include &quot;transport.h&quot;
+ 
+ /* ---------------------------------------------------------------------- *
+  * Public Global Variables
+@@ -114,6 +115,7 @@ void init_monthly(void)
+     twaste_in_markets = 0;
+     tunemployed_population = 0;
+     unnat_deaths = 0;
++    transport_init_monthly();
+ }
+ 
+ void init_yearly(void)
+diff --git a/src/lincity/transport.cpp b/src/lincity/transport.cpp
+index 9a309a3..b9e5901 100644
+--- a/src/lincity/transport.cpp
++++ b/src/lincity/transport.cpp
+@@ -6,6 +6,8 @@
+ #include &lt;stdio.h&gt;
+ #include &lt;stdlib.h&gt;
+ #include &lt;assert.h&gt;
++#include &lt;string.h&gt;
++#include &lt;math.h&gt;
+ #include &quot;lin-city.h&quot;
+ #include &quot;lctypes.h&quot;
+ #include &quot;transport.h&quot;
+@@ -14,6 +16,11 @@
+ #include &quot;all_buildings.h&quot;
+ #include &quot;engglobs.h&quot;
+ 
++// struct vec2 {float x, y;};
++
++struct vec2 goods_movement[WORLD_SIDE_LEN * WORLD_SIDE_LEN * 7];
++struct vec2 goods_moved_last_month[WORLD_SIDE_LEN * WORLD_SIDE_LEN * 7];
++
+ static int max_load(int x, int y, int i)
+ {
+     int group=MP_GROUP(x,y);
+@@ -120,6 +127,7 @@ void general_transport(int x, int y, int max_waste)
+ 
+     int *pol = &amp;MP_POL(x, y);
+     map_point_info_struct *minfo = &amp;MP_INFO(x, y);
++    struct vec2 *totals = &amp;goods_movement[(x * WORLD_SIDE_LEN + y) * 7];
+ 
+     int tot, max, ratio, *base, xm1, xp1, ym1, yp1;
+     int i;
+@@ -179,6 +187,10 @@ void general_transport(int x, int y, int max_waste)
+         max = CM + LM + RM + UM + DM;
+         ratio = (tot * 100) / max;
+ 
++        totals-&gt;x += (RC - LC);
++        totals-&gt;y += (DC - UC);
++        ++totals;
++
+         /* left */
+         if (XY_IS_TRANSPORT(x - 1, y)) {
+             LC = base[xm1] = (ratio * LM) / 100;
+@@ -818,3 +830,48 @@ void connect_transport(int originx, int originy, int w, int h)
+ 
+ /** @file lincity/transport.cpp */
+ 
++void transport_clear_monthly() {
++    memset(goods_movement, 0, sizeof(goods_movement));
++}
++
++void transport_init_monthly(void) {
++    const struct vec2 *totals_end = &amp;goods_movement[WORLD_SIDE_LEN * WORLD_SIDE_LEN * 7];
++    struct vec2 *totals;
++    struct vec2 *stats;
++
++    for (totals = goods_movement, stats = goods_moved_last_month;
++         totals &lt; totals_end; ++totals, ++stats) {
++        // TODO: skip non-transport cells?
++
++        // magnitude as a percentage of cargo that can be stored on the transport
++        stats-&gt;x = sqrtf(totals-&gt;x * totals-&gt;x + totals-&gt;y * totals-&gt;y)
++                        / (float)(NUMOF_DAYS_IN_MONTH);
++        // direction in degrees with 0/360 being east
++        stats-&gt;y = atan2f(totals-&gt;y, totals-&gt;x) / (float)M_PI * 180.f + 180.f;
++
++    }
++    transport_clear_monthly();
++}
++
++const char *transport_format_cargo(int store, const struct vec2 *vec, int max) {
++    static char buf[0x40];
++    float fstore = store * 100.f / max;
++    float vel = vec-&gt;x * 100.f / max;
++
++    /* int truncation rounding to a number between zero and 16 (a bit of &quot;east&quot; resides at each end) */
++    int approximate_dir = (vec-&gt;y + 11.25f) / 22.5f;
++    static const char* dirstr[] = {&quot;E&quot;, &quot;ESE&quot;, &quot;SE&quot;, &quot;SSE&quot;, &quot;S&quot;, &quot;SSW&quot;, &quot;SW&quot;, &quot;WSW&quot;, &quot;W&quot;, &quot;WNW&quot;, &quot;NW&quot;, &quot;WWN&quot;, &quot;N&quot;, &quot;NNE&quot;, &quot;NE&quot;, &quot;ENE&quot;, &quot;E&quot;};
++    const char *dir = &quot;&quot;;
++
++    if (approximate_dir &gt;= 0 &amp;&amp; approximate_dir &lt;= 17) {
++        dir = dirstr[approximate_dir];
++    }
++
++    if (vel &gt; 0.01f) {
++        snprintf(buf, sizeof(buf), &quot;%0.1f%%    %s @ %0.2f&quot;, fstore, dir, vel);
++    } else
++        snprintf(buf, sizeof(buf), &quot;%0.1f%%&quot;, fstore);
++
++    return buf;
++}
++
+diff --git a/src/lincity/transport.h b/src/lincity/transport.h
+index f7d46c3..38c7d1a 100644
+--- a/src/lincity/transport.h
++++ b/src/lincity/transport.h
+@@ -7,6 +7,7 @@
+ #ifndef __TRANSPORT_H__
+ #define __TRANSPORT_H__
+ 
++#include &quot;lintypes.h&quot;
+ #define XY_IS_TRANSPORT(x,y) \
+ ((MP_GROUP(x,y) == GROUP_TRACK) || \
+  (MP_GROUP(x,y) == GROUP_ROAD) || \
+@@ -16,8 +17,25 @@
+  (MP_GROUP(x,y) == GROUP_RAIL_BRIDGE))
+ #endif
+ 
++struct vec2 {
++	float x, y;
++};
++
++/** X &amp; Y deltas, updated daily &amp; cleared at the start of each month. */
++extern struct vec2 goods_movement[WORLD_SIDE_LEN * WORLD_SIDE_LEN * 7];
++
++/** Last month's goods velocity, stored as direction and magnitude */
++extern struct vec2 goods_moved_last_month[WORLD_SIDE_LEN * WORLD_SIDE_LEN * 7];
++
+ void general_transport(int x, int y, int max_waste);
+ void connect_transport(int originx, int originy, int w, int h);
++void transport_clear_monthly(void);
++void transport_init_monthly(void);
++const char *transport_format_cargo(int store, const struct vec2 *vec, int max);
++
++static inline struct vec2 *transport_get_stats(int x, int y) {
++	return &amp;goods_moved_last_month[(x * WORLD_SIDE_LEN + y) * 7];
++}
+ 
+ #define GROUP_TRACK_COLOUR 32   /* 32 is a brown */
+ #define GROUP_TRACK_COST   1
+-- 
+1.8.1.5
+
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001305.html">[Lincity-ng-devel] [PATCH 2/2 for 2.0] Modify display of track,	roads &amp; rail
+</A></li>
+	<LI>Next message: <A HREF="001307.html">[Lincity-ng-devel] [PATCH 2/2 for head] Modify display of track,	roads &amp; rail
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1306">[ date ]</a>
+              <a href="thread.html#1306">[ thread ]</a>
+              <a href="subject.html#1306">[ subject ]</a>
+              <a href="author.html#1306">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

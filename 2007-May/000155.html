@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] how to add a new dialog message ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20how%20to%20add%20a%20new%20dialog%20message%20%3F&In-Reply-To=%3C200705011306.46850.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000156.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] how to add a new dialog message ?</H1>
+    <B>alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20how%20to%20add%20a%20new%20dialog%20message%20%3F&In-Reply-To=%3C200705011306.46850.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] how to add a new dialog message ?">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue May  1 13:06:46 CEST 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000156.html">[Lincity-ng-devel] how to add a new dialog message ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le lundi 30 avril 2007 18:55, Matthias Braun a &#233;crit&#160;:
+&gt;<i> (Kinda) works for me. At least it is starting the xsltproc*:
+</I>Oh! yes i installed xsltproc and got the same thing.
+Ok i just copied one appropriate to my needs and uninstall xsltproc.
+
+It's a bit surprising to have the content of mymessage.mes overwritten by
+mymessage.xml in NG, but be displayed in oldgui, but it works :)
+
+Greetings.
+Alain
+
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> [<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at taylor</A>] ~/projects/lincity-ng &gt; rm -f
+</I>&gt;<i> data/gui/parksneedwater.xml 
+</I>&gt;<i> [<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at taylor</A>] ~/projects/lincity-ng &gt; touch
+</I>&gt;<i> data/gui/dialogs/parksneedwater.xml 
+</I>&gt;<i> [<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at taylor</A>] ~/projects/lincity-ng &gt; jam -dd | grep parksneedDepends
+</I>&gt;<i> &quot;all&quot; : &quot;&lt;T!data!gui!&gt;parksneedwater.xml&quot; ;
+</I>&gt;<i> Depends &quot;&lt;T!data!gui!&gt;parksneedwater.xml&quot; : &quot;&lt;dir&gt;data/gui&quot; ;
+</I>&gt;<i> Depends &quot;&lt;T!data!gui!&gt;parksneedwater.xml&quot; : &quot;&lt;data!
+</I>&gt;<i> gui&gt;dialogs/parksneedwater.xml&quot; ;
+</I>&gt;<i> Depends &quot;&lt;T!data!gui!&gt;parksneedwater.xml&quot; : &quot;&lt;data!
+</I>&gt;<i> gui&gt;dialogs/dialogs.xsl&quot; ;
+</I>&gt;<i> runtime error: file data/gui/dialogs/dialogs.xsl line 70 element choose
+</I>&gt;<i> Variable 'title' has not been declared.
+</I>&gt;<i> ...removing data/gui/parksneedwater.xml
+</I>&gt;<i> 
+</I>&gt;<i> Greetings,
+</I>&gt;<i> 	Matze
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 1: my current version of xsltproc errors out on the xsl file because of
+</I>&gt;<i> undefined variables. It did work at the time when I created this stuff
+</I>&gt;<i> but it seems like the versions of xsltproc back then produced empty
+</I>&gt;<i> strings instead of error out on unknown variables. no time at the moment
+</I>&gt;<i> to dive into the xsl and xquery specs again to fix this correctly...
+</I>&gt;<i> 
+</I>&gt;<i> 
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000156.html">[Lincity-ng-devel] how to add a new dialog message ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#155">[ date ]</a>
+              <a href="thread.html#155">[ thread ]</a>
+              <a href="subject.html#155">[ subject ]</a>
+              <a href="author.html#155">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #16621] Compile error.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316621%5D%20Compile%20error.&In-Reply-To=%3C201001022155.o02LtdUB020563%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000863.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #16621] Compile error.</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2316621%5D%20Compile%20error.&In-Reply-To=%3C201001022155.o02LtdUB020563%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #16621] Compile error.">admin at berlios.de
+       </A><BR>
+    <I>Sat Jan  2 22:55:39 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000863.html">[Lincity-ng-devel] [Bug #16621] Compile error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#862">[ date ]</a>
+              <a href="thread.html#862">[ thread ]</a>
+              <a href="subject.html#862">[ subject ]</a>
+              <a href="author.html#862">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #16621, was updated on 2010-Jan-03 00:55
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: o01eg
+Assigned to : none
+Summary: Compile error.
+
+Details: When I compile revision 1559 a got next error (I use libxslt-1.1.26):
+cc1plus: warnings being treated as errors
+src/lincity/fileutil.cpp: In function &#145;void malloc_failure()&#146;:
+src/lincity/fileutil.cpp:501: error: format not a string literal and no format arguments
+    g++ -c -o ./build/x86_64-unknown-linux-gnu/debug/src/lincity/fileutil.o  -DHAVE_CONFIG_H -I. -I./src -Isrc/lincity/.  -O2 -march=core2 -mtune=core2 -msse -msse2 -msse3 -mmmx -Wall -W -O0 -g3 -DDEBUG -Werror -DDEFAULT_LIBDIR=\&quot;/mnt/other/games/lincity-ng.d/share/lincity-ng\&quot; src/lincity/fileutil.cpp
+...failed C++ ./build/x86_64-unknown-linux-gnu/debug/src/lincity/fileutil.o ...
+
+src/lincity-ng/Dialog.cpp: In member function &#145;void Dialog::gameStats()&#146;:
+src/lincity-ng/Dialog.cpp:381: error: format not a string literal and no format arguments
+src/lincity-ng/Dialog.cpp:381: error: format not a string literal and no format arguments
+    g++ -c -o ./build/x86_64-unknown-linux-gnu/debug/src/lincity-ng/Dialog.o  -DHAVE_CONFIG_H -I. -I./src -I/usr/include/libxml2   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT      -pthread   -O2 -march=core2 -mtune=core2 -msse -msse2 -msse3 -mmmx -Wall -W -O0 -g3 -DDEBUG -Werror -DAPPDATADIR=\&quot;/mnt/other/games/lincity-ng.d/share/lincity-ng\&quot; src/lincity-ng/Dialog.cpp
+...failed C++ ./build/x86_64-unknown-linux-gnu/debug/src/lincity-ng/Dialog.o ...
+
+runtime error: file data/gui/dialogs/dialogs.xsl line 75 element choose
+Variable 'title' has not been declared.
+runtime error: file data/gui/dialogs/dialogs.xsl line 118 element copy-of
+Variable 'buttonbar' has not been declared.
+xmlXPathCompiledEval: evaluation failed
+        xsltproc -o data/gui/nobull-tip.xml data/gui/dialogs/dialogs.xsl data/gui/dialogs/nobull-tip.xml
+...failed XSLTProc data/gui/nobull-tip.xml ...
+...removing data/gui/nobull-tip.xml
+XSLTProc data/gui/cricketup.xml 
+        xsltproc -o data/gui/roadup.xml data/gui/dialogs/dialogs.xsl data/gui/dialogs/roadup.xml
+...failed XSLTProc data/gui/roadup.xml ...
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16621&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=16621&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000863.html">[Lincity-ng-devel] [Bug #16621] Compile error.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#862">[ date ]</a>
+              <a href="thread.html#862">[ thread ]</a>
+              <a href="subject.html#862">[ subject ]</a>
+              <a href="author.html#862">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

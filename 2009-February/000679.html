@@ -1,0 +1,134 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Interest in contributions?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C912646.14603.qm%40web31908.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000678.html">
+   <LINK REL="Next"  HREF="000682.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Interest in contributions?</H1>
+    <B>Daniel Santos</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Interest%20in%20contributions%3F&In-Reply-To=%3C912646.14603.qm%40web31908.mail.mud.yahoo.com%3E"
+       TITLE="[Lincity-ng-devel] Interest in contributions?">javatroubadour at yahoo.com
+       </A><BR>
+    <I>Mon Feb  2 06:19:59 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000678.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+        <LI>Next message: <A HREF="000682.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#679">[ date ]</a>
+              <a href="thread.html#679">[ thread ]</a>
+              <a href="subject.html#679">[ subject ]</a>
+              <a href="author.html#679">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I started playing lincity-ng a few weeks ago and have had a good deal of fun
+with it, despite the fact that I have yet to win a game (I'm still learning
+:<i>).  None the less, I wanted to measure the dev team's interest in patch
+</I>submissions.  I've been tinkering with the code and learning it's
+architecture -- very interesting.  It's nice to be reminded of the early days
+in development when resources were so much more scarce by working with the C
+portions of the code.  It's been a little while since doing pure C, so it's a
+nice refresher.
+
+So anyway, I've done a little development to:
+* Add a config option for statistical display mode with the settings
+&quot;percentage&quot;, &quot;values&quot; and &quot;both&quot; and added a new function void
+mps_store_sddp(int i, const char * s, int cur, int max) to
+src/gui_interface/mps.h and src/lincity-ng/MpsInterface.cpp to use in place
+of mps_store_sfp.  This function, based upon the config setting displays
+either a precentage (as mps_store_sfp currently does), values in the form of
+&quot;cur/max&quot; or both in the form of &quot;cur/max (p%)&quot;.
+* Added void num_to_ansi2(char *s, size_t size, long num, size_t digits, bool
+strip_trailing); to src/lincity/lclib.h &amp; cpp which performs the same as
+num_to_ansi except that it allows you to explicitly specify the number of
+significant digits (both before and after decimal place, so numbers with a
+greater power of 10 have less digits after the decimal place) as well as
+optionally strip trialling zeros after the decimal, as well as the decimal
+place its self if not needed (thus, 56000 will be displayed as &quot;56k&quot; and not
+&quot;56.0k&quot;).  I like this as the interface feels a little cleaner.  The new
+mps_store_sddp function uses this to render numbers to text.
+* Modified src/lincity/modules/*.cpp mps_* functions to utilize
+mps_store_sddp where it makes sense to do so.
+
+I've also made a few changes so far that actually alter game-play.
+* Added a new mechanism for calculating tech bonuses, that leaves the numbers
+coded as constants in lin-city.h.  Values are:
+  o &lt;building&gt;_TECH_BONUS_PROD
+  o &lt;building&gt;_TECH_BONUS_STORAGE
+  o &lt;building&gt;_TECH_BONUS_AQUISITION
+  o &lt;building&gt;_TECH_BONUS_CONSUMPTION
+* Modified pottery, blacksmith, mill and mill to utilize these values for a
+tech bonus (in the process of changing farm too, but there is a lot to
+consider in this one).  The x_PROD bonus is a multiplier attached to the tech
+level to determine how much production is changed by the tech level,
+x_STORAGE alters how many units of supplies and producibles are stored,
+x_ACQUISITION alters how quickly resources and jobs are acquired while
+x_CONSUMPTION alters the rate of consumption.  Any of these may actually be
+negative, as would make sense in some cases, for example, applied to
+consumption to reflect increased efficiency.  Having these values defined
+generically in lin-city.h makes it easier to view them at a glance and tweak
+as needed without modifying the actual module's code.
+* Adding a get_jobs2 function to src/lincity/modules/market.h/cpp to
+eventually replace get_jobs.  This function will return the number of jobs
+acquired and will acquisition less jobs than requested.  Then I plan to
+modify all calls to get_jobs to accept what jobs it can get and attempt
+production with a minimal work force rather than completely abort.  There are
+however a lot of nuances I don't quite understand yet, like the fact that the
+current get_jobs will not return true unless the 150% of the requested jobs
+are actually available.
+* I plan on changing the text &quot;Jobs&quot; for mps_market to &quot;Workers&quot; to properly
+reflect that this is a surplus of workers available.
+* Finally, I don't yet understand the locale framework and what needs to be
+done to realign all the .pot translation files, as I've noticed that they
+explicitly specify the source file names &amp; line numbers where each string  is
+substituted.
+
+So I'm mostly playing around at this point and learning the app &amp; concepts
+behind the game design, but if any of what I'm doing can be of interest to
+you guys, I would be more than happy to contribute some.  This is the 1st sim
+game I've worked on and I'm rather enjoying learning from it. :)
+
+Daniel
+
+
+
+      
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000678.html">[Lincity-ng-devel] [Bug #15177] Inexplicable population crash.
+</A></li>
+	<LI>Next message: <A HREF="000682.html">[Lincity-ng-devel] Interest in contributions?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#679">[ date ]</a>
+              <a href="thread.html#679">[ thread ]</a>
+              <a href="subject.html#679">[ subject ]</a>
+              <a href="author.html#679">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SDL%28%2A%29.h%20%3A%20No%20file%20or%20directory%20-%20But%20they%0A%20are%20present%20in%20the%20include%20path.%20-%20Update&In-Reply-To=%3CCAM6SkhnKaNJfbUEup%2BYMUc-LX64G%3DHveGbAcnCaXyTjzs0gQ_A%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001318.html">
+   <LINK REL="Next"  HREF="001320.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update</H1>
+    <B>Amit Ahire</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20SDL%28%2A%29.h%20%3A%20No%20file%20or%20directory%20-%20But%20they%0A%20are%20present%20in%20the%20include%20path.%20-%20Update&In-Reply-To=%3CCAM6SkhnKaNJfbUEup%2BYMUc-LX64G%3DHveGbAcnCaXyTjzs0gQ_A%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update">amitahire at gmail.com
+       </A><BR>
+    <I>Fri May  3 14:37:50 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001318.html">[Lincity-ng-devel] SDL(*).h : No file or directory - But they are	present in the include path.
+</A></li>
+        <LI>Next message: <A HREF="001320.html">[Lincity-ng-devel] Windpower.h - missing.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1319">[ date ]</a>
+              <a href="thread.html#1319">[ thread ]</a>
+              <a href="subject.html#1319">[ subject ]</a>
+              <a href="author.html#1319">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I got an update - I checked again everything and all the paths - I am quite
+sure they are alright - But it still gives the same &quot;SDL.h no such file&quot;
+error. In order make sure that I got the installation correct. I took a
+simple SDL application off the net and compiled it and its WORKS!! So
+atleast paths are correct. I used the following command to compile the
+test application.
+
+g++ -c test.c `sdl-config --cflags`
+g++ -o test test.o 'sdl-config --libs`
+./test
+
+
+And this from sdl-config , it is helps.
+
+$ sdl-config --cflags
+-I/usr/local/include/SDL -D_GNU_SOURCE=1 -Dmain=SDL_main -D_REENTRANT
+-I/usr/include/SDL
+$ sdl-config --libs
+-L/usr/local/lib -lmingw32 -lSDLmain -lSDL -mwindows
+
+
+
+On Thu, May 2, 2013 at 5:37 PM, Amit Ahire &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">amitahire at gmail.com</A>&gt; wrote:
+
+&gt;<i> Hello,
+</I>&gt;<i>
+</I>&gt;<i> Was compiling from src in windows 7 and Mingw. I am sure I have installed
+</I>&gt;<i> all the libs and dependencies. As it './configure's and compiles
+</I>&gt;<i> (partially). Just a side note - I have lincity compiling in linux (ubuntu
+</I>&gt;<i> VM). So I have something to compare against.
+</I>&gt;<i>
+</I>&gt;<i> Currently I dont understand :
+</I>&gt;<i>
+</I>&gt;<i> 1) SDL.h ( or others) are not found. I have all the includes correctly. I
+</I>&gt;<i> am attaching the configure output
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://pastebin.com/PcuKQRrW">http://pastebin.com/PcuKQRrW</A>
+</I>&gt;<i>
+</I>&gt;<i> and the jam build step
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://pastebin.com/nxKm7axG">http://pastebin.com/nxKm7axG</A> -- (Part 1) - Some parts skipped - I dont
+</I>&gt;<i> why - mkdir sometimes doesnt work correctly.  Around line 150.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>         mkdir -p &quot;./build/i686-pc-mingw32/optimize/src/gui\PainterGL&quot;
+</I>&gt;<i>
+</I>&gt;<i> ...failed MkDir1 ./build/i686-pc-mingw32/optimize/src/gui\PainterGL ...
+</I>&gt;<i> ...skipped &lt;T!src!gui!&gt;PainterGL\PainterGL.o for lack
+</I>&gt;<i> of&lt;dir&gt;./build/i686-pc-mingw32/optimize/src/gui\PainterGL...
+</I>&gt;<i> ...skipped &lt;T!src!gui!&gt;PainterGL\TextureGL.o for lack
+</I>&gt;<i> of&lt;dir&gt;./build/i686-pc-mingw32/optimize/src/gui\PainterGL...
+</I>&gt;<i> ...skipped &lt;T!src!gui!&gt;PainterGL\TextureManagerGL.o for lack
+</I>&gt;<i> of&lt;dir&gt;./build/i686-pc-mingw32/optimize/src/gui\PainterGL...
+</I>&gt;<i> MkDir1 ./build/i686-pc-mingw32/optimize/src/gui\PainterSDL
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> <A HREF="http://pastebin.com/z7L2ffbK">http://pastebin.com/z7L2ffbK</A> -- (part 2) -- Where it shows SDL.h: no such
+</I>&gt;<i> file or directory. I think its not in the pastebin file (didnt print).
+</I>&gt;<i>
+</I>&gt;<i> Here is the screen shot -
+</I>&gt;<i> <A HREF="http://i1268.photobucket.com/albums/jj568/amitahire/sdl-h-nada.png">http://i1268.photobucket.com/albums/jj568/amitahire/sdl-h-nada.png</A>
+</I>&gt;<i>
+</I>&gt;<i> I had a hard time installing SDL_mixer and PhysicsFS(oh the nightmares!) -
+</I>&gt;<i> but finally did it. And I searched on Google for SDL not found issues (they
+</I>&gt;<i> are a lot) - also implemented them (including the path even though it was
+</I>&gt;<i> correct) - But still nada. Hence I turn to you guidance.
+</I>&gt;<i>
+</I>&gt;<i> 2) Also it doesn't seem to compile and runthe included xmlgettext tool.
+</I>&gt;<i>
+</I>&gt;<i> ...failed C++ ./build/i686-pc-mingw32/optimize/src/tools/xmlgettext\main.o
+</I>&gt;<i> ...
+</I>&gt;<i> ...skipped xmlgettext.exe for lack of &lt;T!src!tools!xmlgettext!&gt;main.o...
+</I>&gt;<i> ...skipped &lt;T!data!&gt;locale/gui\messages.pot for lack of xmlgettext.exe...
+</I>&gt;<i> XGetText actions too long (max 2046)!
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> Can anyone help or guess what I am doing wrong here? I am pretty sure I
+</I>&gt;<i> got all the libs installed, linked and included. I am also including the
+</I>&gt;<i> configure output (<A HREF="http://pastebin.com/Y86nZg3k">http://pastebin.com/Y86nZg3k</A>) and jam build output(
+</I>&gt;<i> <A HREF="http://pastebin.com/NegG8794">http://pastebin.com/NegG8794</A>) from my linux compilation which works
+</I>&gt;<i> perfectly. Any help or pointer will be appreciated. Thanks.
+</I>&gt;<i>
+</I></PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001318.html">[Lincity-ng-devel] SDL(*).h : No file or directory - But they are	present in the include path.
+</A></li>
+	<LI>Next message: <A HREF="001320.html">[Lincity-ng-devel] Windpower.h - missing.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1319">[ date ]</a>
+              <a href="thread.html#1319">[ thread ]</a>
+              <a href="subject.html#1319">[ subject ]</a>
+              <a href="author.html#1319">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

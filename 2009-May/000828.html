@@ -1,0 +1,165 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15768] Linux Start Error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315768%5D%20Linux%20Start%20Error&In-Reply-To=%3C200905302333.n4UNX0fA011537%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000827.html">
+   <LINK REL="Next"  HREF="000829.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15768] Linux Start Error</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315768%5D%20Linux%20Start%20Error&In-Reply-To=%3C200905302333.n4UNX0fA011537%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15768] Linux Start Error">admin at berlios.de
+       </A><BR>
+    <I>Sun May 31 01:33:00 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000827.html">[Lincity-ng-devel] [Bug #15128] game save on crash
+</A></li>
+        <LI>Next message: <A HREF="000829.html">[Lincity-ng-devel] [Bug #15768] Linux Start Error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#828">[ date ]</a>
+              <a href="thread.html#828">[ thread ]</a>
+              <a href="subject.html#828">[ subject ]</a>
+              <a href="author.html#828">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15768, was updated on 2009-May-29 02:19
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: kitchm
+Assigned to : none
+Summary: Linux Start Error
+
+Details: I am using Arch with all latest updates.
+
+I receive the following at the command prompt;
+
+$ lincity-ng
+Starting lincity-ng (version 2.0)...
+[/home/lbj/.lincity-ng] is in the search path.
+[/usr/share/lincity-ng] is in the search path.
+[/home/lbj/.lincity-ng] is the write directory.
+Language is &quot;en_US&quot;.
+ fast = 9
+Illegal instruction
+$
+
+It doesn't start from the KDEMod3 menu item, so that is why I tried it manually from the prompt.
+
+I didn't see this problem listed anywhere else, but maybe I missed something and its very simple to fix.
+
+Any help anyone can give would be appreciated.
+
+Thank you.
+
+Follow-Ups:
+
+Date: 2009-May-31 01:32
+By: wolfgangb
+
+Comment:
+That one crashed later, after OpenGL was initialized. Seems to be a different problem.
+-------------------------------------------------------
+
+Date: 2009-May-30 20:06
+By: ghmitch
+
+Comment:
+I have recently been plagued by a similar problem using Mandriva:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">ghmitch at localhost</A> ~]$ lincity-ng
+Starting lincity-ng (version 2.0)...
+[/home/ghmitch/.lincity-ng] is in the search path.
+[/home/ghmitch/.lincity] is in the search path.   
+[/usr/share/games/lincity-ng] is in the search path.
+[/home/ghmitch/.lincity-ng] is the write directory. 
+Language is &quot;en_US&quot;.                                
+ fast = 9                                           
+OpenGL Mode 1024x768                                
+Segmentation fault
+
+When I changed my user interface from KDE4 to xfce4, the problem seemingly went away.  So I am wondering if kde might have something to do with this?
+
+-------------------------------------------------------
+
+Date: 2009-May-30 12:34
+By: wolfgangb
+
+Comment:
+Same Error with &quot;lincity-ng --sdl&quot; and &quot;lincity-ng --gl&quot;. So I guess it is not a video driver problem. Did you compile Lincity using a stable version of physfs? Check with: ldd `which lincity-ng`
+
+-------------------------------------------------------
+
+Date: 2009-May-30 05:27
+By: kitchm
+
+Comment:
+Thank you for the prompt response.
+
+At the command prompt I entered:
+lincity-ng --sdl, use --gl
+lincity-ng --sdl
+lincity-ng --gl
+lincity-ng use --gl
+.....and any other combination I could think of.  It didn't like some of them, but when it ran, I got the same error every time.
+
+I used ATI Radeon by installing it with:
+# pacman -S xf86-video-ati
+
+Please let me know if you need anything else.
+
+Thanks again.
+-------------------------------------------------------
+
+Date: 2009-May-29 18:58
+By: wolfgangb
+
+Comment:
+That is a new one. Looks like it happens before or while the the graphic mode is initialized. Can you try to force SDL mode (lincity-ng --sdl, use --gl to change to OpenGL)? Usually SDL is slower that OpenGL.  What video driver do you use?
+Did you build Lincity from source or do you use the autopackage? 
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15768&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15768&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000827.html">[Lincity-ng-devel] [Bug #15128] game save on crash
+</A></li>
+	<LI>Next message: <A HREF="000829.html">[Lincity-ng-devel] [Bug #15768] Linux Start Error
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#828">[ date ]</a>
+              <a href="thread.html#828">[ thread ]</a>
+              <a href="subject.html#828">[ subject ]</a>
+              <a href="author.html#828">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

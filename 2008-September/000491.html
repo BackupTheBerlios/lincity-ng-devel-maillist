@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Patch] Correct cursor color
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%5D%20Correct%20cursor%20color&In-Reply-To=%3C48C82D6F.7040001%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000490.html">
+   <LINK REL="Next"  HREF="000492.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Patch] Correct cursor color</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BPatch%5D%20Correct%20cursor%20color&In-Reply-To=%3C48C82D6F.7040001%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] [Patch] Correct cursor color">magicfox at magic.fr
+       </A><BR>
+    <I>Wed Sep 10 22:26:23 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000490.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+        <LI>Next message: <A HREF="000492.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#491">[ date ]</a>
+              <a href="thread.html#491">[ thread ]</a>
+              <a href="subject.html#491">[ subject ]</a>
+              <a href="author.html#491">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Ivar ten Cate a &#233;crit :
+&gt;<i> 
+</I>&gt;<i> 
+</I>&gt;<i> 2008/9/9 magicfox &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">magicfox at magic.fr</A> &lt;mailto:<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">magicfox at magic.fr</A>&gt;&gt;
+</I>&gt;<i> 
+</I>&gt;<i>     Hi Ivar,
+</I>&gt;<i> 
+</I>&gt;<i>     Well; you have compiled the debug version, that's great
+</I>&gt;<i>     but we have to use symbolic information.
+</I>&gt;<i>     To run it under debugger, use
+</I>&gt;<i>     $ gdb lincity-ng in a terminal
+</I>&gt;<i> 
+</I>&gt;<i> I didn't know that. I ran it under the debugger, and this is the output:
+</I>&gt;<i> /Starting program: /usr/local/bin/lincity-ng
+</I>&gt;<i> [Thread debugging using libthread_db enabled]
+</I>&gt;<i> Starting lincity-ng (version 1.92.svn) in Debug Mode...
+</I>&gt;<i> [/home/ivar/.lincity-ng] is in the search path.
+</I>&gt;<i> [/home/ivar/.lincity] is in the search path.
+</I>&gt;<i> [/usr/local/share/lincity-ng] is in the search path.
+</I>&gt;<i> [/home/ivar/.lincity-ng] is the write directory.
+</I>&gt;<i> [New Thread 0xb76bf6c0 (LWP 6374)]
+</I>&gt;<i> Language is &quot;nl_NL&quot;.
+</I>&gt;<i>  fast = 9
+</I>&gt;<i> [New Thread 0xb764ab90 (LWP 6377)]
+</I>&gt;<i> [New Thread 0xb6e49b90 (LWP 6378)]
+</I>&gt;<i> [New Thread 0xb4bffb90 (LWP 6380)]
+</I>&gt;<i> [Thread 0xb6e49b90 (LWP 6378) exited]
+</I>&gt;<i> OpenGL Mode 1024x768
+</I>&gt;<i> [New Thread 0xa7f76b90 (LWP 6381)]
+</I>&gt;<i> old file format, so load with old function, and then convert to new format
+</I>&gt;<i>  ldsv_version = 113
+</I>&gt;<i> prog_box:'Bezig scene laden' 0%
+</I>&gt;<i> prog_box:'' 0%
+</I>&gt;<i> ...
+</I>&gt;<i> prog_box:'' 100%
+</I>&gt;<i> 
+</I>&gt;<i> Program received signal SIGFPE, Arithmetic exception.
+</I>&gt;<i> [Switching to Thread 0xb76bf6c0 (LWP 6374)]
+</I>&gt;<i> 0x080d9f66 in setup_land () at src/lincity/init_game.cpp:236
+</I>&gt;<i> 236                    abs((ALT(x,y) - alt0) * 19 / alt_step) + 3 * 
+</I>&gt;<i> (ALT(x,y) * ALT(x,y)) /1000000 ;/
+</I>&gt;<i> /(gdb)/
+</I>&gt;<i> 
+</I>&gt;<i> After this the output stops and and the game screen remains black.
+</I>&gt;<i> 
+</I>&gt;<i> I hope this is helpful. Thanks for all your help so far, I'm learning a 
+</I>&gt;<i> lot here ;)
+</I>&gt;<i> 
+</I>&gt;<i> groeten,
+</I>&gt;<i> Ivar
+</I>
+Hi Ivar and all,
+
+This is the same problem as referenced in bug # 14200.
+This line concern the altitude feature in progress but this is a 
+specific case like Ivar or Rore, not for me; any other ?.
+
+The developer of this feature (Alain Baeckeroot) said he was busy and he 
+had planed to revert his changes.
+Alain are you here to help or we have to investigate this problem 
+ourselves ?
+
+--
+Thierry
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000490.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+	<LI>Next message: <A HREF="000492.html">[Lincity-ng-devel] [Patch] Correct cursor color
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#491">[ date ]</a>
+              <a href="thread.html#491">[ thread ]</a>
+              <a href="subject.html#491">[ subject ]</a>
+              <a href="author.html#491">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

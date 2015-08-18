@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Avery - on to a more specific question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-October/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Avery%20-%20on%20to%20a%20more%20specific%20question&In-Reply-To=%3C201010131819.38168.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001002.html">
+   <LINK REL="Next"  HREF="001005.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Avery - on to a more specific question</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Avery%20-%20on%20to%20a%20more%20specific%20question&In-Reply-To=%3C201010131819.38168.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Avery - on to a more specific question">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Wed Oct 13 18:19:37 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001002.html">[Lincity-ng-devel] Lincity-NG Italian Translation
+</A></li>
+        <LI>Next message: <A HREF="001005.html">[Lincity-ng-devel] Avery - on to a more specific question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1001">[ date ]</a>
+              <a href="thread.html#1001">[ thread ]</a>
+              <a href="subject.html#1001">[ subject ]</a>
+              <a href="author.html#1001">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Hello Avery
+
+it would be much convenient if you post a patch (diff -u -r dir1 dir2)
+or if we could have read access to your repository
+
+Maybe we should just add you as developper, so you can create a branch
+in the svn and work there
+
+Question to the list : 
+btw i am looking for another site with better tools, maybe fedorahosted.org
+for dev, (with git and trac) and keep berlios for release and wiki ?
+
+Le 23/09/2010 &#224; 03:02, Avery White a &#233;crit :
+&gt;<i> Implementation so far...
+</I>&gt;<i> Edit #2
+</I>&gt;<i> **********************************************************************************
+</I>&gt;<i> This is where I started to become uncertain concerning the global variables
+</I>&gt;<i> and flags. I made a
+</I>&gt;<i> change to the residential.cpp file by adding the following lines to the end
+</I>&gt;<i> of the do_residence function:
+</I>&gt;<i> 
+</I>&gt;<i>  if(MP_INFO(x, y).int_6 &gt; 0){
+</I>&gt;<i>         unemployment_cost += 500;
+</I>&gt;<i>     }
+</I>&gt;<i> 
+</I>&gt;<i> My thinking was that since int_6 is unused...I could use that to indicate
+</I>
+yes this is correct, and will be saved like everythig else without modifications.
+
+
+&gt;<i> that the player has chosen
+</I>&gt;<i> to implement an LID by setting it to 1 (using it as a flag...). I call it a
+</I>&gt;<i> 'hack' because I'm not creating
+</I>&gt;<i> its own variable, I'm just piggy-backing on the existing unemployment_cost -
+</I>&gt;<i> I'm just trying to get this
+</I>&gt;<i> working - which is NOT a good philosophy...I know :(
+</I>
+it's ok for testing
+
+&lt;snip&gt;
+ 
+&gt;<i> Two questions
+</I>&gt;<i> 
+</I>&gt;<i> 1) Am I on the right track using a combination of the unused integer values
+</I>&gt;<i> in MP_INFO (i.e. int_3, int_6)
+</I>&gt;<i> with the FLAG_LID ?
+</I>
+Don&quot;t fear to change the code as you need. We'll see later how to integrate
+it.
+
+Maybe you should ask a friend or a teacher in your course, about flags and
+ boolean operators in C/C++.  It needs 2 min oral explainations, but
+would take a much longer mail exchanges
+&gt;<i> 
+</I>&gt;<i> 2) I'm not getting a dialog to pop-up on residential double-click...what am
+</I>&gt;<i> I missing?
+</I>
+I don't know, just keep on trying :)
+
+Kind Regards,
+Alain.
+
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001002.html">[Lincity-ng-devel] Lincity-NG Italian Translation
+</A></li>
+	<LI>Next message: <A HREF="001005.html">[Lincity-ng-devel] Avery - on to a more specific question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1001">[ date ]</a>
+              <a href="thread.html#1001">[ thread ]</a>
+              <a href="subject.html#1001">[ subject ]</a>
+              <a href="author.html#1001">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

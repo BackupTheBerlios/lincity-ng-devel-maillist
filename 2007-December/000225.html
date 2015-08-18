@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Summary of latest changes
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Summary%20of%20latest%20changes&In-Reply-To=%3C200712022232.34639.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000226.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Summary of latest changes</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Summary%20of%20latest%20changes&In-Reply-To=%3C200712022232.34639.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Summary of latest changes">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Dec  2 22:32:34 CET 2007</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000226.html">[Lincity-ng-devel] Lincity-ng-1.1.2 failed to build on Mac OS X	10.5.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#225">[ date ]</a>
+              <a href="thread.html#225">[ thread ]</a>
+              <a href="subject.html#225">[ subject ]</a>
+              <a href="author.html#225">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+ BACKUP your saved games before testing latest trunk :-)
+
+1/ removed src/oldgui (we can set it back quickly if needed)
+
+2/ rather big clean-up in the engine code (src/lincity/.), mostly remove
+ headers, gather things, and delete dead/obsolete code.
+ I tried to do :
+ lin-city.h      = declaration of all constants #define
+ lintypes.h      = types of data structures
+ engglobs.h .cpp = engine globals variables
+
+ other changes are mainly putting the rest of the engine ok with this.
+ It is not perfect ;-) but its easier to understand.
+
+3/ I added one data structure for future improvement of water management,
+and modified load/save game to handle this. If i understand, the ldsv should
+be endian independent. I'm not sure i did it correctly, and i cannot test
+this (i will test 32 bit vs 64 bit linux machine).
+
+4/ At load time, old game are automagically transformed to use waterwell,
+and the user is warned that he has 10 years to build water wells everywhere.
+This upgrade is one way, games saved in new format are not playable with
+old engines (some tiles are not modifiable)
+
+   so BACKUP YOUR DATA before testing it.
+
+5/ I don't have windows, i should have break nothing, but....
+
+I'll check english help files and will upgrade .po for translators soon, but
+roughly it is ready for beta_1 testing, no more big change should occur soon.
+
+Any comments/questions are welcome :-)
+
+Cheers
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000226.html">[Lincity-ng-devel] Lincity-ng-1.1.2 failed to build on Mac OS X	10.5.1
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#225">[ date ]</a>
+              <a href="thread.html#225">[ thread ]</a>
+              <a href="subject.html#225">[ subject ]</a>
+              <a href="author.html#225">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

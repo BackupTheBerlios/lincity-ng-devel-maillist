@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18415] wrong grid total power
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318415%5D%20wrong%20grid%20total%20power&In-Reply-To=%3C201111131526.pADFQwe9002066%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001170.html">
+   <LINK REL="Next"  HREF="001172.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18415] wrong grid total power</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318415%5D%20wrong%20grid%20total%20power&In-Reply-To=%3C201111131526.pADFQwe9002066%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18415] wrong grid total power">admin at berlios.de
+       </A><BR>
+    <I>Sun Nov 13 16:26:58 CET 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001170.html">[Lincity-ng-devel] [Patch #3233] power fix
+</A></li>
+        <LI>Next message: <A HREF="001172.html">[Lincity-ng-devel] Creating own scenarios for Lincity NG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1171">[ date ]</a>
+              <a href="thread.html#1171">[ thread ]</a>
+              <a href="subject.html#1171">[ subject ]</a>
+              <a href="author.html#1171">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18415, was updated on 2011-Nov-13 16:26
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: azi
+Assigned to : none
+Summary: wrong grid total power
+
+Details: In specific cases when there is a power source connected only through a substation using substation's two connection points then the total power of the grid is calculated as equal to only this last power source. Adding power line connection between substation connection points is a workaround that solves such issue.
+
+Anyway I have created a patch that solves this:
+<A HREF="https://developer.berlios.de/patch/?func=detailpatch&amp;patch_id=3233&amp;group_id=2929">https://developer.berlios.de/patch/?func=detailpatch&amp;patch_id=3233&amp;group_id=2929</A>
+
+Best Regards,
+Andrzej
+
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18415&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18415&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001170.html">[Lincity-ng-devel] [Patch #3233] power fix
+</A></li>
+	<LI>Next message: <A HREF="001172.html">[Lincity-ng-devel] Creating own scenarios for Lincity NG
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1171">[ date ]</a>
+              <a href="thread.html#1171">[ thread ]</a>
+              <a href="subject.html#1171">[ subject ]</a>
+              <a href="author.html#1171">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

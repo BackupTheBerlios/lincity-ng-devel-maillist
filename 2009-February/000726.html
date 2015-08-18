@@ -1,0 +1,172 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] heavy industry
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20heavy%20industry&In-Reply-To=%3C892731.21735.qm%40web31901.mail.mud.yahoo.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000725.html">
+   <LINK REL="Next"  HREF="000727.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] heavy industry</H1>
+    <B>Daniel Santos</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20heavy%20industry&In-Reply-To=%3C892731.21735.qm%40web31901.mail.mud.yahoo.com%3E"
+       TITLE="[Lincity-ng-devel] heavy industry">javatroubadour at yahoo.com
+       </A><BR>
+    <I>Fri Feb  6 03:02:34 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000725.html">[Lincity-ng-devel] [Bug #15127] Crash when selecting a location to	build water well
+</A></li>
+        <LI>Next message: <A HREF="000727.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#726">[ date ]</a>
+              <a href="thread.html#726">[ thread ]</a>
+              <a href="subject.html#726">[ subject ]</a>
+              <a href="author.html#726">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+I'm still working on my cleanup of the lincity sub-project that includes the
+features I posted about before (i.e., adding a config option to control how
+some values are displayed, either %, cur/max or both, etc.).  In the process,
+I have discovered and exploited a good number of other areas for improvement:
+
+* I've isolated a good number of duplicated (copy &amp; paste) code and have
+re-implemented them using a single function in a more centralized location. 
+* I now have new get_jobs() and get_stuff() functions that return the count
+acquired, allowing a partial acquisition of resources instead of
+all-or-nothing.
+* The new get_jobs() supports the ability to specify an exact percentage of
+qualified applicants.  The old get_jobs() function had similar functionality,
+but used a hard-coded value of 67%.  Where I've replaced calls to the old
+get_jobs() with the new function, I've hard-coded that value in the function
+call (to 67%), but this can now be tweaked as desired to better fit each
+industry (I'll be adding it as a #define in lin-city.h for each building).
+* The new get_stuff() function actually eliminates 4 other functions, so
+reduces code size.
+* Added a new get_from_transport() function for buildings that ship &amp; receive
+only from the upper two connection points.  Like the new get_jobs and
+get_stuff functions, it too will return a partial amount.  It accepts
+sufficient parameters to deduct the appropriate number of jobs used and scale
+that number based upon how much is retrieved and also performs load
+balancing, retrieving first from the transport that has the greatest
+inventory.  All in all, it should greatly smooth the supply chain (not that I
+perceived any irregularities while playing).  But most of all, it eliminates
+more duplicate code as each module just has to call this function now to
+retrieve a resource from connected transport.
+* I've gotten a lot of interfaces cleaned up (removed a lot of function
+prototypes for functions that were defined elsewhere and replaced them with
+correct includes of the appropriate header files).
+* Added a mechanism to track running statistics (for up to a month of
+history) and I'm using that to replace the current &quot;Capacity&quot; display which
+uses stale data (previous month).  This is in place for pottery, blacksmith,
+mill and light industry thus far.
+* Bumped save game version and added appropriate load, save and convert old
+save game functionality for the running statistics data.
+
+So now I've encountered a new challenge.  It seems that the code for heavy
+industry is inconsistent and that the behavior it has been exhibiting may not
+be the correct/desired behavior.  So here is an analysis of how
+do_industry_h() behaves (as is now)
+
+* Attempts to load ore from transport:
+  o If stored ore is less than max and (x - 1, y) is transport that has any
+ore then it attempts to provision 9 jobs.  If this is successful, then it
+attempts to fill it's stocks, taking a maxiumum of one half of what is
+available on transport.
+  o If stored ore is still less max, it repeats the same process for
+transport (if any) at location (x, y - 1).
+* Attempts to load coal from transport:
+  o behaves exactly the same as loading ore, except that 18 jobs are used to
+load from each transport.
+* Normal stuff so far, but here's where it gets wierd.  It starts with a
+quantity of ore and uses either the full amount of what is available or
+MAX_MADE_AT_INDUSTRY_H, which ever is lessor.  The name
+&quot;MAX_MADE_AT_INDUSTRY_H&quot; would seem to indicate that this is for the maxiumum
+amount of steel that's made and is defined to &quot;MAX_ORE_AT_INDUSTRY_H/16&quot;
+evaluating to 625.  In practice, this is not the maximum amount of steel that
+can be made in a day, the real maxiumum is 36.
+* Next, to determine if we have enough raw materials to proceed with
+production, it checks to make sure we've got ore (naturally) and that we are
+storing less than 20480 units of steel (which is also oddly expressed in the
+code) -- just to make things clear, it would take 560 days at full capacity
+to create 20480 units of steel.
+* If the previous conditions are met, then it makes 3 successive attempts to
+allocate jobs, first using the desired amount, and then that same amount
+divided by 2 and finally by 5 if the previous two attempts fail.  Here's the
+kicker; the expression to determine the number of jobs to attempt to allocate
+is &quot;((rawm / 2) / JOBS_MAKE_STEEL) + 1&quot;, where &quot;rawm&quot; is the amount of ore
+calculated earlier.  So with the maximum allocation of ore (625 units), this
+evaluates to 5 jobs.  This already seems funny to me because we just used as
+much as 54 jobs to load ore and coal from transport.  If it can't allocate 5
+jobs, it tries for 3 and then 1.
+* If job procurement was successful, it calculates the amount of steel made
+using &quot;rawm / ORE_MAKE_STEEL&quot;, for a maximum of 36 units.  If it used one of
+the lessor job allocations, the amount produced is divided appropriately
+(i.e., to 18 and 7 respectively).
+* (it uses power or coal and sells steel to transport, but this is the end of
+the analysis)
+
+The definition of JOBS_MAKE_STEEL is as follows:
+/*
+  JOBS_MAKE_STEEL is the steel made per job at the steel works
+  what's it doing here?
+ */
+#define JOBS_MAKE_STEEL 70
+
+So if a single job is supposed to be able to make 70 steel, why do 6 jobs
+make 36 in pactice?  My current course is to remove all bogus calculations
+and re-implement it as it *effectively* behaves.  But I would greatly
+appreciate some comment on this.  It appears that the code has been touched
+many times, but maybe it's just confusing because the original developer
+tweaked it several times to try to figure out what made sense and never went
+back and cleaned it up.
+
+Finally, heavy industry does not store jobs, I presume because they ran out
+of fields to store the data.  I am freeing one of those fields since I'm
+implementing the running statistics and removing the current and previous
+month's capacity, so it would be nice to have it store some jobs, shielding
+it a bit from an unstable job market.  I would appreciate some feedback on
+that as well.
+
+Thanks,
+Daniel
+
+
+
+
+      
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000725.html">[Lincity-ng-devel] [Bug #15127] Crash when selecting a location to	build water well
+</A></li>
+	<LI>Next message: <A HREF="000727.html">[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#726">[ date ]</a>
+              <a href="thread.html#726">[ thread ]</a>
+              <a href="subject.html#726">[ subject ]</a>
+              <a href="author.html#726">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

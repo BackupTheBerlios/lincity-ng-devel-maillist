@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Finished the track bridge and the road	bridge
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFinished_the_track_bridge_and_t%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fhe_road%3D09bridge%3F%3D&In-Reply-To=%3C200804201523.57580.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000457.html">
+   <LINK REL="Next"  HREF="000461.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Finished the track bridge and the road	bridge</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%0A%09%3D%3Fiso-8859-1%3Fq%3FFinished_the_track_bridge_and_t%3F%3D%0A%09%3D%3Fiso-8859-1%3Fq%3Fhe_road%3D09bridge%3F%3D&In-Reply-To=%3C200804201523.57580.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Finished the track bridge and the road	bridge">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Apr 20 15:23:57 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000457.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+        <LI>Next message: <A HREF="000461.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#459">[ date ]</a>
+              <a href="thread.html#459">[ thread ]</a>
+              <a href="subject.html#459">[ subject ]</a>
+              <a href="author.html#459">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi
+
+i have not tested it very hard, i 'm finishing the water stuff, and will
+look deeper to the bridges after.
+
+Le samedi 19 avril 2008, magicfox a &#233;crit&#160;:
+&gt;<i> Hi,
+</I>&gt;<i> &gt; * It is possible to build partial bridges. You should have to build
+</I>&gt;<i> &gt;   the whole thing at once.
+</I>&gt;<i> What's the matter, the player isn't he the architect of the city ?
+</I>Yes, not really a problem, even if it would be nicer to build a whole bridge.
+
+But, i can't build a full brigde, i always lack one or 2 access ramp (rev 1438)
+
+&gt;<i> 
+</I>&gt;<i> &gt; * Couldn't open file 'gui/build_bridge_yn.xml'. Do we need a dialog at
+</I>&gt;<i> &gt;   all? Maybe that causes the partial bridges for me.
+</I>&gt;<i> As I explained, we have a problem at compilation time where this file is
+</I>&gt;<i> truncated to zero length.
+</I>&gt;<i> When it is present you are prompted one time to build the bridge and
+</I>&gt;<i> only one section is build because dialogue can't handle many tiles.
+</I>&gt;<i> I plan to manage a stack to avoid this problem on the first build.
+</I>I have nothing prompted. I just draw a road from land over river to land,
+and i have a partial bridge.
+
+&gt;<i> 
+</I>&gt;<i> &gt; * If you bulldoze a part of the bridge the rest just stays there.
+</I>&gt;<i> &gt;   The whole bride should be destroyed at once.
+</I>&gt;<i> &gt; * Bulldozing the bridge also destroys the river. Water should stay.
+</I>&gt;<i> &gt; * Is is possible to build railroad bridges even if there is no room
+</I>&gt;<i> &gt;   for the ramp. No incomplete bridges again.
+</I>&gt;<i> This is an unchanged behaviour, you got desert on bulldoze.
+</I>&gt;<i> Bulldozing only one part of a bridge with the rest intact doesn't hurt
+</I>&gt;<i> me at all but this my opinion.
+</I>The bulldoze fix should be rather easy to do.
+
+&gt;<i> 
+</I>&gt;<i> &gt; * 'Can build' indicator is wrong.
+</I>&gt;<i> What do you mean ? color of cursor ?
+</I>yes, over rivers selected tiles are &quot;red&quot; they should appear &quot;blue&quot;.
+This is a test in 
+engine.cpp:int is_allowed_here(int x, int y, short type, short msg)
+
+&gt;<i> Do you have checked the new build cost calculation ?
+</I>&gt;<i> 
+</I>&gt;<i> &gt; * No idea if the costs for building and maintenance are balanced.
+</I>&gt;<i> I have set the parameters of track/road/rail bridges to 200K/500K/1M and
+</I>&gt;<i> 600K/1.5M/3M per section on water at maxi level.
+</I>&gt;<i> What is your idea about ?
+</I>more than 1M is more expensive than buldozing water.
+I think bridge should be less than this, more like
+200K 400K 600k , as one need to buldoze it for upgrade, and it
+will be water again after buldoze
+
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000457.html">[Lincity-ng-devel] Finished the track bridge and the road	bridge
+</A></li>
+	<LI>Next message: <A HREF="000461.html">[Lincity-ng-devel] Finished the track bridge and the road bridge
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#459">[ date ]</a>
+              <a href="thread.html#459">[ thread ]</a>
+              <a href="subject.html#459">[ subject ]</a>
+              <a href="author.html#459">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

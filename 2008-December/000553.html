@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #14900] Ore mine's bulldozing
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314900%5D%20Ore%20mine%27s%20bulldozing&In-Reply-To=%3C200812132034.mBDKYDne007807%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000552.html">
+   <LINK REL="Next"  HREF="000554.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #14900] Ore mine's bulldozing</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314900%5D%20Ore%20mine%27s%20bulldozing&In-Reply-To=%3C200812132034.mBDKYDne007807%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #14900] Ore mine's bulldozing">admin at berlios.de
+       </A><BR>
+    <I>Sat Dec 13 21:34:13 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000552.html">[Lincity-ng-devel] [Patch #2607] Patch for Bug Bug #14900
+</A></li>
+        <LI>Next message: <A HREF="000554.html">[Lincity-ng-devel] [Patch #2608] update for bulldoze.xml
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#553">[ date ]</a>
+              <a href="thread.html#553">[ thread ]</a>
+              <a href="subject.html#553">[ subject ]</a>
+              <a href="author.html#553">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14900, was updated on 2008-Dec-09 12:01
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: None
+Priority: 5
+Submitted by: etenil
+Assigned to : none
+Summary: Ore mine's bulldozing
+
+Details: An Ore mine cannot be destroyed but bulldozing it costs a tremendous amount of money, although nothing has been destroyed.
+
+I clicked on the mine by mistake, and I found myself good to give up the game regarding my debt.
+
+Follow-Ups:
+
+Date: 2008-Dec-13 21:34
+By: wolfgangb
+
+Comment:
+Patch is in revision 1466.
+-------------------------------------------------------
+
+Date: 2008-Dec-09 22:42
+By: jaky_lincity
+
+Comment:
+There is a bug that prevents the bulldozing of an oremine until the ore reserve of one of the underlying mappoints is below 50%. The total ore reserve would be at 96.875% at this point. 
+In the original lincity and in older lincity-ng versions you could always bulldoze and only the mappoints with less than 50% ore reserve would turn into water.
+The patch at <A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2607&amp;group_id=2929">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2607&amp;group_id=2929</A> restores the old behaviour. Maybe we could also add a warning message to ask the user if he really wants to bulldoze.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14900&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14900&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000552.html">[Lincity-ng-devel] [Patch #2607] Patch for Bug Bug #14900
+</A></li>
+	<LI>Next message: <A HREF="000554.html">[Lincity-ng-devel] [Patch #2608] update for bulldoze.xml
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#553">[ date ]</a>
+              <a href="thread.html#553">[ thread ]</a>
+              <a href="subject.html#553">[ subject ]</a>
+              <a href="author.html#553">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

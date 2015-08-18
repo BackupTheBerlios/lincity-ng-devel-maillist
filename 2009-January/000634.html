@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] slowdown
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20slowdown&In-Reply-To=%3C20090121180248.GA1998%40desktop%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000608.html">
+   <LINK REL="Next"  HREF="000605.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] slowdown</H1>
+    <B>Jaky</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20slowdown&In-Reply-To=%3C20090121180248.GA1998%40desktop%3E"
+       TITLE="[Lincity-ng-devel] slowdown">jaky_lincity at mail.ru
+       </A><BR>
+    <I>Wed Jan 21 19:02:48 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000608.html">[Lincity-ng-devel] slowdown
+</A></li>
+        <LI>Next message: <A HREF="000605.html">[Lincity-ng-devel] [Lincity-ng-commit] r1487 - in trunk/data:	images/tiles models
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#634">[ date ]</a>
+              <a href="thread.html#634">[ thread ]</a>
+              <a href="subject.html#634">[ subject ]</a>
+              <a href="author.html#634">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi,
+
+I see several problems with the framedrop changes in r1493. 
+One frame per month looks very stuttering.
+I would prefer a dynamic framedrop which would only drop as many frames as needed to reach a predefined simulation speed.
+Due to the calls to SDL_Delay(10) at every step lincity just uses 30% of CPU on my computer in fast mode.
+The help does not reflect the change and has no information about the framedrop or the fact that on slow computers quickness=&quot;9&quot; is now faster than quickness=&quot;1&quot;.
+Additionally the frames per second graph does not show the frames/second, but the simulation steps/second. Maybe it could be renamed.
+As a long term solution we could decouple the animation from the simulation. Every module could have another function which decides which image to use. This function would be called before every redraw.
+
+Jaky
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000608.html">[Lincity-ng-devel] slowdown
+</A></li>
+	<LI>Next message: <A HREF="000605.html">[Lincity-ng-devel] [Lincity-ng-commit] r1487 - in trunk/data:	images/tiles models
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#634">[ date ]</a>
+              <a href="thread.html#634">[ thread ]</a>
+              <a href="subject.html#634">[ subject ]</a>
+              <a href="author.html#634">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

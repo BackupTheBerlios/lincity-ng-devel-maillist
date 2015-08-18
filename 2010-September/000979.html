@@ -1,0 +1,115 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Question%20Concerning%20Global%20Variables%20-%0A%09/src/lincity/lin-city.h&In-Reply-To=%3CAANLkTi%3DCAyaJs2_fT%2BR%2BOrAjD8XMTA3xfS5e-nG_M1ZS%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000978.html">
+   <LINK REL="Next"  HREF="000980.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h</H1>
+    <B>Jo&#227;o Ricardo Louren&#231;o</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Question%20Concerning%20Global%20Variables%20-%0A%09/src/lincity/lin-city.h&In-Reply-To=%3CAANLkTi%3DCAyaJs2_fT%2BR%2BOrAjD8XMTA3xfS5e-nG_M1ZS%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h">jorl17.8 at gmail.com
+       </A><BR>
+    <I>Tue Sep 14 22:45:08 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000978.html">[Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h
+</A></li>
+        <LI>Next message: <A HREF="000980.html">[Lincity-ng-devel] LinCity-NG Handbook
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#979">[ date ]</a>
+              <a href="thread.html#979">[ thread ]</a>
+              <a href="subject.html#979">[ subject ]</a>
+              <a href="author.html#979">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>I haven't looked at the code (I rarely ever am active on this list), but I'd
+say that those are probably flags used with bitwise operators to set
+individual bits, to save memory (each bit as a bool).
+
+Jo&#227;o Ricardo Louren&#231;o
+
+2010/9/14 Avery White &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">praiseresound at gmail.com</A>&gt;
+
+&gt;<i> Salutations,
+</I>&gt;<i>
+</I>&gt;<i> 1)
+</I>&gt;<i> Can anyone shed some light on how global variables are used, I'm a little
+</I>&gt;<i> confused with the assignments. For example the following snippit is taken
+</I>&gt;<i> from lines 81-83:
+</I>&gt;<i>
+</I>&gt;<i> #define FLAG_HAD_POWER          (0x1000000)
+</I>&gt;<i> #define FLAG_MULTI_TRANSPORT    (0x2000000)   /* Is it a multitransport?
+</I>&gt;<i> */     /* AL1: unused in NG 1.1 */
+</I>&gt;<i> #define FLAG_LACK_JOBS          (0x4000000)
+</I>&gt;<i>
+</I>&gt;<i> 0x***** looks like a memory location to me...is this correct? If I wanted
+</I>&gt;<i> to
+</I>&gt;<i> add a variable where would I do so? I attempted to place one
+</I>&gt;<i> as such:
+</I>&gt;<i>
+</I>&gt;<i> #define FLAG_LID            (0x100000000)
+</I>&gt;<i>
+</I>&gt;<i> but this is outside the range of a 'long' variable type.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i> 2)
+</I>&gt;<i> Also, I noticed that these variables are affecting things that may exists
+</I>&gt;<i> in
+</I>&gt;<i> more than one location within the game (i.e. the boxes checked within the
+</I>&gt;<i> market dialog box located at different markets across the game). My
+</I>&gt;<i> intuition tells me that we're actually allocating a global memory space for
+</I>&gt;<i> each of these variables, spaced as far apart as possible to prevent
+</I>&gt;<i> collisions. Or, by the note &quot;the algorithm relies on numerical values of
+</I>&gt;<i> the
+</I>&gt;<i> flags&quot;...makes me think that perhaps these numbers are doing something
+</I>&gt;<i> different entirely (hence the confusion) and are actually a part of a very
+</I>&gt;<i> big equation.
+</I>&gt;<i>
+</I>&gt;<i> 3) What algorithm is the comment speaking of on (or near) line 58 of
+</I>&gt;<i> lin-city.h?
+</I>&gt;<i>
+</I>&gt;<i> Kind Regards,
+</I>&gt;<i>
+</I>&gt;<i> Avery
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000978.html">[Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h
+</A></li>
+	<LI>Next message: <A HREF="000980.html">[Lincity-ng-devel] LinCity-NG Handbook
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#979">[ date ]</a>
+              <a href="thread.html#979">[ thread ]</a>
+              <a href="subject.html#979">[ subject ]</a>
+              <a href="author.html#979">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

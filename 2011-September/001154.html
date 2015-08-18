@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Current status
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Current%20status&In-Reply-To=%3C4E6D0EA5.1060301%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001153.html">
+   <LINK REL="Next"  HREF="001155.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Current status</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Current%20status&In-Reply-To=%3C4E6D0EA5.1060301%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Current status">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Sun Sep 11 21:40:21 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001153.html">[Lincity-ng-devel] Current status
+</A></li>
+        <LI>Next message: <A HREF="001155.html">[Lincity-ng-devel] Current status
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1154">[ date ]</a>
+              <a href="thread.html#1154">[ thread ]</a>
+              <a href="subject.html#1154">[ subject ]</a>
+              <a href="author.html#1154">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello
+
+Le 08/09/2011 04:12, Jo&#227;o Ricardo Louren&#231;o a &#233;crit :
+&gt;<i> Hello.
+</I>&gt;<i>
+</I>&gt;<i> I've been following the project and this mailing list for quite some time
+</I>&gt;<i> now. I also sent in a couple of patches that I think got accepted about one
+</I>&gt;<i> and a half years after I'd sent them.
+</I>
+i remember your nickname, but can't find which patch you sent :-(
+&gt;<i>
+</I>&gt;<i> My question is quite simple: What's the status of Lincity-NG? What features
+</I>&gt;<i> are being worked on?
+</I>
+Personnally i am working slowly (mostly on my laptop in train while 
+going to work) on the following things
+1 - improve water management and add pollution transport with water, 
+(sadly actual with fukushima) which was the reason for adding waterwells 
+and new map with altitude and real rivers.
+2 - As a side effect i am trying to add a new interface page for land 
+generator, but i am really bad in c++ so i took time to got something 
+very far from perfect, but i am not far from something usable.
+
+3 - i also made some improvements to improve maxspeed that i will commit 
+soon. (re inline general_transport).
+
+Maybe i should commit everything in an 'experimental&quot; branch, so other 
+developper can help/teach me :)
+
+I have other ideas,  but i want to commit at least (3) and (2) and work 
+on (1) before anything else.
+
+
+
+&gt;<i> Can we expect it to get closer to the last simcity-true game series (simcity 4)?
+</I>
+I dont know the simcity game series, and do not care :)
+
+&gt;<i> Can we see it go in a different direction, with
+</I>&gt;<i> more buildings and a more intuitive display of the data, for instance?
+</I>I did a draw of a new interface i would like (cut paste in gimp), and 
+tried some modifications, but nothing clean currently/
+
+I am also gathering more documentation, to have more realistic ordrers 
+of magnitude (including surface of buildings wrt production)
+
+One personal wish would be to have several cities (lets say 3) with 
+different settings. Maybe a first step on that direction can be done 
+with pre defined scenarios for example
+- 1 rich + high-tech + low interest rates + low population + green
+- 1 poor + low-tech + high interest rates + lots of shanties + desert
+
+or with a improved interface for starting new game (more settings...).
+The main problem for me is that the game uses *hundreds* of global 
+variables, and i am not good in C (and very bad in C++) as i only learnt 
+fortran 20 years ago :)
+
+&gt;<i> What
+</I>&gt;<i> about some kind of netplay (I'm sure having a server and just sending out
+</I>&gt;<i> some data once in a while and keeping in sync wouldn't be too hard to
+</I>&gt;<i> implement if you designed the code)?
+</I>
+I think netplay requires the same modification as my multi-city whish ?
+I don't see how it can be multiplayer (one city each ? echange wia 
+ports?) but i like this idea.
+
+&gt;<i>
+</I>&gt;<i> And if progress isn't being seen, are there any other simcity-like games
+</I>&gt;<i> which you'd recommend? I know this is probably a bad taste question, but I
+</I>&gt;<i> really enjoyed lincity-ng when I first played it. Then I waited. And waited.
+</I>&gt;<i> And waited. And nothing new came. I get that it follows the simcity1 (2?)
+</I>&gt;<i> design instead of the 3000 and 4, but I kind of miss those games and would
+</I>&gt;<i> like to see an open-source alternative. I always hoped some fork of
+</I>&gt;<i> lincity-NG would come up to do just this, but not even the project itself
+</I>&gt;<i> seemed to move forward.
+</I>
+it is slowly moving.
+One thing i really want is to use a trac instance (either on sourceforge 
+or fedorahosted) as i am really tired with the berlios obsolete tools 
+(no decent ticket, separated wiki, no attachment....)
+&gt;<i>
+</I>&gt;<i> Lastly, is there some extensive documentation on the game?
+</I>The wiki is the only extensive documentation.
+
+Maybe it could be good to improve Doxygen, but i am afraid i messed it 
+up one day i was on nerves ;-) so maybe check the configuration before 
+the commit when i added Docygen comment in each files (one line at the end)
+
+
+Cheers
+Alain
+
+&gt;<i>
+</I>&gt;<i> Thanks,
+</I>&gt;<i>
+</I>&gt;<i> Jorl17
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001153.html">[Lincity-ng-devel] Current status
+</A></li>
+	<LI>Next message: <A HREF="001155.html">[Lincity-ng-devel] Current status
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1154">[ date ]</a>
+              <a href="thread.html#1154">[ thread ]</a>
+              <a href="subject.html#1154">[ subject ]</a>
+              <a href="author.html#1154">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

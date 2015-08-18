@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Fullmoon build
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Fullmoon%20build&In-Reply-To=%3C4E6674FE.6010904%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001149.html">
+   <LINK REL="Next"  HREF="001151.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Fullmoon build</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Fullmoon%20build&In-Reply-To=%3C4E6674FE.6010904%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Fullmoon build">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Sep  6 21:31:10 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001149.html">[Lincity-ng-devel] Fullmoon build
+</A></li>
+        <LI>Next message: <A HREF="001151.html">[Lincity-ng-devel] Fullmoon build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1150">[ date ]</a>
+              <a href="thread.html#1150">[ thread ]</a>
+              <a href="subject.html#1150">[ subject ]</a>
+              <a href="author.html#1150">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hi again Marko
+
+i sent my previous answer too fast
+A build bot like yours is intersting as it provides an plateform we 
+maybe don't have
+
+Ideally for us i think
+1/ maybe on a monthly basis
+
+2/ compile log in debug mode
+  VARIANT=debug jam      (equivalent to make debug, you can add -jN too 
+if you want to use N core in parrallel like for make)
+This VARIANT=debug sets &quot;-Werror&quot; gcc compiler flag so we know what new 
+version of compiler are doing (see in Jamrules)
+
+3/ send by email to one list or developper(s) account(s)
+  ideally only the NEW messages that did not occured in previous built
+  (maybe just the diff for dayly built, or if too big the full log ?)
+
+I think things like this may exist (in debian, and also opensuse built 
+system), and we don't need it , but i hope these remarks may help you :)
+
+Cheers
+Alain
+
+Le 06/09/2011 00:30, Marko Lindqvist a &#233;crit :
+&gt;<i> Hello
+</I>&gt;<i>
+</I>&gt;<i> In Open Source community I have been most active in Freeciv (
+</I>&gt;<i> <A HREF="http://www.freeciv.org/">http://www.freeciv.org/</A> ) development, but I also run a couple of
+</I>&gt;<i> one-man-projects, and have made minor contributions to other projects.
+</I>&gt;<i> One of the projects of my own is fullmoon (
+</I>&gt;<i> <A HREF="http://www.cazfi.net/fullmoon">http://www.cazfi.net/fullmoon</A> ) build tool for linux.
+</I>&gt;<i>
+</I>&gt;<i> I'm now adding Lincity-ng build as &quot;test case&quot; (lives in &quot;examples&quot;
+</I>&gt;<i> -directory) for fullmoon. I hope that my efforts on that front will
+</I>&gt;<i> also benefit Lincity-ng project quality.
+</I>&gt;<i>
+</I>&gt;<i> Here are my findings in Debian Wheezy amd64 about Lincity-ng build so
+</I>&gt;<i> far. In case it matters, builddir != srcdir, and I'm building
+</I>&gt;<i> Lincity-ng trunk head:
+</I>&gt;<i>
+</I>&gt;<i> - Build produces lincity-ng binary itself, but AFAICT fails to build
+</I>&gt;<i> some data files. Return value of jam is 1 with last error message
+</I>&gt;<i> being:
+</I>&gt;<i> &quot;XGetText actions too long (max 10240)!&quot;
+</I>&gt;<i> Attempts to run lincity-ng (in build dir) results in:
+</I>&gt;<i> &quot;Warning couldn't find music file '02 - Robert van Herk - City Blues.ogg'.&quot;
+</I>&gt;<i> and
+</I>&gt;<i> &quot;Unexpected exception: Couldn't open file 'gui/mainmenu.xml': No such
+</I>&gt;<i> file or directory&quot;
+</I>&gt;<i>
+</I>&gt;<i> I'm not too familiar with jam. Does lincity-ng require some jam
+</I>&gt;<i> equivalent of &quot;make install&quot; before it's usable, or can it be run
+</I>&gt;<i> directly from builddir? At least wiki does not mention such install
+</I>&gt;<i> step.
+</I>&gt;<i>
+</I>&gt;<i>
+</I>&gt;<i>   - ML
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001149.html">[Lincity-ng-devel] Fullmoon build
+</A></li>
+	<LI>Next message: <A HREF="001151.html">[Lincity-ng-devel] Fullmoon build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1150">[ date ]</a>
+              <a href="thread.html#1150">[ thread ]</a>
+              <a href="subject.html#1150">[ subject ]</a>
+              <a href="author.html#1150">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

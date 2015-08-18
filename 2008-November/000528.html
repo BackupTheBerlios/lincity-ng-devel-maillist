@@ -1,0 +1,98 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #14584] LinCity crashes on restarting a game
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-November/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314584%5D%20LinCity%20crashes%20on%20restarting%20a%20game&In-Reply-To=%3C200811040320.mA43KtaB029047%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000527.html">
+   <LINK REL="Next"  HREF="000529.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #14584] LinCity crashes on restarting a game</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314584%5D%20LinCity%20crashes%20on%20restarting%20a%20game&In-Reply-To=%3C200811040320.mA43KtaB029047%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #14584] LinCity crashes on restarting a game">admin at berlios.de
+       </A><BR>
+    <I>Tue Nov  4 04:20:55 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000527.html">[Lincity-ng-devel] [Patch #2586] Fix for segfault in	connect_transport
+</A></li>
+        <LI>Next message: <A HREF="000529.html">[Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#528">[ date ]</a>
+              <a href="thread.html#528">[ thread ]</a>
+              <a href="subject.html#528">[ subject ]</a>
+              <a href="author.html#528">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14584, was updated on 2008-Sep-30 13:19
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: calum
+Assigned to : none
+Summary: LinCity crashes on restarting a game
+
+Details: While trying to start LinCity, and carry on with an existing game, I get the following crash, and message:
+
+OpenGL Mode 1024x768
+Problem with ok_dial_box: Error while parsing component 'Window': Error while parsing component 'TableLayout': Error while parsing component 'TableLayout': Error while parsing component 'Button': No style with name 'dialogbutton' defined.
+Segmentation fault
+
+
+The window is the &quot;too many powergrids&quot; message, which I saw soon before I saved the game and exited.
+
+Follow-Ups:
+
+Date: 2008-Nov-04 03:20
+By: jaky_lincity
+
+Comment:
+I get the same error message, when starting lincity if I had quit my last game with too many power grids. But I don't get a segfault. When I continue playing the game shows a message box with the message: Problem with ok_dial_box: 'warning.mes' + &quot;You have too many power grids. Join some of them&quot;
+
+I think it would be helpful if you could provide us with a savegame which reproduces the error.
+
+Jaky
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14584&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14584&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000527.html">[Lincity-ng-devel] [Patch #2586] Fix for segfault in	connect_transport
+</A></li>
+	<LI>Next message: <A HREF="000529.html">[Lincity-ng-devel] [Bug #14577] LinCityNG segfaults randomly in game
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#528">[ date ]</a>
+              <a href="thread.html#528">[ thread ]</a>
+              <a href="subject.html#528">[ subject ]</a>
+              <a href="author.html#528">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

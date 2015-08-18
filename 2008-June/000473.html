@@ -1,0 +1,1314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [nmetro at scarletandgray.info: Re: Lincity-ng	1.92.svn Segmentation	Fault]
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-June/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5Bnmetro%40scarletandgray.info%3A%20Re%3A%20Lincity-ng%0A%091.92.svn%20Segmentation%09Fault%5D&In-Reply-To=%3C20080622151427.GA3670%40greg.local%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [nmetro at scarletandgray.info: Re: Lincity-ng	1.92.svn Segmentation	Fault]</H1>
+    <B>Wolfgang Becker</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5Bnmetro%40scarletandgray.info%3A%20Re%3A%20Lincity-ng%0A%091.92.svn%20Segmentation%09Fault%5D&In-Reply-To=%3C20080622151427.GA3670%40greg.local%3E"
+       TITLE="[Lincity-ng-devel] [nmetro at scarletandgray.info: Re: Lincity-ng	1.92.svn Segmentation	Fault]">uafr at gmx.de
+       </A><BR>
+    <I>Sun Jun 22 17:14:27 CEST 2008</I>
+    <P><UL>
+        
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#473">[ date ]</a>
+              <a href="thread.html#473">[ thread ]</a>
+              <a href="subject.html#473">[ subject ]</a>
+              <a href="author.html#473">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>----- Forwarded message from Nick Metrowsky &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">nmetro at scarletandgray.info</A>&gt; -----
+
+X-Spam-Level: 
+Date: Fri, 20 Jun 2008 19:32:14 -0600
+From: Nick Metrowsky &lt;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">nmetro at scarletandgray.info</A>&gt;
+Reply-To: <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">nmetro at scarletandgray.info</A>
+To: <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">uafr at gmx.de</A>
+Subject: Re: Lincity-ng 1.92.svn Segmentation Fault
+
+Dear Mr. Becker:
+
+While I know the procedure to file a bug report, that is go through the  
+bug report tool; I felt that what I attached was probably too long to make 
+it into the bug tracking system or the support forums.
+
+In the attached file is a note describing the symptoms of the problem and 
+supporting information from the system environment. The problem described 
+can be created at will.
+
+Please forward the attached file to the appropriate party.
+
+Thank you for your time.
+
+Best Regards,
+
+Nick Metrowsky
+-- 
+========================================================================
+Nick Metrowsky                   | <A HREF="http://www.scarletandgray.info">http://www.scarletandgray.info</A>
+3624 Oakwood Drive               | E-Mail: <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">nmetro at scarletandgray.info</A>
+Longmont, CO 80503-7560          | Phone: (303)485-5696
+========================================================================
+
+I just built lincity-ng 1.92.sv9 on Fedora 9. 
+
+When I try to run  the software (in either SDL or OpenGL mode), I get the following message:
+
+Starting lincity-ng (version 1.92.svn)...
+[/root/.lincity-ng] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+[/root/.lincity-ng] is the write directory.
+ fast = 9
+SDL Mode 1024x768
+Unexpected exception: basic_string::_S_construct NULL not valid
+
+So, I ran the lincity-ng 1.91 version and it successfully starts up lincity-ng and creates
+the .lincity-ng directory with userprefs.xml. I can run the lincity-ng 1.91 version with
+no problems; as it creates 9_currentGameNG.scn.
+
+When I then try to rerun lincity-ng 1.92.svn, I get a Segmentation Fault, whenever I try to
+move the mouse. Actually, try to move the mouse pointer using a touch pad on a Dell
+Inspiron E1705. I am able to get past the &quot;Lincity-ng&quot; set up screen, and it actually
+displays the game screen. It is at this point when the mouse pointer is moved that
+the segmentation fault occurs.
+
+FYI, this error occurs in both the Gnome and KDE desktops.
+
+I have provided software and hardware information below.
+
+Best Regards,
+
+Nick Metrowsky
+
+--------------------------------------------------------------------------------------
+
+The following shows me getting the version of lincity-ng and the next section is a gdb
+run of lincity-ng 1.92.svn and subsequent backtrace.
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">nmetro at buckeyes1</A> .lincity-ng]$ /usr/local/bin/lincity-ng -v
+Starting lincity-ng (version 1.92.svn)...
+[/root/.lincity-ng] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+[/root/.lincity-ng] is the write directory.
+lincity-ng version 1.92.svn
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">nmetro at buckeyes1</A> .lincity-ng]$ gdb /usr/local/bin/lincity-ng
+GNU gdb Fedora (6.8-10.fc9)
+Copyright (C) 2008 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later &lt;<A HREF="http://gnu.org/licenses/gpl.html">http://gnu.org/licenses/gpl.html</A>&gt;
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.  Type &quot;show copying&quot;
+and &quot;show warranty&quot; for details.
+This GDB was configured as &quot;i386-redhat-linux-gnu&quot;...
+(gdb) run
+Starting program: /usr/local/bin/lincity-ng 
+[Thread debugging using libthread_db enabled]
+Starting lincity-ng (version 1.92.svn)...
+[/home/nmetro/.lincity-ng] is in the search path.
+[/home/nmetro/.lincity] is in the search path.
+[/usr/local/share/lincity-ng] is in the search path.
+[/home/nmetro/.lincity-ng] is the write directory.
+ fast = 9
+[New Thread 0xb7f398e0 (LWP 2002)]
+[New Thread 0xb7f38b90 (LWP 2005)]
+[New Thread 0xb7537b90 (LWP 2006)]
+[New Thread 0xb5fa0b90 (LWP 2007)]
+unknown chip id 0x7145, can't guess.
+libGL error: InitDriver failed
+libGL error: reverting to (slow) indirect rendering
+[Thread 0xb7537b90 (LWP 2006) exited]
+OpenGL Mode 1024x768
+[New Thread 0xb559fb90 (LWP 2008)]
+ ldsv_version = 1322 
+[Thread 0xb559fb90 (LWP 2008) exited]
+
+Program received signal SIGSEGV, Segmentation fault.
+GameView::buildCost (this=0xb6958930, tile={x = 85, y = 32}) at src/lincity-ng/GameView.cpp:1766
+1766	    return get_group_cost( main_types[ selected_module_type ].group );
+Missing separate debuginfos, use: debuginfo-install SDL.i386 SDL_gfx.i386 SDL_image.i386 SDL_mixer.i386 SDL_ttf.i386 
+alsa-lib.i386 expat.i386 freetype.i386 gcc.i386 glibc.i686 libX11.i386 libXau.i386 libXcursor.i386 libXdamage.i386 
+libXdmcp.i386 libXext.i386 libXfixes.i386 libXrandr.i386 libXrender.i386 libXxf86vm.i386 libdrm.i386 libjpeg.i386 
+libmikmod.i386 libpng.i386 libtiff.i386 libxcb.i386 libxml2.i386 mesa.i386 physfs.i386 zlib.i386
+(gdb) bt
+#0  GameView::buildCost (this=0xb6958930, tile={x = 85, y = 32}) at src/lincity-ng/GameView.cpp:1766
+#1  0x08090e24 in GameView::draw (this=0xb6958930, painter=@0xb6951850) at src/lincity-ng/GameView.cpp:1635
+#2  0x080a1316 in Component::drawChild (this=0xb6957fb0, child=@0xb4a09310, painter=@0xb6951850) at src/gui/Component.cpp:66
+#3  0x080a13f5 in Component::draw (this=0xb6957fb0, painter=@0xb6951850) at src/gui/Component.cpp:83
+#4  0x0809e178 in Desktop::draw (this=0xb6957fb0, painter=@0xb6951850) at src/gui/Desktop.cpp:108
+#5  0x08051ab2 in Game::run (this=0xb6951918) at src/lincity-ng/Game.cpp:239
+#6  0x08083276 in mainLoop () at src/lincity-ng/main.cpp:351
+#7  0x08084004 in main (argc=Cannot access memory at address 0x3e8
+) at src/lincity-ng/main.cpp:493
+(gdb) quit
+The program is running.  Exit anyway? (y or n) y
+
+Additional Information:
+
+Video Card is an ATI Radeon Mobility X1400 with 256MB memory
+Monitor is set to generic LCD Panel at 1440x900 resolution
+
+The following is the OS information:
+
+Linux buckeyes1.scarletandgray.info 2.6.25.6-55.fc9.i686 #1 SMP Tue Jun 10 16:27:49 EDT 2008 i686 i686 i386 GNU/Linux
+
+Gbome is V2.22.2
+KDE is V4.05.3
+
+The operating system and software are at the latest releases via yum update.
+
+The following is a copy of my /etc/X11/xorg.conf file:
+
+# Xorg configuration created by system-config-display
+
+Section &quot;ServerLayout&quot;
+	Identifier     &quot;single head configuration&quot;
+	Screen      0  &quot;Screen0&quot; 0 0
+	InputDevice    &quot;Keyboard0&quot; &quot;CoreKeyboard&quot;
+EndSection
+
+Section &quot;InputDevice&quot;
+
+# keyboard added by rhpxl
+	Identifier  &quot;Keyboard0&quot;
+	Driver      &quot;kbd&quot;
+	Option	    &quot;XkbModel&quot; &quot;pc105&quot;
+	Option	    &quot;XkbLayout&quot; &quot;us&quot;
+EndSection
+
+Section &quot;Monitor&quot;
+	Identifier   &quot;Monitor0&quot;
+	ModelName    &quot;LCD Panel 1440x900&quot;
+	HorizSync    31.5 - 56.0
+	VertRefresh  56.0 - 65.0
+	Option	    &quot;dpms&quot;
+EndSection
+
+Section &quot;Device&quot;
+	Identifier  &quot;Videocard0&quot;
+	Driver      &quot;radeon&quot;
+EndSection
+
+Section &quot;Screen&quot;
+	Identifier &quot;Screen0&quot;
+	Device     &quot;Videocard0&quot;
+	Monitor    &quot;Monitor0&quot;
+	DefaultDepth     24
+	SubSection &quot;Display&quot;
+		Viewport   0 0
+		Depth     24
+	EndSubSection
+EndSection
+
+Section &quot;DRI&quot;
+	Mode         0666
+EndSection
+
+The following are a list of X11 RPMs installed:
+
+xorg-x11-xauth-1.0.2-4.fc9.i386
+xorg-x11-drv-penmount-1.3.0-1.fc9.i386
+xorg-x11-resutils-7.1-5.fc9.i386
+xorg-x11-drv-vmware-10.16.0-1.fc9.i386
+xorg-x11-drv-dynapro-1.1.2-1.fc9.i386
+xorg-x11-drv-geode-2.9.0-2.fc9.i386
+xorg-x11-fonts-75dpi-7.2-6.fc9.noarch
+xorg-x11-fonts-truetype-7.1-3.fc7.noarch
+xorg-x11-drv-neomagic-1.2.0-1.fc9.i386
+xorg-x11-fonts-ISO8859-9-75dpi-7.2-6.fc9.noarch
+xorg-x11-server-common-1.4.99.902-3.20080612.fc9.i386
+xorg-x11-xfs-1.0.5-2.fc9.i386
+xorg-x11-fonts-Type1-7.2-6.fc9.noarch
+xorg-x11-fonts-ISO8859-15-100dpi-7.2-6.fc9.noarch
+xorg-x11-drv-glint-1.2.0-1.fc9.i386
+xorg-x11-drv-dmc-1.1.2-1.fc9.i386
+xorg-x11-server-devel-1.4.99.902-3.20080612.fc9.i386
+xorg-x11-utils-7.3-3.fc9.i386
+xorg-x11-drv-acecad-1.2.2-1.fc9.i386
+xorg-x11-drv-jamstudio-1.2.0-1.fc9.i386
+xorg-x11-xkb-utils-7.2-4.fc9.i386
+xorg-x11-drv-i740-1.2.0-1.fc9.i386
+xorg-x11-drv-diamondtouch-0.2.0-0.1.fc9.i386
+xorg-x11-drv-savage-2.2.0-2.fc9.i386
+dbus-x11-1.2.1-1.fc9.i386
+xorg-x11-drv-ati-6.8.0-14.fc9.i386
+xorg-x11-drv-tek4957-1.2.0-1.fc9.i386
+xorg-x11-drv-i810-2.2.1-24.fc9.i386
+xorg-x11-drv-voodoo-1.2.0-1.fc9.i386
+xorg-x11-fonts-ISO8859-1-75dpi-7.2-6.fc9.noarch
+xorg-x11-drv-ur98-1.1.0-5.fc9.i386
+xorg-x11-proto-devel-7.3-12.fc9.noarch
+xorg-x11-drv-nouveau-0.0.10-2.20080408git0991281.fc9.i386
+xorg-x11-drv-summa-1.2.0-1.fc9.i386
+xorg-x11-drivers-7.3-4.fc9.i386
+xorg-x11-server-Xorg-1.4.99.902-3.20080612.fc9.i386
+xorg-x11-xdm-1.1.6-3.fc9.i386
+xorg-x11-fonts-ISO8859-15-75dpi-7.2-6.fc9.noarch
+xorg-x11-drv-s3virge-1.10.0-1.fc9.i386
+xorg-x11-drv-evdev-1.99.1-0.5.fc9.i386
+xorg-x11-util-macros-1.1.6-1.fc9.i386
+vim-X11-7.1.291-1.fc9.i386
+xorg-x11-drv-spaceorb-1.1.0-6.fc9.i386
+xorg-x11-filesystem-7.3-1.fc9.noarch
+xorg-x11-drv-aiptek-1.1.1-1.fc9.i386
+xorg-x11-drv-digitaledge-1.1.1-1.fc9.i386
+xorg-x11-xsm-1.0.2-7.fc9.i386
+xorg-x11-fonts-ISO8859-2-100dpi-7.2-6.fc9.noarch
+xorg-x11-xtrans-devel-1.1-2.fc9.i386
+xorg-x11-drv-mga-1.4.8-1.fc9.i386
+xorg-x11-drv-microtouch-1.2.0-1.fc9.i386
+xorg-x11-fonts-100dpi-7.2-6.fc9.noarch
+xorg-x11-drv-dummy-0.3.0-1.fc9.i386
+xorg-x11-docs-1.3-2.fc9.noarch
+xorg-x11-drv-nv-2.1.8-1.fc9.i386
+xorg-x11-drv-sis-0.10.0-1.fc9.i386
+xorg-x11-xinit-1.0.7-6.fc9.i386
+xorg-x11-fonts-ISO8859-2-75dpi-7.2-6.fc9.noarch
+xorg-x11-fonts-misc-7.2-6.fc9.noarch
+xorg-x11-drv-elographics-1.2.0-1.fc9.i386
+xorg-x11-drv-hyperpen-1.2.0-1.fc9.i386
+xorg-x11-fonts-ISO8859-14-75dpi-7.2-6.fc9.noarch
+xorg-x11-fonts-ISO8859-14-100dpi-7.2-6.fc9.noarch
+xorg-x11-xfs-utils-1.0.5-2.fc9.i386
+xorg-x11-drv-fbdev-0.3.1-7.fc9.i386
+xorg-x11-drv-void-1.1.1-9.fc9.i386
+xorg-x11-server-utils-7.3-3.fc9.i386
+xorg-x11-drv-siliconmotion-1.6.0-1.fc9.i386
+xorg-x11-drv-i128-1.3.0-1.fc9.i386
+xorg-x11-server-Xvfb-1.4.99.902-3.20080612.fc9.i386
+xorg-x11-twm-1.0.3-2.fc9.i386
+x3270-x11-3.3.6-5.fc9.i386
+fonts-x11-apl-4.22.1-2.fc9.i386
+ConsoleKit-x11-0.2.10-3.fc9.i386
+xorg-x11-server-Xephyr-1.4.99.902-3.20080612.fc9.i386
+xorg-x11-apps-7.3-3.fc9.i386
+xorg-x11-drv-palmax-1.2.0-1.fc9.i386
+xorg-x11-drv-ast-0.85.0-1.fc9.i386
+qt-x11-4.3.5-2.fc9.i386
+xorg-x11-drv-magellan-1.2.0-1.fc9.i386
+xorg-x11-drv-cyrix-1.1.0-4.i386
+xorg-x11-server-Xnest-1.4.99.902-3.20080612.fc9.i386
+xorg-x11-font-utils-7.2-4.fc9.i386
+xorg-x11-drv-vmmouse-12.5.0-1.fc9.i386
+xorg-x11-drv-wiimote-0.0.1-1.fc9.i386
+libX11-1.1.4-1.fc9.i386
+xorg-x11-drv-calcomp-1.1.2-1.fc9.i386
+xorg-x11-fonts-ISO8859-1-100dpi-7.2-6.fc9.noarch
+xorg-x11-drv-cirrus-1.2.0-1.fc9.i386
+xorg-x11-drv-mutouch-1.2.0-1.fc9.i386
+xorg-x11-drv-v4l-0.2.0-1.fc9.i386
+xorg-x11-drv-apm-1.2.0-1.fc9.i386
+xorg-x11-fonts-ISO8859-9-100dpi-7.2-6.fc9.noarch
+xorg-x11-drv-fpit-1.2.0-1.fc9.i386
+xorg-x11-drv-ark-0.7.0-1.fc9.i386
+xorg-x11-drv-tdfx-1.4.0-1.fc9.i386
+xorg-x11-drv-mouse-1.3.0-2.fc9.i386
+xorg-x11-drv-openchrome-0.2.902-7.fc9.i386
+libX11-devel-1.1.4-1.fc9.i386
+xorg-x11-drv-s3-0.6.0-1.fc9.i386
+xorg-x11-drv-citron-2.2.1-1.fc9.i386
+xorg-x11-drv-keyboard-1.3.0-3.fc9.i386
+xorg-x11-xbitmaps-1.0.1-5.1.i386
+xorg-x11-drv-chips-1.2.0-1.fc9.i386
+xorg-x11-drv-nsc-2.8.1-3.fc7.i386
+xorg-x11-drv-sisusb-0.9.0-1.fc9.i386
+xorg-x11-drv-vesa-1.3.0-15.20080404.fc9.i386
+xorg-x11-drv-tseng-1.2.0-1.fc9.i386
+xorg-x11-drv-rendition-4.2.0-1.fc9.i386
+xorg-x11-drv-trident-1.3.0-1.fc9.i386
+
+The following is the config.log:
+
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+It was created by lincity-ng configure 1.92.svn, which was
+generated by GNU Autoconf 2.61.  Invocation command line was
+
+  $ ./configure 
+
+## --------- ##
+## Platform. ##
+## --------- ##
+
+hostname = buckeyes1.scarletandgray.info
+uname -m = i686
+uname -r = 2.6.25.6-55.fc9.i686
+uname -s = Linux
+uname -v = #1 SMP Tue Jun 10 16:27:49 EDT 2008
+
+/usr/bin/uname -p = unknown
+/bin/uname -X     = unknown
+
+/bin/arch              = i686
+/usr/bin/arch -k       = unknown
+/usr/convex/getsysinfo = unknown
+/usr/bin/hostinfo      = unknown
+/bin/machine           = unknown
+/usr/bin/oslevel       = unknown
+/bin/universe          = unknown
+
+PATH: /usr/lib/qt-3.3/bin
+PATH: /usr/kerberos/bin
+PATH: /usr/lib/ccache
+PATH: /usr/local/bin
+PATH: /usr/bin
+PATH: /bin
+PATH: /usr/lib/alliance/bin
+PATH: .
+PATH: /usr/libexec/sdcc
+PATH: /usr/lib/alliance/bin
+PATH: .
+PATH: /usr/libexec/sdcc
+
+
+## ----------- ##
+## Core tests. ##
+## ----------- ##
+
+configure:1835: checking build system type
+configure:1853: result: i686-pc-linux-gnu
+configure:1875: checking host system type
+configure:1890: result: i686-pc-linux-gnu
+configure:1912: checking target system type
+configure:1927: result: i686-pc-linux-gnu
+configure:2050: checking for g++
+configure:2066: found /usr/lib/ccache/g++
+configure:2077: result: g++
+configure:2108: checking for C++ compiler version
+configure:2115: g++ --version &gt;&amp;5
+g++ (GCC) 4.3.0 20080428 (Red Hat 4.3.0-8)
+Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:2118: $? = 0
+configure:2125: g++ -v &gt;&amp;5
+Using built-in specs.
+Target: i386-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=<A HREF="http://bugzilla.redhat.com/bugzilla">http://bugzilla.redhat.com/bugzilla</A> --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --enable-plugin --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-cpu=generic --build=i386-redhat-linux
+Thread model: posix
+gcc version 4.3.0 20080428 (Red Hat 4.3.0-8) (GCC) 
+configure:2128: $? = 0
+configure:2135: g++ -V &gt;&amp;5
+g++: '-V' option must have argument
+configure:2138: $? = 1
+configure:2161: checking for C++ compiler default output file name
+configure:2188: g++     conftest.cpp  &gt;&amp;5
+configure:2191: $? = 0
+configure:2229: result: a.out
+configure:2246: checking whether the C++ compiler works
+configure:2256: ./a.out
+configure:2259: $? = 0
+configure:2276: result: yes
+configure:2283: checking whether we are cross compiling
+configure:2285: result: no
+configure:2288: checking for suffix of executables
+configure:2295: g++ -o conftest     conftest.cpp  &gt;&amp;5
+configure:2298: $? = 0
+configure:2322: result: 
+configure:2328: checking for suffix of object files
+configure:2354: g++ -c    conftest.cpp &gt;&amp;5
+configure:2357: $? = 0
+configure:2380: result: o
+configure:2384: checking whether we are using the GNU C++ compiler
+configure:2413: g++ -c    conftest.cpp &gt;&amp;5
+configure:2419: $? = 0
+configure:2436: result: yes
+configure:2441: checking whether g++ accepts -g
+configure:2471: g++ -c -g  conftest.cpp &gt;&amp;5
+configure:2477: $? = 0
+configure:2576: result: yes
+configure:2612: checking for a BSD-compatible install
+configure:2668: result: /usr/bin/install -c
+configure:2683: checking for xgettext
+configure:2699: found /usr/bin/xgettext
+configure:2710: result: xgettext
+configure:2725: checking for xsltproc
+configure:2741: found /usr/bin/xsltproc
+configure:2752: result: xsltproc
+configure:2765: checking whether g++ is new enough
+configure:2803: g++ -c    conftest.cpp &gt;&amp;5
+configure:2809: $? = 0
+configure:2814: result: yes
+configure:2891: checking for gcc
+configure:2907: found /usr/lib/ccache/gcc
+configure:2918: result: gcc
+configure:3156: checking for C compiler version
+configure:3163: gcc --version &gt;&amp;5
+gcc (GCC) 4.3.0 20080428 (Red Hat 4.3.0-8)
+Copyright (C) 2008 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+configure:3166: $? = 0
+configure:3173: gcc -v &gt;&amp;5
+Using built-in specs.
+Target: i386-redhat-linux
+Configured with: ../configure --prefix=/usr --mandir=/usr/share/man --infodir=/usr/share/info --with-bugurl=<A HREF="http://bugzilla.redhat.com/bugzilla">http://bugzilla.redhat.com/bugzilla</A> --enable-bootstrap --enable-shared --enable-threads=posix --enable-checking=release --with-system-zlib --enable-__cxa_atexit --disable-libunwind-exceptions --enable-languages=c,c++,objc,obj-c++,java,fortran,ada --enable-java-awt=gtk --disable-dssi --enable-plugin --with-java-home=/usr/lib/jvm/java-1.5.0-gcj-1.5.0.0/jre --enable-libgcj-multifile --enable-java-maintainer-mode --with-ecj-jar=/usr/share/java/eclipse-ecj.jar --disable-libjava-multilib --with-cpu=generic --build=i386-redhat-linux
+Thread model: posix
+gcc version 4.3.0 20080428 (Red Hat 4.3.0-8) (GCC) 
+configure:3176: $? = 0
+configure:3183: gcc -V &gt;&amp;5
+gcc: '-V' option must have argument
+configure:3186: $? = 1
+configure:3189: checking whether we are using the GNU C compiler
+configure:3218: gcc -c    conftest.c &gt;&amp;5
+configure:3224: $? = 0
+configure:3241: result: yes
+configure:3246: checking whether gcc accepts -g
+configure:3276: gcc -c -g  conftest.c &gt;&amp;5
+configure:3282: $? = 0
+configure:3381: result: yes
+configure:3398: checking for gcc option to accept ISO C89
+configure:3472: gcc  -c    conftest.c &gt;&amp;5
+configure:3478: $? = 0
+configure:3501: result: none needed
+configure:3528: checking for dirent.h that defines DIR
+configure:3557: gcc -c    conftest.c &gt;&amp;5
+configure:3563: $? = 0
+configure:3579: result: yes
+configure:3592: checking for library containing opendir
+configure:3633: gcc -o conftest     conftest.c  &gt;&amp;5
+configure:3639: $? = 0
+configure:3667: result: none required
+configure:3761: checking whether time.h and sys/time.h may both be included
+configure:3791: gcc -c    conftest.c &gt;&amp;5
+configure:3797: $? = 0
+configure:3812: result: yes
+configure:3827: checking how to run the C preprocessor
+configure:3867: gcc -E  conftest.c
+configure:3873: $? = 0
+configure:3904: gcc -E  conftest.c
+conftest.c:10:28: error: ac_nonexistent.h: No such file or directory
+configure:3910: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;ac_nonexistent.h&gt;
+</I>configure:3943: result: gcc -E
+configure:3972: gcc -E  conftest.c
+configure:3978: $? = 0
+configure:4009: gcc -E  conftest.c
+conftest.c:10:28: error: ac_nonexistent.h: No such file or directory
+configure:4015: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;ac_nonexistent.h&gt;
+</I>configure:4053: checking for grep that handles long lines and -e
+configure:4127: result: /bin/grep
+configure:4132: checking for egrep
+configure:4210: result: /bin/grep -E
+configure:4215: checking for ANSI C header files
+configure:4245: gcc -c    conftest.c &gt;&amp;5
+configure:4251: $? = 0
+configure:4350: gcc -o conftest     conftest.c  &gt;&amp;5
+configure:4353: $? = 0
+configure:4359: ./conftest
+configure:4362: $? = 0
+configure:4379: result: yes
+configure:4391: checking for an ANSI C-conforming const
+configure:4466: gcc -c    conftest.c &gt;&amp;5
+configure:4472: $? = 0
+configure:4487: result: yes
+configure:4497: checking for inline
+configure:4523: gcc -c    conftest.c &gt;&amp;5
+configure:4529: $? = 0
+configure:4547: result: inline
+configure:4572: checking for gettimeofday
+configure:4628: gcc -o conftest     conftest.c  &gt;&amp;5
+configure:4634: $? = 0
+configure:4652: result: yes
+configure:4572: checking for mkdir
+configure:4628: gcc -o conftest     conftest.c  &gt;&amp;5
+configure:4634: $? = 0
+configure:4652: result: yes
+configure:4572: checking for popen
+configure:4628: gcc -o conftest     conftest.c  &gt;&amp;5
+configure:4634: $? = 0
+configure:4652: result: yes
+configure:4703: checking for ld used by GCC
+configure:4767: result: /usr/bin/ld
+configure:4776: checking if the linker (/usr/bin/ld) is GNU ld
+configure:4789: result: yes
+configure:4795: checking for shared library run path origin
+configure:4808: result: done
+configure:5238: checking for iconv
+configure:5270: gcc -o conftest     conftest.c  &gt;&amp;5
+configure:5276: $? = 0
+configure:5346: result: yes
+configure:5369: checking for iconv declaration
+configure:5408: gcc -c    conftest.c &gt;&amp;5
+configure:5414: $? = 0
+configure:5433: result: 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+configure:5506: checking whether binary relocation support should be enabled
+configure:5524: result: no
+configure:5675: checking for zlib
+configure:5695: gcc -o conftest         conftest.c  -lz  &gt;&amp;5
+configure:5701: $? = 0
+configure:5723: result: found
+configure:5757: checking for pkg-config
+configure:5775: found /usr/bin/pkg-config
+configure:5788: result: /usr/bin/pkg-config
+configure:5806: checking for libxml-2.0 &gt;= 2.6.11
+configure:5810: result: yes
+configure:5814: checking LIBXML_CFLAGS
+configure:5817: result: -I/usr/include/libxml2  
+configure:5820: checking LIBXML_LIBS
+configure:5823: result: -lxml2  
+configure:5851: checking for X
+configure:6021: gcc -o conftest     conftest.c -lX11  &gt;&amp;5
+configure:6027: $? = 0
+configure:6086: result: libraries , headers 
+configure:6281: checking for the pthreads library -lpthreads
+configure:6324: gcc -o conftest      conftest.c -lpthreads  &gt;&amp;5
+/usr/bin/ld: cannot find -lpthreads
+collect2: ld returned 1 exit status
+configure:6330: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;pthread.h&gt;
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> pthread_t th; pthread_join(th, 0);
+</I>|<i>                      pthread_attr_init(0); pthread_cleanup_push(0, 0);
+</I>|<i>                      pthread_create(0,0,0,0); pthread_cleanup_pop(0);
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6350: result: no
+configure:6226: checking whether pthreads work without any flags
+configure:6324: gcc -o conftest      conftest.c   &gt;&amp;5
+/tmp/ccmPdJgo.o: In function `main':
+conftest.c:(.text+0x20): undefined reference to `pthread_join'
+conftest.c:(.text+0x72): undefined reference to `__pthread_register_cancel'
+conftest.c:(.text+0x96): undefined reference to `pthread_create'
+conftest.c:(.text+0x9e): undefined reference to `__pthread_unregister_cancel'
+collect2: ld returned 1 exit status
+configure:6330: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;pthread.h&gt;
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> pthread_t th; pthread_join(th, 0);
+</I>|<i>                      pthread_attr_init(0); pthread_cleanup_push(0, 0);
+</I>|<i>                      pthread_create(0,0,0,0); pthread_cleanup_pop(0);
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6350: result: no
+configure:6231: checking whether pthreads work with -Kthread
+configure:6324: gcc -o conftest   -Kthread   conftest.c   &gt;&amp;5
+gcc: unrecognized option '-Kthread'
+/tmp/ccOsN3Yv.o: In function `main':
+conftest.c:(.text+0x20): undefined reference to `pthread_join'
+conftest.c:(.text+0x72): undefined reference to `__pthread_register_cancel'
+conftest.c:(.text+0x96): undefined reference to `pthread_create'
+conftest.c:(.text+0x9e): undefined reference to `__pthread_unregister_cancel'
+collect2: ld returned 1 exit status
+configure:6330: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;pthread.h&gt;
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> pthread_t th; pthread_join(th, 0);
+</I>|<i>                      pthread_attr_init(0); pthread_cleanup_push(0, 0);
+</I>|<i>                      pthread_create(0,0,0,0); pthread_cleanup_pop(0);
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6350: result: no
+configure:6231: checking whether pthreads work with -kthread
+configure:6324: gcc -o conftest   -kthread   conftest.c   &gt;&amp;5
+gcc: unrecognized option '-kthread'
+/tmp/ccensPWJ.o: In function `main':
+conftest.c:(.text+0x20): undefined reference to `pthread_join'
+conftest.c:(.text+0x72): undefined reference to `__pthread_register_cancel'
+conftest.c:(.text+0x96): undefined reference to `pthread_create'
+conftest.c:(.text+0x9e): undefined reference to `__pthread_unregister_cancel'
+collect2: ld returned 1 exit status
+configure:6330: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;pthread.h&gt;
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> pthread_t th; pthread_join(th, 0);
+</I>|<i>                      pthread_attr_init(0); pthread_cleanup_push(0, 0);
+</I>|<i>                      pthread_create(0,0,0,0); pthread_cleanup_pop(0);
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6350: result: no
+configure:6281: checking for the pthreads library -llthread
+configure:6324: gcc -o conftest      conftest.c -llthread  &gt;&amp;5
+/usr/bin/ld: cannot find -llthread
+collect2: ld returned 1 exit status
+configure:6330: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;pthread.h&gt;
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> pthread_t th; pthread_join(th, 0);
+</I>|<i>                      pthread_attr_init(0); pthread_cleanup_push(0, 0);
+</I>|<i>                      pthread_create(0,0,0,0); pthread_cleanup_pop(0);
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6350: result: no
+configure:6231: checking whether pthreads work with -pthread
+configure:6324: gcc -o conftest   -pthread   conftest.c   &gt;&amp;5
+configure:6330: $? = 0
+configure:6350: result: yes
+configure:6369: checking for joinable pthread attribute
+configure:6394: gcc -o conftest   -pthread   conftest.c   &gt;&amp;5
+configure:6400: $? = 0
+configure:6417: result: PTHREAD_CREATE_JOINABLE
+configure:6427: checking if more special flags are required for pthreads
+configure:6434: result: no
+configure:6446: checking for cc_r
+configure:6474: result: gcc
+configure:6523: checking for sys/types.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for sys/stat.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for stdlib.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for string.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for memory.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for strings.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for inttypes.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for stdint.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6523: checking for unistd.h
+configure:6544: gcc -c    conftest.c &gt;&amp;5
+configure:6550: $? = 0
+configure:6566: result: yes
+configure:6605: checking whether we are using the Microsoft C compiler
+configure:6634: gcc -c    conftest.c &gt;&amp;5
+conftest.c: In function 'main':
+conftest.c:31: error: 'choke' undeclared (first use in this function)
+conftest.c:31: error: (Each undeclared identifier is reported only once
+conftest.c:31: error: for each function it appears in.)
+conftest.c:31: error: expected ';' before 'me'
+configure:6640: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> #define HAVE_PTHREAD 1
+</I>|<i> #define HAVE_SYS_TYPES_H 1
+</I>|<i> #define HAVE_SYS_STAT_H 1
+</I>|<i> #define HAVE_STDLIB_H 1
+</I>|<i> #define HAVE_STRING_H 1
+</I>|<i> #define HAVE_MEMORY_H 1
+</I>|<i> #define HAVE_STRINGS_H 1
+</I>|<i> #define HAVE_INTTYPES_H 1
+</I>|<i> #define HAVE_STDINT_H 1
+</I>|<i> #define HAVE_UNISTD_H 1
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> 
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> #ifndef _MSC_VER
+</I>|<i>        choke me
+</I>|<i> #endif
+</I>|<i> 
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6657: result: no
+configure:6692: checking windows.h usability
+configure:6709: gcc -c    conftest.c &gt;&amp;5
+conftest.c:59:21: error: windows.h: No such file or directory
+configure:6715: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> #define HAVE_PTHREAD 1
+</I>|<i> #define HAVE_SYS_TYPES_H 1
+</I>|<i> #define HAVE_SYS_STAT_H 1
+</I>|<i> #define HAVE_STDLIB_H 1
+</I>|<i> #define HAVE_STRING_H 1
+</I>|<i> #define HAVE_MEMORY_H 1
+</I>|<i> #define HAVE_STRINGS_H 1
+</I>|<i> #define HAVE_INTTYPES_H 1
+</I>|<i> #define HAVE_STDINT_H 1
+</I>|<i> #define HAVE_UNISTD_H 1
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;stdio.h&gt;
+</I>|<i> #ifdef HAVE_SYS_TYPES_H
+</I>|<i> # include &lt;sys/types.h&gt;
+</I>|<i> #endif
+</I>|<i> #ifdef HAVE_SYS_STAT_H
+</I>|<i> # include &lt;sys/stat.h&gt;
+</I>|<i> #endif
+</I>|<i> #ifdef STDC_HEADERS
+</I>|<i> # include &lt;stdlib.h&gt;
+</I>|<i> # include &lt;stddef.h&gt;
+</I>|<i> #else
+</I>|<i> # ifdef HAVE_STDLIB_H
+</I>|<i> #  include &lt;stdlib.h&gt;
+</I>|<i> # endif
+</I>|<i> #endif
+</I>|<i> #ifdef HAVE_STRING_H
+</I>|<i> # if !defined STDC_HEADERS &amp;&amp; defined HAVE_MEMORY_H
+</I>|<i> #  include &lt;memory.h&gt;
+</I>|<i> # endif
+</I>|<i> # include &lt;string.h&gt;
+</I>|<i> #endif
+</I>|<i> #ifdef HAVE_STRINGS_H
+</I>|<i> # include &lt;strings.h&gt;
+</I>|<i> #endif
+</I>|<i> #ifdef HAVE_INTTYPES_H
+</I>|<i> # include &lt;inttypes.h&gt;
+</I>|<i> #endif
+</I>|<i> #ifdef HAVE_STDINT_H
+</I>|<i> # include &lt;stdint.h&gt;
+</I>|<i> #endif
+</I>|<i> #ifdef HAVE_UNISTD_H
+</I>|<i> # include &lt;unistd.h&gt;
+</I>|<i> #endif
+</I>|<i> #include &lt;windows.h&gt;
+</I>configure:6729: result: no
+configure:6733: checking windows.h presence
+configure:6748: gcc -E  conftest.c
+conftest.c:26:21: error: windows.h: No such file or directory
+configure:6754: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> #define HAVE_PTHREAD 1
+</I>|<i> #define HAVE_SYS_TYPES_H 1
+</I>|<i> #define HAVE_SYS_STAT_H 1
+</I>|<i> #define HAVE_STDLIB_H 1
+</I>|<i> #define HAVE_STRING_H 1
+</I>|<i> #define HAVE_MEMORY_H 1
+</I>|<i> #define HAVE_STRINGS_H 1
+</I>|<i> #define HAVE_INTTYPES_H 1
+</I>|<i> #define HAVE_STDINT_H 1
+</I>|<i> #define HAVE_UNISTD_H 1
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> #include &lt;windows.h&gt;
+</I>configure:6768: result: no
+configure:6801: checking for windows.h
+configure:6809: result: no
+configure:6823: checking for OpenGL library
+configure:6866: gcc -o conftest   -pthread   conftest.c -lopengl32  -lm  &gt;&amp;5
+/usr/bin/ld: cannot find -lopengl32
+collect2: ld returned 1 exit status
+configure:6872: $? = 1
+configure: failed program was:
+|<i> /* confdefs.h.  */
+</I>|<i> #define PACKAGE_NAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_TARNAME &quot;lincity-ng&quot;
+</I>|<i> #define PACKAGE_VERSION &quot;1.92.svn&quot;
+</I>|<i> #define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+</I>|<i> #define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+</I>|<i> #define HAVE_DIRENT_H 1
+</I>|<i> #define TIME_WITH_SYS_TIME 1
+</I>|<i> #define STDC_HEADERS 1
+</I>|<i> #define HAVE_GETTIMEOFDAY 1
+</I>|<i> #define HAVE_MKDIR 1
+</I>|<i> #define HAVE_POPEN 1
+</I>|<i> #define HAVE_ICONV 1
+</I>|<i> #define ICONV_CONST 
+</I>|<i> #define HAVE_PTHREAD 1
+</I>|<i> #define HAVE_SYS_TYPES_H 1
+</I>|<i> #define HAVE_SYS_STAT_H 1
+</I>|<i> #define HAVE_STDLIB_H 1
+</I>|<i> #define HAVE_STRING_H 1
+</I>|<i> #define HAVE_MEMORY_H 1
+</I>|<i> #define HAVE_STRINGS_H 1
+</I>|<i> #define HAVE_INTTYPES_H 1
+</I>|<i> #define HAVE_STDINT_H 1
+</I>|<i> #define HAVE_UNISTD_H 1
+</I>|<i> /* end confdefs.h.  */
+</I>|<i> 
+</I>|<i> # if HAVE_WINDOWS_H &amp;&amp; defined(_WIN32)
+</I>|<i> #   include &lt;windows.h&gt;
+</I>|<i> # endif
+</I>|<i> # include &lt;GL/gl.h&gt;
+</I>|<i> int
+</I>|<i> main ()
+</I>|<i> {
+</I>|<i> glBegin(0)
+</I>|<i>   ;
+</I>|<i>   return 0;
+</I>|<i> }
+</I>configure:6866: gcc -o conftest   -pthread   conftest.c -lGL  -lm  &gt;&amp;5
+configure:6872: $? = 0
+configure:6892: result: -lGL
+configure:6960: checking for sdl-config
+configure:6978: found /usr/bin/sdl-config
+configure:6991: result: /usr/bin/sdl-config
+configure:7000: checking for SDL - version &gt;= 1.2.5
+configure:7095: gcc -o conftest   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   conftest.c  -lSDL -lpthread &gt;&amp;5
+configure:7098: $? = 0
+configure:7104: ./conftest
+configure:7107: $? = 0
+configure:7127: result: yes
+configure:7251: checking for SDL_mixer &gt;= 1.2
+configure:7280: gcc -o conftest    -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT  conftest.c  -lSDL_mixer -lSDL -lpthread &gt;&amp;5
+configure:7286: $? = 0
+configure:7308: result: found
+configure:7365: checking for SDL_image &gt;= 1.2
+configure:7385: gcc -o conftest    -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT  conftest.c  -lSDL_image -lSDL -lpthread &gt;&amp;5
+configure:7391: $? = 0
+configure:7413: result: found
+configure:7470: checking for SDL_ttf &gt;= 2.0.8
+configure:7490: gcc -o conftest    -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT  conftest.c  -lSDL_ttf -lSDL -lpthread &gt;&amp;5
+configure:7496: $? = 0
+configure:7518: result: found
+configure:7575: checking for SDL_gfx &gt;= 2.0.13
+configure:7599: gcc -o conftest    -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT   -I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT  conftest.c  -lSDL_gfx -lSDL -lpthread &gt;&amp;5
+configure:7605: $? = 0
+configure:7627: result: found
+configure:7684: checking for physfs &gt;= 1.0.0
+configure:7709: gcc -o conftest         conftest.c  -lphysfs  &gt;&amp;5
+configure:7715: $? = 0
+configure:7737: result: found
+configure:7937: creating ./config.status
+
+## ---------------------- ##
+## Running config.status. ##
+## ---------------------- ##
+
+This file was extended by lincity-ng config.status 1.92.svn, which was
+generated by GNU Autoconf 2.61.  Invocation command line was
+
+  CONFIG_FILES    = 
+  CONFIG_HEADERS  = 
+  CONFIG_LINKS    = 
+  CONFIG_COMMANDS = 
+  $ ./config.status 
+
+on buckeyes1.scarletandgray.info
+
+config.status:659: creating Jamconfig
+config.status:659: creating config.h
+config.status:898: executing Jamfile commands
+configure:9056:
+
+Notice: This project uses jam (and not make) as build tool.
+
+
+## ---------------- ##
+## Cache variables. ##
+## ---------------- ##
+
+ac_cv_build=i686-pc-linux-gnu
+ac_cv_c_compiler_gnu=yes
+ac_cv_c_const=yes
+ac_cv_c_inline=inline
+ac_cv_cxx_compiler_gnu=yes
+ac_cv_env_CCC_set=
+ac_cv_env_CCC_value=
+ac_cv_env_CC_set=
+ac_cv_env_CC_value=
+ac_cv_env_CFLAGS_set=
+ac_cv_env_CFLAGS_value=
+ac_cv_env_CPPFLAGS_set=
+ac_cv_env_CPPFLAGS_value=
+ac_cv_env_CPP_set=
+ac_cv_env_CPP_value=
+ac_cv_env_CXXFLAGS_set=
+ac_cv_env_CXXFLAGS_value=
+ac_cv_env_CXX_set=
+ac_cv_env_CXX_value=
+ac_cv_env_LDFLAGS_set=
+ac_cv_env_LDFLAGS_value=
+ac_cv_env_LIBS_set=
+ac_cv_env_LIBS_value=
+ac_cv_env_XMKMF_set=
+ac_cv_env_XMKMF_value=
+ac_cv_env_build_alias_set=
+ac_cv_env_build_alias_value=
+ac_cv_env_host_alias_set=
+ac_cv_env_host_alias_value=
+ac_cv_env_target_alias_set=
+ac_cv_env_target_alias_value=
+ac_cv_func_gettimeofday=yes
+ac_cv_func_mkdir=yes
+ac_cv_func_popen=yes
+ac_cv_have_x='have_x=yes	ac_x_includes='\'''\''	ac_x_libraries='\'''\'''
+ac_cv_header_dirent_dirent_h=yes
+ac_cv_header_inttypes_h=yes
+ac_cv_header_memory_h=yes
+ac_cv_header_stdc=yes
+ac_cv_header_stdint_h=yes
+ac_cv_header_stdlib_h=yes
+ac_cv_header_string_h=yes
+ac_cv_header_strings_h=yes
+ac_cv_header_sys_stat_h=yes
+ac_cv_header_sys_types_h=yes
+ac_cv_header_time=yes
+ac_cv_header_unistd_h=yes
+ac_cv_header_windows_h=no
+ac_cv_host=i686-pc-linux-gnu
+ac_cv_objext=o
+ac_cv_path_EGREP='/bin/grep -E'
+ac_cv_path_GREP=/bin/grep
+ac_cv_path_PKG_CONFIG=/usr/bin/pkg-config
+ac_cv_path_SDL_CONFIG=/usr/bin/sdl-config
+ac_cv_path_install='/usr/bin/install -c'
+ac_cv_prog_CPP='gcc -E'
+ac_cv_prog_PTHREAD_CC=gcc
+ac_cv_prog_XGETTEXT=xgettext
+ac_cv_prog_XSLTPROC=xsltproc
+ac_cv_prog_ac_ct_CC=gcc
+ac_cv_prog_ac_ct_CXX=g++
+ac_cv_prog_cc_c89=
+ac_cv_prog_cc_g=yes
+ac_cv_prog_cxx_g=yes
+ac_cv_search_opendir='none required'
+ac_cv_target=i686-pc-linux-gnu
+acl_cv_hardcode_direct=no
+acl_cv_hardcode_libdir_flag_spec='${wl}-rpath ${wl}$libdir'
+acl_cv_hardcode_libdir_separator=
+acl_cv_hardcode_minus_L=no
+acl_cv_libext=a
+acl_cv_path_LD=/usr/bin/ld
+acl_cv_prog_gnu_ld=yes
+acl_cv_rpath=done
+acl_cv_shlibext=so
+acl_cv_wl=-Wl,
+am_cv_func_iconv=yes
+am_cv_lib_iconv=no
+am_cv_proto_iconv='extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);'
+am_cv_proto_iconv_arg1=
+ax_cv_c_compiler_ms=no
+ax_cv_check_gl_libgl=-lGL
+br_cv_binreloc=no
+
+## ----------------- ##
+## Output variables. ##
+## ----------------- ##
+
+BINRELOC_CFLAGS=''
+BINRELOC_LIBS=''
+CC='gcc'
+CFLAGS=' '
+CPP='gcc -E'
+CPPFLAGS=' -DHAVE_CONFIG_H'
+CXX='g++'
+CXXFLAGS=' '
+DEFS='-DHAVE_CONFIG_H'
+ECHO_C=''
+ECHO_N='-n'
+ECHO_T=''
+EGREP='/bin/grep -E'
+EXEEXT=''
+GL_CFLAGS='-pthread'
+GL_LIBS='-lGL  -lm'
+GREP='/bin/grep'
+ICONV_LIBS=''
+INSTALL='/usr/bin/install -c'
+INSTALL_DATA='$(INSTALL) -m 644'
+INSTALL_PROGRAM='$(INSTALL)'
+INSTALL_SCRIPT='$(INSTALL)'
+LDFLAGS=''
+LIBICONV=''
+LIBOBJS=''
+LIBS=''
+LIBXML_CFLAGS='-I/usr/include/libxml2  '
+LIBXML_LIBS='-lxml2  '
+LTLIBICONV=''
+LTLIBOBJS=''
+OBJEXT='o'
+PACKAGE_BUGREPORT='<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>'
+PACKAGE_NAME='lincity-ng'
+PACKAGE_STRING='lincity-ng 1.92.svn'
+PACKAGE_TARNAME='lincity-ng'
+PACKAGE_VERSION='1.92.svn'
+PATH_SEPARATOR=':'
+PHYSFS_AVAILABLE='yes'
+PHYSFS_CFLAGS=''
+PHYSFS_LIBS='-lphysfs'
+PKG_CONFIG='/usr/bin/pkg-config'
+PTHREAD_CC='gcc'
+PTHREAD_CFLAGS='-pthread'
+PTHREAD_LIBS=''
+SDLGFX_AVAILABLE='yes'
+SDLGFX_CFLAGS=''
+SDLGFX_LIBS='-lSDL_gfx'
+SDLIMAGE_AVAILABLE='yes'
+SDLIMAGE_CFLAGS=''
+SDLIMAGE_LIBS='-lSDL_image'
+SDLMIXER_AVAILABLE='yes'
+SDLMIXER_CFLAGS=''
+SDLMIXER_LIBS='-lSDL_mixer'
+SDLTTF_AVAILABLE='yes'
+SDLTTF_CFLAGS=''
+SDLTTF_LIBS='-lSDL_ttf'
+SDL_CFLAGS='-I/usr/include/SDL -D_GNU_SOURCE=1 -D_REENTRANT'
+SDL_CONFIG='/usr/bin/sdl-config'
+SDL_LIBS='-lSDL -lpthread'
+SHELL='/bin/sh'
+VARIANT='optimize'
+XGETTEXT='xgettext'
+XMKMF=''
+XSLTPROC='xsltproc'
+ZLIB_AVAILABLE='yes'
+ZLIB_CFLAGS=''
+ZLIB_LIBS='-lz'
+ac_ct_CC='gcc'
+ac_ct_CXX='g++'
+acx_pthread_config=''
+bindir='$(exec_prefix)/bin'
+build='i686-pc-linux-gnu'
+build_alias=''
+build_cpu='i686'
+build_os='linux-gnu'
+build_vendor='pc'
+datadir='$(datarootdir)'
+datarootdir='$(prefix)/share'
+docdir='${datarootdir}/doc/${PACKAGE_TARNAME}'
+dvidir='${docdir}'
+exec_prefix='$(prefix)'
+host='i686-pc-linux-gnu'
+host_alias=''
+host_cpu='i686'
+host_os='linux-gnu'
+host_vendor='pc'
+htmldir='${docdir}'
+includedir='$(prefix)/include'
+infodir='$(datarootdir)/info'
+libdir='$(exec_prefix)/lib'
+libexecdir='$(exec_prefix)/libexec'
+localedir='${datarootdir}/locale'
+localstatedir='$(prefix)/var'
+mandir='$(datarootdir)/man'
+oldincludedir='/usr/include'
+pdfdir='${docdir}'
+prefix='/usr/local'
+program_transform_name='s,x,x,'
+psdir='${docdir}'
+sbindir='$(exec_prefix)/sbin'
+sharedstatedir='$(prefix)/com'
+sysconfdir='$(prefix)/etc'
+target='i686-pc-linux-gnu'
+target_alias=''
+target_cpu='i686'
+target_os='linux-gnu'
+target_vendor='pc'
+
+## ----------- ##
+## confdefs.h. ##
+## ----------- ##
+
+#define PACKAGE_NAME &quot;lincity-ng&quot;
+#define PACKAGE_TARNAME &quot;lincity-ng&quot;
+#define PACKAGE_VERSION &quot;1.92.svn&quot;
+#define PACKAGE_STRING &quot;lincity-ng 1.92.svn&quot;
+#define PACKAGE_BUGREPORT &quot;<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">matze at braunis.de</A>&quot;
+#define HAVE_DIRENT_H 1
+#define TIME_WITH_SYS_TIME 1
+#define STDC_HEADERS 1
+#define HAVE_GETTIMEOFDAY 1
+#define HAVE_MKDIR 1
+#define HAVE_POPEN 1
+#define HAVE_ICONV 1
+#define ICONV_CONST 
+#define HAVE_PTHREAD 1
+#define HAVE_SYS_TYPES_H 1
+#define HAVE_SYS_STAT_H 1
+#define HAVE_STDLIB_H 1
+#define HAVE_STRING_H 1
+#define HAVE_MEMORY_H 1
+#define HAVE_STRINGS_H 1
+#define HAVE_INTTYPES_H 1
+#define HAVE_STDINT_H 1
+#define HAVE_UNISTD_H 1
+
+configure: exit 0
+
+
+----- End forwarded message -----
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#473">[ date ]</a>
+              <a href="thread.html#473">[ thread ]</a>
+              <a href="subject.html#473">[ subject ]</a>
+              <a href="author.html#473">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

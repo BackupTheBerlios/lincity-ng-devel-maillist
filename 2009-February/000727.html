@@ -1,0 +1,157 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315192%5D%20fails%20to%20start%20is%20screen%20doesn%27t%0A%09support%201024x768&In-Reply-To=%3C200902061000.n16A0jqu028291%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000726.html">
+   <LINK REL="Next"  HREF="000730.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315192%5D%20fails%20to%20start%20is%20screen%20doesn%27t%0A%09support%201024x768&In-Reply-To=%3C200902061000.n16A0jqu028291%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15192] fails to start is screen doesn't	support 1024x768">admin at berlios.de
+       </A><BR>
+    <I>Fri Feb  6 11:00:45 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000726.html">[Lincity-ng-devel] heavy industry
+</A></li>
+        <LI>Next message: <A HREF="000730.html">[Lincity-ng-devel] Fwd:  user comments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#727">[ date ]</a>
+              <a href="thread.html#727">[ thread ]</a>
+              <a href="subject.html#727">[ subject ]</a>
+              <a href="author.html#727">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15192, was updated on 2009-Feb-03 21:56
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: goneri
+Assigned to : none
+Summary: fails to start is screen doesn't support 1024x768
+
+Details: Hi,
+
+I'm on of the co-maintainer of the Debian package. The screen of my netBook computer doesn't support the default resolution.
+
+I applied this change on the package to avoid the problem.
+
+Best regards,
+
+    Gon&#233;r
+
+diff --git a/src/lincity-ng/main.cpp b/src/lincity-ng/main.cpp
+index b6a1d1b..549c7a4 100644
+--- a/src/lincity-ng/main.cpp
++++ b/src/lincity-ng/main.cpp
+@@ -217,6 +217,14 @@ void initVideo(int width, int height)
+     SDL_Surface* screen
+         = SDL_SetVideoMode(width, height, bpp, flags);
+     SDL_WM_SetCaption(PACKAGE_NAME &quot; &quot; PACKAGE_VERSION, 0);
++
++    if(!screen) {
++        // Debian: Try harder to get a working screen
++        // The default 1024x768 is to large for most of the
++        // netBook computer.
++        screen = SDL_SetVideoMode(800, 600, bpp, flags);
++    }
++
+     if(!screen) {
+         std::stringstream msg;
+         msg &lt;&lt; &quot;Couldn't set video mode (&quot;
+
+Follow-Ups:
+
+Date: 2009-Feb-06 10:00
+By: goneri
+
+Comment:
+Most of the players use the desktop icon to launch the game and since the game won't start if you screen doesn't support 1024x768 unless you use --size. They will think the game is just broken whereas 800x600 seems to be fine.
+
+Ps: This 2.0 release is impressive :)
+-------------------------------------------------------
+
+Date: 2009-Feb-05 21:10
+By: wolfgangb
+
+Comment:
+The user can select any geometry he likes with --size . All but the default
+1024x768 might look strange. Any problems playing with 800x600? It that
+works well we could add the automatic fallback for all players. 
+-------------------------------------------------------
+
+Date: 2009-Feb-05 07:43
+By: alainb
+
+Comment:
+i m afraid 640x480 is not playable:
+The statistic window is too big and cannot be closed once it is open !
+-------------------------------------------------------
+
+Date: 2009-Feb-05 00:50
+By: danielsantos
+
+Comment:
+Better yet:
++
++ if(!screen) {
++ // Debian: Try harder to get a working screen
++ // The default 1024x768 is to large for most of the
++ // netBook computer.
++ screen = SDL_SetVideoMode(800, 600, bpp, flags);
++ if(!screen) {
++ screen = SDL_SetVideoMode(640, 480, bpp, flags);
++ }
++ if(screen) {
++ // TODO: write new resolution to userdata.xml here
++ }
++ }
++
+
+I wish this bug manager let you post formatted code.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15192&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15192&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000726.html">[Lincity-ng-devel] heavy industry
+</A></li>
+	<LI>Next message: <A HREF="000730.html">[Lincity-ng-devel] Fwd:  user comments
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#727">[ date ]</a>
+              <a href="thread.html#727">[ thread ]</a>
+              <a href="subject.html#727">[ subject ]</a>
+              <a href="author.html#727">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

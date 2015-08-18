@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #19217] fix compile with	-Werror=format-security
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2319217%5D%20fix%20compile%20with%0A%09-Werror%3Dformat-security&In-Reply-To=%3C201312061841.rB6If1fe009595%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001384.html">
+   <LINK REL="Next"  HREF="001386.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #19217] fix compile with	-Werror=format-security</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2319217%5D%20fix%20compile%20with%0A%09-Werror%3Dformat-security&In-Reply-To=%3C201312061841.rB6If1fe009595%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #19217] fix compile with	-Werror=format-security">admin at berlios.de
+       </A><BR>
+    <I>Fri Dec  6 19:41:01 CET 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001384.html">[Lincity-ng-devel] [Bug #19217] fix compile with	-Werror=format-security
+</A></li>
+        <LI>Next message: <A HREF="001386.html">[Lincity-ng-devel] migrating to SDL 2.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1385">[ date ]</a>
+              <a href="thread.html#1385">[ thread ]</a>
+              <a href="subject.html#1385">[ subject ]</a>
+              <a href="author.html#1385">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #19217, was updated on 2013-Dec-03 22:06
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: spotrh
+Assigned to : none
+Summary: fix compile with -Werror=format-security
+
+Details: Recently, Fedora began an effort to build all of our packages with the
+-Werror=format-security compiler option. lincity-ng needed a minor patch to support this flag.
+
+For more details, please see:
+<A HREF="https://bugzilla.redhat.com/show_bug.cgi?id=1037175">https://bugzilla.redhat.com/show_bug.cgi?id=1037175</A>
+
+Follow-Ups:
+
+Date: 2013-Dec-06 19:41
+By: cman79
+
+Comment:
+I added -Wformat=2 for DEBUG built and eliminated several volatile format strings from trunk. 
+-------------------------------------------------------
+
+Date: 2013-Dec-03 22:06
+By: spotrh
+
+Comment:
+This patch resolves the issue:
+
+diff -up lincity-ng-2.0/src/lincity-ng/Dialog.cpp.format-security lincity-ng-2.0/src/lincity-ng/Dialog.cpp
+--- lincity-ng-2.0/src/lincity-ng/Dialog.cpp.format-security    2013-12-03 15:58:59.522973839 -0500
++++ lincity-ng-2.0/src/lincity-ng/Dialog.cpp    2013-12-03 15:59:31.057936550 -0500
+@@ -378,7 +378,7 @@ void Dialog::gameStats(){
+         setParagraphN( &quot;statistic_text&quot;, line++, outf );
+     }
+     if (sustain_flag){
+-           snprintf (outf, maxlength, _(&quot;Economy is sustainable&quot;));
++           snprintf (outf, maxlength, &quot;%s&quot;, _(&quot;Economy is sustainable&quot;));
+         setParagraphN( &quot;statistic_text&quot;, line++, outf );
+     }
+     snprintf (outf, maxlength, _(&quot;Population  %d  of which  %d  are not housed.&quot;)
+diff -up lincity-ng-2.0/src/lincity/fileutil.cpp.format-security lincity-ng-2.0/src/lincity/fileutil.cpp
+--- lincity-ng-2.0/src/lincity/fileutil.cpp.format-security     2013-12-03 15:58:01.647042186 -0500
++++ lincity-ng-2.0/src/lincity/fileutil.cpp     2013-12-03 15:58:44.002992179 -0500
+@@ -498,7 +498,7 @@ void check_savedir(void)
+
+ void malloc_failure(void)
+ {
+-    printf(_(&quot;Out of memory: malloc failure\n&quot;));
++    printf(&quot;%s&quot;, _(&quot;Out of memory: malloc failure\n&quot;));
+     exit(1);
+ }
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=19217&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=19217&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001384.html">[Lincity-ng-devel] [Bug #19217] fix compile with	-Werror=format-security
+</A></li>
+	<LI>Next message: <A HREF="001386.html">[Lincity-ng-devel] migrating to SDL 2.0
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1385">[ date ]</a>
+              <a href="thread.html#1385">[ thread ]</a>
+              <a href="subject.html#1385">[ subject ]</a>
+              <a href="author.html#1385">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

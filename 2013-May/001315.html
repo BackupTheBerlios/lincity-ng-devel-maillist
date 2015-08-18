@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%22Unknow%20rule%22%20-%20How%20to%20read%20into%20it&In-Reply-To=%3CCAM6Skh%3DGfpwzK49aZVbVk6VqZiCMy1im4eJMp_1A8it8mxirJA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001317.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it</H1>
+    <B>Amit Ahire</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%22Unknow%20rule%22%20-%20How%20to%20read%20into%20it&In-Reply-To=%3CCAM6Skh%3DGfpwzK49aZVbVk6VqZiCMy1im4eJMp_1A8it8mxirJA%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it">amitahire at gmail.com
+       </A><BR>
+    <I>Wed May  1 15:02:51 CEST 2013</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001317.html">[Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1315">[ date ]</a>
+              <a href="thread.html#1315">[ thread ]</a>
+              <a href="subject.html#1315">[ subject ]</a>
+              <a href="author.html#1315">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello, I am trying to compile this project - It compiles perfectly in
+Linux(ubuntu). But I want it to work on Windows. So I installed MinGW
+(which comes with Jamplus installed) - and went ahead installing all the
+libs needed for the project. After doing that (phew!) - I downloaded the
+src of this project and did './autogen' + './configure -prefix=/mingw' and
+then when I do jam, I get &quot;unknown rule&quot; warning. is it because they are
+unix commands and MinGW is not able to understand it?? Or is it jam?
+
+<A HREF="http://i1268.photobucket.com/albums/jj568/amitahire/jam-minggw.png">http://i1268.photobucket.com/albums/jj568/amitahire/jam-minggw.png</A>
+
+And also when I did ./autogen - it said
+
+&quot;&quot;&quot;
+
+configure.ac:144: warning: AC_LANG_CONFTEST: no AC_LANG_SOURCE call
+detected in body
+/mingw/src/autoconf/26/autoconf2.5-2.68-1/src/autoconf-2.68/lib/autoconf/lang.m4:194:
+AC_LANG_CONFTEST is expanded from...
+/mingw/src/autoconf/26/autoconf2.5-2.68-1/src/autoconf-2.68/lib/autoconf/general.m4:2662:
+_AC_LINK_IFELSE is expanded from...
+/mingw/src/autoconf/26/autoconf2.5-2.68-1/src/autoconf-2.68/lib/autoconf/general.m4:2679:
+AC_LINK_IFELSE is expanded from...
+mk/autoconf/np_findlib.m4:3: NP_FINDLIB is expanded from...
+configure.ac:144: the top level
+
+&quot;&quot;&quot; another six more of these.
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001317.html">[Lincity-ng-devel] &quot;Unknow rule&quot; - How to read into it
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1315">[ date ]</a>
+              <a href="thread.html#1315">[ thread ]</a>
+              <a href="subject.html#1315">[ subject ]</a>
+              <a href="author.html#1315">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

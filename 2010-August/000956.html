@@ -1,0 +1,166 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] jam question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-August/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20jam%20question&In-Reply-To=%3CAANLkTi%3DC6Hq08PFP56baOH_dr0JbFNPgqDpuAkKoKROa%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="000957.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] jam question</H1>
+    <B>Avery White</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20jam%20question&In-Reply-To=%3CAANLkTi%3DC6Hq08PFP56baOH_dr0JbFNPgqDpuAkKoKROa%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] jam question">praiseresound at gmail.com
+       </A><BR>
+    <I>Thu Aug  5 01:35:27 CEST 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="000957.html">[Lincity-ng-devel] jam question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#956">[ date ]</a>
+              <a href="thread.html#956">[ thread ]</a>
+              <a href="subject.html#956">[ subject ]</a>
+              <a href="author.html#956">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I'm think I'm having trouble compiling, attached is my terminal out. Is what
+I'm seeing correct?
+
+Kind Regards,
+
+Avery
+-------------- next part --------------
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">sacredfaith at Jehova-Rohi</A>:~/Dropbox/lincity-ng-2.0$ ./configure
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+checking target system type... i686-pc-linux-gnu
+checking for g++... g++
+checking for C++ compiler default output file name... a.out
+checking whether the C++ compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for xgettext... xgettext
+checking for xsltproc... xsltproc
+checking whether g++ is new enough... yes
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking whether time.h and sys/time.h may both be included... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ANSI C header files... yes
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for gettimeofday... yes
+checking for mkdir... yes
+checking for popen... yes
+checking for ld used by GCC... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking for iconv... yes
+checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+checking whether binary relocation support should be enabled... no
+checking for zlib... found
+checking for pkg-config... /usr/bin/pkg-config
+checking for libxml-2.0 &gt;= 2.6.11... yes
+checking LIBXML_CFLAGS... -I/usr/include/libxml2  
+checking LIBXML_LIBS... -lxml2  
+checking for X... libraries , headers 
+checking for the pthreads library -lpthreads... no
+checking whether pthreads work without any flags... no
+checking whether pthreads work with -Kthread... no
+checking whether pthreads work with -kthread... no
+checking for the pthreads library -llthread... no
+checking whether pthreads work with -pthread... yes
+checking for joinable pthread attribute... PTHREAD_CREATE_JOINABLE
+checking if more special flags are required for pthreads... no
+checking for cc_r... gcc
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking whether we are using the Microsoft C compiler... no
+checking windows.h usability... no
+checking windows.h presence... no
+checking for windows.h... no
+checking for OpenGL library... -lGL
+checking for sdl-config... /usr/bin/sdl-config
+checking for SDL - version &gt;= 1.2.5... yes
+checking for SDL_mixer &gt;= 1.2... found
+checking for SDL_image &gt;= 1.2... found
+checking for SDL_ttf &gt;= 2.0.8... found
+checking for SDL_gfx &gt;= 2.0.13... found
+checking for physfs &gt;= 1.0.0... found
+configure: creating ./config.status
+config.status: creating Jamconfig
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing Jamfile commands
+configure:
+
+Notice: This project uses jam (and not make) as build tool.
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">sacredfaith at Jehova-Rohi</A>:~/Dropbox/lincity-ng-2.0$ jam clean
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">sacredfaith at Jehova-Rohi</A>:~/Dropbox/lincity-ng-2.0$ jam
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">sacredfaith at Jehova-Rohi</A>:~/Dropbox/lincity-ng-2.0$ jam install
+
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">sacredfaith at Jehova-Rohi</A>:~/Dropbox/lincity-ng-2.0$ lincity-ng
+Starting lincity-ng (version 2.0)...
+[/home/sacredfaith/.lincity-ng] is in the search path.
+[/usr/share/games/lincity-ng] is in the search path.
+[/home/sacredfaith/.lincity-ng] is the write directory.
+Language is &quot;en_US&quot;.
+ fast = 9
+OpenGL Mode 1024x768
+ ldsv_version = 1322 
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="000957.html">[Lincity-ng-devel] jam question
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#956">[ date ]</a>
+              <a href="thread.html#956">[ thread ]</a>
+              <a href="subject.html#956">[ subject ]</a>
+              <a href="author.html#956">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

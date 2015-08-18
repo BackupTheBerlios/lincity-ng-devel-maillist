@@ -1,0 +1,277 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15127] Crash when selecting a location to	build water well
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315127%5D%20Crash%20when%20selecting%20a%20location%20to%0A%09build%20water%20well&In-Reply-To=%3C200902060049.n160nDwC012587%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000724.html">
+   <LINK REL="Next"  HREF="000726.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15127] Crash when selecting a location to	build water well</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315127%5D%20Crash%20when%20selecting%20a%20location%20to%0A%09build%20water%20well&In-Reply-To=%3C200902060049.n160nDwC012587%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15127] Crash when selecting a location to	build water well">admin at berlios.de
+       </A><BR>
+    <I>Fri Feb  6 01:49:13 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000724.html">[Lincity-ng-devel] [Patch #2678] Updated Brazilian Portuguese	translation
+</A></li>
+        <LI>Next message: <A HREF="000726.html">[Lincity-ng-devel] heavy industry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#725">[ date ]</a>
+              <a href="thread.html#725">[ thread ]</a>
+              <a href="subject.html#725">[ subject ]</a>
+              <a href="author.html#725">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15127, was updated on 2009-Jan-26 09:48
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Closed
+Resolution: Fixed
+Bug Group: None
+Priority: 5
+Submitted by: danielsantos
+Assigned to : none
+Summary: Crash when selecting a location to build water well
+
+Details: Too bad I didn't think to save my game, I was almost at tech level 5 and hadn't saved. :(
+
+So I seem to be able to reproduce it in a number of ways.  Basically, you zoom all the way, scroll all the way up as far as you can in the map, click the  build water well button and move the mouse around in the upper areas of the window (outside of the map area).  This occurs in both 2.0 and current svn (r1518)
+
+(gdb) bt
+bt
+#0  0x00000000004a5bc9 in is_allowed_here (x=-114, y=-17, type=238, msg=0) at src/lincity/engine.cpp:158
+#1  0x000000000044f75c in GameView::markTile (this=0x9fbcc0, painter=@0x9eced0, tile={x = -114, y = -17}) at src/lincity-ng/GameView.cpp:1443
+#2  0x00000000004501ff in GameView::draw (this=0x9fbcc0, painter=@0x9eced0) at src/lincity-ng/GameView.cpp:1628
+#3  0x000000000047135d in Component::drawChild (this=0x9fabd0, child=@0xe06170, painter=@0x9eced0) at src/gui/Component.cpp:66
+#4  0x0000000000471404 in Component::draw (this=0x9fabd0, painter=@0x9eced0) at src/gui/Component.cpp:83
+#5  0x000000000048fb58 in Desktop::draw (this=0x9fabd0, painter=@0x9eced0) at src/gui/Desktop.cpp:108
+#6  0x000000000045f881 in Game::run (this=0x9f08a0) at src/lincity-ng/Game.cpp:238
+#7  0x0000000000408a76 in mainLoop () at src/lincity-ng/main.cpp:351
+#8  0x000000000040a599 in main (argc=1, argv=0x7fff5aa5d178) at src/lincity-ng/main.cpp:492
+(gdb) info locals
+info locals
+group = 41
+size = 2
+i = 0
+j = 0
+has_ugw = 0
+
+It looks like it's failing because it wasn't designed to accept invalid x, y coordinates.
+
+Follow-Ups:
+
+Date: 2009-Feb-06 00:49
+By: jaky_lincity
+
+Comment:
+Fixed in revision 1523
+-------------------------------------------------------
+
+Date: 2009-Jan-27 09:01
+By: danielsantos
+
+Comment:
+here is my complete Gentoo &quot;emerge --info&quot; output.  I know it's of minimal use if you aren't comparing with another gentoo system, but it does contain a lot of useful info:
+
+Portage 2.1.6.7 (default/linux/amd64/2008.0/desktop, gcc-4.3.2, glibc-2.9_p20081201-r1, 2.6.27-gentoo-r7 x86_64)
+=================================================================
+System uname: Linux-2.6.27-gentoo-r7-x86_64-AMD_Phenom-tm-_9850_Quad-Core_Processor-with-glibc2.2.5
+Timestamp of tree: Tue, 27 Jan 2009 07:05:01 +0000
+distcc 3.1 x86_64-pc-linux-gnu [disabled]
+ccache version 2.4 [disabled]
+app-shells/bash:     3.2_p48
+dev-java/java-config: 1.3.7-r1, 2.1.6-r1
+dev-lang/python:     2.5.2-r8
+dev-util/ccache:     2.4-r8
+dev-util/cmake:      2.6.2-r1
+sys-apps/baselayout: 2.0.0
+sys-apps/openrc:     0.4.2
+sys-apps/sandbox:    1.3.2
+sys-devel/autoconf:  2.13, 2.63
+sys-devel/automake:  1.4_p6, 1.5, 1.7.9-r1, 1.8.5-r3, 1.9.6-r2, 1.10.2
+sys-devel/binutils:  2.19
+sys-devel/gcc-config: 1.4.0-r4
+sys-devel/libtool:   2.2.6a
+virtual/os-headers:  2.6.28-r1
+ACCEPT_KEYWORDS=&quot;amd64 ~amd64&quot;
+CBUILD=&quot;x86_64-pc-linux-gnu&quot;
+CFLAGS=&quot;-march=amdfam10 -O2 -pipe&quot;
+CHOST=&quot;x86_64-pc-linux-gnu&quot;
+CONFIG_PROTECT=&quot;/etc /opt/openjms/config /usr/kde/3.5/env /usr/kde/3.5/share/config /usr/kde/3.5/shutdown /usr/kde/4.1/env /usr/kde/4.1/share/config /usr/kde/4.1/shutdown /usr/share/config /var/lib/hsqldb&quot;
+CONFIG_PROTECT_MASK=&quot;/etc/ca-certificates.conf /etc/env.d /etc/env.d/java/ /etc/fonts/fonts.conf /etc/gconf /etc/gentoo-release /etc/php/apache2-php5/ext-active/ /etc/php/cgi-php5/ext-active/ /etc/php/cli-php5/ext-active/ /etc/revdep-rebuild /etc/sandbox.d /etc/splash /etc/terminfo /etc/texmf/web2c /etc/udev/rules.d&quot;
+CXXFLAGS=&quot;-march=amdfam10 -O2 -pipe&quot;
+DISTDIR=&quot;/usr/portage/distfiles&quot;
+FEATURES=&quot;buildpkg distlocks fixpackages installsources parallel-fetch protect-owned sandbox sfperms splitdebug strict unmerge-orphans userfetch userpriv usersandbox&quot;
+GENTOO_MIRRORS=&quot;<A HREF="http://mirrors.cs.wmich.edu/gentoo">http://mirrors.cs.wmich.edu/gentoo</A> <A HREF="http://mirror.mcs.anl.gov/pub/gentoo/">http://mirror.mcs.anl.gov/pub/gentoo/</A> <A HREF="http://osmirrors.cerias.purdue.edu/pub/gentoo/">http://osmirrors.cerias.purdue.edu/pub/gentoo/</A>&quot;
+LDFLAGS=&quot;-Wl,-O1&quot;
+LINGUAS=&quot;en_US&quot;
+MAKEOPTS=&quot;-j5&quot;
+PKGDIR=&quot;/usr/portage/packages&quot;
+PORTAGE_COMPRESS=&quot;bzip2&quot;
+PORTAGE_COMPRESS_FLAGS=&quot;-9&quot;
+PORTAGE_RSYNC_OPTS=&quot;--recursive --links --safe-links --perms --times --compress --force --whole-file --delete --stats --timeout=180 --exclude=/distfiles --exclude=/local --exclude=/packages&quot;
+PORTAGE_TMPDIR=&quot;/tmp&quot;
+PORTDIR=&quot;/usr/portage&quot;
+PORTDIR_OVERLAY=&quot;/usr/portage/local/layman/sunrise /usr/portage/local/layman/Spring /usr/local/portage&quot;
+SYNC=&quot;<A HREF="rsync://rsync.gentoo.org/gentoo-portage">rsync://rsync.gentoo.org/gentoo-portage</A>&quot;
+USE=&quot;3dnow 3dnowext 3ds 64bit 7zip X Xaw3d a52 aac aalib acl acpi afs aim aio akode alsa amd64 amr ao aotuv apache2 apm applet ares arts async audacious audiofile authdaemond authfile autoipd automount avahi bash-completion berkdb binfilter bittorrent bl bluetooth bonjour boost branding bsf bzip2 c3p0 cairo calendar cdaudio cdb cdda cddb cdparanoia cdr cdrom cegui cg cgi chm cjk cli commons-digester console cpudetection cpufreq cpulimit cracklib crypt cscope css cups curl curlwrappers custom-optimization cvs cxx daap dbus dedicated devil dga dirac directfb divx djbfft djvu dmx dolby-record-switch double-precision dri dts dv dvd dvdr dvdread editor eds emboss emoticon encode enscript esd evo excel exif expat extraicons fam fasttrack fax fbcon ffmpeg fftw firefox fits flac flash fltk fmod font-server fontconfig fontforge foomaticdb fortran fping fpx ftp fuse fusion gadu gcj gd gdbm geos ggi gif ginac git glib glitz glut gmedia gmp gmtfull gnokii gnutella gnutls gphoto2 gpm gps!
+  graphviz gs gsl gstreamer gtk gzip hal hddtemp html htmlhandbook hwmixer icecast iceweasel iconv icq id3 id3tag idn ieee1394 imagemagick imap imlib inifile irc irda irrlicht isdnlog ithreads jack jadetex java java5 java6 javascript jbig jce jingle jmx jpeg jpeg2k kde kdeprefix kdrive lame latex lcms ldap libcaca libnotify libsamplerate libvisual libwww lirc live lm_sensors log4j logitech-mouse lua lzma lzo mad maildir maps math md5sum meanwhile midi mikmod mime mjpeg mmap mmkeys mmx mmxext mng modperl modplug motif mouse mozdevelop mozilla mp2 mp3 mp4 mp4live mpeg mpeg2 mplayer msn mtp mudflap multicall multilib multislot multitarget musepack musicbrainz mysql mysqli nas ncurses net netjack network njb nls nntp nptl nptlonly nsplugin nss nvidia nvtv ode odk offensive ogg openal openexr opengl openmp pam pango pch pcntl pcre pda pdf perl php player plotutils png portaudio posix postproc ppds pppd pulseaudio python qq qt3 qt3support qt4 quicktime radio rar raw readline refle!
+ ction rrdcgi rtc ruby samba sametime sasl scanner schroedinger!
+  sdl sdl
+-image sdl-sound seamonkey sensord session sharedext silc slp smp smtp sndfile snmp soap sockets sound speex spell spl sqlite sqlite3 sse sse2 sse3 ssl startup-notification stream subtitles subversion suexec svg sysfs syslog sysvipc t1lib tagwriting tcl tcpd tga theora threads tidy tiff timidity tk tokenizer tools transcode translator trayicon truetype tse3 twolame unicode urandom usb userlocales v4l v4l2 vcd vdr vhosts videos vim-syntax vim-with-x visualization vorbis vorbis-psy wav wavpack webdav wifi wma wmf wxwindows x264 xanim xattr xcb xcomposite xface xforms xine xinerama xml xmlreader xmlrpc xmlwriter xorg xpm xprint xscreensaver xsl xulrunner xv xvid xvmc yaepg yahoo yv12 zeroconf zip zlib&quot; ALSA_CARDS=&quot;ali5451 als4000 atiixp atiixp-modem bt87x ca0106 cmipci emu10k1x ens1370 ens1371 es1938 es1968 fm801 hda-intel intel8x0 intel8x0m maestro3 trident usb-audio via82xx via82xx-modem ymfpci&quot; ALSA_PCM_PLUGINS=&quot;adpcm alaw asym copy dmix dshare dsnoop empty extplug file hook!
+ s iec958 ioplug ladspa lfloat linear meter mmap_emul mulaw multi null plug rate route share shm softvol&quot; APACHE2_MODULES=&quot;actions alias auth_basic auth_digest authn_alias authn_dbd authn_anon authn_dbm authn_default authn_file authz_dbm authz_default authz_groupfile authz_host authz_owner authz_user autoindex cache dav dav_fs dav_lock dbd deflate dir disk_cache dumpio env expires ext_filter file_cache filter headers ident imagemap include info log_config log_forensic logio mem_cache mime mime_magic negotiation rewrite setenvif speling status unique_id userdir usertrack vhost_alias substitute&quot; ELIBC=&quot;glibc&quot; FOO2ZJS_DEVICES=&quot;hpp1006&quot; INPUT_DEVICES=&quot;keyboard mouse joystick evdev&quot; KERNEL=&quot;linux&quot; LCD_DEVICES=&quot;bayrad cfontz cfontz633 glk hd44780 lb216 lcdm001 mtxorb ncurses text&quot; LINGUAS=&quot;en_US&quot; USERLAND=&quot;GNU&quot; VIDEO_CARDS=&quot;nvidia&quot;
+Unset:  CPPFLAGS, CTARGET, EMERGE_DEFAULT_OPTS, FFLAGS, INSTALL_MASK, LANG, LC_ALL, PORTAGE_RSYNC_EXTRA_OPTS
+
+
+But basically, I had my mouse pretty far outside of the normal area.  When I originally crashed it, I didn't intend to zoom that far out, I was just being somewhat impulsive and was going to right click to center on the area where I wanted my well and then zoom back in, even though the entire map, by then, only took up about 20% of the total window area (I'm running at 1920x1200, maybe that's a big factor on reproducing the crash). 
+
+But here's the essence of the problem as I understand it.
+* HAS_UGWATER(x + i, y + j) is called when x = -114 and y = -17
+* this becomes HAS_UGWATER(-113, -16)
+* take into account these three lines of code and we can finish preprocessing:
+#define FLAG_HAS_UNDERGROUND_WATER (0x20000000)
+#define MP_INFO(x,y)   map.info[x][y]
+#define HAS_UGWATER(x,y) (MP_INFO(x,y).flags &amp; FLAG_HAS_UNDERGROUND_WATER)
+* now we have map.info[-113][-16].flags &amp; (0x20000000)
+* map is of type Map (a typedef of struct map_struct)
+* map.info is of type Map_Point_Info info[WORLD_SIDE_LEN][WORLD_SIDE_LEN]
+* Map_Point_Info is a typedef of struct map_point_info_struct
+* map_point_info_struct will compile to roughly 44 bytes each (assuming 32 bit alignment and the two short values will be padded)
+* thus, the offset from map.info, specified by the x portion, -114, should become x * sizeof(map_point_info_struct) * 100 and the y portion of the offset should come to y * sizeof(map_point_info_struct).
+* presuming that sizeof(map_point_info_struct) is indeed 44 bytes, this will make the effective offset x * 44 * 100 + y * 44
+* fill in x and y values and it becomes -113 * 44 * 100 + -16 *44 = -497,904
+So this statement attempts to read memory with -497904 offset from the object map.info.  Prior to the info member of the map_struct are:
+    short type[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
+    short group[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
+    int pollution[WORLD_SIDE_LEN][WORLD_SIDE_LEN];
+These probably compile to 40000 bytes each (I don't see a pack pragma, so I presume the shorts in the arrays will be stored in 32 bits each) for a total of 120,000 bytes.  However, the offset is -497,904, so we're attempting to read memory well before the map_struct object.  This could produce undefined results in some cases, but I'm guessing that never happens because something else checks to see if it's off the map later anyway.  It won't necessarily segfault depending upon how it happened to load into memory and what may be in memory before it, but it is an incorrect read attempt.
+
+The solution is to make sure that x and y values are legit before attempting to call HAS_UGWATER, which in turn calls MP_INFO(x,y)
+-------------------------------------------------------
+
+Date: 2009-Jan-26 23:07
+By: jaky_lincity
+
+Comment:
+It doesn't crash on my computer either. But the call to HAS_UGWATER on line 158 tries to access the map.info array outside of its boundaries, if the x and y value is outside of the map. Probably this is the cause for the segfault. 
+map.info is also accessed for Ports, tips, oremines and parks. It could also crash for these buildings. 
+
+Jaky
+-------------------------------------------------------
+
+Date: 2009-Jan-26 23:06
+By: jaky_lincity
+
+Comment:
+It doesn't crash on my computer either. But the call to HAS_UGWATER on line 158 tries to access the map.info array outside of its boundaries, if the x and y value is outside of the map. This is the cause for the segfault. 
+map.info is also accessed for Ports, tips, oremines and parks. It could also crash for these buildings. 
+
+Jaky
+-------------------------------------------------------
+
+Date: 2009-Jan-26 18:55
+By: wolfgangb
+
+Comment:
+Works fine for me, I can't reproduce the crash here. Strange. Which 
+compiler/platform do you use? Do you get the crash with other buildings, too?
+
+As far as I understand the code, the invisible border is required so every 
+building is surrounded by tiles. That way you don't need special cases for 
+pollution and transport checks.
+-------------------------------------------------------
+
+Date: 2009-Jan-26 16:44
+By: jaky_lincity
+
+Comment:
+Thank you very much for your detailed bug report. But your patch does not cover all the cases. We have to take into account the size of the building to prevent some part of the building being outside of the map. And the first usable tile starts with x=y=1 and the last one is at x=y=98. This is due to an invisible one-tile border around the map. I don't know why it exists. Maybe to prevent crashes due to off-by-one errors.
+
+We can use the check from MapEdit.cpp line 243 which is used while actually building something. Updated patch:
+
+Index: src/lincity/engine.cpp
+===================================================================
+--- src/lincity/engine.cpp      (revision 1518)
++++ src/lincity/engine.cpp      (working copy)
+@@ -108,6 +108,9 @@
+     int i,j;
+     int has_ugw = 0;
+
++    if( x + size &gt; WORLD_SIDE_LEN - 1 || y + size &gt; WORLD_SIDE_LEN - 1 || x &lt; 1 || y &lt; 1 )
++        return false;
++
+     switch (group) {
+    case GROUP_SOLAR_POWER:
+         if (total_money &lt;= 0) {
+-------------------------------------------------------
+
+Date: 2009-Jan-26 13:16
+By: danielsantos
+
+Comment:
+Correction: Basically, you zoom *out* all the way, ...
+-------------------------------------------------------
+
+Date: 2009-Jan-26 09:52
+By: danielsantos
+
+Comment:
+This seems to fix the problem:
+Index: src/lincity/engine.cpp
+===================================================================
+--- src/lincity/engine.cpp      (revision 1518)
++++ src/lincity/engine.cpp      (working copy)
+@@ -107,6 +107,9 @@
+     int size = main_groups[group].size;
+     int i,j;
+     int has_ugw = 0;
++
++    if( x &lt; 0 || y &lt; 0 || x &gt;= WORLD_SIDE_LEN || y &gt;= WORLD_SIDE_LEN )
++        return 0;
+
+     switch (group) {
+     case GROUP_SOLAR_POWER:
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15127&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15127&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000724.html">[Lincity-ng-devel] [Patch #2678] Updated Brazilian Portuguese	translation
+</A></li>
+	<LI>Next message: <A HREF="000726.html">[Lincity-ng-devel] heavy industry
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#725">[ date ]</a>
+              <a href="thread.html#725">[ thread ]</a>
+              <a href="subject.html#725">[ subject ]</a>
+              <a href="author.html#725">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

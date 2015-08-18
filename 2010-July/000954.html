@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Map Creation Question
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-July/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Map%20Creation%20Question&In-Reply-To=%3C201007282214.45468.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000952.html">
+   <LINK REL="Next"  HREF="000953.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Map Creation Question</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Map%20Creation%20Question&In-Reply-To=%3C201007282214.45468.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] Map Creation Question">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Wed Jul 28 22:14:45 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000952.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+        <LI>Next message: <A HREF="000953.html">[Lincity-ng-devel] LinCity-NG wiki account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#954">[ date ]</a>
+              <a href="thread.html#954">[ thread ]</a>
+              <a href="subject.html#954">[ subject ]</a>
+              <a href="author.html#954">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Avery, 
+
+i quickly added several comments (its late here, i need to eat and
+improve the landgenerator, and check several things and sleep)
+
+Le 28/07/2010 &#224; 21:41, Avery White a &#233;crit :
+&lt;...&gt;
+&gt;<i> A Low Impact Development (LID) is a water resources 'trick' used to help
+</I>&gt;<i> rainwater get into the ground so that it doesn't stay on roads, stagnate
+</I>&gt;<i> (i.e. on a parking lot), build (i.e. and cause flooding), etc. These kinds
+</I>&gt;<i> of things have to do with the sustainability of the watershed...to make
+</I>&gt;<i> people more aware of this (and what can be done), I would like to add some
+</I>&gt;<i> parameters to a custom map that will determine the effectiveness of LID
+</I>&gt;<i> placement.
+</I>
+There are 2 map generators :
+ the traditional one, with Y like rivers
+ the new one, available from svn, but not yet released
+
+I am speaking of the new one (and need to check if i corectly added altitude
+for old map imported in recent version)
+
+In the map generator there are no horizontal land (it is possible, but
+very unlikely)
+
+From graphic people, one tile is 10mx10m
+
+The visible part is 98x98 (WORLD_SIDE_LEN = 100 ,and we use a gray border)
+ <A HREF="http://lincity-ng.berlios.de/wiki/index.php/LinCity_Engine#Map">http://lincity-ng.berlios.de/wiki/index.php/LinCity_Engine#Map</A>
+
+&gt;<i> 
+</I>&gt;<i> I want to add checkbox menus (i.e. like the market) to some of the
+</I>&gt;<i> structures - players will check mark LID's that they would like and the
+</I>&gt;<i> map's effectiveness values will determine how good of a decision that
+</I>&gt;<i> actually is. For my little project, I'm going to strip down much of LinCity
+</I>&gt;<i> for a kind of proof-of-concept-just-for-show-project-toy example.
+</I>
+yes, easy to do in the engine, most of things are called from
+src/lincity/simulate.cpp
+	do_time_step
+		simulate_mappoints
+
+there are very few exceptions (call from GUI for launching rocket)
+
+&gt;<i> However,
+</I>&gt;<i> it would be cool to integrate some of this post-project. With the topography
+</I>&gt;<i> in place, this could get very interesting. I'll be trying to play around
+</I>&gt;<i> with the map files by hand (unless you have a more efficient option
+</I>&gt;<i> available offhand)...
+</I>the file format is (src/lincity/loadsave.cpp -&gt; save_city_2)
+
+ one header = file's version
+ one line per tile 
+	=&gt; tile (x,y) is written at line N = 1 + 100 * x + y
+ then game stuff
+
+&gt;<i> could you give me some instruction how to use the
+</I>&gt;<i> keyboard interface for map manipulation (in the meantime)?
+</I>I have not yet finished, i try to do it tonight as a separate tool
+(but i need to eat first ;-) )
+ 
+&gt;<i> I use vim so
+</I>&gt;<i> terminal-text editing shouldn't be a problem.
+</I>yes
+
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000952.html">[Lincity-ng-devel] Map Creation Question
+</A></li>
+	<LI>Next message: <A HREF="000953.html">[Lincity-ng-devel] LinCity-NG wiki account
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#954">[ date ]</a>
+              <a href="thread.html#954">[ thread ]</a>
+              <a href="subject.html#954">[ subject ]</a>
+              <a href="author.html#954">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

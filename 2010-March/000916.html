@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #17007] building 2.0 on a powerpc mac
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317007%5D%20building%202.0%20on%20a%20powerpc%20mac&In-Reply-To=%3C201003221731.o2MHVHji027761%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000915.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #17007] building 2.0 on a powerpc mac</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317007%5D%20building%202.0%20on%20a%20powerpc%20mac&In-Reply-To=%3C201003221731.o2MHVHji027761%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #17007] building 2.0 on a powerpc mac">admin at berlios.de
+       </A><BR>
+    <I>Mon Mar 22 18:31:17 CET 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000915.html">[Lincity-ng-devel] [Bug #17007] building 2.0 on a powerpc mac
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#916">[ date ]</a>
+              <a href="thread.html#916">[ thread ]</a>
+              <a href="subject.html#916">[ subject ]</a>
+              <a href="author.html#916">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17007, was updated on 2010-Mar-22 12:59
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: new
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: robbie
+Assigned to : none
+Summary: building 2.0 on a powerpc mac
+
+Details: I'm building lingcity-ng 2.0 on a 10.4 ppc machine. I was able to get it installed and running with macports -- just a &quot;port install lincity-ng&quot; .. however from there it would not run without editing the DYLD_LIBRARY_PATH variable to include /opt/local/lib. 
+
+I get two groups of errors. Many on start-up are like the following:
+
+Error: Couldn't read soundfile 'sounds/WindowOpen.wav': Unrecognized sound file type
+
+There's dozens of these.
+
+The other errors: the video is also funky. The colors look basically inverted. its a mostly pink and white screen. When I go from the main screen to the options screen, the cogs simply overlay on top of the buildings from the first screen. Its less problematic on the game screen, but still basically unplayable.
+
+Any idea what issues I'm having? 
+
+Follow-Ups:
+
+Date: 2010-Mar-22 13:31
+By: robbie
+
+Comment:
+update: if I launch it with the -s option, the screen is almost good -- certainly accurate, just that everything has a strong yellow tint to it (and the mini map has a transparent background color when it is actually drawing the map).
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17007&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17007&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000915.html">[Lincity-ng-devel] [Bug #17007] building 2.0 on a powerpc mac
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#916">[ date ]</a>
+              <a href="thread.html#916">[ thread ]</a>
+              <a href="subject.html#916">[ subject ]</a>
+              <a href="author.html#916">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

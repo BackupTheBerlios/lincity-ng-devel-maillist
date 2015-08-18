@@ -1,0 +1,101 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] trees and pollution
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-January/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20trees%20and%20pollution&In-Reply-To=%3C200901072040.00476.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000594.html">
+   <LINK REL="Next"  HREF="000589.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] trees and pollution</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20trees%20and%20pollution&In-Reply-To=%3C200901072040.00476.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] trees and pollution">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Wed Jan  7 20:40:00 CET 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000594.html">[Lincity-ng-devel] Should the beach scenario be easy ?
+</A></li>
+        <LI>Next message: <A HREF="000589.html">[Lincity-ng-devel] Should the beach scenario be easy ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#596">[ date ]</a>
+              <a href="thread.html#596">[ thread ]</a>
+              <a href="subject.html#596">[ subject ]</a>
+              <a href="author.html#596">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Le mercredi 7 janvier 2009, Ivar ten Cate a &#233;crit&#160;:
+&gt;<i> 
+</I>&gt;<i> Hi,
+</I>&gt;<i> Trees would reduce the amount of pollution, like parks.
+</I>&gt;<i> What do you think of this? 
+</I>
+i forgot half of the answer:
+
+yes, trees should reduce pollution, _but_ pollution should not be suppressed
+ ~ &quot;Nothing is created, nothing disappears, things are transformed&quot;.
+
+What happens in RL is:
+- some part of the pollution is bio-compatible, so it goes back in the
+ ecosystem and is recylcled
+- some part is not bio-compatible, so its is only transported, and either
+ is diluted or accumulates somewhere.
+ When it is diluted we consider it is not a problem (which is not necessarily
+ true, see highly toxic CFC in polar zone)
+ When it accumulates its is a very visible problem, for example in sites where
+ there was a polluting industry the ground contains lots of highly toxic things
+ and will stay desert for long and contaminate the environment with dilution
+ and transport by water provided by rains.
+
+Currently in lincity, only air transports pollution. I am trying to add water
+transport along slopes. 
+The ground maybe will need a stock capacity for pollution and we
+will have all necessary thing for a real ecosystem simulator.
+
+Last, it needs to be carefully coded, to prevent numerical artefact.
+Currently, pollution is evacuated through the border of the map. 
+I think correct and playable tuning would looks like:
+- keep air pollution transport as it is (instantaneous effect)
+- pollution from water should be seen after some 100 years
+- pollution in ground evolves in some 1000 years
+
+All this need to be discussed, and will take time if ever implemented, so
+it could be for 2.2 or 2.4 ...
+
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000594.html">[Lincity-ng-devel] Should the beach scenario be easy ?
+</A></li>
+	<LI>Next message: <A HREF="000589.html">[Lincity-ng-devel] Should the beach scenario be easy ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#596">[ date ]</a>
+              <a href="thread.html#596">[ thread ]</a>
+              <a href="subject.html#596">[ subject ]</a>
+              <a href="author.html#596">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

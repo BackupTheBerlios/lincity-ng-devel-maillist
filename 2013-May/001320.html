@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Windpower.h - missing.
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2013-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Windpower.h%20-%20missing.&In-Reply-To=%3CCAM6SkhkRaNdHmJ5At_jtO211Ts0HR7vT5Ht0iGdwbT3j3m_OjA%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001319.html">
+   <LINK REL="Next"  HREF="001323.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Windpower.h - missing.</H1>
+    <B>Amit Ahire</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Windpower.h%20-%20missing.&In-Reply-To=%3CCAM6SkhkRaNdHmJ5At_jtO211Ts0HR7vT5Ht0iGdwbT3j3m_OjA%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] Windpower.h - missing.">amitahire at gmail.com
+       </A><BR>
+    <I>Tue May  7 18:52:49 CEST 2013</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001319.html">[Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update
+</A></li>
+        <LI>Next message: <A HREF="001323.html">[Lincity-ng-devel] Windpower.h - missing.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1320">[ date ]</a>
+              <a href="thread.html#1320">[ thread ]</a>
+              <a href="subject.html#1320">[ subject ]</a>
+              <a href="author.html#1320">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello,
+
+I just checked out the latest version from the SVN. And compiled from it.
+Whle compiling it found that windpower.h was not in the
+/src/lincity/modules. Hence for now I have removed all the reference of it
+from the code and compiled. I want to know whether windpower.h is removed
+or superseded or missing?
+
+Files I changed to compile -
+
+all_modules.h - line 37
+all_modules.cpp - line 14
+lintypes.cpp - line 1326
+
+And also I have been trying to compile it on MinGW but ultimately it fails
+to find SDL. Even though the path is correct (Issues posted already - Just
+putting in a word about it)
+
+Thanks.
+</PRE>
+
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001319.html">[Lincity-ng-devel] SDL(*).h : No file or directory - But they are present in the include path. - Update
+</A></li>
+	<LI>Next message: <A HREF="001323.html">[Lincity-ng-devel] Windpower.h - missing.
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1320">[ date ]</a>
+              <a href="thread.html#1320">[ thread ]</a>
+              <a href="subject.html#1320">[ subject ]</a>
+              <a href="author.html#1320">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

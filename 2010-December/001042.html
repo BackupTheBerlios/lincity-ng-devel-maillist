@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-December/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20MP_%2A%20lookups%20with%20bad%20coordinates%20cause%0A%09segfaults&In-Reply-To=%3C201012071952.49060.alain.baeckeroot%40laposte.net%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   
+   <LINK REL="Next"  HREF="001043.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults</H1>
+    <B>Alain Baeckeroot</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20MP_%2A%20lookups%20with%20bad%20coordinates%20cause%0A%09segfaults&In-Reply-To=%3C201012071952.49060.alain.baeckeroot%40laposte.net%3E"
+       TITLE="[Lincity-ng-devel] MP_* lookups with bad coordinates cause	segfaults">alain.baeckeroot at laposte.net
+       </A><BR>
+    <I>Tue Dec  7 19:52:48 CET 2010</I>
+    <P><UL>
+        
+        <LI>Next message: <A HREF="001043.html">[Lincity-ng-devel] Move away from Berlios and plan for future ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1042">[ date ]</a>
+              <a href="thread.html#1042">[ thread ]</a>
+              <a href="subject.html#1042">[ subject ]</a>
+              <a href="author.html#1042">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>
+Le 30/10/2010 &#224; 21:20, Henri Kemppainen a &#233;crit :
+&gt;<i> 
+</I>&gt;<i> I'm getting a good amount of segfaults when poking out of the board
+</I>&gt;<i> boundaries while trying to build or bulldoze.  This happens at least in
+</I>&gt;<i> GameView::bulldozeCost and GameView::buildCost where it uses the MP_*
+</I>&gt;<i> macros.  The coordinates are never checked for validity so it's going to
+</I>&gt;<i> segfault.
+</I>&gt;<i> 
+</I>&gt;<i> I wouldn't be surprised if there are more problems like this (looks like
+</I>&gt;<i> you already fixed a similar one with waterwell placement) so it might
+</I>&gt;<i> not be a good idea to only add checks in the two functions I mentioned.
+</I>
+yes, i fixed the 2 you mentionned in rev1605
+
+i was confused, it is obviously a bug, i just don't understand why it did
+not happened ealier ?
+
+Thanks for your report
+Alain
+
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	
+	<LI>Next message: <A HREF="001043.html">[Lincity-ng-devel] Move away from Berlios and plan for future ?
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1042">[ date ]</a>
+              <a href="thread.html#1042">[ thread ]</a>
+              <a href="subject.html#1042">[ subject ]</a>
+              <a href="author.html#1042">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

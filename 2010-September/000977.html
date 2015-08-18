@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] should we rewrite the GUI and other part ?
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2010-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20should%20we%20rewrite%20the%20GUI%20and%20other%20part%20%3F&In-Reply-To=%3CAANLkTimhmydNVM6CrTX2%3D4CZToD%2BWPRBW3Ds93GsuXGi%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000976.html">
+   <LINK REL="Next"  HREF="000978.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] should we rewrite the GUI and other part ?</H1>
+    <B>Avery White</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20should%20we%20rewrite%20the%20GUI%20and%20other%20part%20%3F&In-Reply-To=%3CAANLkTimhmydNVM6CrTX2%3D4CZToD%2BWPRBW3Ds93GsuXGi%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] should we rewrite the GUI and other part ?">praiseresound at gmail.com
+       </A><BR>
+    <I>Sat Sep 11 19:01:36 CEST 2010</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000976.html">[Lincity-ng-devel] should we rewrite the GUI and other part ?
+</A></li>
+        <LI>Next message: <A HREF="000978.html">[Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#977">[ date ]</a>
+              <a href="thread.html#977">[ thread ]</a>
+              <a href="subject.html#977">[ subject ]</a>
+              <a href="author.html#977">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Well said!
+
+Avery
+
+On Fri, Sep 10, 2010 at 1:04 PM, Alain Baeckeroot &lt;
+<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">alain.baeckeroot at laposte.net</A>&gt; wrote:
+
+&gt;<i> Hi Matthias
+</I>&gt;<i>
+</I>&gt;<i> Le 10/09/2010 &#224; 18:03, Matthias Braun a &#233;crit :
+</I>&gt;<i> &gt; Am Mittwoch, den 08.09.2010, 20:37 +0200 schrieb Alain Baeckeroot:
+</I>&gt;<i> &gt; &gt; 2/ I would like to throw the GUI and get a simple one
+</I>&gt;<i> &gt; &gt;     - either use some existing thing
+</I>&gt;<i> &gt; &gt;     - or make a simple one IMGUI ( = ala old fashion, direct code,
+</I>&gt;<i> &gt; &gt;              no fancy but inefficient code ;-) )
+</I>&gt;<i> &gt; &gt;
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; As the one who has written the gui Code back in the time, I wonder why
+</I>&gt;<i> &gt; you think the GUI is inefficient.
+</I>&gt;<i>
+</I>&gt;<i> I am sorry if i offended you, it was not my aim :-)
+</I>&gt;<i> Maybe i am wrong by saying it is the GUI, but there is something in
+</I>&gt;<i> the graphic handling that make -NG much slower than classic on a given
+</I>&gt;<i> hardware.
+</I>&gt;<i>
+</I>&gt;<i> &gt; I doubt it's the GUI that slows
+</I>&gt;<i> &gt; lincity down but simply because its high-resolution graphics in possibly
+</I>&gt;<i> &gt; big screen resolutions.
+</I>&gt;<i>
+</I>&gt;<i> Yes it is part of the problem.
+</I>&gt;<i>
+</I>&gt;<i> The font management is rather slow (click on stats... and wait for the
+</I>&gt;<i> window to popup),
+</I>&gt;<i>
+</I>&gt;<i> The findComponent seems really weird to me (recurses up to 600 times for
+</I>&gt;<i> analysing xml files with 10 sections)
+</I>&gt;<i>
+</I>&gt;<i> xml gui files (ala xhtml) *were* automatically generated from a really
+</I>&gt;<i> simple file (lets says 2 fields), then parsed to retrieve the simple
+</I>&gt;<i> information and display it (the said 2 fields).
+</I>&gt;<i> I guess it can be done in a much shorter path ; display the 2 fields
+</I>&gt;<i> directly
+</I>&gt;<i> without xml generation and parsing.
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Also from what I remember nothing stops you from creating GUIs in code
+</I>&gt;<i> &gt; right now except that it is alot more stuff to write.
+</I>&gt;<i>
+</I>&gt;<i> True, it is really a big job, thats why so far i did not even spoke of
+</I>&gt;<i> changing
+</I>&gt;<i> it (until Avery's mail due to his very interesting project)
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; I never thought the GUI to be complex. But then again without any real
+</I>&gt;<i> &gt; documentation it might be really confusing to start out on it. I was
+</I>&gt;<i> &gt; kinda proud about the GUI back then and thought it was a part that
+</I>&gt;<i> &gt; worked out nicely in lincity-ng...
+</I>&gt;<i>
+</I>&gt;<i> Yes it works, it is nice.
+</I>&gt;<i> I never learn object programming, maybe that's why i find it difficult to
+</I>&gt;<i> understand.
+</I>&gt;<i>
+</I>&gt;<i> &gt;
+</I>&gt;<i> &gt; Anyway I'm just lurking on this mailing list, I don't have time for
+</I>&gt;<i> &gt; lincity (or any open-source projects) anymore. So don't let yourself be
+</I>&gt;<i> &gt; stopped in any way. The ones doing the work should decide where
+</I>&gt;<i> &gt; open-source projects go :)
+</I>&gt;<i>
+</I>&gt;<i> Thanks, i consider this as a nice encouragement (and you really know how
+</I>&gt;<i> big is the task we are speaking of). We will try to do better, after
+</I>&gt;<i> having learnt from your job :) .
+</I>&gt;<i>
+</I>&gt;<i> Greetings
+</I>&gt;<i> Alain
+</I>&gt;<i> _______________________________________________
+</I>&gt;<i> Lincity-ng-devel mailing list
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">Lincity-ng-devel at lists.berlios.de</A>
+</I>&gt;<i> <A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">https://lists.berlios.de/mailman/listinfo/lincity-ng-devel</A>
+</I>&gt;<i>
+</I>
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000976.html">[Lincity-ng-devel] should we rewrite the GUI and other part ?
+</A></li>
+	<LI>Next message: <A HREF="000978.html">[Lincity-ng-devel] Question Concerning Global Variables -	/src/lincity/lin-city.h
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#977">[ date ]</a>
+              <a href="thread.html#977">[ thread ]</a>
+              <a href="subject.html#977">[ subject ]</a>
+              <a href="author.html#977">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

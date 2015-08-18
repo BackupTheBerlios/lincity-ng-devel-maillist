@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #14544] Crash on starting 1.92-beta
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314544%5D%20Crash%20on%20starting%201.92-beta&In-Reply-To=%3C200809252043.m8PKhxhn002136%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000512.html">
+   <LINK REL="Next"  HREF="000514.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #14544] Crash on starting 1.92-beta</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2314544%5D%20Crash%20on%20starting%201.92-beta&In-Reply-To=%3C200809252043.m8PKhxhn002136%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #14544] Crash on starting 1.92-beta">admin at berlios.de
+       </A><BR>
+    <I>Thu Sep 25 22:43:59 CEST 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000512.html">[Lincity-ng-devel] [Patch #2569] Fix crash caused by	PHYSFS_getRealDir(file) returning NULL
+</A></li>
+        <LI>Next message: <A HREF="000514.html">[Lincity-ng-devel] [Bug #14544] Crash on starting 1.92-beta
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#513">[ date ]</a>
+              <a href="thread.html#513">[ thread ]</a>
+              <a href="subject.html#513">[ subject ]</a>
+              <a href="author.html#513">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #14544, was updated on 2008-Sep-24 18:35
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: ermenguer
+Assigned to : none
+Summary: Crash on starting 1.92-beta
+
+Details: After starting in debug mode...
+
+terminate called after throwing an instance of 'std::logic_error'                                                            
+  what():  basic_string::_S_construct NULL not valid                                                                         
+Aborted
+
+(gdb) bt                                    
+(...)
+#9  0xb7bd5b37 in std::basic_string&lt;char, std::char_traits&lt;char&gt;, std::allocator&lt;char&gt; &gt;::basic_string () from /usr/lib/libstdc++.so.6
+#10 0x0806982e in loadCityNG (filename=@0xbfaa446c) at src/lincity-ng/MainLincity.cpp:118                                             
+#11 0x080699d8 in initLincity () at src/lincity-ng/MainLincity.cpp:178                                                                
+#12 0x0805ed63 in mainLoop () at src/lincity-ng/main.cpp:336                                                                          
+#13 0x08060834 in main (argc=2, argv=0xbfaa45d4) at src/lincity-ng/main.cpp:493 
+
+
+it looks like PHYSFS_getRealDir(file) returns NULL if file wasn't found so it crashes when assigning NULL to an std::string
+
+
+maybe you should add:
+    if( ! PHYSFS_getRealDir(filename.c_str()) ) {
+        return false;
+    }
+in front of LoadCityNG before MainLincity.cpp:118
+
+
+Follow-Ups:
+
+Date: 2008-Sep-25 16:43
+By: spotrh
+
+Comment:
+I've made a patch that fixes this issue in my testing:
+
+<A HREF="http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2569&amp;group_id=2929">http://developer.berlios.de/patch/index.php?func=detailpatch&amp;patch_id=2569&amp;group_id=2929</A>
+
+There is probably a more clever way to check for the NULL response without calling PHYSFS_getRealDir twice, but this works, and I'm feeling lazy. :)
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14544&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=14544&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000512.html">[Lincity-ng-devel] [Patch #2569] Fix crash caused by	PHYSFS_getRealDir(file) returning NULL
+</A></li>
+	<LI>Next message: <A HREF="000514.html">[Lincity-ng-devel] [Bug #14544] Crash on starting 1.92-beta
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#513">[ date ]</a>
+              <a href="thread.html#513">[ thread ]</a>
+              <a href="subject.html#513">[ subject ]</a>
+              <a href="author.html#513">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

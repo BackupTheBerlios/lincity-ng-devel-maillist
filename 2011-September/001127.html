@@ -1,0 +1,135 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #17530] Game crashes late on OpenSuSE 11.3
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317530%5D%20Game%20crashes%20late%20on%20OpenSuSE%2011.3&In-Reply-To=%3C201109030848.p838mLhV018329%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001126.html">
+   <LINK REL="Next"  HREF="001128.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #17530] Game crashes late on OpenSuSE 11.3</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2317530%5D%20Game%20crashes%20late%20on%20OpenSuSE%2011.3&In-Reply-To=%3C201109030848.p838mLhV018329%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #17530] Game crashes late on OpenSuSE 11.3">admin at berlios.de
+       </A><BR>
+    <I>Sat Sep  3 10:48:21 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001126.html">[Lincity-ng-devel] [Bug #17929] make use of lua
+</A></li>
+        <LI>Next message: <A HREF="001128.html">[Lincity-ng-devel] [Bug #16759] Linux dual screen : fullscreen is	weird !
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1127">[ date ]</a>
+              <a href="thread.html#1127">[ thread ]</a>
+              <a href="subject.html#1127">[ subject ]</a>
+              <a href="author.html#1127">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #17530, was updated on 2010-Sep-23 02:36
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: unreproducible
+Status: Closed
+Resolution: Invalid
+Bug Group: None
+Priority: 5
+Submitted by: tsu
+Assigned to : none
+Summary: Game crashes late on OpenSuSE 11.3
+
+Details: Overall plays well.
+
+Crash easily repeatable. For a very long whether you play the game aggressively or conservatively it plays well except for some other non-critical bugs.
+
+The real problem is that when the game becomes very &quot;busy&quot; the game may suddenly crash and go to black screen with a blinking cursor in the top left corner.
+
+If the game is exited when the game is very busy... often before but certainly about the time that solar plants become available then when the game is exited voluntarily the game will exit, flash approx a quarter sized screen (VGA?) then go to black screen with the blinking cursor. The only way to proceed is to hit CTL-ALT-F5 which seems to logout and exit to command line mode.
+
+Logging in as the original User returns to the pre-CTL-ALT-F5 crash (blinking cursor in top left on a black screen).
+Logging in as a different User is possible, but when attempting to STARTX a debugging error displays which indicates the X Server is already running on instance 0 (zero) and another X Server cannot be started.
+
+Didn't try to stop the X Server at that point I've just been doing a shutdown/restart.
+
+Without viewing any logfiles, to my eye this looks like a memory bounding error where addresses are improperly written to either when the game has become overly active/busy or something happens when the game exits.
+
+OS:
+OpenSuSE 11.3, KDE 4.4.4
+kernel 2.6.34.7-0.2
+
+Hardware:
+Pavillion dv9500
+Core2 Duo T7500 (2.2GHz)
+4GB RAM
+GeForce 8600M GS (latest nVidia drivers from nVidia website)
+1680x1050
+
+
+
+Follow-Ups:
+
+Date: 2010-Oct-07 04:35
+By: tsu
+
+Comment:
+Responding to wolfgangb,
+Although I noticed this first with Lincity-NG, I've since noticed a similar if not same problem with other games running in OpenSuSE 11.3. I've also seen posts in the OpenSuSE forums over the past couple weeks about others reporting similar issues (but it's hard to verify all reports are really the same issue).
+
+Hard to state equivocally whether it's a video driver or xserver.org issue (am pretty certain it's not hardware), maybe it's the fault of both nVidia and xserver.org.
+
+Have also further found that this happens most often the more out of whack the current Lincity-NG gameplayer's strategy is, if a strategy is pursued that has higher likelihood of success, the less likely a crash. Pursuing a faulty strategy almost certainly results in crashes.
+-------------------------------------------------------
+
+Date: 2010-Oct-06 21:55
+By: wolfgangb
+
+Comment:
+&gt;<i>From the description I'd guess it might be a hardware or video driver issue. 
+</I>Was it a general problem with games on Suse or was something wrong in their Lincity-NG package? Do they even have one?
+-------------------------------------------------------
+
+Date: 2010-Sep-25 00:46
+By: tsu
+
+Comment:
+Since submitting, I have since found it's likely to be a widely reported problem in the initial RTM of OpenSuSE 11.3 (was released approx 1 month prior to this submission).
+
+So, this bug should probably be considered closed.
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17530&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=17530&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001126.html">[Lincity-ng-devel] [Bug #17929] make use of lua
+</A></li>
+	<LI>Next message: <A HREF="001128.html">[Lincity-ng-devel] [Bug #16759] Linux dual screen : fullscreen is	weird !
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1127">[ date ]</a>
+              <a href="thread.html#1127">[ thread ]</a>
+              <a href="subject.html#1127">[ subject ]</a>
+              <a href="author.html#1127">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

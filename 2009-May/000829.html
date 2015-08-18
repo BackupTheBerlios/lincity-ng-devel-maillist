@@ -1,0 +1,217 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #15768] Linux Start Error
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2009-May/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315768%5D%20Linux%20Start%20Error&In-Reply-To=%3C200905310035.n4V0Z7eb003731%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000828.html">
+   
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #15768] Linux Start Error</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2315768%5D%20Linux%20Start%20Error&In-Reply-To=%3C200905310035.n4V0Z7eb003731%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #15768] Linux Start Error">admin at berlios.de
+       </A><BR>
+    <I>Sun May 31 02:35:07 CEST 2009</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000828.html">[Lincity-ng-devel] [Bug #15768] Linux Start Error
+</A></li>
+        
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#829">[ date ]</a>
+              <a href="thread.html#829">[ thread ]</a>
+              <a href="subject.html#829">[ subject ]</a>
+              <a href="author.html#829">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #15768, was updated on 2009-May-28 20:19
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: kitchm
+Assigned to : none
+Summary: Linux Start Error
+
+Details: I am using Arch with all latest updates.
+
+I receive the following at the command prompt;
+
+$ lincity-ng
+Starting lincity-ng (version 2.0)...
+[/home/lbj/.lincity-ng] is in the search path.
+[/usr/share/lincity-ng] is in the search path.
+[/home/lbj/.lincity-ng] is the write directory.
+Language is &quot;en_US&quot;.
+ fast = 9
+Illegal instruction
+$
+
+It doesn't start from the KDEMod3 menu item, so that is why I tried it manually from the prompt.
+
+I didn't see this problem listed anywhere else, but maybe I missed something and its very simple to fix.
+
+Any help anyone can give would be appreciated.
+
+Thank you.
+
+Follow-Ups:
+
+Date: 2009-May-30 20:35
+By: kitchm
+
+Comment:
+$ ldd `which lincity-ng`
+        linux-gate.so.1 =&gt;  (0xb80da000)
+        libxml2.so.2 =&gt; /usr/lib/libxml2.so.2 (0xb7f76000)
+        libSDL-1.2.so.0 =&gt; /usr/lib/libSDL-1.2.so.0 (0xb7ee1000)
+        libpthread.so.0 =&gt; /lib/libpthread.so.0 (0xb7ec9000)
+        libSDL_image-1.2.so.0 =&gt; /usr/lib/libSDL_image-1.2.so.0 (0xb7eae000)
+        libSDL_mixer-1.2.so.0 =&gt; /usr/lib/libSDL_mixer-1.2.so.0 (0xb7e44000)
+        libSDL_ttf-2.0.so.0 =&gt; /usr/lib/libSDL_ttf-2.0.so.0 (0xb7e3e000)
+        libSDL_gfx.so.0 =&gt; /usr/lib/libSDL_gfx.so.0 (0xb7e29000)
+        libphysfs.so.1 =&gt; /usr/lib/libphysfs.so.1 (0xb7e0b000)
+        libGL.so.1 =&gt; /usr/lib/libGL.so.1 (0xb7da5000)
+        libz.so.1 =&gt; /usr/lib/libz.so.1 (0xb7d91000)
+        libstdc++.so.6 =&gt; /usr/lib/libstdc++.so.6 (0xb7ca0000)
+        libm.so.6 =&gt; /lib/libm.so.6 (0xb7c79000)
+        libgcc_s.so.1 =&gt; /usr/lib/libgcc_s.so.1 (0xb7c5b000)
+        libc.so.6 =&gt; /lib/libc.so.6 (0xb7b13000)
+        libdl.so.2 =&gt; /lib/libdl.so.2 (0xb7b0f000)
+        /lib/ld-linux.so.2 (0xb80db000)
+        libfreetype.so.6 =&gt; /usr/lib/libfreetype.so.6 (0xb7a8a000)
+        libXext.so.6 =&gt; /usr/lib/libXext.so.6 (0xb7a7a000)
+        libXxf86vm.so.1 =&gt; /usr/lib/libXxf86vm.so.1 (0xb7a75000)
+        libXdamage.so.1 =&gt; /usr/lib/libXdamage.so.1 (0xb7a72000)
+        libXfixes.so.3 =&gt; /usr/lib/libXfixes.so.3 (0xb7a6d000)
+        libX11-xcb.so.1 =&gt; /usr/lib/libX11-xcb.so.1 (0xb7a6b000)
+        libX11.so.6 =&gt; /usr/lib/libX11.so.6 (0xb794e000)
+        libxcb-glx.so.0 =&gt; /usr/lib/libxcb-glx.so.0 (0xb793c000)
+        libxcb.so.1 =&gt; /usr/lib/libxcb.so.1 (0xb7923000)
+        libdrm.so.2 =&gt; /usr/lib/libdrm.so.2 (0xb791a000)
+        libXau.so.6 =&gt; /usr/lib/libXau.so.6 (0xb7917000)
+        libXdmcp.so.6 =&gt; /usr/lib/libXdmcp.so.6 (0xb7912000)
+        librt.so.1 =&gt; /lib/librt.so.1 (0xb7908000)
+$
+
+On a hunch, I removed some suspicious stuff (I use KDEMod3 and not 4):
+k3b (1.66.0alpha2-1)
+kdemultimedia (4.2.3-1)
+kdebase-runtime (4.2.3-1)
+
+The system also removed:
+kdemod3-libvorbis (1.2.1rc1-1)
+
+These got installed:
+libvorbis (1.2.1rc1-2)
+gstreamer0.10-base-plugins (0.10.23-1)
+
+Now the game starts up.  However, I have not yet played it.  We should assume that it works now and the incident is closed.
+
+Thanks to everyone.
+-------------------------------------------------------
+
+Date: 2009-May-30 19:32
+By: wolfgangb
+
+Comment:
+That one crashed later, after OpenGL was initialized. Seems to be a different problem.
+-------------------------------------------------------
+
+Date: 2009-May-30 14:06
+By: ghmitch
+
+Comment:
+I have recently been plagued by a similar problem using Mandriva:
+
+[<A HREF="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">ghmitch at localhost</A> ~]$ lincity-ng
+Starting lincity-ng (version 2.0)...
+[/home/ghmitch/.lincity-ng] is in the search path.
+[/home/ghmitch/.lincity] is in the search path.   
+[/usr/share/games/lincity-ng] is in the search path.
+[/home/ghmitch/.lincity-ng] is the write directory. 
+Language is &quot;en_US&quot;.                                
+ fast = 9                                           
+OpenGL Mode 1024x768                                
+Segmentation fault
+
+When I changed my user interface from KDE4 to xfce4, the problem seemingly went away.  So I am wondering if kde might have something to do with this?
+
+-------------------------------------------------------
+
+Date: 2009-May-30 06:34
+By: wolfgangb
+
+Comment:
+Same Error with &quot;lincity-ng --sdl&quot; and &quot;lincity-ng --gl&quot;. So I guess it is not a video driver problem. Did you compile Lincity using a stable version of physfs? Check with: ldd `which lincity-ng`
+
+-------------------------------------------------------
+
+Date: 2009-May-29 23:27
+By: kitchm
+
+Comment:
+Thank you for the prompt response.
+
+At the command prompt I entered:
+lincity-ng --sdl, use --gl
+lincity-ng --sdl
+lincity-ng --gl
+lincity-ng use --gl
+.....and any other combination I could think of.  It didn't like some of them, but when it ran, I got the same error every time.
+
+I used ATI Radeon by installing it with:
+# pacman -S xf86-video-ati
+
+Please let me know if you need anything else.
+
+Thanks again.
+-------------------------------------------------------
+
+Date: 2009-May-29 12:58
+By: wolfgangb
+
+Comment:
+That is a new one. Looks like it happens before or while the the graphic mode is initialized. Can you try to force SDL mode (lincity-ng --sdl, use --gl to change to OpenGL)? Usually SDL is slower that OpenGL.  What video driver do you use?
+Did you build Lincity from source or do you use the autopackage? 
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15768&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=15768&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000828.html">[Lincity-ng-devel] [Bug #15768] Linux Start Error
+</A></li>
+	
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#829">[ date ]</a>
+              <a href="thread.html#829">[ thread ]</a>
+              <a href="subject.html#829">[ subject ]</a>
+              <a href="author.html#829">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

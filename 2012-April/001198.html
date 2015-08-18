@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18582] atch: Fasten startup,	not loading resume game automatically
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318582%5D%20atch%3A%20Fasten%20startup%2C%0A%09not%20loading%20resume%20game%20automatically&In-Reply-To=%3C201204201258.q3KCw4wL008614%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001197.html">
+   <LINK REL="Next"  HREF="001199.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18582] atch: Fasten startup,	not loading resume game automatically</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318582%5D%20atch%3A%20Fasten%20startup%2C%0A%09not%20loading%20resume%20game%20automatically&In-Reply-To=%3C201204201258.q3KCw4wL008614%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18582] atch: Fasten startup,	not loading resume game automatically">admin at berlios.de
+       </A><BR>
+    <I>Fri Apr 20 14:58:04 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001197.html">[Lincity-ng-devel] [Bug #18568] Crash: New game menu: 'ok' before	scenario is chosen
+</A></li>
+        <LI>Next message: <A HREF="001199.html">[Lincity-ng-devel] [Bug #18584] &quot;Start with empty board&quot; looks text,	but is button (patch)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1198">[ date ]</a>
+              <a href="thread.html#1198">[ thread ]</a>
+              <a href="subject.html#1198">[ subject ]</a>
+              <a href="author.html#1198">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18582, was updated on 2012-Apr-20 04:58
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: atch: Fasten startup, not loading resume game automatically
+
+Details: diff --git a/src/lincity-ng/MainLincity.cpp b/src/lincity-ng/MainLincity.cpp
+index 37f968c..d32876c 100644
+--- a/src/lincity-ng/MainLincity.cpp
++++ b/src/lincity-ng/MainLincity.cpp
+@@ -176,11 +176,14 @@ void initLincity()
+   
+     screen_full_refresh ();
+ 
++    //Do not resume at this point, but when user press continue
++    /*
+     //load current game if it exists
+     if( ! loadCityNG( std::string( &quot;9_currentGameNG.scn&quot; ) ) ) {   
+         //create a new City with village just in case 
+         new_city( &amp;main_screen_originx, &amp;main_screen_originy, 1 );
+     }
++    */
+ }
+ 
+ 
+diff --git a/src/lincity-ng/MainMenu.cpp b/src/lincity-ng/MainMenu.cpp
+index d1a32d6..e976418 100644
+--- a/src/lincity-ng/MainMenu.cpp
++++ b/src/lincity-ng/MainMenu.cpp
+@@ -568,6 +568,11 @@ void
+ MainMenu::continueButtonClicked(Button* )
+ {
+     getSound()-&gt;playSound( &quot;Click&quot; );
++    //resume/load current game
++    if( ! loadCityNG( std::string( &quot;9_currentGameNG.scn&quot; ) ) ) {
++        //Create a new City with village if no previous game found
++        new_city( &amp;main_screen_originx, &amp;main_screen_originy, 1 );
++    }
+     quitState = INGAME;
+     running = false;
+ }
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18582&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18582&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001197.html">[Lincity-ng-devel] [Bug #18568] Crash: New game menu: 'ok' before	scenario is chosen
+</A></li>
+	<LI>Next message: <A HREF="001199.html">[Lincity-ng-devel] [Bug #18584] &quot;Start with empty board&quot; looks text,	but is button (patch)
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1198">[ date ]</a>
+              <a href="thread.html#1198">[ thread ]</a>
+              <a href="subject.html#1198">[ subject ]</a>
+              <a href="author.html#1198">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

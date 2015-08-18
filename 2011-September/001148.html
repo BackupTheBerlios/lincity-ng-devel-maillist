@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Fullmoon build
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2011-September/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Fullmoon%20build&In-Reply-To=%3CCAF6bG8eqbULSXVTormPmMMPMEjOE7ERzWyN5bkmvQAjNmvoytg%40mail.gmail.com%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001147.html">
+   <LINK REL="Next"  HREF="001149.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Fullmoon build</H1>
+    <B>Marko Lindqvist</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Fullmoon%20build&In-Reply-To=%3CCAF6bG8eqbULSXVTormPmMMPMEjOE7ERzWyN5bkmvQAjNmvoytg%40mail.gmail.com%3E"
+       TITLE="[Lincity-ng-devel] Fullmoon build">cazfi74 at gmail.com
+       </A><BR>
+    <I>Tue Sep  6 00:30:48 CEST 2011</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001147.html">[Lincity-ng-devel] Well...
+</A></li>
+        <LI>Next message: <A HREF="001149.html">[Lincity-ng-devel] Fullmoon build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1148">[ date ]</a>
+              <a href="thread.html#1148">[ thread ]</a>
+              <a href="subject.html#1148">[ subject ]</a>
+              <a href="author.html#1148">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Hello
+
+In Open Source community I have been most active in Freeciv (
+<A HREF="http://www.freeciv.org/">http://www.freeciv.org/</A> ) development, but I also run a couple of
+one-man-projects, and have made minor contributions to other projects.
+One of the projects of my own is fullmoon (
+<A HREF="http://www.cazfi.net/fullmoon">http://www.cazfi.net/fullmoon</A> ) build tool for linux.
+
+I'm now adding Lincity-ng build as &quot;test case&quot; (lives in &quot;examples&quot;
+-directory) for fullmoon. I hope that my efforts on that front will
+also benefit Lincity-ng project quality.
+
+Here are my findings in Debian Wheezy amd64 about Lincity-ng build so
+far. In case it matters, builddir != srcdir, and I'm building
+Lincity-ng trunk head:
+
+- Build produces lincity-ng binary itself, but AFAICT fails to build
+some data files. Return value of jam is 1 with last error message
+being:
+&quot;XGetText actions too long (max 10240)!&quot;
+Attempts to run lincity-ng (in build dir) results in:
+&quot;Warning couldn't find music file '02 - Robert van Herk - City Blues.ogg'.&quot;
+and
+&quot;Unexpected exception: Couldn't open file 'gui/mainmenu.xml': No such
+file or directory&quot;
+
+I'm not too familiar with jam. Does lincity-ng require some jam
+equivalent of &quot;make install&quot; before it's usable, or can it be run
+directly from builddir? At least wiki does not mention such install
+step.
+
+
+ - ML
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001147.html">[Lincity-ng-devel] Well...
+</A></li>
+	<LI>Next message: <A HREF="001149.html">[Lincity-ng-devel] Fullmoon build
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1148">[ date ]</a>
+              <a href="thread.html#1148">[ thread ]</a>
+              <a href="subject.html#1148">[ subject ]</a>
+              <a href="author.html#1148">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

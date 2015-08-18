@@ -1,0 +1,286 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #18564] Compiling without openGL support	(initial patch)
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2012-April/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318564%5D%20Compiling%20without%20openGL%20support%0A%09%28initial%20patch%29&In-Reply-To=%3C201204150921.q3F9Lvxv022951%40www.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="001194.html">
+   <LINK REL="Next"  HREF="001196.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #18564] Compiling without openGL support	(initial patch)</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2318564%5D%20Compiling%20without%20openGL%20support%0A%09%28initial%20patch%29&In-Reply-To=%3C201204150921.q3F9Lvxv022951%40www.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #18564] Compiling without openGL support	(initial patch)">admin at berlios.de
+       </A><BR>
+    <I>Sun Apr 15 11:21:57 CEST 2012</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="001194.html">[Lincity-ng-devel] [Bug #15203]  640x480 is not playable
+</A></li>
+        <LI>Next message: <A HREF="001196.html">[Lincity-ng-devel] [Bug #18562] Saving config crash on ARM-linux
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1195">[ date ]</a>
+              <a href="thread.html#1195">[ thread ]</a>
+              <a href="subject.html#1195">[ subject ]</a>
+              <a href="author.html#1195">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #18564, was updated on 2012-Apr-15 00:52
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 5
+Submitted by: aaporantalainen
+Assigned to : none
+Summary: Compiling without openGL support (initial patch)
+
+Details: With this patch it is possible to compile Lincity without openGL-support, e.g. if targeting to the devices without openGL. (compile flag would be nicer, this is just proof, it is possbile).
+
+diff --git a/src/gui/Jamfile b/src/gui/Jamfile
+index e6377b8..2a8a667 100644
+--- a/src/gui/Jamfile
++++ b/src/gui/Jamfile
+@@ -7,6 +7,6 @@ SOURCES =
+     [ Wildcard PainterSDL : *.cpp *.hpp ]
+ ;
+ Library lincity_gui : $(SOURCES) : noinstall ;
+-ExternalLibs lincity_gui : LIBXML SDL SDLIMAGE PHYSFS GL ICONV ;
++ExternalLibs lincity_gui : LIBXML SDL SDLIMAGE PHYSFS ICONV ;
+ 
+ TRANSLATABLE_SOURCES += [ SearchSource $(SOURCES) ] ;
+diff --git a/src/gui/PainterSDL/PainterSDL.cpp b/src/gui/PainterSDL/PainterSDL.cpp
+index 231bed3..8a5b92d 100644
+--- a/src/gui/PainterSDL/PainterSDL.cpp
++++ b/src/gui/PainterSDL/PainterSDL.cpp
+@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ #include &lt;assert.h&gt;
+ #include &lt;math.h&gt;
+ #include &lt;typeinfo&gt;
+-#include &lt;SDL_opengl.h&gt;
++//#include &lt;SDL_opengl.h&gt;
+ #include &lt;SDL_gfxPrimitives.h&gt;
+ #include &lt;SDL_rotozoom.h&gt;
+ #include &lt;SDL_video.h&gt;
+diff --git a/src/lincity-ng/Config.cpp b/src/lincity-ng/Config.cpp
+index 89cadb1..7a86d10 100644
+--- a/src/lincity-ng/Config.cpp
++++ b/src/lincity-ng/Config.cpp
+@@ -22,7 +22,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ #include &quot;PhysfsStream/PhysfsStream.hpp&quot;
+ #include &quot;lincity/engglobs.h&quot;
+ 
+-#include &lt;SDL_opengl.h&gt;
++//#include &lt;SDL_opengl.h&gt;
+ #include &lt;assert.h&gt;
+ #include &lt;iostream&gt;
+ 
+diff --git a/src/lincity-ng/main.cpp b/src/lincity-ng/main.cpp
+index b6a1d1b..62e91ab 100644
+--- a/src/lincity-ng/main.cpp
++++ b/src/lincity-ng/main.cpp
+@@ -23,7 +23,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ #include &lt;memory&gt;
+ #include &lt;physfs.h&gt;
+ #include &lt;SDL.h&gt;
+-#include &lt;SDL_opengl.h&gt;
++//#include &lt;SDL_opengl.h&gt;
+ #include &lt;SDL_ttf.h&gt;
+ #include &lt;stdio.h&gt;
+ #include &lt;stdlib.h&gt;
+@@ -34,8 +34,8 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+ #include &quot;gui/TextureManager.hpp&quot;
+ #include &quot;gui/PainterSDL/TextureManagerSDL.hpp&quot;
+ #include &quot;gui/PainterSDL/PainterSDL.hpp&quot;
+-#include &quot;gui/PainterGL/TextureManagerGL.hpp&quot;
+-#include &quot;gui/PainterGL/PainterGL.hpp&quot;
++//#include &quot;gui/PainterGL/TextureManagerGL.hpp&quot;
++//#include &quot;gui/PainterGL/PainterGL.hpp&quot;
+ 
+ #include &quot;main.hpp&quot;
+ #include &quot;MainLincity.hpp&quot;
+@@ -200,68 +200,30 @@ void initVideo(int width, int height)
+ {
+     int bpp = 0;
+     int flags = 0;
+-    if( getConfig()-&gt;useOpenGL ){
+-        flags = SDL_OPENGL;
+-        SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+-        SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 1);
+-        SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 1);
+-        SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 1);
+-        //SDL_GL_SetAttribute(SDL_GL_STENCIL_SIZE, 0);
+-        //SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+-    } else {
+         flags = SDL_HWSURFACE;
+-    }
++
+     if(getConfig()-&gt;useFullScreen)
+         flags |= SDL_FULLSCREEN;
+ 
+     SDL_Surface* screen
+         = SDL_SetVideoMode(width, height, bpp, flags);
+     SDL_WM_SetCaption(PACKAGE_NAME &quot; &quot; PACKAGE_VERSION, 0);
++
+     if(!screen) {
+         std::stringstream msg;
+         msg &lt;&lt; &quot;Couldn't set video mode (&quot;
+             &lt;&lt; width &lt;&lt; &quot;x&quot; &lt;&lt; height
+             &lt;&lt; &quot;-&quot; &lt;&lt; bpp &lt;&lt; &quot;bpp) : &quot; &lt;&lt; SDL_GetError();
+-        if(getConfig()-&gt;useOpenGL) {
+-            std::cerr &lt;&lt; &quot;* Fallback to software mode.\n&quot;;
+-            getConfig()-&gt;useOpenGL = false;
+-            initVideo(width, height);
+-            return;
+-        }
+         throw std::runtime_error(msg.str());
+     }
+ 
+     delete painter;
+-    if( getConfig()-&gt;useOpenGL ){
+-        glDisable(GL_DEPTH_TEST);
+-        glDisable(GL_CULL_FACE);
+-
+-        glClearColor(0, 0, 0, 0);
+-        glViewport(0, 0, screen-&gt;w, screen-&gt;h);
+-        glMatrixMode(GL_MODELVIEW);
+-        glLoadIdentity();
+-
+-        glMatrixMode(GL_PROJECTION);
+-        glLoadIdentity();
+-        glOrtho(0, screen-&gt;w, screen-&gt;h, 0, -1, 1);
+-
+-        glClear(GL_COLOR_BUFFER_BIT);
+-    
+-        painter = new PainterGL();
+-        std::cout &lt;&lt; &quot;OpenGL Mode &quot; &lt;&lt; getConfig()-&gt;videoX; 
+-        std::cout &lt;&lt; &quot;x&quot; &lt;&lt; getConfig()-&gt;videoY &lt;&lt; &quot;\n&quot;;
+-    } else {
+         painter = new PainterSDL(screen);
+         std::cout &lt;&lt; &quot;SDL Mode &quot; &lt;&lt; getConfig()-&gt;videoX;
+         std::cout &lt;&lt; &quot;x&quot;&lt;&lt; getConfig()-&gt;videoY &lt;&lt;&quot;\n&quot;;
+-    }
+ 
+     if(texture_manager == 0) {
+-        if( getConfig()-&gt;useOpenGL ) {
+-            texture_manager = new TextureManagerGL();
+-        } else {
+             texture_manager = new TextureManagerSDL();
+-        }
+     }
+ 
+     if(fontManager == 0) {
+@@ -269,54 +231,10 @@ void initVideo(int width, int height)
+     }
+ }
+ 
+-void checkGlErrors()
+-{
+-    GLenum glerror = glGetError();
+-    if( glerror == GL_NO_ERROR ){
+-        return;
+-    }
+-    std::cerr &lt;&lt; &quot;glGetError reports&quot;;
+-    while( glerror != GL_NO_ERROR ){
+-        std::cerr &lt;&lt; &quot; &quot;;
+-        switch( glerror ){
+-            case GL_INVALID_ENUM:
+-                std::cerr &lt;&lt; &quot;GL_INVALID_ENUM&quot;;
+-                break;
+-            case GL_INVALID_VALUE:
+-                std::cerr &lt;&lt; &quot;GL_INVALID_VALUE&quot;;
+-                break;
+-            case GL_INVALID_OPERATION:
+-                std::cerr &lt;&lt; &quot;GL_INVALID_OPERATION&quot;;
+-                break;
+-            case GL_STACK_OVERFLOW:
+-                std::cerr &lt;&lt; &quot;GL_STACK_OVERFLOW&quot;;
+-                break;
+-            case GL_STACK_UNDERFLOW: 
+-                std::cerr &lt;&lt; &quot;GL_STACK_UNDERFLOW&quot;;
+-                break;
+-            case GL_TABLE_TOO_LARGE:           
+-                std::cerr &lt;&lt; &quot;GL_TABLE_TOO_LARGE&quot;;
+-                break;
+-            case GL_OUT_OF_MEMORY:           
+-                std::cerr &lt;&lt; &quot;GL_OUT_OF_MEMORY&quot;;
+-                break;
+-            default:
+-                std::cerr &lt;&lt; glerror;
+-        }
+-        glerror = glGetError();
+-    }
+-    std::cerr &lt;&lt; &quot;\n&quot;;
+-}
+ 
+ void flipScreenBuffer()
+ {
+-    if( getConfig()-&gt;useOpenGL ){
+-        checkGlErrors();
+-        SDL_GL_SwapBuffers();
+-        //glClear(GL_COLOR_BUFFER_BIT);
+-    } else {
+         SDL_Flip(SDL_GetVideoSurface());
+-    }
+ }
+ 
+ void mainLoop()
+--- a/configure
++++ b/configure
+@@ -6913,7 +6913,7 @@ fi
+ if test &quot;$no_gl&quot; = &quot;yes&quot;; then
+     { { echo &quot;$as_me:$LINENO: error: Couldn't find opengl libraries or headers&quot; &gt;&amp;5
+ echo &quot;$as_me: error: Couldn't find opengl libraries or headers&quot; &gt;&amp;2;}
+-   { (exit 1); exit 1; }; }
++   { echo &quot;not fatal&quot;; }; }
+ fi
+
+Follow-Ups:
+
+Date: 2012-Apr-15 01:21
+By: aaporantalainen
+
+Comment:
+And this is also needed:
+rm -rf src/gui/PainterGL 
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18564&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=18564&amp;group_id=2929</A>
+</PRE>
+
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="001194.html">[Lincity-ng-devel] [Bug #15203]  640x480 is not playable
+</A></li>
+	<LI>Next message: <A HREF="001196.html">[Lincity-ng-devel] [Bug #18562] Saving config crash on ARM-linux
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#1195">[ date ]</a>
+              <a href="thread.html#1195">[ thread ]</a>
+              <a href="subject.html#1195">[ subject ]</a>
+              <a href="author.html#1195">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

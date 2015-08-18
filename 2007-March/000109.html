@@ -1,0 +1,137 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] [Bug #10631] french accent problem on windoz xp
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2007-March/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310631%5D%20french%20accent%20problem%20on%20windoz%20xp&In-Reply-To=%3C200703231943.l2NJhHKb012792%40unicorn.berlios.de%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000108.html">
+   <LINK REL="Next"  HREF="000110.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] [Bug #10631] french accent problem on windoz xp</H1>
+    <B>admin at berlios.de</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20%5BBug%20%2310631%5D%20french%20accent%20problem%20on%20windoz%20xp&In-Reply-To=%3C200703231943.l2NJhHKb012792%40unicorn.berlios.de%3E"
+       TITLE="[Lincity-ng-devel] [Bug #10631] french accent problem on windoz xp">admin at berlios.de
+       </A><BR>
+    <I>Fri Mar 23 20:43:17 CET 2007</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000108.html">[Lincity-ng-devel] [Bug #10631] french accent problem on windoz xp
+</A></li>
+        <LI>Next message: <A HREF="000110.html">[Lincity-ng-devel] Presentation Thierry 46, mac bundle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#109">[ date ]</a>
+              <a href="thread.html#109">[ thread ]</a>
+              <a href="subject.html#109">[ subject ]</a>
+              <a href="author.html#109">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>Bug #10631, was updated on 2007-Mar-14 16:21
+Here is a current snapshot of the bug.
+
+Project: LinCityNG
+Category: None
+Status: Open
+Resolution: None
+Bug Group: None
+Priority: 8
+Submitted by: alainb
+Assigned to : none
+Summary: french accent problem on windoz xp 
+
+Details: version 1.1.exe downloaded on berlios.
+windows xp , french.
+
+In help messages, all the non ascii letters with accents (&#233;,&#232;... egrave, eaccute ...) are replaced by ugly hieroglyph (copyright sign or other weird stuff)
+
+
+
+Follow-Ups:
+
+Date: 2007-Mar-22 19:50
+By: bugmenot
+
+Comment:
+Nope, the german help files do contain the encoding part but umlauts are broken anyway. 
+-------------------------------------------------------
+
+Date: 2007-Mar-22 08:52
+By: alainb
+
+Comment:
+In data/locale/xyz.xml begin with:
+ &lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+and is correctly displayed under windows.
+
+But help files (data/help/en or fr and probably other...) begin only with: 
+ &lt;?xml version=&quot;1.0&quot;?&gt;
+
+I suppose this is the pb, but i cannot test i have only utf-8 linux box and no windows.
+-------------------------------------------------------
+
+Date: 2007-Mar-18 18:08
+By: wolfgangb
+
+Comment:
+Looks like all non-ASCII messages that are read directly from XML without translation are broken in windows. Eg. the names on the credit screen are affected, too.
+-------------------------------------------------------
+
+Date: 2007-Mar-15 23:24
+By: bugmenot
+
+Comment:
+Same problem with German umlauts on Windows XP Home. Looks like all multi byte characters get several symbols in the help viewer. Umlauts are shown correctly in the status bar.
+-------------------------------------------------------
+
+Date: 2007-Mar-15 12:26
+By: alainb
+
+Comment:
+No idea. Does this happens for other languages too ?
+-------------------------------------------------------
+
+Date: 2007-Mar-14 18:59
+By: wolfgangb
+
+Comment:
+<A HREF="http://lincity-ng.berlios.de/wiki/index.php/Bug_Reports#Open">http://lincity-ng.berlios.de/wiki/index.php/Bug_Reports#Open</A>
+Strange. I can reproduce the font problem in Windows XP, but it works fine
+in Win98. Any Ideas? -- WolfgangB 15:44, 13 Nov 2005 (CET)
+
+-------------------------------------------------------
+
+For detailed info, follow this link:
+<A HREF="http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10631&amp;group_id=2929">http://developer.berlios.de/bugs/?func=detailbug&amp;bug_id=10631&amp;group_id=2929</A>
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000108.html">[Lincity-ng-devel] [Bug #10631] french accent problem on windoz xp
+</A></li>
+	<LI>Next message: <A HREF="000110.html">[Lincity-ng-devel] Presentation Thierry 46, mac bundle
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#109">[ date ]</a>
+              <a href="thread.html#109">[ thread ]</a>
+              <a href="subject.html#109">[ subject ]</a>
+              <a href="author.html#109">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>

@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+ <HEAD>
+   <TITLE> [Lincity-ng-devel] Slow down cpu consumption in pause mode
+   </TITLE>
+   <LINK REL="Index" HREF="http://lists.berlios.de/pipermail/lincity-ng-devel/2008-February/index.html" >
+   <LINK REL="made" HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Slow%20down%20cpu%20consumption%20in%20pause%20mode&In-Reply-To=%3C47AF7647.3090605%40magic.fr%3E">
+   <META NAME="robots" CONTENT="index,nofollow">
+   <style type="text/css">
+       pre {
+           white-space: pre-wrap;       /* css-2.1, curent FF, Opera, Safari */
+           }
+   </style>
+   <META http-equiv="Content-Type" content="text/html; charset=us-ascii">
+   <LINK REL="Previous"  HREF="000329.html">
+   <LINK REL="Next"  HREF="000334.html">
+ </HEAD>
+ <BODY BGCOLOR="#ffffff">
+   <H1>[Lincity-ng-devel] Slow down cpu consumption in pause mode</H1>
+    <B>magicfox</B> 
+    <A HREF="mailto:lincity-ng-devel%40lists.berlios.de?Subject=Re%3A%20%5BLincity-ng-devel%5D%20Slow%20down%20cpu%20consumption%20in%20pause%20mode&In-Reply-To=%3C47AF7647.3090605%40magic.fr%3E"
+       TITLE="[Lincity-ng-devel] Slow down cpu consumption in pause mode">magicfox at magic.fr
+       </A><BR>
+    <I>Sun Feb 10 23:10:15 CET 2008</I>
+    <P><UL>
+        <LI>Previous message: <A HREF="000329.html">[Lincity-ng-devel] Slow down cpu consumption in pause mode
+</A></li>
+        <LI>Next message: <A HREF="000334.html">[Lincity-ng-devel] Slow down cpu consumption in pause mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+    <HR>  
+<!--beginarticle-->
+<PRE>&gt;<i> Le dimanche 10 f&#233;vrier 2008, magicfox a &#233;crit :
+</I>&gt;&gt;<i> Hi,
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i> This patch decreases  cpu consumption in pause mode.
+</I>&gt;&gt;<i> --
+</I>&gt;&gt;<i> Thierry
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;&gt;<i>
+</I>&gt;<i> Hi Thierry
+</I>&gt;<i> 
+</I>&gt;<i> Thanks for the patch.
+</I>&gt;<i> As i don't really understand this part of the code (and messed things up at
+</I>&gt;<i> least once :) i let competent people check it and integrate it in the svn.
+</I>&gt;<i> 
+</I>&gt;<i> Alain.
+</I>&gt;<i> 
+</I>&gt;<i> PS: i cc'ed you, since i don't know if you are on the list or not.
+</I>
+Thanks for your feedback.
+I was surprised to see a consequent cpu consumption in pause mode and 
+it's a minor change in code (just avoid to refresh an unchanged graph in 
+a call to getEconomyGraph() function).
+The next change is to stop scrolling (clipping in pause mode) when the 
+border is reached.
+I tested it and hopefully it breaks nothing.
+
+I'm subscribed to this list.
+--
+Thierry
+
+</PRE>
+
+<!--endarticle-->
+    <HR>
+    <P><UL>
+        <!--threads-->
+	<LI>Previous message: <A HREF="000329.html">[Lincity-ng-devel] Slow down cpu consumption in pause mode
+</A></li>
+	<LI>Next message: <A HREF="000334.html">[Lincity-ng-devel] Slow down cpu consumption in pause mode
+</A></li>
+         <LI> <B>Messages sorted by:</B> 
+              <a href="date.html#330">[ date ]</a>
+              <a href="thread.html#330">[ thread ]</a>
+              <a href="subject.html#330">[ subject ]</a>
+              <a href="author.html#330">[ author ]</a>
+         </LI>
+       </UL>
+
+<hr>
+<a href="https://lists.berlios.de/mailman/listinfo/lincity-ng-devel">More information about the Lincity-ng-devel
+mailing list</a><br>
+</body></html>
